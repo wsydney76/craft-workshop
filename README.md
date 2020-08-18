@@ -9,7 +9,7 @@ This is just a starter demo, learning resource and a simple Proof of Concept for
 
 
 > **Warning**: This is not indended to be used as a starting point for a real world 
-> application. It developed over the time by learning, discovering and experimenting, a lot of stuff done by interns (thanks all, especially Melissa and Aylin).
+> application. It developed over the time by learning, discovering and experimenting, a lot of stuff done by interns (thanks all, especially Clarissa, Melissa and Aylin).
 > Some things made to our real products, others didn't and some are just to crazy. And some may be broken.
 
 TODO: Mel and Aylin will add some docs as part of their master thesis.
