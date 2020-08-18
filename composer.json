@@ -4,7 +4,6 @@
   "description": "Extended project template for craft cms",
   "license": "Unlicense",
   "require": {
-    "anubarak/craft-relabel": "2.0.2",
     "craftcms/cms": "3.5.5",
     "craftcms/commerce": "3.2.2.1",
     "craftcms/feed-me": "4.2.3",
