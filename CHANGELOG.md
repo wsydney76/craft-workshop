@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.7.1 2020-08-18
+
+* Updated to Craft 3.5.5
+* Disabled SolrSearch Plugin by default
+
 ## 7.7 2020-08-17
 
 * Updated to Craft 3.5

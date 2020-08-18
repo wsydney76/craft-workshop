@@ -5,22 +5,26 @@ instructions: 'Select an image to be used in ''not found'' situations (unsuccess
 name: 'Not Found Image'
 searchable: false
 settings:
+  allowSelfRelations: false
   allowedKinds:
     - image
   defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   defaultUploadLocationSubpath: ''
   limit: '1'
-  localizeRelations: ''
+  localizeRelations: false
   restrictFiles: '1'
   selectionLabel: 'Select an image'
+  showSiteMenu: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: true
   singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   singleUploadLocationSubpath: ''
   source: null
   sources:
     - 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   targetSiteId: null
-  useSingleFolder: ''
-  validateRelatedElements: ''
+  useSingleFolder: false
+  validateRelatedElements: false
   viewMode: large
 translationKeyFormat: null
 translationMethod: site

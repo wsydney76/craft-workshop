@@ -5,14 +5,16 @@ instructions: ''
 name: 'Produced in'
 searchable: true
 settings:
+  allowSelfRelations: false
   limit: ''
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: ''
+  showSiteMenu: true
   source: null
   sources:
     - 'section:0adfd08b-0231-4927-aed8-1b64ae264692'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

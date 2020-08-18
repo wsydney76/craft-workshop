@@ -2,10 +2,41 @@ fieldLayouts:
   1942bafd-fa9a-4797-a336-a3bf43babdaa:
     tabs:
       -
-        fields:
-          3f9c2f2a-8ab0-4aba-bf4e-02d5336d14c0:
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            autofocus: false
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
             required: false
-            sortOrder: 1
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\TitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: 3f9c2f2a-8ab0-4aba-bf4e-02d5336d14c0
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 handle: images

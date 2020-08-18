@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06e55050de55ff925601b3c50c6c60a4",
+    "content-hash": "5b2ba0e1095899907d30a054df782e7a",
     "packages": [
         {
             "name": "anubarak/craft-relabel",
@@ -611,16 +611,16 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.5.4",
+            "version": "3.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/craftcms/cms.git",
-                "reference": "97d7c8184c17f99f0e001fef90a416ded16a5acd"
+                "reference": "e5fa51e15a5a083e074b0e116a23a1dcb52b80c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/97d7c8184c17f99f0e001fef90a416ded16a5acd",
-                "reference": "97d7c8184c17f99f0e001fef90a416ded16a5acd",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/e5fa51e15a5a083e074b0e116a23a1dcb52b80c6",
+                "reference": "e5fa51e15a5a083e074b0e116a23a1dcb52b80c6",
                 "shasum": ""
             },
             "require": {
@@ -704,7 +704,7 @@
                 "craftcms",
                 "yii2"
             ],
-            "time": "2020-08-13T20:24:36+00:00"
+            "time": "2020-08-17T18:33:40+00:00"
         },
         {
             "name": "craftcms/commerce",
@@ -3708,16 +3708,16 @@
         },
         {
             "name": "putyourlightson/craft-blitz",
-            "version": "3.6.6",
+            "version": "3.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/putyourlightson/craft-blitz.git",
-                "reference": "c591742724e837383ff1768039e1461c6e3f9213"
+                "reference": "76a67cd545da44e1f74a17192a44293d14f1b496"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/putyourlightson/craft-blitz/zipball/c591742724e837383ff1768039e1461c6e3f9213",
-                "reference": "c591742724e837383ff1768039e1461c6e3f9213",
+                "url": "https://api.github.com/repos/putyourlightson/craft-blitz/zipball/76a67cd545da44e1f74a17192a44293d14f1b496",
+                "reference": "76a67cd545da44e1f74a17192a44293d14f1b496",
                 "shasum": ""
             },
             "require": {
@@ -3725,6 +3725,12 @@
                 "craftcms/cms": "^3.2.1",
                 "ext-json": "*",
                 "putyourlightson/craft-log-to-file": "^1.1.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "^4.0.0",
+                "codeception/module-asserts": "^1.0.0",
+                "codeception/module-yii2": "^1.0.0",
+                "vlucas/phpdotenv": "^3.0"
             },
             "type": "craft-plugin",
             "extra": {
@@ -3740,30 +3746,27 @@
             },
             "autoload": {
                 "psr-4": {
-                    "putyourlightson\\blitz\\": "src/"
+                    "putyourlightson\\blitz\\": "src/",
+                    "putyourlightson\\blitztests\\fixtures\\": "tests/fixtures/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
             "description": "Intelligent static page caching for creating lightning-fast sites.",
             "homepage": "https://putyourlightson.com/plugins/blitz",
             "keywords": [
+                "Craft",
                 "cache",
                 "caching",
                 "cms",
-                "craft",
                 "craftcms",
                 "performance",
                 "plugin",
                 "speed"
             ],
-            "support": {
-                "docs": "https://putyourlightson.com/plugins/blitz",
-                "source": "https://github.com/putyourlightson/craft-blitz",
-                "issues": "https://github.com/putyourlightson/craft-blitz/issues"
-            },
-            "time": "2020-07-27T08:25:21+00:00"
+            "time": "2020-08-17T11:19:50+00:00"
         },
         {
             "name": "putyourlightson/craft-log-to-file",

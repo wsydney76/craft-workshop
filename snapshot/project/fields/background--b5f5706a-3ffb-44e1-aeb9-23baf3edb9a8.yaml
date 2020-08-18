@@ -7,6 +7,7 @@ searchable: true
 settings:
   assetSources:
     - images
+  data: null
   hasBlockImage: ''
   sectionSources:
     - film

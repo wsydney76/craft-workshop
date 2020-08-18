@@ -3,22 +3,52 @@ fieldLayouts:
   aa3b81ee-f2c1-4e59-9da0-47b7326d6b5b:
     tabs:
       -
-        fields:
-          46e45564-f260-46a9-9e21-7a2c8f924c60:
-            required: false
-            sortOrder: 2
-          770922eb-0357-4fd6-8093-c52893350c60:
-            required: true
-            sortOrder: 3
-          b67c305f-d2a1-4ead-910e-3dc656bda8ae:
-            required: false
-            sortOrder: 1
-          cd92d162-e3ca-4a86-b0a6-569109b4e184:
-            required: true
-            sortOrder: 5
-          e11fd309-dc49-476b-9675-ddf0542f6734:
-            required: true
-            sortOrder: 4
+        elements:
+          -
+            fieldUid: b67c305f-d2a1-4ead-910e-3dc656bda8ae
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 46e45564-f260-46a9-9e21-7a2c8f924c60
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 770922eb-0357-4fd6-8093-c52893350c60
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: e11fd309-dc49-476b-9675-ddf0542f6734
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: cd92d162-e3ca-4a86-b0a6-569109b4e184
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -30,12 +60,14 @@ fields:
     name: Text
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: '1'
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -47,22 +79,26 @@ fields:
     name: Bilder
     searchable: false
     settings:
+      allowSelfRelations: false
       allowedKinds:
         - image
       defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       defaultUploadLocationSubpath: ''
       limit: ''
-      localizeRelations: ''
+      localizeRelations: false
       restrictFiles: '1'
       selectionLabel: 'Bild hinzufügen'
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: true
       singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       singleUploadLocationSubpath: ''
       source: null
       sources:
         - 'volume:63a34a0a-681b-4198-b51c-bd2c11750fe0'
       targetSiteId: null
-      useSingleFolder: ''
-      validateRelatedElements: ''
+      useSingleFolder: false
+      validateRelatedElements: false
       viewMode: list
     translationKeyFormat: null
     translationMethod: site
@@ -75,12 +111,14 @@ fields:
     name: Überschrift
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText

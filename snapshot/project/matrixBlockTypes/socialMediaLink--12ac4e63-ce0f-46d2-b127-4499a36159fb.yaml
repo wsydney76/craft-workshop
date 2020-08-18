@@ -3,16 +3,34 @@ fieldLayouts:
   3c32fd78-26e3-45e1-90eb-a08072439f4f:
     tabs:
       -
-        fields:
-          5a5f1e24-8cbc-414d-bb68-811d3615a1b0:
-            required: true
-            sortOrder: 3
-          ad220340-6a3c-4039-8151-0029372d5073:
-            required: true
-            sortOrder: 2
-          e64173ed-fa89-43f9-91bb-3b0a63273f34:
-            required: true
-            sortOrder: 1
+        elements:
+          -
+            fieldUid: e64173ed-fa89-43f9-91bb-3b0a63273f34
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: ad220340-6a3c-4039-8151-0029372d5073
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 5a5f1e24-8cbc-414d-bb68-811d3615a1b0
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -37,12 +55,14 @@ fields:
     name: Caption
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -54,21 +74,25 @@ fields:
     name: Icon
     searchable: false
     settings:
+      allowSelfRelations: false
       allowedKinds:
         - image
       defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       defaultUploadLocationSubpath: ''
       limit: '1'
-      localizeRelations: ''
+      localizeRelations: false
       restrictFiles: '1'
       selectionLabel: 'Select an icon'
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: true
       singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       singleUploadLocationSubpath: icons
       source: null
       sources: '*'
       targetSiteId: null
-      useSingleFolder: '1'
-      validateRelatedElements: ''
+      useSingleFolder: true
+      validateRelatedElements: false
       viewMode: large
     translationKeyFormat: null
     translationMethod: site

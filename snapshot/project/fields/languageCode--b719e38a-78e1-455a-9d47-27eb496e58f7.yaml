@@ -12,6 +12,7 @@ settings:
   initialRows: 4
   multiline: false
   placeholder: '2 letter code'
+  uiMode: normal
 translationKeyFormat: null
 translationMethod: none
 type: project\modules\main\fields\SortableTextField

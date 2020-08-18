@@ -4,6 +4,8 @@ handle: reusableColor
 instructions: ''
 name: 'Reusable Color'
 searchable: true
+settings:
+  data: null
 translationKeyFormat: null
 translationMethod: none
 type: project\modules\main\fields\BackgroundColorField

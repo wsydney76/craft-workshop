@@ -1,5 +1,6 @@
 color: blue
 default: false
+description: ''
 emails:
   bd6e7118-d52d-4c8e-b717-63b4543255b5: bd6e7118-d52d-4c8e-b717-63b4543255b5
 handle: shipped

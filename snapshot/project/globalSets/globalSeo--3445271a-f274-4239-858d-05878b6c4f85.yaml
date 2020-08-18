@@ -2,10 +2,16 @@ fieldLayouts:
   56c0c6a2-134b-4466-be06-be33cddad846:
     tabs:
       -
-        fields:
-          10d8ae84-a8b6-489d-846d-1a7510cd9829:
-            required: false
-            sortOrder: 1
+        elements:
+          -
+            fieldUid: 10d8ae84-a8b6-489d-846d-1a7510cd9829
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: SEO
         sortOrder: 1
 handle: globalSeo

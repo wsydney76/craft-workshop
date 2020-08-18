@@ -4,6 +4,5 @@ fileNameFormat: 'Order-{number}'
 handle: order
 isDefault: true
 name: Default
-sortOrder: 0
+sortOrder: 9999
 templatePath: buy/_pdf/order
-uid: 6414b1d7-4091-420f-a175-16150e8df27d
