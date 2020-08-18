@@ -5,7 +5,9 @@ instructions: ''
 name: 'Auf der Übersichtsseite anzeigen?'
 searchable: true
 settings:
-  default: ''
+  default: false
+  offLabel: null
+  onLabel: null
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Lightswitch

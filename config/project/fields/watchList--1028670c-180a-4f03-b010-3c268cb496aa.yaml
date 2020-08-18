@@ -5,14 +5,16 @@ instructions: ''
 name: 'Watch list'
 searchable: false
 settings:
+  allowSelfRelations: false
   limit: ''
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: ''
+  showSiteMenu: true
   source: null
   sources:
     - 'section:1c5c7f40-38b0-4589-9cbe-124a3836d4a5'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

@@ -3,10 +3,16 @@ fieldLayouts:
   7f53e392-a50f-4788-8afd-08885e0c58a4:
     tabs:
       -
-        fields:
-          c6ed6ab6-3836-4f81-b68a-96e2e66db9ed:
-            required: false
-            sortOrder: 1
+        elements:
+          -
+            fieldUid: c6ed6ab6-3836-4f81-b68a-96e2e66db9ed
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -18,22 +24,26 @@ fields:
     name: Bild
     searchable: true
     settings:
+      allowSelfRelations: false
       allowedKinds:
         - image
       defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       defaultUploadLocationSubpath: ''
       limit: '1'
-      localizeRelations: ''
+      localizeRelations: false
       restrictFiles: '1'
       selectionLabel: 'Bild auswählen'
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: true
       singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       singleUploadLocationSubpath: ''
       source: null
       sources:
         - 'volume:63a34a0a-681b-4198-b51c-bd2c11750fe0'
       targetSiteId: null
-      useSingleFolder: ''
-      validateRelatedElements: ''
+      useSingleFolder: false
+      validateRelatedElements: false
       viewMode: large
     translationKeyFormat: null
     translationMethod: site

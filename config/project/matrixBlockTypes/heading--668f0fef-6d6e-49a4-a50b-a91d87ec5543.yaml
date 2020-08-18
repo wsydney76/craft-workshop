@@ -3,13 +3,25 @@ fieldLayouts:
   070f840f-c5bc-4bd3-ad32-c6a5d55d9e3c:
     tabs:
       -
-        fields:
-          bad8f5ab-fcf4-4fec-9ade-7652b14f376e:
-            required: false
-            sortOrder: 2
-          c7d0c14f-5533-4bdc-863d-cedbbb544960:
-            required: true
-            sortOrder: 1
+        elements:
+          -
+            fieldUid: c7d0c14f-5533-4bdc-863d-cedbbb544960
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: bad8f5ab-fcf4-4fec-9ade-7652b14f376e
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -67,12 +79,14 @@ fields:
     name: 'Heading Text'
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText

@@ -5,13 +5,15 @@ instructions: ''
 name: 'Related Products'
 searchable: false
 settings:
+  allowSelfRelations: false
   limit: ''
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: ''
+  showSiteMenu: true
   source: null
   sources: '*'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

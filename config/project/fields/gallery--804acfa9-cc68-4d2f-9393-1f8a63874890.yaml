@@ -5,21 +5,25 @@ instructions: ''
 name: Gallery
 searchable: false
 settings:
+  allowSelfRelations: false
   allowedKinds:
     - image
   defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   defaultUploadLocationSubpath: ''
   limit: ''
-  localizeRelations: ''
+  localizeRelations: false
   restrictFiles: '1'
   selectionLabel: 'Add an image'
+  showSiteMenu: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: true
   singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   singleUploadLocationSubpath: '{section.handle|lower}{folderName?''/''~folderName~''/gallery'':''''}'
   source: null
   sources: '*'
   targetSiteId: null
-  useSingleFolder: '1'
-  validateRelatedElements: ''
+  useSingleFolder: true
+  validateRelatedElements: false
   viewMode: large
 translationKeyFormat: null
 translationMethod: site

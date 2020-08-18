@@ -5,14 +5,16 @@ instructions: 'Select a page you want to use as further information in cookie co
 name: 'Privacy Page'
 searchable: false
 settings:
+  allowSelfRelations: false
   limit: '1'
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: 'Select a page'
+  showSiteMenu: true
   source: null
   sources:
     - 'section:09f97fdd-45fe-4221-982a-a2077c8460b1'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

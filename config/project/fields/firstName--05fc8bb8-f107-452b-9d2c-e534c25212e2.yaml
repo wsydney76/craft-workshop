@@ -5,12 +5,14 @@ instructions: ''
 name: 'First Name'
 searchable: true
 settings:
+  byteLimit: null
   charLimit: '30'
   code: ''
   columnType: string
   initialRows: '4'
   multiline: ''
   placeholder: ''
+  uiMode: normal
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\PlainText

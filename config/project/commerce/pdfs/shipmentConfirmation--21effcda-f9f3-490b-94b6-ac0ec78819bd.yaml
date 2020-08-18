@@ -6,4 +6,3 @@ isDefault: false
 name: 'Shipment Confirmation PDF'
 sortOrder: 2
 templatePath: buy/_pdf/order
-uid: 21effcda-f9f3-490b-94b6-ac0ec78819bd

@@ -4,21 +4,57 @@ fieldLayouts:
       -
         elements:
           -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            autofocus: false
+            class: null
+            disabled: false
+            id: null
             instructions: null
-            label: Title
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            required: false
+            size: null
+            step: null
+            tip: null
+            title: null
             type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
           -
             fieldUid: 9a302fae-a3bf-4298-8a06-24f8c8f6f335
-            required: false
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 3ef62a7b-6c6d-470f-88a6-31de5a099b38
-            required: false
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 58b2e318-26cc-47b8-bee2-81369731d72f
-            required: false
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 handle: topic
@@ -26,4 +62,6 @@ hasTitleField: true
 name: Topic
 section: eecee2b6-543a-4136-9a8d-b6c0201bc3a5
 sortOrder: 1
-titleFormat: ''
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

@@ -3,16 +3,34 @@ fieldLayouts:
   88f16fcc-e87d-41a0-a67b-4a82195cc79d:
     tabs:
       -
-        fields:
-          375d69e3-522f-45f0-8113-91bbf84b13b9:
-            required: false
-            sortOrder: 3
-          f2c83206-00ce-4e78-b73b-8c3f6dbad342:
-            required: true
-            sortOrder: 2
-          fe68817e-ba1d-4dc3-9009-e15d82232b0a:
-            required: false
-            sortOrder: 1
+        elements:
+          -
+            fieldUid: fe68817e-ba1d-4dc3-9009-e15d82232b0a
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: f2c83206-00ce-4e78-b73b-8c3f6dbad342
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 375d69e3-522f-45f0-8113-91bbf84b13b9
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -24,12 +42,14 @@ fields:
     name: 'Text After'
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
@@ -41,13 +61,15 @@ fields:
     name: Targets
     searchable: true
     settings:
+      allowSelfRelations: false
       limit: ''
-      localizeRelations: ''
+      localizeRelations: false
       selectionLabel: ''
+      showSiteMenu: true
       source: null
       sources: '*'
       targetSiteId: null
-      validateRelatedElements: ''
+      validateRelatedElements: false
       viewMode: null
     translationKeyFormat: null
     translationMethod: site
@@ -60,12 +82,14 @@ fields:
     name: 'Text Before'
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText

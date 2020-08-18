@@ -1,7 +1,40 @@
+fieldLayouts:
+  c3d36c10-5628-4bd2-a656-33565ffca11e:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            autofocus: false
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            required: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
 handle: sitemap
 hasTitleField: false
 name: Sitemap
 section: 80220e70-afb0-45e9-9ee3-2058e7004e51
 sortOrder: 1
 titleFormat: '{section.name|raw}'
-titleLabel: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

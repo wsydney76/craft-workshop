@@ -5,20 +5,25 @@ instructions: ''
 name: 'Site Icon'
 searchable: true
 settings:
+  allowSelfRelations: false
   allowedKinds:
     - image
   defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   defaultUploadLocationSubpath: ''
   limit: '1'
-  localizeRelations: ''
+  localizeRelations: false
   restrictFiles: '1'
   selectionLabel: ''
+  showSiteMenu: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: true
   singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   singleUploadLocationSubpath: icons
   source: null
   sources: '*'
   targetSiteId: null
-  useSingleFolder: '1'
+  useSingleFolder: true
+  validateRelatedElements: false
   viewMode: large
 translationKeyFormat: null
 translationMethod: site

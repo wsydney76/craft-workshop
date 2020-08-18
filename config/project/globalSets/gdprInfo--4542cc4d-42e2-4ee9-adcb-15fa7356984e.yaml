@@ -2,13 +2,25 @@ fieldLayouts:
   04741bab-c679-46e8-859c-8d9e491366c4:
     tabs:
       -
-        fields:
-          00ccae7e-39e6-498b-898c-afd6e2d9bebc:
-            required: false
-            sortOrder: 1
-          cda59381-ba2c-462c-9ed9-314a86d072ea:
-            required: false
-            sortOrder: 2
+        elements:
+          -
+            fieldUid: 00ccae7e-39e6-498b-898c-afd6e2d9bebc
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: cda59381-ba2c-462c-9ed9-314a86d072ea
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 handle: gdprInfo

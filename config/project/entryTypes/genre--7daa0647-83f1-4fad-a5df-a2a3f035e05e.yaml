@@ -1,7 +1,40 @@
+fieldLayouts:
+  9750b592-cceb-4ff2-9674-d2fdc1a8c0eb:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            autofocus: false
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            required: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
 handle: genre
 hasTitleField: true
 name: Genre
 section: f8cd6adb-1de1-4201-bbd6-222470063e4a
 sortOrder: 1
 titleFormat: null
-titleLabel: Title
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

@@ -1,4 +1,5 @@
 baseUrl: '@web/de'
+enabled: true
 handle: de
 hasUrls: true
 language: de-DE
