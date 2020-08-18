@@ -1,0 +1,18 @@
+contentColumnType: string
+fieldGroup: fea375f0-9f46-4952-b272-2dcf42b0cce5
+handle: suggestionUserForEmail
+instructions: 'Select a user who should receive notifications on new suggestions.'
+name: 'Suggestions: User for email notification'
+searchable: false
+settings:
+  limit: '1'
+  localizeRelations: ''
+  selectionLabel: 'Select a user'
+  source: null
+  sources: '*'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Users

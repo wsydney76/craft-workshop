@@ -1,0 +1,327 @@
+{% requireLogin %}
+
+{% from _self import dumpResult %}
+
+{% set id = craft.app.request.queryParam('id') %}
+{% if not id %}
+    {% exit 400 %}
+{% endif %}
+
+{% set data  = craft.query.from('{{%elements}}').where({id:id}).all %}
+{{ dumpResult('elements', data) }}
+
+{% set type = data[0].type %}
+{% set draftId = data[0].draftId %}
+{% set revisionId = data[0].revisionId %}
+
+
+{% set data = craft.query.from('{{%elements_sites}}').where({elementId:id}).all %}
+{{ dumpResult('elements_sites', data) }}
+
+{% if type == 'craft\\elements\\Entry' %}
+
+    {% set data = craft.query.from('{{%entries}}').where({'{{%entries}}.id':id})
+        .select('{{%entries}}.*, sections.name as sectionname, types.name as typename')
+        .join('LEFT JOIN',
+        '{{%sections}} sections',
+        '{{%entries}}.sectionId = sections.id')
+        .join('LEFT JOIN',
+        '{{%entryTypes}} types',
+        '{{%entries}}.typeId = types.id')
+        .all %}
+    {{ dumpResult('entries', data) }}
+
+    {% set data = craft.query.from('{{%content}}').where({elementId:id}).all %}
+    {{ dumpResult('content', data, true) }}
+
+
+    {% set data = craft.query.from('{{%matrixblocks}}')
+        .select('{{%matrixblocks}}.*, field.name as fieldname, type.name as typename')
+        .where({ownerId:id,deletedWithOwner:null})
+        .join('LEFT JOIN',
+        '{{%matrixblocktypes}} type',
+        '{{%matrixblocks}}.typeId = type.id')
+        .join('LEFT JOIN',
+        '{{%fields}} field',
+        '{{%matrixblocks}}.fieldId = field.id')
+        .orderBy('fieldId, sortOrder')
+        .all %}
+    {{ dumpResult('matrixblocks', data) }}
+
+    {% for row in data %}
+        <a href="?id={{ row.id }}&type=matrix">{{ row.id }}</a>
+    {% endfor %}
+
+    {% if craft.app.plugins.pluginEnabled('supertable') %}
+        {% set data = craft.query.from('{{%supertableblocks}}')
+            .select('{{%supertableblocks}}.*, field.name as fieldname')
+            .where({ownerId:id,deletedWithOwner:null})
+            .join('LEFT JOIN',
+            '{{%fields}} field',
+            '{{%supertableblocks}}.fieldId = field.id')
+            .orderBy('fieldId, sortOrder')
+            .all %}
+        {{ dumpResult('supertableblocks', data) }}
+        {% for row in data %}
+            <a href="?id={{ row.id }}&type=matrix">{{ row.id }}</a>
+        {% endfor %}
+    {% endif %}
+
+
+
+    {% set data = craft.query.from('{{%structureelements}}').where({elementId:id}).all %}
+    {{ dumpResult('structureelements', data, true) }}
+
+    {# Pre 3.2 #}
+    {% set data = craft.query.from('{{%entryversions}}').where({entryId:id}).limit(1).orderBy('num desc').all %}
+    {{ dumpResult('entryversions (limit 1)', data, true) }}
+
+    {% set data = craft.query.from('{{%entrydrafts}}').where({entryId:id}).all %}
+    {{ dumpResult('entrydrafts', data, true) }}
+
+    {# 3.2 #}
+    {% if not draftId and not revisionId %}
+        {% set data = craft.query.from('{{%drafts}}').where({sourceId:id}).all %}
+        {{ dumpResult('has drafts', data, true) }}
+        {% for row in data %}
+            {% set element = craft.query.from('{{%elements}}').where({draftId:row.id}).one %}
+            <a href="?id={{ element.id }}">{{ row.id }} = {{ element.id }}</a><br/>
+        {% endfor %}
+
+        {% set data = craft.query.from('{{%revisions}}').limit(3).where({sourceId:id}).all %}
+        {{ dumpResult('has revisions (limit 3, snapshot ignored)', data, true) }}
+        {% for row in data %}
+            {% set element = craft.query.from('{{%elements}}').where({revisionId:row.id}).one %}
+
+            <a href="?id={{ element.id }}">{{ row.id }} = {{ element.id }}</a><br/>
+        {% endfor %}
+
+    {% endif %}
+
+    {% if draftId %}
+        {% set data = craft.query.from('{{%drafts}}').where({id:draftId}).all %}
+        {{ dumpResult('drafts', data, true) }}
+    {% endif %}
+
+    {% if revisionId %}
+        {% set data = craft.query.from('{{%revisions}}').where({id:revisionId}).all %}
+        {{ dumpResult('revisions', data, true) }}
+    {% endif %}
+
+{% endif %}
+
+{% if type == 'craft\\elements\\Asset' %}
+
+    {% set data = craft.query.from('{{%assets}}').where({id:id}).all %}
+    {{ dumpResult('assets', data) }}
+
+    {% set data = craft.query.from('{{%content}}').where({elementId:id}).all %}
+    {{ dumpResult('content', data, true) }}
+
+    {% set data = craft.query.from('{{%assettransformindex}}').where({assetId:id}).all %}
+    {{ dumpResult('assettransformindex', data) }}
+
+{% endif %}
+
+{% if type == 'craft\\elements\\GlobalSet' %}
+
+    {% set data = craft.query.from('{{%globalsets}}').where({id:id}).all %}
+    {{ dumpResult('globalsets', data) }}
+
+    {% set data = craft.query.from('{{%content}}').where({elementId:id}).all %}
+    {{ dumpResult('content', data, true) }}
+
+
+
+{% endif %}
+
+{% if type == 'craft\\elements\\User' %}
+
+    {% set data = craft.query.from('{{%users}}').where({id:id}).all %}
+    {{ dumpResult('users', data) }}
+
+    {% set data = craft.query.from('{{%content}}').where({elementId:id}).all %}
+    {{ dumpResult('content', data, true) }}
+
+    {% set data = craft.query.from('{{%usergroups_users}}').where({userId:id})
+        .join('LEFT JOIN',
+        '{{%usergroups}} usergroups',
+        '{{%usergroups_users}}.groupId = usergroups.id')
+        .all %}
+    {{ dumpResult('usergroups_users', data) }}
+
+{% endif %}
+
+{% if type == 'craft\\elements\\MatrixBlock' %}
+    {% set data = craft.query.from('{{%matrixblocks}}')
+        .select('{{%matrixblocks}}.*, field.name as fieldname, field.handle as fieldhandle, type.name as typename')
+        .where({'{{%matrixblocks}}.id':id,deletedWithOwner:null})
+        .join('LEFT JOIN',
+        '{{%matrixblocktypes}} type',
+        '{{%matrixblocks}}.typeId = type.id')
+        .join('LEFT JOIN',
+        '{{%fields}} field',
+        '{{%matrixblocks}}.fieldId = field.id')
+        .orderBy('fieldId, sortOrder')
+        .all %}
+    {{ dumpResult('matrixblocks', data) }}
+
+    <a href="?id={{ data[0].ownerId }}">Owner</a>
+
+    {% set handle = data[0].fieldhandle|lower %}
+    {% set typeId = data[0].typeId %}
+    {% set data = craft.query.from("{{%matrixcontent_#{handle}}}").where({elementId:id}).all %}
+    {{ dumpResult('matrixcontent_'~handle, data, true) }}
+
+    {% if craft.app.plugins.pluginEnabled('supertable') %}
+        {% set data = craft.query.from('{{%supertableblocks}}')
+            .select('{{%supertableblocks}}.*, field.name as fieldname, field.handle as fieldhandle')
+            .where({ownerId:id,deletedWithOwner:null})
+            .join('LEFT JOIN',
+            '{{%fields}} field',
+            '{{%supertableblocks}}.fieldId = field.id')
+            .orderBy('fieldId, sortOrder')
+            .all %}
+        {{ dumpResult('supertableblocks', data) }}
+
+        {% for row in data %}
+            <a href="?id={{ row.id }}&contenttable=stc_{{ typeId }}_{{ data[0].fieldhandle }}">{{ row.id }}</a>
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+{% if type == 'verbb\\supertable\\elements\\SuperTableBlockElement' %}
+    {% set data = craft.query.from('{{%supertableblocks}}')
+        .select('{{%supertableblocks}}.*, field.name as fieldname, field.handle as fieldhandle')
+        .where({'{{%supertableblocks}}.id':id,deletedWithOwner:null})
+        .join('LEFT JOIN',
+        '{{%fields}} field',
+        '{{%supertableblocks}}.fieldId = field.id')
+        .orderBy('fieldId, sortOrder')
+        .all %}
+    {{ dumpResult('supertableblocks', data) }}
+    <a href="?id={{ data[0].ownerId }}">Owner</a>
+
+    {% set contentTable = craft.app.request.queryParam('contenttable') %}
+    {% set handle = data[0].fieldhandle|lower %}
+    {% set tablename = contentTable ? "{{%#{contentTable}}}" : "{{%stc_#{handle}}}" %}
+
+
+    {% set data = craft.query.from(tablename).where({elementId:id}).all %}
+    {{ dumpResult('stc_'~handle, data) }}
+
+{% endif %}
+
+{% if type == 'craft\\commerce\\elements\\Product' %}
+    {% set data = craft.query.from('{{%commerce_products}}').where({id:id}).all %}
+    {{ dumpResult('products', data) }}
+
+    {% set data = craft.query.from('{{%content}}').where({elementId:id}).all %}
+    {{ dumpResult('content', data, true) }}
+
+    {% set data = craft.query.from('{{%matrixblocks}}')
+        .select('{{%matrixblocks}}.*, field.name as fieldname, type.name as typename')
+        .where({ownerId:id,deletedWithOwner:null})
+        .join('LEFT JOIN',
+        '{{%matrixblocktypes}} type',
+        '{{%matrixblocks}}.typeId = type.id')
+        .join('LEFT JOIN',
+        '{{%fields}} field',
+        '{{%matrixblocks}}.fieldId = field.id')
+        .orderBy('fieldId, sortOrder')
+        .all %}
+    {{ dumpResult('matrixblocks', data) }}
+
+    {% for row in data %}
+        <a href="?id={{ row.id }}&type=matrix">{{ row.id }}</a>
+    {% endfor %}
+
+    {% set data = craft.query.from('{{%commerce_variants}}').where({productId:id}).all %}
+    {{ dumpResult('products', data) }}
+
+    {% for row in data %}
+        <a href="?id={{ row.id }}&type=variant">{{ row.id }}</a>
+    {% endfor %}
+{% endif %}
+
+{% if type == 'craft\\commerce\\elements\\Variant' %}
+    {% set data = craft.query.from('{{%commerce_variants}}').where({id:id}).all %}
+    {{ dumpResult('variants', data) }}
+
+    {% set data = craft.query.from('{{%content}}').where({elementId:id}).all %}
+    {{ dumpResult('content', data, true) }}
+
+    {% set data = craft.query.from('{{%matrixblocks}}')
+        .select('{{%matrixblocks}}.*, field.name as fieldname, type.name as typename')
+        .where({ownerId:id,deletedWithOwner:null})
+        .join('LEFT JOIN',
+        '{{%matrixblocktypes}} type',
+        '{{%matrixblocks}}.typeId = type.id')
+        .join('LEFT JOIN',
+        '{{%fields}} field',
+        '{{%matrixblocks}}.fieldId = field.id')
+        .orderBy('fieldId, sortOrder')
+        .all %}
+    {{ dumpResult('matrixblocks', data) }}
+
+    {% for row in data %}
+        <a href="?id={{ row.id }}&type=matrix">{{ row.id }}</a>
+    {% endfor %}
+
+
+{% endif %}
+
+{% set data = craft.query.from('{{%relations}}')
+    .select('{{%relations}}.*, field.name')
+    .join('LEFT JOIN',
+    '{{%fields}} field',
+    '{{%relations}}.fieldId = field.id')
+    .where({sourceId:id}).all %}
+{{ dumpResult('relations (out)', data) }}
+
+{% for row in data %}
+    <a href="?id={{ row.targetId }}&type=entry">{{ row.targetId }}</a>
+{% endfor %}
+
+{% set data = craft.query.from('{{%relations}}')
+    .select('{{%relations}}.*, field.name')
+    .join('LEFT JOIN',
+    '{{%fields}} field',
+    '{{%relations}}.fieldId = field.id')
+    .where({targetId:id}).all %}
+{{ dumpResult('relations (in)', data) }}
+
+{% for row in data %}
+    <a href="?id={{ row.sourceId }}&type=entry">{{ row.sourceId }}</a>
+{% endfor %}
+
+{% set data = craft.query.from('{{%searchindex}}').where({elementId:id})
+    .select('{{%searchindex}}.*, field.name')
+    .join('LEFT JOIN',
+    '{{%fields}} field',
+    '{{%searchindex}}.fieldId = field.id').all %}
+{{ dumpResult('searchindex', data) }}
+
+{% macro dumpResult(heading, data, ignoreEmpty) %}
+
+    {% if data %}
+        {% set skip = ['dateCreated','dateUpdated','uid','settings','deletedWithOwner','deletedWithEntryType','snapshot'] %}
+        <h2>{{ heading }}</h2>
+        <table>
+            <tr bgcolor="silver">
+                {% for key, col in data[0] if key not in skip and (col != '' or not ignoreEmpty) %}
+                    <th valign="top">{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in data %}
+                <tr>
+                    {% for key, col in row  if key not in skip and  (col != '' or not ignoreEmpty) %}
+                        <td valign="top">
+                            {{ col }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endmacro %}

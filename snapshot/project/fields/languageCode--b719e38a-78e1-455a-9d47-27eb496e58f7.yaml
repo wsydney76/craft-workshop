@@ -1,0 +1,17 @@
+contentColumnType: string
+fieldGroup: f1d8d989-2bc0-4a0f-b58f-a348276a5596
+handle: languageCode
+instructions: ''
+name: 'Language Code'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 2
+  code: false
+  columnType: null
+  initialRows: 4
+  multiline: false
+  placeholder: '2 letter code'
+translationKeyFormat: null
+translationMethod: none
+type: project\modules\main\fields\SortableTextField

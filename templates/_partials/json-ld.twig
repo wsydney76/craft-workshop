@@ -1,0 +1,10 @@
+{% if entry is defined %}
+
+    {% set data = entry.getJsonLd() %}
+    {% if data %}
+        <script type="{{ 'application/ld+json' }}">
+            {{ data|json_encode|raw }}
+        </script>
+    {% endif %}
+
+{% endif %}

@@ -1,0 +1,83 @@
+field: 58b2e318-26cc-47b8-bee2-81369731d72f
+fieldLayouts:
+  f4412fea-8c5b-47f5-8b48-4632ba8fb0b2:
+    tabs:
+      -
+        fields:
+          a3f8a0c2-e847-40b4-89ca-1723bcf545bc:
+            required: false
+            sortOrder: 2
+          a9633179-24af-43d4-b2dc-8010983721d7:
+            required: true
+            sortOrder: 1
+          eb82d6d0-a7a4-4b84-8174-9e8af88259c1:
+            required: false
+            sortOrder: 3
+        name: Content
+        sortOrder: 1
+fields:
+  a3f8a0c2-e847-40b4-89ca-1723bcf545bc:
+    contentColumnType: string
+    fieldGroup: null
+    handle: heading
+    instructions: 'Sometimes the title provided may look a bit strange (links, emoticons...), so you can enter a custom title here. '
+    name: Title
+    searchable: false
+    settings:
+      charLimit: '80'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  a9633179-24af-43d4-b2dc-8010983721d7:
+    contentColumnType: string
+    fieldGroup: null
+    handle: asset
+    instructions: 'Be aware that some providers will not deliver responsive ready content.'
+    name: Asset
+    searchable: false
+    settings:
+      allowedKinds:
+        - json
+      defaultUploadLocationSource: 'volume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: '1'
+      restrictFiles: '1'
+      selectionLabel: 'Select an asset'
+      singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources:
+        - 'volume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
+      targetSiteId: null
+      useSingleFolder: ''
+      validateRelatedElements: ''
+      viewMode: large
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+  eb82d6d0-a7a4-4b84-8174-9e8af88259c1:
+    contentColumnType: string
+    fieldGroup: null
+    handle: description
+    instructions: 'Sometimes the description provided may look a bit strange (links, emoticons...), so you can enter a custom description here. Use the same wording though.'
+    name: Description
+    searchable: false
+    settings:
+      charLimit: '200'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+handle: embed
+name: Embed
+sortOrder: 7

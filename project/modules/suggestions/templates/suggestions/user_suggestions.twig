@@ -1,0 +1,9 @@
+{% set suggestions = craft.suggestions.email(currentUser.email).all %}
+{% if suggestions %}
+    <div class="meta">
+        <h4>{{'Suggestions'|t('suggestions')}}:</h4>
+        {% for suggestion in suggestions %}
+            <a href='{{ cpUrl("suggestions/#{suggestion.id}") }}'>{{ suggestion.title }}</a>  {{ suggestion.name }}
+        {% endfor %}
+    </div>
+{% endif %}

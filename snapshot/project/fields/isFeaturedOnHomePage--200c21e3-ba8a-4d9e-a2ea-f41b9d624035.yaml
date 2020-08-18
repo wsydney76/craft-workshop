@@ -1,0 +1,11 @@
+contentColumnType: boolean
+fieldGroup: f1d8d989-2bc0-4a0f-b58f-a348276a5596
+handle: isFeaturedOnHomePage
+instructions: ''
+name: 'Is ''Featured'' on home page'
+searchable: false
+settings:
+  default: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

@@ -1,0 +1,11 @@
+{% do craft.commerce.carts.forgetCart() %}
+<form method="POST" name="auto-add-to-cart" class="add-to-cart-form">
+
+    {{ actionInput('commerce/cart/update-cart') }}
+    {{ csrfInput() }}
+    {{ redirectInput('buy') }}
+
+    <input type="hidden" name="qty" value="1">
+    <input type="hidden" name="purchasableId" value="{{ id }}">
+    <input type="submit" class="btn btn-shop" value="{{ "Order Now"|t }}" />
+</form>

@@ -1,0 +1,9 @@
+{% extends "_layouts/main.twig" %}
+
+
+{% if not global_title is defined %}
+    {% set global_title = "Something went wrong"|t %}
+{% endif %}
+
+{% block teaser %}{% endblock %}
+{% block secondaryContent %}{% endblock %}

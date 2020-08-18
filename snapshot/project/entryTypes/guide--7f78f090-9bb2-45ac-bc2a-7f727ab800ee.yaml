@@ -1,0 +1,29 @@
+fieldLayouts:
+  328f8cdd-bfa5-4885-a768-6c505af4e824:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 033534af-3f5f-4c0b-844f-89a249d28974
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 8a396676-f1db-42cf-9413-d21cdedbb1ce
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: e050668a-466a-4345-b593-2f510d7d847a
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Guide
+        sortOrder: 1
+handle: guide
+hasTitleField: true
+name: Guide
+section: b0706593-6f22-495f-bd9b-5b3049ff4d21
+sortOrder: 1
+titleFormat: ''

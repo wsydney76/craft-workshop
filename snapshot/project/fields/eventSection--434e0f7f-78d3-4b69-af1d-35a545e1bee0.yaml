@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: 17aa2ede-87b4-40b0-84d1-47a0b29e0b24
+handle: eventSection
+instructions: ''
+name: Section
+searchable: true
+settings:
+  limit: '1'
+  localizeRelations: ''
+  selectionLabel: 'Select a section'
+  source: null
+  sources:
+    - 'section:011a8ede-f19a-4ed7-bb30-fdc9852a9c8b'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

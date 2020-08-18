@@ -1,0 +1,32 @@
+{% extends "_layout.twig" %}
+
+{% set film = entry.film.one %}
+{% set location = entry.location.one %}
+
+{% if film %}
+    {% set global_titleButtonsTargets = film.eventSection %}
+{% endif %}
+{% if location %}
+    {% set global_featuredImage = location.featuredImage.one %}
+{% endif %}
+
+{% set global_navCondition = {section:'screening', orderBy:'showtime'} %}
+
+{% block titleText "#{'Screening'|t} \"#{film ? film.title}\"" %}
+
+{% block contentTop %}
+    {{ parent() }}
+    {% include '_partials/screening_soldout.twig'
+        with {soldOut: entry.soldOut} only %}
+{% endblock %}
+
+{% block content %}
+    {% include '_partials/screening_film.twig'
+        with {film:film} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/screening_details.twig'
+        with {entry:entry, location:location} only %}
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% set film = entry.film|one %}
+{% set location = entry.location|one %}
+{% set language = entry.screeningLanguage|one %}
+{% if film and location %}
+    <tr>
+        <td>
+            {{ entry.section.name|t }}
+        </td>
+        <td>
+            <a href="{{ entry.url }}">{{ film.title }},  {{ location.link }}</a>
+        </td>
+        <td>
+            {{ entry.showtime|datetime('short') }}
+            {% if language %}
+                ({{ language.title }}
+                {%- set languages = entry.subtitlesLanguages|all -%}
+                {%- if languages -%}
+                    , {{ 'Subtitles'|t }}
+                {%- endif -%}
+                )
+            {% endif %}
+        </td>
+    </tr>
+
+{% endif %}

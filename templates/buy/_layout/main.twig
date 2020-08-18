@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="{{ currentSite.language[:2] }}">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    {% do view.registerAssetBundle('project\\resources\\site\\SiteAssets') %}
+
+    <style>
+        .numberCircle {
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            padding: 0px 8px 8px 8px;
+
+            background: #fff;
+            border: 2px solid #3A4660;
+            color: #3A4660;
+            text-align: center;
+
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+
+    {% set cart = craft.commerce.carts.cart %}
+</head>
+<body>
+
+<div class="container bg-transparent py-2 text-right">
+    {% include 'buy/_custom/header.twig' %}
+</div>
+
+<div class="container bg-white shadow">
+    <div class="row ">
+        <div class="col-md-8">
+            <h1 class="border-bottom py-4 border-grey-darker">
+                {% block title %}
+
+                {% endblock %}
+            </h1>
+
+            {# Step 0: Errors? #}
+
+            {% set msg = craft.app.session.getFlash('notice') %}
+            {% if msg %}
+                <div class="my-3 alert alert-info">
+                    {{ msg|t }}
+                </div>
+            {% endif %}
+
+            {% set msg = craft.app.session.getFlash('error') %}
+            {% if msg %}
+                <div class="my-3 alert alert-danger">
+                    {{ msg|t }}
+                </div>
+            {% endif %}
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div> <!-- end panel-left -->
+        <div class="col-md-4 bg-shop text-white">
+            <div class="py-4">
+                {% block secondaryContentLogin %}{% endblock %}
+                <h2 class="text-white mb-3">
+                    {% block secondaryContentTitle %}{% endblock %}
+                </h2>
+                {% block secondaryContentContent %}{% endblock %}
+            </div>
+        </div>
+    </div> <!-- end panel -->
+
+
+</div> <!-- end checkout -->
+
+<div class="container">
+    {% block footer %}
+        {% include 'buy/_custom/footer.twig' ignore missing %}
+    {% endblock %}
+</div>
+
+{% block debug %}
+
+    {% if craft.app.config.general.devMode and cart is defined %}
+        <div class="container mx-auto p-6">
+            <h3>Commerce Cart Debug Info</h3>
+            <ul>
+                <li><strong>ID</strong> {{ cart.id }}</li>
+                <li><strong>Number</strong> {{ cart.number }}</li>
+                <li><strong>Short Number</strong> {{ cart.shortNumber }}</li>
+                <li><strong>Email</strong> {{ cart.email }}</li>
+                <li><strong>Customer ID</strong> {{ cart.customerId }}</li>
+                <li><strong>User</strong> {{ cart.user }}</li>
+                <li><strong>Shipping Address ID</strong> {{ cart.shippingAddressId }}</li>
+                <li><strong>Billing Address ID</strong> {{ cart.billingAddressId }}</li>
+                <li><strong>Estimated Shipping Address ID</strong> {{ cart.estimatedShippingAddressId }}</li>
+                <li><strong>Estimated Billing Address ID</strong> {{ cart.estimatedBillingAddressId }}</li>
+                <li><strong>Shipping Method Handle</strong> {{ cart.shippingMethodHandle }}</li>
+                <li><strong>Line Items Count</strong> {{ cart.lineItems|length }}</li>
+                {% if cart.lineItems %}
+                    <ul>
+                        {% for lineItem in cart.lineItems %}
+                            {% if not cart.isDonation %}
+                                <li><strong>Line Item {{ loop.index }} Product
+                                        Id</strong> {{ lineItem.purchasable.product.id }}</li>
+                                <li><strong>Line Item {{ loop.index }} Product
+                                        Title</strong> {{ lineItem.purchasable.product.title }}</li>
+                                <li><strong>Line Item {{ loop.index }} Variant Id</strong> {{ lineItem.purchasableId }}
+                                </li>
+                                <li><strong>Line Item {{ loop.index }} Variant
+                                        Title</strong> {{ lineItem.purchasable.title }}</li>
+                                <li><strong>Line Item {{ loop.index }} Qty</strong> {{ lineItem.qty }}</li>
+                            {% else %}
+                                <li>Line Item {{ loop.index }} is donation</li>
+                            {% endif %}
+
+                            <li><strong>Line Item {{ loop.index }} Price</strong> {{ lineItem.price }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <li><strong>Coupon</strong> {{ cart.couponCode }}</li>
+                <li><strong>Currency</strong> {{ cart.currency }}</li>
+                <li><strong>Payment Currency</strong> {{ cart.paymentCurrency }}</li>
+                <li><strong>Gateway ID</strong> {{ cart.gatewayId }}</li>
+                <li><strong>Payment Source ID</strong> {{ cart.paymentSourceId }}</li>
+                <li><strong>Language</strong> {{ cart.orderLanguage }}</li>
+                <li><strong>Payment Return URL</strong> {{ cart.returnUrl }}</li>
+                <li><strong>Payment Cancel URL</strong> {{ cart.cancelUrl }}</li>
+                <li><strong>Last IP</strong> {{ cart.lastIp }}</li>
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
+
+</body>
+
+</html>

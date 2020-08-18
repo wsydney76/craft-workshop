@@ -1,0 +1,148 @@
+CraftQL Examples
+=====================
+News
+=====================
+
+{
+  entries(limit: 5, section: news, orderBy: "postDate desc") {
+    ... on News {
+      uri
+      slug
+      title
+      teaser
+      postDate @date(as: "Y-m-d G:i")
+      author {
+        id
+        fullName
+      }
+      featuredImage {
+        id
+        url
+        title
+        featured: url(transform: featuredImage)
+      }
+      bodyContent {
+        ... on BodyContentText {
+          __typename
+          text
+        }
+        ... on BodyContentPullquote {
+          __typename
+          text
+          source
+        }
+        ... on BodyContentHeading {
+          __typename
+          tag
+          text
+        }
+        ... on BodyContentImage {
+          __typename
+          caption
+          image {
+            title
+            url
+            contentImage: url(transform: contentImage)
+          }
+        }
+        ... on BodyContentButton {
+          __typename
+          caption
+          color
+          target {
+            slug
+            title
+            section {handle}
+          }
+        }
+      }
+    }
+  }
+}
+
+
+=====================
+Film
+=====================
+query ($slug: String) {
+  entry(slug: $slug, site: "de", section: film, orderBy: "title") {
+    ... on Film {
+      uri
+      slug
+      title
+      postDate @date(as: "Y-m-d G:i")
+      author {
+        id
+        fullName
+      }
+      featuredImage {
+        id
+        url
+        title
+        featured: url(transform: featuredImage)
+      }
+      releaseYear
+      originalTitle
+      originalLanguage {
+        title
+      }
+      genre {
+        title
+      }
+      producedIn {
+        title
+      }
+      cast {
+        ... on CastRole {
+          roleName
+          persons {
+            title
+            slug
+          }
+        }
+      }
+      bodyContent {
+        ... on BodyContentText {
+          __typename
+          text
+        }
+        ... on BodyContentPullquote {
+          __typename
+          text
+          source
+        }
+        ... on BodyContentHeading {
+          __typename
+          tag
+          text
+        }
+        ... on BodyContentImage {
+          __typename
+          caption
+          image {
+            title
+            url
+            contentImage: url(transform: contentImage)
+          }
+        }
+        ... on BodyContentButton {
+          __typename
+          caption
+          color
+          target {
+            slug
+            title
+            section {
+              handle
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+Variables:
+{
+  "slug": "casablanca"
+}

@@ -1,0 +1,8 @@
+{% do view.registerAssetBundle('project\\resources\\site\\SiteAssets') %}
+
+{% if requireFancyBox is defined and requireFancyBox %}
+    {% do view.registerAssetBundle('project\\resources\\fancybox\\FancyBoxAssets') %}
+{% endif %}
+
+
+{% include '_layouts/partials/gdpr.twig' %}

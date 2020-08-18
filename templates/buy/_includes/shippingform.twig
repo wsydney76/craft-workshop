@@ -1,0 +1,95 @@
+{% set addresses = craft.commerce.customers.customer.addresses %}
+
+
+
+
+<form method="POST" class="add-to-cart-form">
+    <input type="hidden" name="action" value="commerce/cart/update-cart">
+    {{ redirectInput('buy/checkout?step=3') }}
+    {{ csrfInput() }}
+    <input type="hidden" name="billingAddressSameAsShipping" value="1"/>
+
+    {% for address in addresses %}
+        <div class="my-3">
+            <label>
+            <input type="radio" name="shippingAddressId" value="{{ address.id }}" {{ loop.first?'checked' }} onChange="document.getElementById('shippingAddress').style.display='none'"/>
+            <b>{{ "Use this address"|t }}</b>
+            </label>
+        </div>
+        {% include "buy/_includes/shippingAddress.twig" with {shippingAddress:address} %}
+    {% endfor %}
+
+    {% if addresses %}
+        <div class="my-3">
+            <label>
+            <input type="radio" name="shippingAddressId" onChange="document.getElementById('shippingAddress').style.display=''" value/>
+            <b>{{ "Or add new address"|t }}</b>
+            </label>
+        </div>
+    {% endif %}
+
+
+    <div id="shippingAddress" {% if addresses %}style="display:none"{% endif %}>
+        <div class="d-flex mb-4">
+            <div class="w-50 mr-2 form-group">
+                <label for="firstName" class="block text-sm mb-2 {% if cart.shippingAddress and cart.shippingAddress.getFirstError('firstName') %}text-red{% endif %}">{{ "First Name"|t }}</label>
+                <input id="firstName" required name="shippingAddress[firstName]" type="text" value="{{cart.shippingAddress.firstName ?? ''}}" class="form-control">
+            </div>
+            <div class="w-50  form-group">
+                <label for="lastName" class="block text-sm mb-2 {% if cart.shippingAddress and cart.shippingAddress.getFirstError('lastName') %}text-red{% endif %}">{{ "Last Name"|t }}</label>
+                <input id="lastName" required name="shippingAddress[lastName]" type="text" value="{{cart.shippingAddress.lastName ?? ''}}" class="form-control">
+            </div>
+        </div>
+        <div class="d-flex mb-4">
+            <div class="w-50 mr-2 form-group">
+                <label for="address1" class="block text-sm mb-2 {% if cart.shippingAddress and cart.shippingAddress.getFirstError('address1') %}text-red{% endif %}">{{ "Address1"|t }}</label>
+                <input id="address1" required name="shippingAddress[address1]" type="text" value="{{cart.shippingAddress.address1 ?? ''}}" class="form-control">
+            </div>
+            <div class="w-50 form-group">
+                <label for="address2" class="block text-sm mb-2 {% if cart.shippingAddress and cart.shippingAddress.getFirstError('address2') %}text-red{% endif %}">{{ "Address2"|t }}</label>
+                <input id="address2" name="shippingAddress[address2]" type="text" value="{{cart.shippingAddress.address2 ?? ''}}" class="form-control">
+            </div>
+        </div>
+        <div class="d-flex mb-4">
+            <div class="w-50  mr-2  form-group">
+                <label for="zipCode" class="block text-sm mb-2 {% if cart.shippingAddress and cart.shippingAddress.getFirstError('zipCode') %}text-red{% endif %}">{{ "ZIP"|t }}</label>
+                <input id="zipCode" name="shippingAddress[zipCode]" type="text" value="{{cart.shippingAddress.zipCode ?? ''}}" class="form-control">
+            </div>
+            <div class="w-50 form-group">
+                <label for="city" class="block text-sm mb-2 {% if cart.shippingAddress and cart.shippingAddress.getFirstError('city') %}text-red{% endif %}">{{ "City"|t }}</label>
+                <input id="city" required name="shippingAddress[city]" type="text" value="{{cart.shippingAddress.city ?? ''}}" class="form-control">
+            </div>
+        </div>
+        <div class="d-flex mb-4">
+
+            <div class="w-50 mr-2  form-group">
+                <label for="country" class="block text-sm mb-2 {% if cart.shippingAddress and cart.shippingAddress.getFirstError('countryId') %}text-red{% endif %}">{{ "Country"|t }}</label>
+                <select id="country" name="shippingAddress[countryId]" class="form-control">
+                    {% for iso in ['DE','AT','CH'] %}
+                    	{% set country = craft.commerce.countries.getCountryByIso(iso) %}
+                        {% if country %}
+                            <option value="{{ country.id }}">{{ country.name|t }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="d-flex">
+
+        <div class="w-50">
+
+        </div>
+
+        <div class="w-50 text-right">
+            <label>&nbsp;</label>
+            <button type="submit" class="w-100 btn btn-shop">
+                {{ "Next"|t }}
+            </button>
+        </div>
+    </div>
+
+</form>

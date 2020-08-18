@@ -1,0 +1,43 @@
+{% extends "_layout.twig" %}
+
+{% set requireFancyBox = true %}
+{% set requireScreeningDetailsModal = true %}
+
+{% block titleText "#{entry.firstName} #{entry.lastName}" %}
+
+{% block contentTop %}
+    {% include '_partials/person_awards.twig'
+        with {query: entry.getAwards(false)} only %}
+{% endblock %}
+
+{% block content %}
+    {% include '_partials/person_profile.twig'
+        with {entry:entry} only %}
+
+    {% include '_partials/blocks.twig'
+        with {query:entry.bodyContent} only %}
+
+    {% include '_partials/image_gallery.twig'
+        with {query:entry.gallery} %}
+{% endblock %}
+
+{% block secondaryContent %}
+
+    {% include '_partials/person_films.twig'
+        with { entry:entry } only %}
+
+    {% include '_partials/person_crew.twig'
+        with {entry: entry} only %}
+
+    {% include '_partials/entries_list.twig'
+        with {query:entry.creditedWith, heading:'Credited with'} %}
+
+    {% include '_partials/screenings_bydate.twig'
+        with {heading: 'To bee seen in', query: entry.screenings } %}
+
+    {% include '_partials/entries_list.twig'
+        with {heading:'In the news', query:entry.news,showPostDate:true} only %}
+
+    {% include '_partials/links.twig'
+        with {query: entry.links} %}
+{% endblock %}

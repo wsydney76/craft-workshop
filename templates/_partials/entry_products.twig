@@ -1,0 +1,18 @@
+
+{% set products = craft.products.relatedTo(entry).limit(2).all %}
+
+{% if products %}
+    {% embed '_layouts/embeds/widget.twig' with {heading:'Related Products'|t, boxed:true} %}
+    	{% block content %}
+            {% from '_macros/lib.twig' import orderButton %}
+    	    {% for product in products %}
+    	    	<div class="my-3">
+                    {{ product.link }}
+                    <div class="my-3">
+                        {{ orderButton(product.defaultVariant) }}
+                    </div>
+                </div>
+    	    {% endfor %}
+    	{% endblock %}
+    {% endembed %}
+{% endif %}

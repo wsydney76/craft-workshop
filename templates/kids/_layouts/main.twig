@@ -1,0 +1,73 @@
+{% from '_macros/lib.twig' import navLinks %}
+{% extends "_layouts/base.twig" %}
+
+{% block body %}
+
+
+    <div class="container-xl shadow bg-white my-xl-3 pl-0 pr-0">
+        <header>
+
+            <div class="row p-3">
+                <div class="col-6">
+                    <ul class="nav">
+                        {{ navLinks('primary','mr-4') }}
+                    </ul>
+                </div>
+                <div class="col-6 text-right">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a href="/de">Zum Festival für Erwachsene</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row no-gutters">
+                <div class="col-12">
+                    <div class="bg-custom p-3 text-center">
+                        <a class="display-3 h1 text-white" href="{{ url('') }}">Kids Festival</a>
+                    </div>
+
+
+                    <div id="featured-image">
+                        {% block featuredImage %}
+                            {% include '_partials/featuredimage.twig'
+                                with {image: global_featuredImage ?? entry.featuredImage.one} %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container-fluid">
+            <div class="mt-3 mb-5 text-center">
+                <h1>{{ entry.title }}</h1>
+                <p class="font-weight-bold">{{ entry.teaser }}</p>
+            </div>
+
+            {% block contentTop %}{% endblock %}
+
+            {% block content %}{% endblock %}
+
+            {% block contentBottom %}{% endblock %}
+
+            <div class="my-5">
+                {% if entry.section.handle == 'screening' %}
+                    {% include '_partials/screening_details.twig'
+                        with {entry:entry, location:location} only %}
+                {% else %}
+                    {% include '_partials/screenings_bydate.twig'
+                        with {query:entry.screenings,
+                        showFilm: entry.section.handle != 'film',
+                        showLocation: entry.section.handle != 'location',
+                        boxed:false} %}
+                {% endif %}
+            </div>
+
+        </div>
+        <footer class="bg-white border-top border-bottom mt-5 py-3">
+            {% include '_partials/footer_menu.twig' %}
+        </footer>
+
+    </div>
+{% endblock %}

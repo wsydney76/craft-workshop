@@ -1,0 +1,31 @@
+{% if pageInfo.totalPages > 1 %}
+
+    <nav>
+
+        <ul class="pagination">
+
+            {% if pageInfo.prevUrl %}
+                <li class="page-item"><a class="prev page-link" href="{{ pageInfo.prevUrl }}">«</a></li>
+            {% endif %}
+
+
+            {% for page, url in pageInfo.getPrevUrls(3) %}
+                <li class="page-item"><a class='page-link' href="{{ url }}">{{ page }}</a></li>
+            {% endfor %}
+
+            <li class="page-item active"><a class="page-link" href="#">{{ pageInfo.currentPage }}</a></li>
+
+            {% for page, url in pageInfo.getNextUrls(3) %}
+                <li class="page-item"><a class='page-link' href="{{ url }}">{{ page }}</a></li>
+            {% endfor %}
+
+
+            {% if pageInfo.nextUrl %}
+                <li class="page-item"><a class="next page-link" href="{{ pageInfo.nextUrl }}">»</a></li>
+            {% endif %}
+
+        </ul>
+
+    </nav>
+
+{% endif %}

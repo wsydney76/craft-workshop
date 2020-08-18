@@ -1,0 +1,33 @@
+{% set suggestionStatus = craft.suggestionModule.suggestionStatus %}
+
+{% for suggestion in suggestions %}
+    <h2>{{ suggestion.title }}</h2>
+
+    <p>
+        {{'Suggested by'|t('suggestions')}} {{ suggestion.name }} ({{ suggestion.email }}) {{'on'|t('suggestions')}} {{ suggestion.dateCreated|datetime }}
+    </p>
+
+    <p>
+        {{ suggestion.description|nl2br }}
+    </p>
+    <div>
+        <b>{{'Status'|t('suggestions')}}:</b> {{ suggestionStatus[suggestion.status]|t('suggestions') }}
+    </div>
+
+    {% if suggestion.notes %}
+        <b>{{'Notes'|t('suggestions')}}</b>
+        <p>
+            {{ suggestion.notes|nl2br }}
+        </p>
+    {% endif %}
+
+    {% if suggestion.relatedEntryId %}
+        {% set entry = craft.entries.id(suggestion.relatedEntryId).anyStatus().one %}
+        {% if entry %}
+            <div>
+                <b>{{ 'Entry'|t('suggestions') }}:</b> {{ entry.link }}
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endfor %}

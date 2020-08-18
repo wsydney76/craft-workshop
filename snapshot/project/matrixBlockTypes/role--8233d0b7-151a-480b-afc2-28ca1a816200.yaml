@@ -1,0 +1,71 @@
+field: 8174a11a-1076-45f4-9c04-79eed46570c9
+fieldLayouts:
+  42459b5d-f575-4a7a-b594-652d432547e7:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 528c7886-8170-4bda-bed6-a76b0c54909d
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 25
+          -
+            fieldUid: a7536d44-a2a9-4d6c-952f-8e7bbc984dc9
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 50
+        name: Content
+        sortOrder: 1
+fields:
+  528c7886-8170-4bda-bed6-a76b0c54909d:
+    contentColumnType: string
+    fieldGroup: null
+    handle: persons
+    instructions: ''
+    name: Persons
+    searchable: true
+    settings:
+      allowSelfRelations: false
+      limit: ''
+      localizeRelations: false
+      selectionLabel: 'Add a person'
+      showSiteMenu: true
+      source: null
+      sources:
+        - 'section:c504627b-6f45-47cd-822a-8e36420f203d'
+      targetSiteId: null
+      validateRelatedElements: false
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Entries
+  a7536d44-a2a9-4d6c-952f-8e7bbc984dc9:
+    contentColumnType: string
+    fieldGroup: null
+    handle: roleName
+    instructions: ''
+    name: 'Role Name'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: 50
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
+handle: role
+name: Role
+sortOrder: 1

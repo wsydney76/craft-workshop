@@ -1,0 +1,7 @@
+handle: genre
+hasTitleField: true
+name: Genre
+section: f8cd6adb-1de1-4201-bbd6-222470063e4a
+sortOrder: 1
+titleFormat: null
+titleLabel: Title

@@ -1,0 +1,181 @@
+{% extends 'buy/_layout/main.twig' %}
+
+{% from 'buy/_macros/lib.twig' import isAlreadyMine %}
+
+{% set cart = cart??craft.commerce.carts.cart %}
+
+
+
+{% if cart.isEmpty %}
+    {% redirect 'buy/empty' %}
+{% endif %}
+
+{% set item = cart.lineItems[0] %}
+
+{% if not cart.isDonation %}
+    {% set variant = item.purchasable %}
+    {% set product = variant.product %}
+{% endif %}
+
+{% block title %}
+    {{ "Checkout"|t }}
+{% endblock %}
+
+{% block content %}
+
+
+    {# Do we have have more than 1 line item? If so, we are likely on Pro, let's use the main cart checkout example template #}
+    {% if cart.lineItems|length > 1 %}
+        {% exit 403 %}
+    {% endif %}
+
+    {% set step = craft.app.request.param('step') %}
+
+    {% if not step %}
+        {% if currentUser %}
+            {% if cart.shippingAddress %}
+                {% redirect 'buy/checkout?step=3' %}
+            {% else %}
+                {% redirect 'buy/checkout?step=2' %}
+            {% endif %}
+        {% else %}
+            {% redirect 'buy/checkout?step=1' %}
+        {% endif %}
+    {% endif %}
+
+    {% if step == 2 %}
+        {% set item = cart.lineItems|first %}
+        {% if cart.isDonation %}
+            {% redirect 'buy/checkout?step=3' %}
+        {% endif %}
+    {% endif %}
+
+    {% set showEmailForm = (step == 1) %}
+    {% set showEmailInfo = (not showEmailForm and cart.email) %}
+
+    {% set showShippingForm = (step == 2) %}
+    {% set showShippingInfo = (not showShippingForm and cart.shippingAddress) %}
+
+    {% set showPaymentForm = (step == 3) %}
+
+    {% if showPaymentForm and not cart.email %}
+        {% redirect 'buy/checkout?step=1' %}
+    {% endif %}
+
+    {% if showPaymentForm and not cart.shippingAddress and not cart.isDonation %}
+        {% redirect 'buy/checkout?step=2' %}
+    {% endif %}
+
+    {% set shipToLocation = item.options.shiptolocation??'no' %}
+
+
+    {# Step 1: Email ---------------------------------------------------- #}
+
+    <div>
+        {% if product is defined %}
+            {{ isAlreadyMine(product) }}
+        {% endif %}
+
+
+        <div class="mt-5 mb-3 d-flex">
+            <div class="numberCircle mr-3">1</div>
+            <h4>{{ "Your Email"|t }}</h4>
+        </div>
+
+        {% if showEmailForm %}
+            {% include "buy/_includes/emailform.twig" %}
+        {% endif %}
+        {% if showEmailInfo %}
+            {% include "buy/_includes/emailinfo.twig" %}
+        {% endif %}
+
+        {% if cart.email != '' and  not currentUser and craft.users.email(cart.email).one() %}
+            <div class="my-2">
+                <a href="{{ url('buy/login') }}" type="submit"
+                   class="btn btn-secondary">
+                    You are already a user, please log in to use your saved addresses (optional).
+                </a>
+            </div>
+        {% endif %}
+
+    </div>
+
+    {# Step 2: Shipping ---------------------------------------------------- #}
+
+
+
+    <div>
+
+        <div class="mt-5 mb-3 d-flex">
+            <div class="numberCircle mr-3">
+                2
+            </div>
+            <h4>{{ "Your Address"|t }}</h4>
+        </div>
+
+
+        {% if not cart.isDonation %}
+            {% if showShippingForm %}
+                {% include "buy/_includes/shippingform.twig" %}
+            {% endif %}
+
+            {% if showShippingInfo %}
+                {% include "buy/_includes/shippinginfo.twig" %}
+            {% endif %}
+        {% else %}
+            {{ 'Address is not required for a donation'|t }}
+        {% endif %}
+
+
+    </div>
+
+    {# Step 3: Payment ---------------------------------------------------- #}
+
+    <form method="POST" class="add-to-cart-form">
+        <input type="hidden" name="action" value="commerce/payments/pay">
+        <input type="hidden" name="gatewayId" value="1">
+        {{ redirectInput('buy/confirm?number={number}') }}
+        {{ csrfInput() }}
+
+
+        <div class="mt-5 mb-3 d-flex">
+            <div class="numberCircle mr-3">3</div>
+            <h4>{{ "Your Payment Information"|t }}</h4>
+        </div>
+
+        {% if showPaymentForm %}
+            {% include "buy/_includes/paymentform.twig" %}
+        {% endif %}
+
+
+        {% if showPaymentForm %}
+            {% include "buy/_includes/paymentformsubmit.twig" %}
+        {% endif %}
+
+    </form>
+
+{% endblock %}
+
+{% block secondaryContentLogin %}
+    <div class="mb-3">
+        {% if  currentUser %}
+            <div class="text-white"></div>
+            {{ "Welcome"|t }}, {{ currentUser.name }}
+        {% else %}
+            {% do craft.app.user.setReturnUrl(craft.app.request.absoluteUrl) %}
+            <a class="text-white" href="{{ url('buy/login') }}">Login</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block secondaryContentTitle %}
+
+    {% include 'buy/_includes/lineitem_title.twig' %}
+
+{% endblock %}
+
+{% block secondaryContentContent %}
+
+    {% include 'buy/_custom/sidebar_checkout.twig' %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: e12a7084-ddcc-406f-bc60-d1429777d8e0
+handle: producedIn
+instructions: ''
+name: 'Produced in'
+searchable: true
+settings:
+  limit: ''
+  localizeRelations: ''
+  selectionLabel: ''
+  source: null
+  sources:
+    - 'section:0adfd08b-0231-4927-aed8-1b64ae264692'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

@@ -1,0 +1,202 @@
+{# @var suggestion \project\modules\suggestions\models\SuggestionModel #}
+
+{% from 'suggestions/macros.twig' import errorList %}
+
+{% extends "_layouts/cp.html" %}
+
+{% import '_includes/forms.html' as forms %}
+
+{% set isTrashed = suggestion.isTrashed %}
+
+{% set title = "#{'Suggestion'|t('suggestions')}: #{suggestion.title}" %}
+{% set fullPageForm = not isTrashed %}
+
+{% set suggestionStatus = craft.suggestionModule.suggestionStatus %}
+
+{% set crumbs = [
+    {label:'Suggestions'|t('suggestions'), url:cpUrl('suggestions')}   ,
+    {label:suggestionStatus[suggestion.status]|t('suggestions'), url:cpUrl('suggestions', {status:suggestion.status})}   ,
+] %}
+{% set tabs = {
+    data: {label: 'Suggestion'|t('suggestions'), url: '#data'},
+    history: {label: 'Status History'|t('suggestions'), url: '#history'}
+} %}
+
+{% block actionButton %}
+    {% if not isTrashed %}
+        <div class="btngroup">
+            <input type="submit" class="btn submit" value="{{ 'Update Status'|t('suggestions') }}">
+            <div class="btn submit menubtn"></div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a onclick="return confirm('{{ 'Are you sure you want to delete this suggestion?'|t('suggestions') }}')"
+                           href='{{ cpUrl("suggestions/#{suggestion.id}/delete") }}'>{{ 'Delete suggestion'|t('suggestions') }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="data">
+
+        <table class="data fullwidth collapsible suggestions">
+            <tbody>
+            <tr>
+                <th class="light">{{ suggestion.getAttributeLabel('id') }}</th>
+                <td>{{ suggestion.id }}</td>
+            </tr>
+            <tr>
+                <th class="light">{{ suggestion.getAttributeLabel('name') }}</th>
+                <td>{{ suggestion.name }}</td>
+            </tr>
+            <tr>
+                <th class="light">{{ suggestion.getAttributeLabel('email') }}</th>
+                <td>{{ suggestion.email }}</td>
+            </tr>
+            <tr>
+                <th class="light">{{ suggestion.getAttributeLabel('dateCreated') }}</th>
+                <td>{{ suggestion.dateCreated|datetime('Y-m-d G:i') }}</td>
+            </tr>
+            <tr>
+                <th class="light">{{ suggestion.getAttributeLabel('title') }}</th>
+                <td>{{ suggestion.title }}</td>
+            </tr>
+            <tr>
+                <th class="light">{{ suggestion.getAttributeLabel('description') }}</th>
+                <td>{{ suggestion.description|nl2br }}</td>
+            </tr>
+            <tr>
+                <th class="light">{{ suggestion.getAttributeLabel('site') }}</th>
+                <td>{{ craft.app.sites.siteByHandle(suggestion.site).name }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div id="history" class="hidden">
+
+
+        {% set histories = suggestion.history %}
+        <table class="data fullwidth collapsible suggestions">
+            <thead>
+            <tr>
+                <th>{{ 'Editor'|t('suggestions') }}</th>
+                <th>{{ suggestion.getAttributeLabel('dateCreated') }}</th>
+                <th>{{ suggestion.getAttributeLabel('status') }}</th>
+                <th>{{ suggestion.getAttributeLabel('notes') }}</th>
+                <th>{{ suggestion.getAttributeLabel('relatedEntryId') }}</th>
+                <th>{{ suggestion.getAttributeLabel('userId') }}</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for history in histories %}
+                <tr>
+                    <td>
+                        {% if history.creatorId %}
+                            {% set user = craft.users.id(history.creatorId).one %}
+                            {% if user %}
+                                {{ user.name }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>{{ history.dateCreated|datetime('Y-m-d G:i') }}</td>
+                    <td>{{ suggestionStatus[history.status]|t('suggestions') }}</td>
+                    <td>{{ history.notes|nl2br }}</td>
+                    <td>
+                        {% if history.relatedEntryId %}
+                            {% set entry = craft.entries.anyStatus().id(history.relatedEntryId).one %}
+                            {% if entry %}
+                                <a href="{{ entry.cpEditUrl }}" class="go">{{ entry.title }}</a>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if history.userId %}
+                            {% set user = craft.users.id(history.userId).one %}
+                            {% if user %}
+                                {{ user.name }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% css %}
+        .suggestions th, .suggestions td {
+        vertical-align:top;
+        }
+    {% endcss %}
+
+{% endblock %}
+
+{% block details %}
+
+
+    <div class="meta">
+
+        {{ csrfInput() }}
+        {{ actionInput('suggestions/suggestions/update-status') }}
+        <input type="hidden" name="id" value="{{ suggestion.id }}"/>
+
+
+        {% set options = suggestionStatus|map((label,value) => {value:value, label:label|t('suggestions')}) %}
+
+        {{ forms.selectField({
+            label: suggestion.getAttributeLabel('status'),
+            name: 'status',
+            value: suggestion.status,
+            options: options
+        }) }}
+
+        {{ forms.elementSelectField({
+            label: suggestion.getAttributeLabel('relatedEntryId'),
+            id:'entrySelect',
+            name:'entries',
+            elementType:'craft\\elements\\Entry',
+            sources: craft.suggestionModule.entrySources,
+            limit:1,
+            elements: suggestion.relatedEntryId ? [craft.entries.anyStatus().id(suggestion.relatedEntryId).one] : []
+        }) }}
+
+
+        {{ forms.elementSelectField({
+            label: suggestion.getAttributeLabel('userId'),
+            id:'userSelect',
+            name:'user',
+            elementType:'craft\\elements\\User',
+            sources: craft.suggestionModule.userSources,
+            limit:1,
+            elements: suggestion.userId ? [craft.users.id(suggestion.userId).one] : []
+        }) }}
+
+        {{ errorList(suggestion.getErrors('userId')) }}
+
+
+        {{ forms.textAreaField({
+            label: suggestion.getAttributeLabel('notes'),
+            name: 'notes',
+            id: 'suggestion-notes',
+            class: 'nicetext details-textarea',
+            rows: 4,
+            value: suggestion.notes
+        }) }}
+
+    </div>
+
+    {% if not isTrashed %}
+        <div class="meta read-only">
+            <a class="go" href="{{ suggestion.url }}">{{ 'Status Page'|t('suggestions') }}</a>
+        </div>
+    {% endif %}
+
+{% endblock %}
+

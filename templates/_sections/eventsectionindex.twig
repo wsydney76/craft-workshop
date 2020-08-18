@@ -1,0 +1,16 @@
+{% extends "_layout.twig" %}
+
+{% set requireScreeningDetailsModal = true %}
+
+{% block content %}
+    {% include '_partials/blocks.twig'
+        with {query:entry.bodyContent} only %}
+
+    {% include '_partials/entry_gallery.twig'
+        with {query:craft.entries.section('eventsection').orderBy('title')} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/entries_list.twig'
+        with {heading:'Films', query: craft.entries.section('film').orderBy('title') } %}
+{% endblock %}

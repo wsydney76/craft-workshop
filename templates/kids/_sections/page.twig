@@ -1,0 +1,15 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+
+    {% if entry.type == 'page' %}
+        {% include '_partials/blocks.twig'
+            with {query:entry.bodyContent} only %}
+    {% endif %}
+
+    {% if entry.type == 'contentBuilder' %}
+        {% include '_partials/contentbuilder.twig'
+            with {query: entry.contentBuilder} only %}
+    {% endif %}
+
+{% endblock %}

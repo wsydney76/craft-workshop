@@ -1,0 +1,32 @@
+contentColumnType: text
+fieldGroup: e12a7084-ddcc-406f-bc60-d1429777d8e0
+handle: additionalCast
+instructions: ''
+name: 'Additional Cast'
+searchable: true
+settings:
+  addRowLabel: 'Add a person'
+  columnType: text
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - Name
+            -
+              - handle
+              - name
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+  maxRows: ''
+  minRows: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

@@ -1,0 +1,17 @@
+<h4>{{ 'Email'|t }}</h4>
+
+{{ suggestion.email }}
+
+<h4>{{'Description'|t('suggestions')}}</h4>
+<p>{{ suggestion.description|nl2br }}</p>
+{% if suggestion.notes %}
+    <h4>{{'Notes'|t('suggestions')}}</h4>
+    <p>{{ suggestion.notes|nl2br }}</p>
+{% endif %}
+{% if suggestion.relatedEntryId %}
+    {% set entry = craft.entries.anyStatus().id(suggestion.relatedEntryId).one %}
+    {% if entry %}
+        <h4>{{'Entry'|t('suggestions')}}</h4>
+        <a href="{{ entry.cpEditUrl }}" class="go">{{ entry.title }}</a>
+    {% endif %}
+{% endif %}

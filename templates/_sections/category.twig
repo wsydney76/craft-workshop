@@ -1,0 +1,7 @@
+{% extends "_layout.twig" %}
+
+{% block titleText  "#{'Films by'|t} #{entry.section.name|t}: #{entry.title}" %}
+
+{% block content %}
+    {% include '_partials/entry_gallery.twig' with {query:craft.entries.section('film').site('*').unique().relatedTo(entry).orderBy('title')} only %}
+{% endblock %}

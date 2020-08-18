@@ -1,0 +1,16 @@
+contentColumnType: text
+fieldGroup: c2c0bc75-b1e1-470b-9373-d691afad3098
+handle: bioDe
+instructions: ''
+name: 'Bio de'
+searchable: true
+settings:
+  charLimit: ''
+  code: ''
+  columnType: text
+  initialRows: '4'
+  multiline: '1'
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

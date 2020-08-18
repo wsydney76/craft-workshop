@@ -1,0 +1,73 @@
+{% extends 'members/_layout.twig' %}
+{% set global_title = "Login" %}
+{% set global_languageSwitch = {
+    en: siteUrl("members/login", siteId = craft.app.sites.siteByHandle('en').id),
+    de: siteUrl("members/login", siteId = craft.app.sites.siteByHandle('de').id),
+} %}
+
+{% import '_macros/forms.twig' as forms %}
+
+{% set isOffline = parseEnv('$ENVIRONMENT') == 'install' %}
+
+{% set loginData = craft.members.loginData({
+    loginName: craft.app.request.param('loginName') ?: craft.app.user.rememberedUsername,
+    password: '',
+    rememberMe: craft.app.request.param('rememberMe') ?: 0
+}) %}
+
+
+
+{% block content %}
+
+    {{ '<form method="post" accept-charset="UTF-8">' }}
+
+    {{ csrfInput() }}
+    {{ actionInput('users/login') }}
+
+
+    {{ forms.textField({
+        label: 'Username or Email'|t,
+        name: 'loginName',
+        object: loginData,
+        required: true
+    }) }}
+
+    {{ forms.textField({
+        label: 'Password'|t,
+        name: 'password',
+        object: loginData,
+        type: 'password',
+        required: true
+    }) }}
+
+
+    {{ forms.singleCheckbox({
+        label: 'Remember Me'|t,
+        name: 'rememberMe',
+        object: loginData
+    }) }}
+
+
+    {{ forms.submit('Login'|t) }}
+
+    {{ '</form>' }}
+
+{% endblock %}
+
+{% block secondaryContent %}
+    {% if isOffline %}
+        <div class="alert alert-warning">
+            {% switch currentSite.language[:2] %}
+            {% case "en" %}
+                System is offline, so processing is limited. You will see a 'System is offline' page after an unsuccessful
+                login attempt.
+                Simply go back to this page if this happens and try again.
+            {% case "de" %}
+                Das System ist offline, so dass die Funktionen eingeschränkt sind. Nach einem erfolglosen Login-Versuch
+                sehen sie eine 'System ist offline'-Seite. Gehen Sie zurück zu dieser Seite und versuchen Sie es erneut.
+            {% endswitch %}
+        </div>
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

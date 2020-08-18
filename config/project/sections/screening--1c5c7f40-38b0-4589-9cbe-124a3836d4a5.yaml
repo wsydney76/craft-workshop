@@ -1,0 +1,25 @@
+enableVersioning: true
+handle: screening
+name: Screening
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: siteGroup
+siteSettings:
+  7e9d0ac6-02db-42c5-bfe5-2268b447b682:
+    enabledByDefault: true
+    hasUrls: true
+    template: _sections/screening
+    uriFormat: 'vorfuehrung/{slug}'
+  97e0b749-86e3-49f1-918e-9b88758928f4:
+    enabledByDefault: true
+    hasUrls: true
+    template: _sections/screening
+    uriFormat: 'screening/{slug}'
+  bbbb120d-5d71-4e7c-a164-487e401c4f2c:
+    enabledByDefault: true
+    hasUrls: true
+    template: _sections/screening
+    uriFormat: 'vorfuehrung/{slug}'
+type: channel

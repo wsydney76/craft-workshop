@@ -1,0 +1,9 @@
+{% set links = query.all %}
+{% if links %}
+    {% embed '_layouts/embeds/widget.twig' with {heading: 'Links', boxed:true} %}
+        {% block content %}
+            {% from '_macros/lib.twig' import linkList %}
+            {{ linkList(links) }}
+        {% endblock %}
+    {% endembed %}
+{% endif %}

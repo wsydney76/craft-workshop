@@ -1,0 +1,32 @@
+{% embed '_partials/entry_gallery.twig' with {query:query} %}
+
+    {% block gallery %}
+        {% for entry in entries %}
+            <div class="mb-5">
+                {% embed '_partials/gallery_item.twig' with {element:entry} only %}
+
+                    {% block content %}
+                        {% if element.type == 'link' %}
+                            <div class="my-3">
+                            <span class="text-danger font-weight-bold">
+                            {{ 'External Link'|t }} </span>
+                                <br/>{{ element.externalLink }}
+                            </div>
+                        {% endif %}
+                        {% set quote = element.bodyContent[0]??null %}
+                        {% if quote %}
+                            <div class="my-2">
+                                <em>{{ quote.text }}</em>
+                            </div>
+                        {% endif %}
+                        {% if not element.type == 'link' %}
+                            <div class="my-3 text-muted">
+                                {{ element.author.name }}, {{ element.postDate|date }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        {% endfor %}
+    {% endblock %}
+{% endembed %}

@@ -1,0 +1,344 @@
+assets:
+  tempVolumeUid: 35c3b3f5-30e7-4780-9ae1-286ee8bd275e
+dateModified: 1597564444
+email:
+  fromEmail: '@EMAIL_ADDRESS'
+  fromName: '@EMAIL_SENDER'
+  replyToEmail: null
+  template: ''
+  transportSettings:
+    encryptionMethod: ''
+    host: '@SMTP_HOST'
+    password: '@SMTP_PASSWORD'
+    port: '@SMTP_PORT'
+    timeout: '10'
+    useAuthentication: '1'
+    username: '@SMTP_USER'
+  transportType: craft\mail\transportadapters\Smtp
+plugins:
+  blitz:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.6.6
+    settings:
+      apiKey: ''
+      cacheControlHeader: 'public, s-maxage=31536000, max-age=0'
+      cacheDuration: null
+      cacheElementQueries: true
+      cacheElements: true
+      cachePurgerType: putyourlightson\blitz\drivers\purgers\DummyPurger
+      cacheStorageSettings:
+        __assoc__:
+          -
+            - folderPath
+            - '@webroot/cache/blitz'
+          -
+            - createGzipFiles
+            - ''
+      cacheStorageType: putyourlightson\blitz\drivers\storage\FileStorage
+      cacheWarmerSettings:
+        __assoc__:
+          -
+            - concurrency
+            - '5'
+      cacheWarmerType: putyourlightson\blitz\drivers\warmers\GuzzleWarmer
+      cachingEnabled: ''
+      clearCacheAutomatically: '1'
+      customSiteUris: ''
+      debug: true
+      deployerType: putyourlightson\blitz\drivers\deployers\DummyDeployer
+      driverJobPriority: 100
+      excludedQueryStringParams:
+        - gclid
+        - fbclid
+      excludedUriPatterns:
+        -
+          __assoc__:
+            -
+              - siteId
+              - ''
+            -
+              - uriPattern
+              - ^members/
+        -
+          __assoc__:
+            -
+              - siteId
+              - ''
+            -
+              - uriPattern
+              - ^buy/
+        -
+          __assoc__:
+            -
+              - siteId
+              - ''
+            -
+              - uriPattern
+              - ^ajax/
+        -
+          __assoc__:
+            -
+              - siteId
+              - '1'
+            -
+              - uriPattern
+              - ^suggestion
+        -
+          __assoc__:
+            -
+              - siteId
+              - '2'
+            -
+              - uriPattern
+              - ^vorschlag
+        -
+          __assoc__:
+            -
+              - siteId
+              - ''
+            -
+              - uriPattern
+              - ^test/
+        -
+          __assoc__:
+            -
+              - siteId
+              - ''
+            -
+              - uriPattern
+              - ^dev/
+      includedUriPatterns:
+        -
+          __assoc__:
+            -
+              - siteId
+              - ''
+            -
+              - uriPattern
+              - ''
+        -
+          __assoc__:
+            -
+              - siteId
+              - ''
+            -
+              - uriPattern
+              - '.*'
+      injectScriptEvent: DOMContentLoaded
+      integrations:
+        - putyourlightson\blitz\drivers\integrations\FeedMeIntegration
+      mutexTimeout: 1
+      outputComments: true
+      queryStringCaching: '0'
+      refreshCacheAutomaticallyForGlobals: true
+      refreshCacheJobPriority: 10
+      refreshCacheWhenElementSavedNotLive: false
+      refreshCacheWhenElementSavedUnchanged: false
+      sendPoweredByHeader: true
+      warmCacheAutomatically: '1'
+  commerce:
+    edition: lite
+    enabled: true
+    schemaVersion: 3.2.3
+    settings:
+      activeCartDuration: 3600
+      allowEmptyCartOnCheckout: false
+      autoSetNewCartAddresses: true
+      cartVariable: cart
+      defaultView: commerce/orders
+      dimensionUnits: cm
+      emailSenderAddress: ''
+      emailSenderAddressPlaceholder: null
+      emailSenderName: ''
+      emailSenderNamePlaceholder: null
+      gatewayPostRedirectTemplate: ''
+      minimumTotalPriceStrategy: default
+      orderPdfFilenameFormat: 'Order-{number}'
+      orderPdfPath: buy/_pdf/order
+      orderReferenceFormat: '{{object.dateCompleted|date(''y'')}}-{{ seq(object.dateCompleted|date(''y''), 6) }}'
+      paymentCurrency: null
+      pdfAllowRemoteImages: false
+      pdfPaperOrientation: portrait
+      pdfPaperSize: letter
+      purgeInactiveCarts: true
+      purgeInactiveCartsDuration: 7776000
+      requireBillingAddressAtCheckout: false
+      requireShippingAddressAtCheckout: false
+      requireShippingMethodSelectionAtCheckout: false
+      showCustomerInfoTab: true
+      updateBillingDetailsUrl: ''
+      useBillingAddressForTax: false
+      validateBusinessTaxIdAsVatId: false
+      weightUnits: g
+  cp-field-inspect:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  craft-color-mixer:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  elementmap:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  embeddedassets:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+    settings:
+      cacheDuration: 300
+      embedlyKey: ''
+      facebookKey: ''
+      googleKey: '@GOOGLE_API_KEY'
+      iframelyKey: ''
+      maxAssetNameLength: 50
+      maxFileNameLength: 50
+      minImageSize: 16
+      parameters:
+        -
+          __assoc__:
+            -
+              - param
+              - maxwidth
+            -
+              - value
+              - '1080'
+        -
+          __assoc__:
+            -
+              - param
+              - maxheight
+            -
+              - value
+              - '1080'
+      showThumbnailsInCp: true
+      soundcloudKey: ''
+      whitelist:
+        - 'amazon.*'
+        - 'amazon.co.*'
+        - amcharts.com
+        - baidu.com
+        - collegehumor.com
+        - dailymotion.com
+        - deviantart.com
+        - embed.ly
+        - 'facebook.*'
+        - 'facebook.co.*'
+        - 'facebook.com.*'
+        - fb.com
+        - 'google.*'
+        - 'google.co.*'
+        - 'google.com.*'
+        - hulu.com
+        - iframely.com
+        - imgur.com
+        - instagr.am
+        - instagram.com
+        - kickstarter.com
+        - meetup.com
+        - meetupstatic.com
+        - netfix.com
+        - reddit.com
+        - soundcloud.com
+        - t.co
+        - 'twitter.*'
+        - 'twitter.co.*'
+        - 'twitter.com.*'
+        - twimg.com
+        - vimeo.com
+        - vine.co
+        - wikipedia.org
+        - wikimedia.org
+        - wordpress.com
+        - yahoo.com
+        - youtu.be
+        - youtube.com
+        - youtube-nocookie.com
+  feed-me:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.1.2
+    settings:
+      assetDownloadCurl: false
+      backupLimit: 100
+      cache: '60'
+      compareContent: true
+      csvColumnDelimiter: ','
+      dataDelimiter: '-|-'
+      enabledTabs: '*'
+      logging: true
+      pluginName: Import
+      queueMaxRetry: 5
+      queueTtr: 300
+      requestOptions:
+        headers:
+          User-Agent: 'Feed Me'
+      runGcBeforeFeed: false
+      skipUpdateFieldHandle: ''
+      sleepTime: 0
+  inventory:
+    edition: standard
+    enabled: false
+    schemaVersion: 2.0.0
+  matrixmate:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  relabel:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.1.1
+  seomate:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  snapshot:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  solrsearch:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+    settings:
+      solrBaseUrl: '@SOLR_BASE_URL'
+      solrCore: '@SOLR_CORE'
+  staticcache:
+    edition: standard
+    enabled: false
+    schemaVersion: 1.0.0
+  versions:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+    settings:
+      allowEditSource: never
+      allowMultipleDrafts: ''
+      allowPreviewForSourceEntries: ''
+      allowSaveHUD:
+        - country
+        - genre
+        - language
+      enablePermissions: ''
+      enableSaveFromAllSites: '1'
+      helpCaption: 'Advanced help for workflow'
+      helpUrl: ''
+      showElementSource: '1'
+      showInternal: never
+      showNavigationEntry: ''
+  wsguide:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: pro
+  live: true
+  name: '@SYSTEM_NAME'
+  schemaVersion: 3.5.12
+  timeZone: Europe/Berlin

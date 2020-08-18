@@ -1,0 +1,51 @@
+field: 58b2e318-26cc-47b8-bee2-81369731d72f
+fieldLayouts:
+  d199692c-613e-45e8-9209-271e3b228c21:
+    tabs:
+      -
+        fields:
+          5b9f9bae-905b-4a83-be43-e9244a565aa6:
+            required: false
+            sortOrder: 2
+          a6d13a9f-d4ed-41e5-be7f-c93dcb679633:
+            required: true
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  5b9f9bae-905b-4a83-be43-e9244a565aa6:
+    contentColumnType: boolean
+    fieldGroup: null
+    handle: highlightBlock
+    instructions: 'Shows text block in colored box, with all formatting and links stripped.'
+    name: 'Highlight Block'
+    searchable: false
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  a6d13a9f-d4ed-41e5-be7f-c93dcb679633:
+    contentColumnType: text
+    fieldGroup: null
+    handle: text
+    instructions: ''
+    name: Text
+    searchable: true
+    settings:
+      availableTransforms: ''
+      availableVolumes: ''
+      cleanupHtml: true
+      columnType: text
+      purifierConfig: ''
+      purifyHtml: '1'
+      redactorConfig: Custom.json
+      removeEmptyTags: '1'
+      removeInlineStyles: '1'
+      removeNbsp: '1'
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\redactor\Field
+handle: text
+name: Text
+sortOrder: 2

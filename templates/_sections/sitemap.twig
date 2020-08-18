@@ -1,0 +1,23 @@
+{% extends "_layout.twig" %}
+
+{% block contentContainer %}
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
+        {% for sectionEntry in craft.content.featuredSectionEntries(true) %}
+            <div class="px-2">
+                {# This assumes a naming convention xxxIndex (single) -> xxx (channel)                         #}
+                {# Better: add a field 'Related Section' to the singles and use ->sectionEntry->relatedSection #}
+                {% set section = sectionEntry.section.handle|replace({'Index': ''}) %}
+                {% set query = craft.entries.section(section).orderBy('title') %}
+
+                {% if section == 'news' %}
+                    {% set query = query.type('not link').orderBy('postDate desc') %}
+                {% endif %}
+
+                {% include '_partials/entries_list.twig'
+                    with {heading: sectionEntry.title, query:query} %}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

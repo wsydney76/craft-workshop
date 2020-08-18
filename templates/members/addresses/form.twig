@@ -1,0 +1,90 @@
+{% import '_macros/forms.twig' as forms %}
+<div id="address">
+    <div class="d-flex mb-4">
+
+        {{ forms.textField({
+            label: 'First Name'|t,
+            name: 'address[firstName]',
+            required: true,
+            class:"w-50 mr-2",
+            object: address,
+            attribute: 'firstName'
+        }) }}
+
+        {{ forms.textField({
+            label: 'Last Name'|t,
+            name: 'address[lastName]',
+            required: true,
+            class:"w-50",
+            object: address,
+            attribute: 'lastName'
+        }) }}
+
+    </div>
+
+    <div class="d-flex mb-4">
+
+        {{ forms.textField({
+            label: "Address1"|t,
+            name: 'address[address1]',
+            required: true,
+            class:"w-50 mr-2",
+            object: address,
+            attribute: 'address1'
+        }) }}
+
+        {{ forms.textField({
+            label: "Address2"|t,
+            name: 'address[address2]',
+            class:"w-50",
+            object: address,
+            attribute: 'address2'
+        }) }}
+
+    </div>
+    <div class="d-flex mb-4">
+
+        {{ forms.textField({
+            label: "ZIP"|t,
+            name: 'address[zipCode]',
+            required: true,
+            class:"w-50 mr-2",
+            object: address,
+            attribute: 'zipCode'
+        }) }}
+
+        {{ forms.textField({
+            label: "City"|t,
+            name: 'address[city]',
+            required: true,
+            class:"w-50",
+            object: address,
+            attribute: 'city'
+        }) }}
+
+
+    </div>
+    <div class="d-flex mb-4">
+
+        {% set options = [] %}
+        {% for iso in ['DE','AT','CH'] %}
+            {% set country = craft.commerce.countries.getCountryByIso(iso) %}
+            {% if country %}
+                {% set options = options|merge([{label: country.name|t, value: country.id}]) %}
+            {% endif %}
+        {% endfor %}
+
+        {{ forms.selectField({
+            label: "Country"|t,
+            name: 'address[countryId]',
+            required: true,
+            class:"w-50",
+            object: address,
+            attribute: 'countryId',
+            options: options
+        }) }}
+
+
+    </div>
+
+</div>

@@ -1,0 +1,49 @@
+<html lang="de">
+<head>
+    <title>{{'Suggestions'|t('suggestions')}}</title>
+    <style>
+        @page {
+            margin: 50px 25px;
+        }
+
+
+        .header {
+            color: #0d78f2;
+            font-size: 32px;
+            border-bottom: 1px solid #0d78f2;
+            margin-bottom: 32px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
+            text-align: center;
+            border-top: 1px solid #0d78f2;
+            padding-top: 12px;
+
+        }
+
+        footer .pagenum:before {
+            content: counter(page);
+        }
+    </style>
+</head>
+<body>
+
+<footer>
+    {{'Page'|t('suggestions')}} <span class="pagenum"></span>
+    &copy; {{ craft.globalSets.handle('siteInfo').one.siteName }} {{ now|date('Y') }}
+</footer>
+
+<main>
+
+    <h1 class="header">{{'Suggestions'|t('suggestions')}}</h1>
+
+    {% include 'suggestions/partials/suggestions_details.twig' with {suggestions:suggestions} only %}
+
+</main>
+</body>
+</html>

@@ -1,0 +1,8 @@
+handle: embeds
+hasUrls: false
+name: Embeds
+settings:
+  path: '@root/volumes/embeds'
+sortOrder: 5
+type: craft\volumes\Local
+url: null

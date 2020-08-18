@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: 17aa2ede-87b4-40b0-84d1-47a0b29e0b24
+handle: person
+instructions: ''
+name: Person
+searchable: true
+settings:
+  limit: '1'
+  localizeRelations: ''
+  selectionLabel: 'Select a person'
+  source: null
+  sources:
+    - 'section:c504627b-6f45-47cd-822a-8e36420f203d'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

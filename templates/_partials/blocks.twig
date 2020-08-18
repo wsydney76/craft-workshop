@@ -1,0 +1,13 @@
+{% set blocks = query.all %}
+
+{% for block in blocks %}
+    {% if heading is defined %}
+        <div class="mb-3 h5">{{ heading|t }}</div>
+    {% endif %}
+    <div class="mb-4 block-{{ block.type }}" id="block-{{ block.id }}">
+        {% include "_blocks/#{block.type}.twig"
+            ignore missing
+            with {block: block, index: loop.index} only %}
+    </div>
+{% endfor %}
+

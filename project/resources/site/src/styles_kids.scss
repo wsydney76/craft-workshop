@@ -1,0 +1,198 @@
+// https://material.io/design/color/#tools-for-picking-colors
+
+$primary: #3a4660;
+$secondary: #c9af98;
+$light: lighten($secondary, 15%);
+$headings-color: darken($secondary, 30%);
+$custom-color: #AB904D;
+$theme-colors: (
+        "custom": $custom-color
+);
+$body-color: darken($primary, 20%);
+$body-bg: lighten($custom-color, 30%);
+
+$container-max-widths: (
+        xl: 800px
+);
+
+// $link-decoration:underline;
+$border-radius: 0.5rem;
+$enable-rounded: false;
+$enable-responsive-font-sizes: true;
+
+$font-size-base: 1.2rem;
+//$font-family-base: 'Comic Sans MS', sans-serif;
+//$headings-font-family: 'Comic Sans MS', serif;
+
+@import url('https://fonts.googleapis.com/css?family=Elsie|Roboto:400,700&display=swap');
+$headings-font-family: 'Elsie', serif;
+$font-family-base: 'Roboto', sans-serif;
+
+#featured-image {
+  img {
+    height: 350px;
+    width: 100%;
+    object-fit: cover
+  }
+}
+
+.img-scale {
+  transition: transform .3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.rich-text a {
+  text-decoration: underline;
+}
+
+.block-image figure {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.media-text {
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);;
+
+  .container {
+    padding-left:0px;
+    padding-right:0px;
+  }
+
+  img {
+    box-shadow: 0px 10px 20px 0px rgba(53,77,100,0.5);
+  }
+
+  .img-transform-right {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(-2deg);
+  }
+
+  .img-transform-left {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(2deg);
+  }
+
+  .media-text-image {
+    width:50%;
+  }
+  .media-text-text {
+    width:50%;
+  }
+
+  .media-even {
+    .media-text-text {
+      order: 1;
+    }
+
+    .media-text-image {
+      order: 2;
+    }
+  }
+
+  .media-odd {
+    .media-text-text {
+      order: 2;
+    }
+
+    .media-text-image {
+      order: 1;
+    }
+  }
+  &.background-isdark {
+    color: #fff;
+
+    h2 {
+      color: #fff;
+    }
+  }
+}
+
+// Responsive adjustments
+
+@media (max-width: 1159px) {
+  // col-lg
+  #featured-image {
+    img {
+      height: 300px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  // col-md
+  #featured-image {
+    img {
+      height: 220px;
+    }
+  }
+  .media-text {
+
+    .media-text-image {
+      width:100%;
+      margin-bottom: 50px;
+    }
+    .media-text-text {
+      width:100%;
+    }
+
+    .media-odd {
+      .media-text-text {
+        order: 1;
+      }
+
+      .media-text-image {
+        order: 2;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  // col-sm
+  #featured-image {
+    img {
+      height: 150px;
+    }
+  }
+}
+
+
+//@import '../../vendor/twbs/bootstrap/scss/bootstrap';
+@import "../../../../vendor/twbs/bootstrap/scss/functions";
+@import "../../../../vendor/twbs/bootstrap/scss/variables";
+@import "../../../../vendor/twbs/bootstrap/scss/mixins";
+@import "../../../../vendor/twbs/bootstrap/scss/root";
+@import "../../../../vendor/twbs/bootstrap/scss/reboot";
+@import "../../../../vendor/twbs/bootstrap/scss/type";
+@import "../../../../vendor/twbs/bootstrap/scss/images";
+// @import "../../../vendor/twbs/bootstrap/scss/code";
+@import "../../../../vendor/twbs/bootstrap/scss/grid";
+// @import "../../../vendor/twbs/bootstrap/scss/tables";
+// @import "../../../vendor/twbs/bootstrap/scss/forms";
+@import "../../../../vendor/twbs/bootstrap/scss/buttons";
+// @import "../../../vendor/twbs/bootstrap/scss/transitions";
+// @import "../../../vendor/twbs/bootstrap/scss/dropdown";
+// @import "../../../vendor/twbs/bootstrap/scss/button-group";
+// @import "../../../vendor/twbs/bootstrap/scss/input-group";
+// @import "../../../vendor/twbs/bootstrap/scss/custom-forms";
+@import "../../../../vendor/twbs/bootstrap/scss/nav";
+// @import "../../../vendor/twbs/bootstrap/scss/navbar";
+// @import "../../../vendor/twbs/bootstrap/scss/card";
+// @import "../../../vendor/twbs/bootstrap/scss/breadcrumb";
+// @import "../../../vendor/twbs/bootstrap/scss/pagination";
+// @import "../../../vendor/twbs/bootstrap/scss/badge";
+// @import "../../../vendor/twbs/bootstrap/scss/jumbotron";
+// @import "../../../vendor/twbs/bootstrap/scss/alert";
+// @import "../../../vendor/twbs/bootstrap/scss/progress";
+// @import "../../../vendor/twbs/bootstrap/scss/media";
+// @import "../../../vendor/twbs/bootstrap/scss/list-group";
+// @import "../../../vendor/twbs/bootstrap/scss/close";
+// @import "../../../vendor/twbs/bootstrap/scss/toasts";
+// @import "../../../vendor/twbs/bootstrap/scss/modal";
+@import "../../../../vendor/twbs/bootstrap/scss/tooltip";
+// @import "../../../vendor/twbs/bootstrap/scss/popover";
+// @import "../../../vendor/twbs/bootstrap/scss/carousel";
+// @import "../../../vendor/twbs/bootstrap/scss/spinners";
+@import "../../../../vendor/twbs/bootstrap/scss/utilities";
+// @import "../../../vendor/twbs/bootstrap/scss/print";

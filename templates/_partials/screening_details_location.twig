@@ -1,0 +1,10 @@
+{% set image = location.featuredImage.one %}
+{% if image %}
+    <a href="{{ location.url }}">
+        <img class="img-fluid img-scale my-3" src="{{ image.getUrl({width:360, height:120}) }}"
+             alt="{{ image.title|e('html_attr') }}">
+    </a>
+{% endif %}
+
+{% include '_partials/screening_details.twig'
+    with {entry:entry, location:location} only %}

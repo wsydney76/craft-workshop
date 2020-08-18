@@ -1,0 +1,18 @@
+contentColumnType: string
+fieldGroup: 207a209a-820f-4db8-829a-e9b191ff1b54
+handle: relatedProducts
+instructions: ''
+name: 'Related Products'
+searchable: false
+settings:
+  limit: ''
+  localizeRelations: ''
+  selectionLabel: ''
+  source: null
+  sources: '*'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\commerce\fields\Products

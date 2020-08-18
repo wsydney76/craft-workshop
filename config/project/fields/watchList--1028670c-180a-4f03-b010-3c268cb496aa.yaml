@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: 17aa2ede-87b4-40b0-84d1-47a0b29e0b24
+handle: watchList
+instructions: ''
+name: 'Watch list'
+searchable: false
+settings:
+  limit: ''
+  localizeRelations: ''
+  selectionLabel: ''
+  source: null
+  sources:
+    - 'section:1c5c7f40-38b0-4589-9cbe-124a3836d4a5'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

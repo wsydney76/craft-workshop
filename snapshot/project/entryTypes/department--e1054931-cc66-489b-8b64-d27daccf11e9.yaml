@@ -1,0 +1,21 @@
+fieldLayouts:
+  9ef2a0f4-f9d5-459c-85e9-89cacddaa5aa:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 878f9bee-3c67-41ea-b52d-dcec5faf3eb2
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Content
+        sortOrder: 1
+handle: department
+hasTitleField: true
+name: Department
+section: e4ce1d36-665c-44b3-8221-d6042cb4b0d2
+sortOrder: 1
+titleFormat: ''

@@ -1,0 +1,25 @@
+<div class="modal fade" id="details-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+
+        <div class="modal-content">
+            <div id="toast" style="width:300px; position: absolute; top: 0; left: calc(50% - 150px); z-index: 100" class="toast"
+                 data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-primary text-white">
+                    <strong id="toast-caption" class="mr-auto">{{ 'Message'|t }}</strong>
+                </div>
+                <div id="toast-body" class="toast-body">
+                </div>
+            </div>
+            <div class="modal-header">
+                <div class="h5 modal-title">{{ 'Details'|t }}</div>
+                <button type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content" class="container-fluid"></div>
+            </div>
+
+        </div>
+    </div>
+</div>

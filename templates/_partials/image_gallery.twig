@@ -1,0 +1,29 @@
+{% set images = query.all %}
+{% if images %}
+
+    {% embed '_layouts/embeds/widget.twig' with {heading:'Gallery'|t} %}
+        {% block content %}
+            {% for image in images %}
+                {% set titleAttr = image.title|e('html_attr') %}
+
+                {% set aAttr = {
+                    data: {
+                        fancybox: "gallery",
+                        caption: titleAttr
+                    },
+                    href: image.url({height:800})
+                } %}
+
+                {% set imgAttr = {
+                    class: ['img-fluid', 'mb-1'],
+                    src: image.url({width:230, height:230}),
+                    loading: 'lazy',
+                    alt: titleAttr
+                } %}
+
+                <a {{ attr(aAttr) }}><img {{ attr(imgAttr) }}></a>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+
+{% endif %}

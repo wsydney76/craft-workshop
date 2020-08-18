@@ -1,0 +1,33 @@
+{% paginate query
+    .limit(craft.app.config.general.project.entriesPerPage ?? 10)
+    .with([
+    ['featuredImage', {withTransforms:['galleryWideImage','gallerySquareImage']}],
+    ['bodyContent', {type:'pullquote'}]
+]) as pageInfo, entries %}
+
+{% set  navHtml %}
+    {% include '_layouts/partials/pagination.twig' with {pageInfo: pageInfo} only %}
+{% endset %}
+
+{{ navHtml }}
+
+<div class="mb-5">
+    {% block gallery %}
+        {% for entry in entries %}
+            <article class="mb-5">
+                {% embed "_partials/gallery_item.twig" with {element:entry} only %}
+                    {% block content %}
+                        {% set shortDescription = element.shortDescription %}
+                        {% if shortDescription != element.teaser %}
+                            <div>
+                                {{ element.shortDescription }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                {% endembed %}
+            </article>
+        {% endfor %}
+    {% endblock %}
+</div>
+
+{{ navHtml }}

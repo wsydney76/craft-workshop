@@ -1,0 +1,8 @@
+{{ block.textBefore }}
+{% set entries = block.target.all %}
+{% for entry in entries %}
+    {{ entry.link -}}
+    {{- loop.index == entries|length-1 ? " #{'and'|t} " : (loop.index < entries|length-1 ? ', ') }}
+{%- endfor -%}
+
+{{ block.textAfter ? " #{block.textAfter}" : '.' }}

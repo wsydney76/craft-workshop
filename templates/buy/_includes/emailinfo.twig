@@ -1,0 +1,6 @@
+{{ cart.email }}
+{% if not currentUser %}
+    <div class="mt-2">
+        <a href="/buy/checkout?step=1">Edit</a>
+    </div>
+{% endif %}

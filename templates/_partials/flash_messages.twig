@@ -1,0 +1,13 @@
+{% set message = craft.app.session.flash('notice') %}
+{% if message %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+{% endif %}
+
+{% set message = craft.app.session.flash('error') %}
+{% if message %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+{% endif %}

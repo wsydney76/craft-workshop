@@ -1,0 +1,52 @@
+field: 58b2e318-26cc-47b8-bee2-81369731d72f
+fieldLayouts:
+  7a0f5fd9-ebee-468d-81ea-2f80b639ea1f:
+    tabs:
+      -
+        fields:
+          bc485c8b-4a0c-4c30-816a-8bb295727b36:
+            required: true
+            sortOrder: 1
+          d420edab-c758-4dce-8b02-e17b23ed0e60:
+            required: false
+            sortOrder: 2
+        name: Content
+        sortOrder: 1
+fields:
+  bc485c8b-4a0c-4c30-816a-8bb295727b36:
+    contentColumnType: text
+    fieldGroup: null
+    handle: text
+    instructions: ''
+    name: Text
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  d420edab-c758-4dce-8b02-e17b23ed0e60:
+    contentColumnType: string
+    fieldGroup: null
+    handle: textSource
+    instructions: 'A pullquote typically quotes from the current article, so it does not need a source. But in case...'
+    name: Source
+    searchable: true
+    settings:
+      charLimit: '40'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+handle: pullquote
+name: Pullquote
+sortOrder: 4

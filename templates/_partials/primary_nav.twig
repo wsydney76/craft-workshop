@@ -1,0 +1,38 @@
+{% import '_macros/lib.twig' as nav %}
+
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+        {{ "Festival"|t }}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {{ nav.navLinkForSingleDropDown('screeningIndex') }}
+        {% for navEntry in craft.content.getFeaturedSectionEntries('primary-nav') %}
+            <a class="dropdown-item" href="{{ navEntry.url }}">{{ navEntry.title }}</a>
+        {% endfor %}
+
+    </div>
+</li>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+        {{ "My Festival"|t }}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {{ nav.navLinkForSingleDropDown('suggestion') }}
+        <a class="dropdown-item" href="{{ url('members/myprogram') }}">{{ 'My Program'|t }}</a>
+        <a class="dropdown-item" href="{{ url('members/myorders') }}">{{ 'My Orders'|t }}</a>
+        <a class="dropdown-item" href="{{ url('members/mysuggestions') }}">{{ 'My Suggestions'|t }}</a>
+    </div>
+</li>
+
+
+{{ nav.navLinks('primary') }}
+
+{% set kidsSite = craft.app.sites.siteByHandle('kids') %}
+{% if kidsSite %}
+    <a href="{{ parseEnv(kidsSite.baseUrl) }}" class="mx-xl-3 btn btn-custom" style="width:140px;">Kids Festival</a>
+{% endif %}
+

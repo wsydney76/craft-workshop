@@ -1,0 +1,78 @@
+field: 83cdd527-ce90-4fb8-aca1-22382ad71e29
+fieldLayouts:
+  3c32fd78-26e3-45e1-90eb-a08072439f4f:
+    tabs:
+      -
+        fields:
+          5a5f1e24-8cbc-414d-bb68-811d3615a1b0:
+            required: true
+            sortOrder: 3
+          ad220340-6a3c-4039-8151-0029372d5073:
+            required: true
+            sortOrder: 2
+          e64173ed-fa89-43f9-91bb-3b0a63273f34:
+            required: true
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  5a5f1e24-8cbc-414d-bb68-811d3615a1b0:
+    contentColumnType: string(255)
+    fieldGroup: null
+    handle: profileLink
+    instructions: ''
+    name: 'Profile Link'
+    searchable: true
+    settings:
+      maxLength: '255'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Url
+  ad220340-6a3c-4039-8151-0029372d5073:
+    contentColumnType: string
+    fieldGroup: null
+    handle: caption
+    instructions: ''
+    name: Caption
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  e64173ed-fa89-43f9-91bb-3b0a63273f34:
+    contentColumnType: string
+    fieldGroup: null
+    handle: icon
+    instructions: 'svg preferred, will be scaled to 24px x 24px'
+    name: Icon
+    searchable: false
+    settings:
+      allowedKinds:
+        - image
+      defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: ''
+      restrictFiles: '1'
+      selectionLabel: 'Select an icon'
+      singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
+      singleUploadLocationSubpath: icons
+      source: null
+      sources: '*'
+      targetSiteId: null
+      useSingleFolder: '1'
+      validateRelatedElements: ''
+      viewMode: large
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+handle: socialMediaLink
+name: 'Social Media Link'
+sortOrder: 1

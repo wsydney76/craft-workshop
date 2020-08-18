@@ -1,0 +1,30 @@
+handle: storeManager
+name: 'Store Manager'
+permissions:
+  - accesscp
+  - 'editsite:97e0b749-86e3-49f1-918e-9b88758928f4'
+  - 'editsite:bbbb120d-5d71-4e7c-a164-487e401c4f2c'
+  - accesssitewhensystemisoff
+  - accessplugin-commerce
+  - 'saveassetinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'createfoldersinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'deletefilesandfoldersinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'editimagesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'editpeerfilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'replacepeerfilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'deletepeerfilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'editpeerimagesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'viewpeerfilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'viewvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - commerce-manageproducts
+  - commerce-manageorders
+  - commerce-managecustomers
+  - 'publishentries:34cb0660-29f9-4fae-a868-0067e221c562'
+  - 'publishpeerentrydrafts:34cb0660-29f9-4fae-a868-0067e221c562'
+  - 'deletepeerentrydrafts:34cb0660-29f9-4fae-a868-0067e221c562'
+  - 'editpeerentrydrafts:34cb0660-29f9-4fae-a868-0067e221c562'
+  - 'editentries:34cb0660-29f9-4fae-a868-0067e221c562'
+  - 'commerce-manageproducttype:62e806a8-f494-4210-9946-a1e4403190e1'
+  - commerce-editorders
+  - commerce-capturepayment
+  - 'replacefilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'

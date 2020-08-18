@@ -1,0 +1,7 @@
+handle: sitemap
+hasTitleField: false
+name: Sitemap
+section: 80220e70-afb0-45e9-9ee3-2058e7004e51
+sortOrder: 1
+titleFormat: '{section.name|raw}'
+titleLabel: null

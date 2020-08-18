@@ -1,0 +1,31 @@
+enableVersioning: true
+handle: award
+name: Award
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - Awards
+      -
+        - urlFormat
+        - '{{craft.entries.section(''awardIndex'').site(object.site).one.url}}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  97e0b749-86e3-49f1-918e-9b88758928f4:
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: ''
+  bbbb120d-5d71-4e7c-a164-487e401c4f2c:
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: ''
+structure:
+  maxLevels: 1
+  uid: 3bf6a8a6-b299-4bfd-a10e-4090fa73daf7
+type: structure

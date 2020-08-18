@@ -1,0 +1,21 @@
+{# @var entry \craft\elements\Entry #}
+
+{% if condition %}
+
+    {% set prev = entry.prev(condition) %}
+    {% set next = entry.next(condition) %}
+
+    <div class="row border-top mt-5">
+        <div class="col-md-6 pt-2 border-right">
+            {% if prev %}
+                &lt; {{ prev.link }}
+            {% endif %}
+        </div>
+        <div class="col-md-6 pt-2 text-right">
+            {% if next %}
+                {{ next.link }} &gt;
+            {% endif %}
+        </div>
+    </div>
+
+{% endif %}

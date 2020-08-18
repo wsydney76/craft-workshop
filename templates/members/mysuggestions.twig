@@ -1,0 +1,51 @@
+{# @var suggestion \project\modules\suggestions\records\SuggestionRecord #}
+{% set global_title = "My Suggestions"|t %}
+{% set global_languageSwitch = {
+    en: siteUrl("members/mysuggestions", siteId = craft.app.sites.siteByHandle('en').id),
+    de: siteUrl("members/mysuggestions", siteId = craft.app.sites.siteByHandle('de').id),
+} %}
+
+{% extends 'members/_layout.twig' %}
+
+
+{% requireLogin %}
+
+{% block content %}
+    {% set suggestions = craft.suggestions.email(currentUser.email).all %}
+
+    {% if suggestions|length %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ suggestions[0].getAttributeLabel('title') }}</th>
+                <th>{{ suggestions[0].getAttributeLabel('date') }}</th>
+                <th>{{ suggestions[0].getAttributeLabel('status') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for suggestion in suggestions %}
+                <tr>
+                    <td><a href="{{ suggestion.url }}">{{ suggestion.title }}</a></td>
+                    <td>{{ suggestion.dateCreated|datetime('Y-m-d G:i')  }}</td>
+                    <td>{{ suggestion.statusLabel }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty-index">
+
+            <div class="mb-3">{{ 'You don’t have any suggestions yet.'|t }}
+
+            </div>
+            <div>
+                {% set suggestionEntry = craft.entries.section('suggestion').one %}
+                {% if suggestionEntry %}
+                    <a class="btn btn-primary" href="{{ suggestionEntry.url }}">{{ suggestionEntry.title }}</a>
+                {% endif %}
+
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

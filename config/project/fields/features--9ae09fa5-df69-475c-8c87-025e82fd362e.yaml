@@ -1,0 +1,32 @@
+contentColumnType: text
+fieldGroup: 207a209a-820f-4db8-829a-e9b191ff1b54
+handle: features
+instructions: ''
+name: Features
+searchable: true
+settings:
+  addRowLabel: 'Add a feature'
+  columnType: text
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - Feature
+            -
+              - handle
+              - feature
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+  maxRows: '3'
+  minRows: ''
+translationKeyFormat: null
+translationMethod: language
+type: craft\fields\Table

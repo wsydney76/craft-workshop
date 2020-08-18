@@ -1,0 +1,18 @@
+{% embed '_layouts/embeds/widget.twig' with {heading:'Crew'|t, boxed:true} %}
+    {% set departments = craft.entries.section('department').all %}
+    {% block content %}
+        {% for department in departments %}
+            {% set persons = craft.content.getPersonsByDepartment(department).all %}
+            {% if persons %}
+                <div class="h5">{{ department.title }}</div>
+                <div class="my-2">
+                    {% for person in persons %}
+                        <div class="my-2">
+                            {{ person.link }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endblock %}
+{% endembed %}

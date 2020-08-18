@@ -1,0 +1,51 @@
+{% from 'buy/_macros/errors.twig' import errorList %}
+
+<div class="d-flex mb-4">
+    <div class="w-50 mr-2 form-group">
+        <label for="firstname">{{ 'First Name'|t }}</label>
+        <input id="firstname" required type="text" name="firstName" value="{{ paymentForm.firstName ?? currentUser.firstName ?? cart.shippingAddress.firstName ?? '' }}"
+               class="form-control">
+        {% if paymentForm is defined  %}
+            {{ errorList(paymentForm.getErrors('firstName')) }}
+        {% endif %}
+    </div>
+    <div class="w-50 form-group">
+        <label for="lastname">{{ 'Last Name'|t }}</label>
+        <input id="lastname" required type="text" name="lastName" value="{{ paymentForm.lastName ?? currentUser.lastName ?? cart.shippingAddress.lastName ?? '' }}"
+               class="form-control">
+        {% if paymentForm is defined  %}
+            {{ errorList(paymentForm.getErrors('lastName')) }}
+        {% endif %}
+    </div>
+</div>
+
+<div class="d-flex mb-4">
+    <div class="w-50 mr-2 form-group">
+        <label for="payment">{{ "Credit Card"|t }}</label>
+        <input id="payment" type="text" name="number" autocomplete="off"
+               class="form-control">
+        {% if paymentForm is defined  %}
+            {{ errorList(paymentForm.getErrors('number')) }}
+        {% endif %}
+    </div>
+    <div class="w-50 form-group">
+        <label for="cvv">CVV</label>
+        <input id="cvv" type="text" name="cvv" autocomplete="off"
+               class="form-control">
+        {% if paymentForm is defined %}
+            {{ errorList(paymentForm.getErrors('cvv')) }}
+        {% endif %}
+    </div>
+</div>
+
+<div class="d-flex mb-4">
+    <div class="w-50 mr-2 form-group">
+        <label for="exp_month">{{ "Expiry"|t }}</label>
+        <input id="exp_month" type="text" name="expiry" placeholder="mm/yyyy"
+               class="form-control">
+        {% if paymentForm is defined  %}
+            {{ errorList(paymentForm.getErrors('month')) }}
+            {{ errorList(paymentForm.getErrors('year')) }}
+        {% endif %}
+    </div>
+</div>

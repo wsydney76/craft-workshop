@@ -1,0 +1,29 @@
+{% set roles = query
+    .with([
+    ['role:departments', {site:'*', unique: true}],
+    ['role:persons', {site:'*', unique: true}]
+])
+    .all %}
+
+{% do craft.app.requestData.set('crew', roles) %}
+
+{% if roles %}
+    {% embed '_layouts/embeds/widget.twig' with {heading:'Crew', boxed:true} %}
+        {% block content %}
+            {% for role in roles %}
+                <div class="my-2">
+                    {% for entry in role.departments %}
+                        {{ entry.title }}{{ not loop.last ? ', ' }}
+                    {%- endfor %}:
+                    {% for entry in role.persons %}
+                        <span class="font-weight-bold">{{ entry.link -}}{{ not loop.last ? ', ' }}</span>
+                    {%- endfor -%}
+                    {{- role.persons and role.names ? ', ' }}
+                    {%- for row in role.names -%}
+                        {{ row.name }}{{ not loop.last ? ', ' }}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+{% endif %}

@@ -1,0 +1,25 @@
+{% embed '_layouts/embeds/photo_left_widget.twig' with {entry:entry, image:entry.photo.one} only %}
+    {% block content %}
+        {% from '_macros/lib.twig' import categoryDefinition %}
+            <dl>
+                {{ categoryDefinition('Genre'|t, entry.genre) }}
+                {{ categoryDefinition('Produced'|t, entry.producedIn, entry.releaseYear) }}
+
+                {% set originalLanguage = entry.originalLanguage.one %}
+
+                {% if originalLanguage %}
+                    <dt>{{ 'Original Language'|t }}</dt>
+                    <dd>{{ originalLanguage.link }}</dd>
+
+                    {% if originalLanguage.languageCode != currentSite.language[:2] %}
+                        <dt>{{ "Original Title"|t }}</dt>
+                        <dd>{{ entry.originalTitle }}</dd>
+                    {% endif %}
+                {% endif %}
+
+            </dl>
+    {% endblock %}
+
+{% endembed %}
+
+

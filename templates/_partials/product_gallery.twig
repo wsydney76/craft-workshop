@@ -1,0 +1,12 @@
+{% set products = craft.products.orderBy('title').all %}
+{% if products %}
+    <div class="mb-4">
+        <div class="d-flex flex-wrap">
+            {% for product in products %}
+                {% include '_partials/product_card.twig'
+                    with {product: product} only %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+

@@ -1,0 +1,16 @@
+{% if order is not defined %}
+    {% set order = cart %}
+{% endif %}
+
+{% set lineItem = order.lineItems|first %}
+
+{% if lineItem.isDonation %}
+    <br/>{{ 'Donation'|t }}
+{% else %}
+    {% set product = lineItem.purchasable.product %}
+    {{ lineItem.qty }} x {{ product.title }}
+    {% if product.type.hasVariants %}
+        <br/>{{ lineItem.description }}
+    {% endif %}
+{% endif %}
+

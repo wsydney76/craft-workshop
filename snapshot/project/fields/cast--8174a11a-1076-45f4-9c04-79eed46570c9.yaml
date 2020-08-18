@@ -1,0 +1,14 @@
+contentColumnType: string
+fieldGroup: e12a7084-ddcc-406f-bc60-d1429777d8e0
+handle: cast
+instructions: ''
+name: Cast
+searchable: true
+settings:
+  contentTable: '{{%matrixcontent_cast}}'
+  maxBlocks: ''
+  minBlocks: ''
+  propagationMethod: all
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

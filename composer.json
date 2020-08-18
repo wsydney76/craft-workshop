@@ -1,0 +1,55 @@
+{
+  "name": "wsydney76/craft_workshop",
+  "version": "7.7",
+  "description": "Extended project template for craft cms",
+  "license": "Unlicense",
+  "require": {
+    "anubarak/craft-relabel": "2.0.2",
+    "craftcms/cms": "3.5.4",
+    "craftcms/commerce": "3.2.2.1",
+    "craftcms/feed-me": "4.2.3",
+    "craftcms/redactor": "2.7.1",
+    "dompdf/dompdf": "^0.8.3",
+    "doublesecretagency/craft-inventory": "2.1.0",
+    "mmikkel/cp-field-inspect": "1.2.1",
+    "putyourlightson/craft-blitz": "3.6.6",
+    "spicyweb/craft-embedded-assets": "2.3.3",
+    "twbs/bootstrap": "^4.4",
+    "vaersaagod/matrixmate": "1.2.7",
+    "vaersaagod/seomate": "1.1.4",
+    "whoisjuan/craft-color-mixer": "1.0.9",
+    "wsydney76/elementmap": "^1.3",
+    "wsydney76/guide": "^1.0",
+    "wsydney76/snapshot": "^1.2",
+    "wsydney76/solrsearch": "^1.0",
+    "wsydney76/staticcache": "^1.0",
+    "wsydney76/versions": "^1.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "project\\": "project/",
+      "config\\": "config/",
+      "apps\\": "apps/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "7.4"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "@php -r \"file_exists('config/Env.php') || copy('config/Env.php.example', 'config/Env.php');\""
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "repositories": [
+    {
+      "type": "path",
+      "url": "e:/craft/plugins/plugins/*"
+    }
+  ]
+}

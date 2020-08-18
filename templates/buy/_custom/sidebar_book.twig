@@ -1,0 +1,10 @@
+{% set languages = product.languages.all %}
+{% if languages %}
+    <div class="my-2">
+        {% for language in languages %}
+            {{ language.title }}{{ not loop.last ? ', ' }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+

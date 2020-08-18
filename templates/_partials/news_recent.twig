@@ -1,0 +1,9 @@
+{% set query = craft.entries.section('news').type('news').limit(5) %}
+
+{% if entry is defined and entry.section.handle == 'news' %}
+    {% set args = {query:query.id('NOT ' ~ entry.sourceId), heading:'Other Recent News', showPostDate:true} %}
+{% else %}
+    {% set args = {query: query, heading:'Latest News', showPostDate:true} %}
+{% endif %}
+
+ {% include '_partials/entries_list.twig' with args only %}

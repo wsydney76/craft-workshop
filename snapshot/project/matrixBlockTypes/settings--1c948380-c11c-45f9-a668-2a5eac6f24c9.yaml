@@ -1,0 +1,131 @@
+field: e62d63b0-c299-42ce-aeef-86a69f7e676c
+fieldLayouts:
+  a3a223e7-de48-4b77-9d19-7fd60f6e0131:
+    tabs:
+      -
+        fields:
+          34581043-4880-49b9-b16a-cba691fa21f3:
+            required: false
+            sortOrder: 3
+          90724a6b-55ad-446f-be50-7aea7e1fb067:
+            required: false
+            sortOrder: 4
+          9c7e95a7-7a87-46ad-974e-8ce3846ef68b:
+            required: false
+            sortOrder: 2
+          b0cfc7f4-d446-41bb-87ab-dc16b1481540:
+            required: false
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  34581043-4880-49b9-b16a-cba691fa21f3:
+    contentColumnType: string
+    fieldGroup: null
+    handle: image
+    instructions: ''
+    name: Image
+    searchable: true
+    settings:
+      allowedKinds: null
+      defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: ''
+      restrictFiles: ''
+      selectionLabel: ''
+      singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources:
+        - 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
+      targetSiteId: null
+      useSingleFolder: ''
+      validateRelatedElements: ''
+      viewMode: large
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+  90724a6b-55ad-446f-be50-7aea7e1fb067:
+    contentColumnType: string
+    fieldGroup: null
+    handle: robots
+    instructions: ''
+    name: Robots
+    searchable: true
+    settings:
+      optgroups: true
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - all
+            -
+              - value
+              - all
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - noindex
+            -
+              - value
+              - noindex
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - nofollow
+            -
+              - value
+              - nofollow
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Dropdown
+  9c7e95a7-7a87-46ad-974e-8ce3846ef68b:
+    contentColumnType: text
+    fieldGroup: null
+    handle: description
+    instructions: ''
+    name: Description
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  b0cfc7f4-d446-41bb-87ab-dc16b1481540:
+    contentColumnType: text
+    fieldGroup: null
+    handle: alternativeTitle
+    instructions: ''
+    name: 'Alternative Title'
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+handle: settings
+name: Settings
+sortOrder: 1

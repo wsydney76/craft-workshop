@@ -1,0 +1,16 @@
+contentColumnType: string
+fieldGroup: f1d8d989-2bc0-4a0f-b58f-a348276a5596
+handle: folderName
+instructions: 'Enter the folder name that will be used for storing this entries images. Leave blank to save the images in a common folder. Only use lowercase characters [a-z] and hyphens.'
+name: 'Image Folder Name'
+searchable: true
+settings:
+  charLimit: '25'
+  code: ''
+  columnType: string
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

@@ -1,0 +1,293 @@
+// https://material.io/design/color/#tools-for-picking-colors
+
+$primary: #3a4660;
+$secondary: #c9af98;
+$light: lighten($secondary, 15%);
+$headings-color: darken($secondary, 30%);
+// $link-color: lighten($primary, 14%);
+$body-bg: lighten($secondary, 27.5%);
+
+$theme-colors: (
+        "custom": #AB904D,
+        "shop": $primary
+);
+
+// $link-decoration:underline;
+$border-radius: 0.5rem;
+$grid-gutter-width: 60px;
+$navbar-nav-link-padding-x: 1rem;
+$enable-rounded: false;
+$enable-responsive-font-sizes: true;
+
+
+$font-family-base: 'Open Sans', sans-serif;
+$headings-font-family: 'Nunito', serif;
+$font-size-base: 1.0625rem; // = 17px
+
+#title {
+  background-color: $primary;
+  color: $light;
+
+  h1 {
+    color: $light;
+    // text-shadow: rgb(0, 0, 0) 1px 1px 4px;
+  }
+}
+
+#featured-image {
+  height: 350px;
+  width: 100%;
+  object-fit: cover
+}
+
+.img-scale {
+  transition: transform .3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.media-text {
+  // box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);;
+
+  background-size: cover;
+
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  img {
+    box-shadow: 0px 10px 20px 0px rgba(53, 77, 100, 0.5);
+  }
+
+  .img-transform-right {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(-2deg);
+  }
+
+  .img-transform-left {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(2deg);
+  }
+
+  .media-text-image {
+    width: 50%;
+  }
+
+  .media-text-text {
+    width: 50%;
+  }
+
+  .media-even {
+    .media-text-text {
+      order: 1;
+    }
+
+    .media-text-image {
+      order: 2;
+    }
+  }
+
+  .media-odd {
+    .media-text-text {
+      order: 2;
+    }
+
+    .media-text-image {
+      order: 1;
+    }
+  }
+
+  &.background-isdark {
+    color: #fff !important;
+
+    h1, h2 {
+      color: #fff;
+    }
+
+    .h1, .h2 {
+      color: #fff;
+    }
+  }
+}
+
+
+.section-highlighted {
+  background-color: $light;
+  color: $primary;
+
+  a {
+    color: darken($primary, 3%);
+
+    &:hover {
+      color: darken($primary, 50%);
+    }
+  }
+
+  h3 {
+    color: darken($secondary, 30%);
+  }
+}
+
+.rich-text a {
+  text-decoration: underline;
+}
+
+.screening {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+
+.img-container {
+  position: relative;
+
+  img {
+    filter: brightness(70%);
+  }
+
+  .img-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    a {
+      color: white !important;
+      text-shadow: 2px 2px 4px #000000;
+    }
+  }
+}
+
+.img-overlap-top-rounded {
+  position: absolute;
+  left: 50%;
+  top: -50px;
+  transform: translate(-50%, 0%);
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// Responsive adjustments
+
+@media (max-width: 1159px) {
+  // col-lg
+  #featured-image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 767px) {
+  // col-md
+  #featured-image {
+    height: 220px;
+  }
+  .media-text {
+
+    .media-text-image {
+      width: 100%;
+      margin-bottom: 50px;
+    }
+
+    .media-text-text {
+      width: 100%;
+    }
+
+    .media-odd {
+      .media-text-text {
+        order: 1;
+      }
+
+      .media-text-image {
+        order: 2;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  // col-sm
+  #featured-image {
+    height: 150px;
+  }
+
+}
+
+
+// Private fonts
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/opensans/OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(fonts/opensans/OpenSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/nunito/Nunito-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  src: url(fonts/robotoslab/Nunito-Bold.ttf);
+}
+
+
+//@import '../../vendor/twbs/bootstrap/scss/bootstrap';
+@import "../../../../vendor/twbs/bootstrap/scss/functions";
+@import "../../../../vendor/twbs/bootstrap/scss/variables";
+@import "../../../../vendor/twbs/bootstrap/scss/mixins";
+@import "../../../../vendor/twbs/bootstrap/scss/root";
+@import "../../../../vendor/twbs/bootstrap/scss/reboot";
+@import "../../../../vendor/twbs/bootstrap/scss/type";
+@import "../../../../vendor/twbs/bootstrap/scss/images";
+// @import "../../../vendor/twbs/bootstrap/scss/code";
+@import "../../../../vendor/twbs/bootstrap/scss/grid";
+@import "../../../../vendor/twbs/bootstrap/scss/tables";
+@import "../../../../vendor/twbs/bootstrap/scss/forms";
+@import "../../../../vendor/twbs/bootstrap/scss/buttons";
+@import "../../../../vendor/twbs/bootstrap/scss/transitions";
+@import "../../../../vendor/twbs/bootstrap/scss/dropdown";
+// @import "../../../vendor/twbs/bootstrap/scss/button-group";
+@import "../../../../vendor/twbs/bootstrap/scss/input-group";
+// @import "../../../vendor/twbs/bootstrap/scss/custom-forms";
+@import "../../../../vendor/twbs/bootstrap/scss/nav";
+@import "../../../../vendor/twbs/bootstrap/scss/navbar";
+@import "../../../../vendor/twbs/bootstrap/scss/card";
+// @import "../../../vendor/twbs/bootstrap/scss/breadcrumb";
+@import "../../../../vendor/twbs/bootstrap/scss/pagination";
+// @import "../../../vendor/twbs/bootstrap/scss/badge";
+// @import "../../../vendor/twbs/bootstrap/scss/jumbotron";
+@import "../../../../vendor/twbs/bootstrap/scss/alert";
+// @import "../../../vendor/twbs/bootstrap/scss/progress";
+// @import "../../../vendor/twbs/bootstrap/scss/media";
+@import "../../../../vendor/twbs/bootstrap/scss/list-group";
+// @import "../../../vendor/twbs/bootstrap/scss/close";
+@import "../../../../vendor/twbs/bootstrap/scss/toasts";
+@import "../../../../vendor/twbs/bootstrap/scss/modal";
+@import "../../../../vendor/twbs/bootstrap/scss/tooltip";
+// @import "../../../vendor/twbs/bootstrap/scss/popover";
+@import "../../../../vendor/twbs/bootstrap/scss/carousel";
+// @import "../../../vendor/twbs/bootstrap/scss/spinners";
+@import "../../../../vendor/twbs/bootstrap/scss/utilities";
+// @import "../../../vendor/twbs/bootstrap/scss/print";

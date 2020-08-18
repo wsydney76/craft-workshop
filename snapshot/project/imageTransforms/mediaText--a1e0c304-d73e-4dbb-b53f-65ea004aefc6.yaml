@@ -1,0 +1,9 @@
+format: null
+handle: mediaText
+height: 400
+interlace: none
+mode: crop
+name: 'Media and Text'
+position: center-center
+quality: null
+width: 500

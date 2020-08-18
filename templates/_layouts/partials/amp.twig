@@ -1,0 +1,5 @@
+{% if entry is defined and entry.section.handle == 'news' %}
+
+    <link rel="amphtml" href="{{ parseEnv(currentSite.baseUrl) }}/amp/{{ entry.section.handle }}/{{ entry.slug }}">
+
+{% endif %}

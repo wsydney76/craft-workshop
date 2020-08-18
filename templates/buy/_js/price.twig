@@ -1,0 +1,26 @@
+{% js at POS_END %}
+
+variants = {
+	{% for variant in variants %}
+		'{{ variant.id }}': {'salePrice':{{ variant.salePrice }}, 'defaultPrice':{{ variant.price }}, 'onSale':{{ variant.onSale?'true':'false' }}}{% if not loop.last %},{% endif %}
+	{% endfor %}
+}
+
+function setPrice() {
+	var qty = document.getElementById('qty').value;
+	var variantId = document.getElementById('variant').value;
+    var variant = variants[variantId];
+
+	price = qty * variant.salePrice;
+	price = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(price);
+
+    document.getElementById('totalPrice').innerHTML = price;
+
+    if (variant.onSale) {
+        price = qty * variant.defaultPrice;
+        price = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(price);
+        document.getElementById('defaultPrice').innerHTML = price;
+    }
+}
+
+{% endjs %}

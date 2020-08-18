@@ -1,0 +1,43 @@
+{% set entries = query
+    .site('*')
+    .unique()
+    .with([
+    ['film', {site:'*', unique:true}],
+    ['person', {site:'*', unique:true}]
+])
+    .all %}
+
+{% for entry in entries %}
+    {% set film = entry.film|one %}
+    {% set person = entry.person|one %}
+    <div id="award-{{ entry.id }}" class="mb-5">
+        <div class="h3">{{ entry.title }}</div>
+        <div class="my-3">
+            {{ entry.teaser }}
+        </div>
+        <div class="my-3">
+            {% if person %}
+                {% embed '_partials/gallery_item.twig' with {element:person, wide:true} %}
+                    {% block content %}
+                        <div class="mb-3">
+                            {{ 'for'|t }} {{ film.link }}
+                        </div>
+                        {% include '_partials/blocks.twig'
+                            with {heading:'The jury says:', query: entry.bodyContent} only %}
+                    {% endblock %}
+                {% endembed %}
+            {% endif %}
+            {% if film and not person %}
+                {% embed '_partials/gallery_item.twig' with {element:film, wide:true} %}
+                    {% block content %}
+                        {% include '_partials/blocks.twig'
+                            with {heading:'The jury says:', query: entry.bodyContent} only %}
+                    {% endblock %}
+                {% endembed %}
+            {% endif %}
+            {% if not film and not person %}
+                {{ 'Not yet decided'|t }}
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

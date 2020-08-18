@@ -1,0 +1,8 @@
+{% if image %}
+    <img class="img-fluid"
+         id="featured-image"
+         srcset="{{ "#{image.vUrl('featuredImage')} 2000w, #{image.vUrl('featuredImageLg')} 1160w, #{image.vUrl('featuredImageMd')} 768w, #{image.vUrl('featuredImageSm')} 576w" }}"
+         sizes="100vw"
+         src="{{ image.vUrl('featuredImage') }}"
+         alt="{{ image.title|e('html_attr') }}">
+{% endif %}

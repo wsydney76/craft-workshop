@@ -1,0 +1,27 @@
+{% set entries = craft.entries
+    .site('*')
+    .unique()
+    .relatedTo({targetElement: entry, field:'cast.persons'})
+    .with([
+    ['cast', {relatedTo: {targetElement: entry, field:'persons'}}]
+])
+    .orderBy('releaseYear desc')
+    .all
+%}
+
+{% if entries %}
+    {% embed '_layouts/embeds/widget.twig' with {heading:'Films'|t, boxed:boxed??true} %}
+        {% block content %}
+            {% for entry in entries %}
+                <div class="my-2">
+                    <div class="font-weight-bold">
+                        {{ entry.link }}
+                    </div>
+                    {% for role in entry.cast %}
+                        {{ role.roleName }}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+{% endif %}

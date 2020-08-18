@@ -1,0 +1,25 @@
+{% set image = block.image.one %}
+{% if image %}
+
+    <figure class="figure">
+
+        {% set transform = 'showFullHeight' in block.options ? 'contentImageFullHeight' : 'contentImage' %}
+
+        <img src="{{ image.vUrl(transform) }}" alt="{{ image.title }}" class="figure-img img-fluid" loading="lazy">
+
+        {% set caption = block.caption %}
+        {% if image.copyright %}
+            {% set caption -%}
+                {{ caption }} &copy; {{ image.copyright }}
+            {%- endset %}
+        {% endif %}
+
+        {% if caption %}
+            <figcaption class="figure-caption text-center">
+                {{ caption }}
+            </figcaption>
+        {% endif %}
+    </figure>
+
+{% endif %}
+

@@ -1,0 +1,12 @@
+{% extends "_layout.twig" %}
+
+{% set requireScreeningDetailsModal = true %}
+
+{% block content %}
+    {% include '_partials/address.twig' with {address:entry.address} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/screenings_bydate.twig'
+        with {query: entry.screenings, showLocation:false, showLanguages:true } %}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "_layouts/main.twig" %}
+
+{% set global_siteName = siteInfo.siteName %}
+{% set global_siteIcon = siteInfo.siteIcon.one %}
+
+{% block featured1 %}
+    {% set featuredImage = global_featuredImage ?? null %}
+    {% if element and not featuredImage and element.featuredImage %}
+        {% set featuredImage = element.featuredImage.one %}
+    {% endif -%}
+    {% if not featuredImage %}
+        {% set featuredImage = siteInfo.defaultFeaturedImage.one %}
+    {% endif %}
+    {% include '_partials/featuredimage.twig'
+        with {image:featuredImage} only %}
+{% endblock %}
+
+{% block titleTop %}
+    {% block titleButtons %}
+        {% include '_partials/title_buttons.twig'
+            with {query:global_titleButtonsTargets??null} %}
+    {% endblock %}
+
+{% endblock %}
+{% block titleBottom %}
+    {% block titleTeaser %}
+        {% include '_partials/teaser.twig' %}
+    {% endblock %}
+{% endblock %}
+
+{% block contentBottom %}
+    {% include '_partials/entries_related.twig' %}
+{% endblock %}
+
+
+{% block secondaryContent %}
+    {% include '_partials/news_recent.twig' %}
+{% endblock %}
+
+
+{% block endBody %}
+    {% if requireScreeningDetailsModal is defined and requireScreeningDetailsModal %}
+        {% js %}
+            {% include '_ajax/screening_details_assets.js' %}
+        {% endjs %}
+
+        {% include '_layouts/partials/modal.twig' %}
+    {% endif %}
+
+    {% include '_partials/json-ld.twig' %}
+{% endblock %}
+
+{% block footer1 %}
+    {% cache globally %}
+        &copy; {{ now|date('Y') }} {{ siteInfo.copyright }}
+        {% include '_partials/footer_social.twig' ignore missing %}
+    {% endcache %}
+{% endblock %}
+
+{% block footer3 %}
+    {% include '_partials/footer_menu.twig' %}
+{% endblock %}

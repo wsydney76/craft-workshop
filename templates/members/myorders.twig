@@ -1,0 +1,62 @@
+{% set global_title = "My Orders"|t %}
+{% set global_languageSwitch = {
+    en: siteUrl("members/myorders", siteId = craft.app.sites.siteByHandle('en').id),
+    de: siteUrl("members/myorders", siteId = craft.app.sites.siteByHandle('de').id),
+} %}
+
+{% extends 'members/_layout.twig' %}
+
+{% set shopEntry = craft.entries.section('shop').one %}
+{% if shopEntry %}
+    {% set global_featuredImage = shopEntry.featuredImage.one %}
+{% endif %}
+
+{% requireLogin %}
+
+{% block content %}
+    {% set orders = craft.orders.customer(craft.commerce.customers.customer).orderBy('id desc').isCompleted(true).all() %}
+    {% set cart = craft.commerce.carts.cart %}
+
+    {% if orders|length %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ "Order"|t }}</th>
+                <th>{{ "Date"|t }}</th>
+                <th>{{ 'Status'|t }}</th>
+                <th>{{ "Total Quantity"|t }}</th>
+                <th>{{ "Total"|t }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {# Get completed orders for the current customer.#}
+            {% for order in orders %}
+                <tr>
+                    <td><a href="{{ url('members/order', { number: order.number }) }}">Order {{ order.reference }}</a>
+                    </td>
+                    <td>{{ order.dateOrdered|date }}</td>
+                    <td>{{ order.orderStatus|t }}</td>
+                    <td>
+                        {% if order.isDonation %}
+                            {{ 'Spende'|t }}
+                        {% else %}
+                            {{ order.totalQty }} {{ 'items'|t }}
+                        {% endif %}
+                    </td>
+                    <td>{{ order.totalPrice|commerceCurrency(cart.currency) }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty-index">
+
+            <div class="mb-3">{{ "You don’t have any orders yet."|t }}
+
+            </div>
+            <div>
+                <a class="btn btn-primary" href="{{ url('shop') }}">{{ "Continue shopping"|t }}</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

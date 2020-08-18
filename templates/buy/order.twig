@@ -1,0 +1,47 @@
+{% extends 'buy/_layout/main.twig' %}
+
+{% set cart = craft.commerce.carts.cart %}
+
+{% from 'buy/_macros/lib.twig' import isAlreadyMine %}
+
+{% set lineItem = cart.lineItems|first %}
+
+{% if not lineItem %}
+    {% redirect 'buy/empty' %}
+{% endif %}
+
+{% set variant = lineItem.purchasable %}
+{% set product = variant.product %}
+
+{% set amount = lineItem.qty %}
+{% set remarks = '' %}
+{% set shipToLocation = false %}
+
+{% block title %}
+    {{ "Your Product"|t }}
+{% endblock %}
+
+
+{% block content %}
+    <div>
+
+        {% include 'buy/_includes/orderform.twig' %}
+
+    </div>
+
+    {% include "buy/_js/price.twig" with {variants:product.variants} %}
+
+    {% js at POS_END %}
+        setPrice();
+    {% endjs %}
+
+{% endblock %}
+
+{% block secondaryContentTitle %}
+    {{ product.title }}
+{% endblock %}
+
+{% block secondaryContentContent %}
+    {% include 'buy/_custom/sidebar_order.twig' %}
+{% endblock %}
+

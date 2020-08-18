@@ -1,0 +1,6 @@
+color: yellow
+default: false
+description: 'Accepted donation'
+handle: donation
+name: Donation
+sortOrder: 99

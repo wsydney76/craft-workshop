@@ -1,0 +1,27 @@
+field: e050668a-466a-4345-b593-2f510d7d847a
+fieldLayouts:
+  d9aa5420-99a2-4136-8ef3-53b11a05658e:
+    tabs:
+      -
+        fields:
+          2f1465c2-f2c0-459f-bca7-63e5847e57de:
+            required: false
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  2f1465c2-f2c0-459f-bca7-63e5847e57de:
+    contentColumnType: boolean
+    fieldGroup: null
+    handle: includeMatrixhelp
+    instructions: ''
+    name: 'Hilfetext zu Matrix-Inhalten einfügen?'
+    searchable: true
+    settings:
+      default: '1'
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Lightswitch
+handle: matrixhelp
+name: Matrixhilfe
+sortOrder: 5

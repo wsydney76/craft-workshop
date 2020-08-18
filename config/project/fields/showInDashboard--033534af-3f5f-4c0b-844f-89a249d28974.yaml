@@ -1,0 +1,11 @@
+contentColumnType: boolean
+fieldGroup: bfbbca66-d647-4a48-8e1f-e4e603824d36
+handle: showInDashboard
+instructions: ''
+name: 'Auf der Übersichtsseite anzeigen?'
+searchable: true
+settings:
+  default: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

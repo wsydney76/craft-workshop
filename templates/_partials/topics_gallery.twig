@@ -1,0 +1,26 @@
+{% embed '_partials/entry_gallery.twig' with {query:query} %}
+
+    {% block gallery %}
+
+        {% for entry in entries %}
+            {% set top = craft.entries.relatedTo(entry).one %}
+            {% set  count = top ? craft.entries.relatedTo(entry).count - 1 : 0 %}
+            <div class="mb-5">
+                {% embed '_partials/gallery_item.twig' with {element:entry, top:top, count:count} only %}
+                    {% block content %}
+                        <div class="my-2">
+                            {% if top %}
+                                {{ top.link }}
+                                {% if count > 0 %}
+                                    {{ '{count,plural,=1{and 1 more entry} other{and # more entries}}'|t({count:count}) }}
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        {% endfor %}
+
+    {% endblock %}
+
+{% endembed %}

@@ -1,0 +1,14 @@
+{% set language = entry.screeningLanguage|one %}
+{% if language %}
+        {{ language.title }}
+{% endif %}
+
+{% set languages = entry.subtitlesLanguages|all %}
+{% if languages %}
+    <span>
+        ({{ 'Subtitles'|t }}:
+        {% for language in languages %}
+            {{ language.title }}{{ not loop.last ? ', ' }}
+        {%- endfor %})
+    </span>
+{% endif %}

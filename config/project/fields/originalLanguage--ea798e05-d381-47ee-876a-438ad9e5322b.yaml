@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: e12a7084-ddcc-406f-bc60-d1429777d8e0
+handle: originalLanguage
+instructions: ''
+name: 'Original Language'
+searchable: false
+settings:
+  limit: ''
+  localizeRelations: ''
+  selectionLabel: ''
+  source: null
+  sources:
+    - 'section:f8c240ca-a9ff-4d2a-b7c1-0ed928c5a3dc'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

@@ -1,0 +1,54 @@
+{% extends "_layout.twig" %}
+{% set entry = craft.entries.id(craft.app.request.requiredParam('id')).one %}
+{% if not entry %}
+    {% exit 404 %}
+{% endif %}
+{% block featured1 %}{% endblock %}
+
+{% set global_title = entry.title %}
+{% set global_cols = {left:6, right:6} %}
+
+{% set bg = entry.reusableColor %}
+{% set attr = bg.attr(['media-text']) %}
+{% block contentWrapper %}
+
+    <div {{ attr(attr) }} >
+        <div class="p-5">
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+            ullamcorper mauris at ligula. Proin magna. Vestibulum eu odio. Sed fringilla mauris sit amet nibh.
+
+            Aenean ut eros et nisl sagittis vestibulum. Phasellus tempus. Aenean imperdiet. Ut tincidunt tincidunt erat.
+            Pellentesque auctor neque nec urna.
+
+            Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. Phasellus nec sem in justo pellentesque
+            facilisis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque
+            velit pede quis nunc. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor
+            urna a orci. Fusce a quam.
+
+            Curabitur suscipit suscipit tellus. Nulla sit amet est. Pellentesque ut neque. Aliquam lobortis. Proin
+            sapien ipsum, porta a, auctor quis, euismod ut, mi.
+        </div>
+        <div class="p-5">
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+            ullamcorper mauris at ligula. Proin magna. Vestibulum eu odio. Sed fringilla mauris sit amet nibh.
+
+            Aenean ut eros et nisl sagittis vestibulum. Phasellus tempus. Aenean imperdiet. Ut tincidunt tincidunt erat.
+            Pellentesque auctor neque nec urna.
+
+            Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. Phasellus nec sem in justo pellentesque
+            facilisis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque
+            velit pede quis nunc. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor
+            urna a orci. Fusce a quam.
+
+            Curabitur suscipit suscipit tellus. Nulla sit amet est. Pellentesque ut neque. Aliquam lobortis. Proin
+            sapien ipsum, porta a, auctor quis, euismod ut, mi.
+        </div>
+    </div>
+
+    <div class="container mt-5" >
+        {{ dump(attr) }}
+
+        {{ dump(bg.attributes) }}
+    </div>
+{% endblock %}
+

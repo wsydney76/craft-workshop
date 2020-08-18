@@ -1,0 +1,21 @@
+{% from '_macros/lib.twig' import navLinks %}
+{% from '_macros/lib.twig' import navLinkForSingle %}
+
+
+<nav>
+    <ul class="nav justify-content-end">
+        {% if entry is defined and entry.section.handle in ['news','film','person'] %}
+            <li class="nav-item">
+                <a class="nav-item nav-link"
+                   href="/{{ currentSite.handle }}/client#/{{ currentSite.handle }}/{{ entry.section.handle }}/{{ entry.sourceId }}/{{ entry.slug }}"
+                   target="_blank">Client Demo</a>
+            </li>
+        {% endif %}
+        {% cache globally %}
+            {{ navLinkForSingle('sitemap') }}
+            {{ navLinks('footer') }}
+        {% endcache %}
+    </ul>
+</nav>
+
+

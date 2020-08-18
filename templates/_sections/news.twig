@@ -1,0 +1,31 @@
+{% if entry.type == 'link' %}
+    {% if  not entry.externalLink %}
+        {% exit 404 %}
+    {% endif %}
+    {% do craft.app.response.redirect(entry.externalLink) %}
+    {% if craft.app.config.general.devMode %}
+        {% exit 302 %}
+    {% endif %}
+{% endif %}
+
+{% extends "_layout.twig" %}
+
+{% set global_titleButtonsTargets = entry.topics.orderBy('title') %}
+
+{% set global_navCondition = {section:'news', type:'not link'} %}
+
+{% block content %}
+    {% include '_partials/blocks.twig'
+        with {query:entry.bodyContent} only %}
+
+    {% include '_partials/entry_meta.twig'
+        with {entry:entry} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/featured_entries.twig'
+        with {query:entry.featured, heading:'Featured'|t} only %}
+
+    {{ parent() }}
+{% endblock %}
+

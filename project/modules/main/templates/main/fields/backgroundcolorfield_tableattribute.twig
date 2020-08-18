@@ -1,0 +1,16 @@
+<div>
+
+    <div class="color small static">
+        <div class="color-preview" style="background-color: {{ value['overlayColor'] }};"></div>
+    </div>
+    <div class="colorhex code">{{ value['overlayColor'] }}</div>
+    {{ value['overlayTransparency'] }}
+    {{ value['overlayIsDark'] }}
+    {% if value['useGradient'] %}
+        <div class="color small static">
+            <div class="color-preview" style="background-color: {{ value['gradientColor'] }};"></div>
+        </div>
+        <div class="colorhex code">{{ value['gradientColor'] }}</div>
+        {{ value['gradientDirection'] }}
+    {% endif %}
+</div>

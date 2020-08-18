@@ -1,0 +1,8 @@
+handle: shop
+hasUrls: true
+name: Shop
+settings:
+  path: '@webroot/shop'
+sortOrder: 6
+type: craft\volumes\Local
+url: '@web/shop'

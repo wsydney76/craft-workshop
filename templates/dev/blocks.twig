@@ -1,0 +1,239 @@
+{% extends "_layouts/main.twig" %}
+
+{% block featured1 %}
+    Featured 1
+{% endblock %}
+
+{% block featured2 %}
+    Featured 2
+{% endblock %}
+
+{% block titleTop %}
+    Title Top
+{% endblock %}
+{% block titleBottom %}
+    Title Bottom
+{% endblock %}
+{% block titleText %}
+    Title Text
+{% endblock %}
+
+{% block content %}
+    <b>Content</b>
+{% endblock %}
+
+{% block contentTop %}
+    Content Top
+{% endblock %}
+
+{% block contentBottom %}
+    Content Bottom
+{% endblock %}
+
+{% block contentNav %}
+    Content Nav
+{% endblock %}
+
+{% block secondaryContentTop %}
+    Secondary Content Top
+{% endblock %}
+
+{% block secondaryContent %}
+    <b>Secondary Content (aside)</b>
+{% endblock %}
+
+{% block secondaryContentBottom %}
+    Secondary Content Bottom
+{% endblock %}
+
+{% block containerTop %}
+    Container Top
+{% endblock %}
+{% block containerBottom %}
+    Container Bottom
+{% endblock %}
+
+{% css %}
+
+* {
+    box-sizing: border-box;
+}
+
+#primary-nav {
+    border: 6px solid red;
+}
+
+#primary-nav:before {
+    content: 'primary-nav';
+    color: blue;
+}
+
+
+#featured1, #featured2 {
+    border: 6px solid magenta;
+}
+
+#canvas {
+    border: 6px solid green;
+}
+
+#canvas:before {
+    content: 'canvas';
+    color: blue;
+}
+
+#content-wrapper {
+    border: 6px solid purple;
+}
+
+#content-wrapper:before {
+    content: 'contentWrapper';
+    color: blue;
+}
+
+#title {
+    border: 6px solid gold;
+}
+
+#title:before {
+    content: 'title';
+    color: blue;
+}
+
+#title-container {
+    border: 6px solid silver;
+}
+
+#title-container:before {
+    content: 'titleContainer';
+    color: white;
+}
+
+#title-top, #title-bottom, #title-text {
+    border: 1px solid white;
+    color: white;
+}
+
+#content-container {
+    border: 6px solid black;
+}
+
+#content-container:before {
+    content: 'contentContainer';
+    color: blue;
+}
+
+#container-top, #container-bottom {
+    border: 6px solid darkmagenta;
+}
+
+#content-area {
+    border: 6px solid red;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 6px;
+}
+
+#content-area:before {
+    content: 'content-area';
+    color: blue;
+}
+
+#content-primary-area {
+    border: 6px solid hotpink;
+    padding-bottom: 6px;
+}
+
+#content-primary-area:before {
+    content: 'contentPrimaryArea';
+    color: blue;
+}
+
+#content-secondary-area {
+    border: 6px solid lightcoral;
+}
+
+#content-secondary-area:before {
+    content: 'contentSecondaryArea';
+    color: blue;
+}
+
+#content-top, #content-bottom {
+    border: 6px solid mediumspringgreen;
+}
+
+#content-nav {
+    border: 6px solid olive;
+}
+
+#content {
+    border: 6px solid seagreen;
+}
+
+#secondary-content {
+    border: 6px solid navy;
+}
+
+#secondary-content-top, #secondary-content-bottom {
+    border: 6px solid blueviolet;
+}
+
+#header {
+    border: 6px solid lightcoral;
+    padding:6px;
+}
+
+#header:before {
+    content: 'header';
+    color: blue;
+}
+
+#footer {
+    border: 6px solid lightcoral;
+}
+
+#footer:before {
+    content: 'footer';
+    color: blue;
+}
+
+#footer1 {
+    border: 6px solid lightcoral;
+}
+
+#footer1:before {
+    content: 'footer1';
+    color: blue;
+}
+
+#footer2 {
+    border: 6px solid lightcoral;
+}
+
+#footer2:before {
+    content: 'footer2';
+    color: blue;
+}
+
+#footer3 {
+    border: 6px solid lightcoral;
+}
+
+#footer3:before {
+    content: 'footer3';
+    color: blue;
+}
+
+body {
+    border: 6px solid darkgoldenrod;
+}
+
+body:before {
+    content: 'body'
+}
+
+body, #canvas, #title, #content-container, #content-wrapper {
+    padding: 6px;
+}
+
+{% endcss %}

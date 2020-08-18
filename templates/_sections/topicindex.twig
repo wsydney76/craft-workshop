@@ -1,0 +1,5 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    {% include '_partials/topics_gallery.twig' with {query:craft.entries.section('topic').orderBy('title')} only %}
+{% endblock %}

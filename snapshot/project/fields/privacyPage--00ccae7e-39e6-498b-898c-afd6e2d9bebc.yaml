@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: fea375f0-9f46-4952-b272-2dcf42b0cce5
+handle: privacyPage
+instructions: 'Select a page you want to use as further information in cookie consent popup'
+name: 'Privacy Page'
+searchable: false
+settings:
+  limit: '1'
+  localizeRelations: ''
+  selectionLabel: 'Select a page'
+  source: null
+  sources:
+    - 'section:09f97fdd-45fe-4221-982a-a2077c8460b1'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

@@ -1,0 +1,82 @@
+{% if craft.app.request.isAjax %}
+
+    {% set block = craft.matrixBlocks.id(params.id).one %}
+    {% if not block %}
+        {% exit 404 %}
+    {% endif %}
+
+    {% set asset = block.asset.one %}
+
+    {% set embedAssets = craft.gdpr.hasCookiePreference('media') %}
+    {% set isLivePreview = params.isLivePreview == 'yes' %}
+
+    {% if asset %}
+        {% set embeddedAsset = craft.embeddedAssets.get(asset) %}
+
+        {% if embedAssets and not isLivePreview  %}
+
+            {% if not embeddedAsset.aspectRatio %}
+                {% set aspectRatioClass = '' %}
+            {% elseif embeddedAsset.aspectRatio > 90 %}
+                {% set aspectRatioClass = 'embed-responsive-1by1' %}
+            {% elseif embeddedAsset.aspectRatio > 70 %}
+                {% set aspectRatioClass = 'embed-responsive-4by3' %}
+            {% elseif embeddedAsset.aspectRatio > 45 %}
+                {% set aspectRatioClass = 'embed-responsive-16by9' %}
+            {% else %}
+                {% set aspectRatioClass = 'embed-responsive-21by9' %}
+            {% endif %}
+
+            {% if embeddedAsset.providerName != 'Instagram' %}
+                <div class="embed-responsive {{ aspectRatioClass }}">
+                    {{ embeddedAsset ? embeddedAsset.html }}
+                </div>
+            {% else %}
+                {# will end up with height=0 within bootstraps tags #}
+                {{ embeddedAsset ? embeddedAsset.html }}
+            {% endif %}
+
+        {% else %}
+            <div>
+                {% set image = embeddedAsset.image %}
+                {% if image %}
+                    <img class="img-fluid" src="{{ image }}">
+                {% endif %}
+
+                <div>
+                    <div class="my-3 font-weight-bold">
+                        {{ block.heading?:embeddedAsset.title }}
+                    </div>
+                    <div>
+                        {{ block.description?:embeddedAsset.description }}
+                    </div>
+                </div>
+
+                {% set btnId = "open-btn-#{block.id}" %}
+                {{ tag('a' , {
+                    id: btnId,
+                    text: "#{'Open on'|t} #{embeddedAsset.providerName}",
+                    class:['btn', 'btn-primary', 'mt-3'],
+                    data: {
+                        toggle: 'tooltip',
+                        placement: 'right',
+                        title: "#{embeddedAsset.providerName} #{'will most likely set tracking cookies'|t}"
+                    },
+                    href: embeddedAsset.url
+                }) }}
+                <script>
+                    $('#{{ btnId }}').tooltip();
+                </script>
+                {% if embedAssets and isLivePreview  %}
+                    <div class="text-warning">
+                        Skipping Embed for live preview
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+    {% endif %}
+
+{% else %}
+    {{ craft.content.loadTemplate('block-' ~ block.id, {template:_self, id:block.id}) }}
+{% endif %}

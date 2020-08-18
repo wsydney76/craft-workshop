@@ -1,0 +1,11 @@
+{% set attr = {
+    class: boxed??false ?  'mb-4 border shadow pt-3 pl-3 pr-3' : 'mb-4'
+} %}
+
+<div {{ attr(attr) }}>
+    <div class="h4">{{ heading }}</div>
+    <div class="my-3">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+

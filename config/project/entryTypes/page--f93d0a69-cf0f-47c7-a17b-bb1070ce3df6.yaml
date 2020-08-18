@@ -1,0 +1,37 @@
+fieldLayouts:
+  930449b7-c7f2-4fc4-87ec-37bcc083b0e7:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 81f7e160-a156-4d40-ba98-5eedd51c4128
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 9a302fae-a3bf-4298-8a06-24f8c8f6f335
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 3ef62a7b-6c6d-470f-88a6-31de5a099b38
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 58b2e318-26cc-47b8-bee2-81369731d72f
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 1487a6e6-86d3-4c47-99eb-21f1e29e9494
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Content
+        sortOrder: 1
+handle: page
+hasTitleField: true
+name: Page
+section: 09f97fdd-45fe-4221-982a-a2077c8460b1
+sortOrder: 1
+titleFormat: ''

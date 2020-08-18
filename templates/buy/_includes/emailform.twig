@@ -1,0 +1,15 @@
+<form method="POST" class="add-to-cart-form">
+    <input type="hidden" name="action" value="commerce/cart/update-cart">
+    {{ redirectInput('buy/checkout?step=2') }}
+    {{ csrfInput() }}
+    <div class="d-flex">
+    <div class="w-50 form-group mr-2">
+        <input id="email" name="email" required type="email" value="{{cart.email}}" {% if currentUser %}disabled{% endif %} class="form-control">
+    </div>
+    <div class="w-50 text-right">
+    <button type="submit" class="w-100 btn btn-shop">
+        {{ "Next"|t }}
+    </button>
+    </div>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+fieldLayouts:
+  958d9c22-9855-40ef-b9cf-16af08de416b:
+    tabs:
+      -
+        fields:
+          2a586bbf-019e-4c87-bc15-d0b5db0efc98:
+            required: false
+            sortOrder: 4
+          3f9c2f2a-8ab0-4aba-bf4e-02d5336d14c0:
+            required: true
+            sortOrder: 6
+          64c37a78-14f3-4dba-874a-4d4bdd5ba1ee:
+            required: true
+            sortOrder: 1
+          83cdd527-ce90-4fb8-aca1-22382ad71e29:
+            required: false
+            sortOrder: 5
+          84cd9d2e-97ae-44ff-91b1-26d8faedd358:
+            required: false
+            sortOrder: 2
+          986df256-f448-4273-95a5-acd9e4690eae:
+            required: false
+            sortOrder: 3
+          e43cbf9e-65e3-42de-a773-0efde519b772:
+            required: false
+            sortOrder: 7
+        name: 'Site Info'
+        sortOrder: 1
+handle: siteInfo
+name: 'Site Info'

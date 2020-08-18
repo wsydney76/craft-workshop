@@ -1,0 +1,16 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    {% include '_partials/entry_gallery.twig'
+        with {query: craft.content.cast} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/entries_list.twig'
+        with {
+        heading:'Recently Added',
+        query: craft.entries.section('person').orderBy('postDate desc').limit(3),
+        showPostDate:true} %}
+
+    {% include '_partials/crew_list.twig' %}
+{% endblock %}

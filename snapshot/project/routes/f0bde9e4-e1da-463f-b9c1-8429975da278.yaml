@@ -1,0 +1,9 @@
+siteUid: null
+sortOrder: 2
+template: _sections/suggestionstatus.twig
+uriParts:
+  - suggestion/
+  -
+    - uid
+    - '[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}'
+uriPattern: 'suggestion/<uid:[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-4[A-Za-z0-9]{3}-[89abAB][A-Za-z0-9]{3}-[A-Za-z0-9]{12}>'

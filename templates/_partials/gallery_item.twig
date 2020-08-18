@@ -1,0 +1,32 @@
+{% set image = element.featuredImage[0]??null %}
+
+{# TODO: this works only for entries #}
+{% set wide = wide ?? element.section.handle in craft.app.config.general.project.wideLayoutSections %}
+
+{% set outerDivAttr     = wide ? {class: 'gallery'} : {class: ['gallery','d-flex','mb-3']} %}
+{% set imgDivAttr       = wide ? {class: 'gallery-fullwidth'} : {class:'mr-3', style:{'min-width':'240px'}} %}
+{% set contentDivAttr   = wide ? {class: 'my-4'} : {class:''} %}
+{% set transform        = wide ? 'galleryWideImage' : 'gallerySquareImage' %}
+
+<div {{ attr(outerDivAttr) }}>
+
+    {% set image = image ?? siteInfo.defaultFeaturedImage.one ?? null %}
+    {% if image %}
+        <div {{ attr(imgDivAttr) }}>
+            <a href="{{ element.url }}">
+                <img class="img-fluid img-scale" src="{{ image.url(transform) }}" alt="{{ image.title }}"
+                     loading="lazy">
+            </a>
+        </div>
+    {% endif %}
+    <div {{ attr(contentDivAttr) }}>
+        <span class="h4">{{ element.link }}</span>
+        {% if element.teaser %}
+            <div>{{ element.teaser }}</div>
+        {% endif %}
+        <div class="my-3">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,8 @@
+{% set element = element ?? entry ?? craft.app.urlManager.matchedElement %}
+{% set global_siteName = global_siteName ?? systemName %}
+{% set global_title = global_title ?? (element ? element.title : global_siteName) %}
+
+{% set global_navCondition = global_navCondition ?? null %}
+
+
+{% block html %}{% endblock %}

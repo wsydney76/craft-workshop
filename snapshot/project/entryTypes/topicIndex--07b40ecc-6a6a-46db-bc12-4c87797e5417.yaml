@@ -1,0 +1,21 @@
+fieldLayouts:
+  5c9f9336-8ab6-4c88-bff8-1347476764f2:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 9a302fae-a3bf-4298-8a06-24f8c8f6f335
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Content
+        sortOrder: 1
+handle: topicIndex
+hasTitleField: true
+name: 'Topic Index'
+section: 6acc2371-018e-4c44-ac33-ce437a7b2408
+sortOrder: 1
+titleFormat: '{section.name|raw}'

@@ -1,0 +1,76 @@
+{% set global_title = "My Program"|t %}
+{% set global_languageSwitch = {
+    en: siteUrl("members/myprogram", siteId = craft.app.sites.siteByHandle('en').id),
+    de: siteUrl("members/myprogram", siteId = craft.app.sites.siteByHandle('de').id),
+} %}
+
+{% extends 'members/_layout.twig' %}
+
+{% requireLogin %}
+
+
+{% set query = currentUser.watchList
+    .site('*')
+    .unique()
+    .with([
+    ['film', {site:'*', unique:true}],
+    ['location', {site:'*', unique:true}]])
+    .orderBy('showtime') %}
+
+{% set items = query.all %}
+
+{% block content %}
+    {% if items %}
+        {% for item in items %}
+            {% set film = item.film|one %}
+            {% set location = item.location|one %}
+            {% if film and location %}
+                <div class="row mb-5 p-3 border shadow">
+                    <div class="col-md-6">
+
+                        {% include '_partials/screening_details_location.twig'
+                            with {entry:item, location: location } only %}
+
+                        <a class="btn btn-primary" href="{{ url("watchlist/delete/#{item.id}") }}"
+                           onclick="return confirm('{{ "Are you sure?"|t }}')">{{ 'Remove from watchlist'|t }}</a>
+                    </div>
+                    <div class="col-md-6">
+                        {% include '_partials/screening_details_film.twig'
+                            with {film: film } only %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="empty-index">
+
+            <div class="mb-3">{{ 'You don’t have any watchlist entries yet.'|t }}
+
+            </div>
+            <div>
+                {% set programEntry = craft.entries.section('screeningIndex').one %}
+                {% if programEntry %}
+                    <a class="btn btn-primary" href="{{ programEntry.url }}">{{ programEntry.title }}</a>
+                {% endif %}
+
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}
+
+{% block secondaryContent %}
+
+    {{ parent() }}
+
+    {% if items %}
+        <h5>{{ 'Overview'|t }}</h5>
+        <ul>
+            {% for item in query.all %}
+                <li>{{ item.showtime|datetime('short') }}<br> {{ item.title }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

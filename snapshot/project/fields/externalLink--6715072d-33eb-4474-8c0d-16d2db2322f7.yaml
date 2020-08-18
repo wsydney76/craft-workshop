@@ -1,0 +1,12 @@
+contentColumnType: string(255)
+fieldGroup: 5bd7b883-0d73-47f4-a7f4-bad70fe05acf
+handle: externalLink
+instructions: ''
+name: 'External Link'
+searchable: false
+settings:
+  maxLength: '255'
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: language
+type: craft\fields\Url

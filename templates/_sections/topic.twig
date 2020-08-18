@@ -1,0 +1,17 @@
+{% extends "_layout.twig" %}
+
+{% block titleText 'Topic'|t ~ ': ' ~ entry.title %}
+
+{% block content %}
+    {% include '_partials/blocks.twig'
+        with {query:entry.bodyContent} only %}
+
+    {% include '_partials/news_gallery.twig'
+        with {query:craft.entries.section('news').relatedTo(entry)} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/entries_list.twig'
+        with {query:craft.entries.section('topic').id('not '~entry.id).orderBy('title'),
+        heading:'{count,plural,=1{Other Topic} other{Other Topics}}'} only %}
+{% endblock %}

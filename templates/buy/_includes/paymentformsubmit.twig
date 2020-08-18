@@ -1,0 +1,61 @@
+<div class="mb-4 form-group form-check" >
+    <input type="checkbox" class="form-check-input" id="acceptTerms" onclick="setDisabled(this.checked)">
+    <label class="form-check-label" for="acceptTerms">
+        {{ "I accept"|t }} {{ "Terms and Conditions"|t }}
+    </label>
+</div>
+
+{% set user = craft.users.email(cart.email).one() %}
+{% if not user %}
+    <div class="mb-4  form-group form-check" >
+        <input type="checkbox" class="form-check-input" id="registerUserOnOrderComplete" name="registerUserOnOrderComplete"
+        value="1"/>
+        <label class="form-check-label" for="registerUserOnOrderComplete">
+            {{ "Register me for a user account"|t }}
+        </label>
+        <div class="text-muted">
+            {{ 'This enables you to track your order and reuse this address for your next order'|t }}.
+        </div>
+    </div>
+{% endif %}
+
+<button type="submit" disabled id="submitButton"
+        class="btn btn-shop w-100 py-3 mb-3">
+    {{ "Buy"|t }}: {{ cart.totalPrice|currency('EUR') }}
+</button>
+<div class="text-grey text-right">
+    {{ "Includes"|t }}:<br/>
+
+    {% for adjustment in cart.adjustments if adjustment.type == 'shipping' %}
+        <strong>{{ adjustment.name|t }}</strong>
+        {{ adjustment.amount|commerceCurrency(cart.currency) }}
+
+    {% endfor %}
+
+    <br/>
+
+    {% for adjustment in cart.adjustments if adjustment.type == 'tax' %}
+        <strong>{{ adjustment.name|t }}</strong> ({{ adjustment.description }})
+        {{ adjustment.amount|commerceCurrency(cart.currency) }}
+
+    {% endfor %}
+
+
+</div>
+
+
+<div class="my-3">
+    <div>
+        <span class="font-bold">{{ "Need any help"|t }}?</span><br/>
+        <span class="text-grey-darker">{{ "Don't hesitate to"|t }}
+            <a href="mailto:{{ parseEnv('$EMAIL_ADDRESS') }}" >{{ "contact support"|t }}</a>!
+        </span>
+    </div>
+
+</div>
+
+{% js %}
+    function setDisabled(value) {
+    document.getElementById('submitButton').disabled = !value;
+    }
+{% endjs %}

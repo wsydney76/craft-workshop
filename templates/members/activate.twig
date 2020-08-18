@@ -1,0 +1,19 @@
+{% set global_title = "Register"|t %}
+
+{% extends 'members/_layout.twig' %}
+
+{% block content %}
+
+<h3>{{ "Registration succeeded"|t }}</h3>
+
+<div class="my-3">
+    {% switch currentSite.language[:2] %}
+    {% case "en" %}
+        We have sent an activation email. Please check your inbox.
+    {% case "de" %}
+        Wir haben eine Aktivierungs-E-Mail gesendet. Bitte überprüfen Sie Ihren Posteingang.
+    {% endswitch %}
+</div>
+
+
+{% endblock %}

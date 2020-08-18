@@ -1,0 +1,85 @@
+{% extends "_layouts/main.twig" %}
+{% set error = craft.app.session.flash('error') %}
+{% set notice = craft.app.session.flash('notice') %}
+
+{% block featured1 %}
+    {% set featuredImage = global_featuredImage ?? null %}
+    {% if not featuredImage %}
+        {% set featuredImage = siteInfo.defaultFeaturedImage.one %}
+    {% endif %}
+    {% include '_partials/featuredimage.twig'
+        with {image:featuredImage} only %}
+{% endblock %}
+
+{% block contentTop %}
+    {% if notice %}
+        <div class="alert alert-info">
+            {{ notice|t }}
+        </div>
+    {% endif %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error|t }}
+        </div>
+    {% endif %}
+    {% if errors is defined %}
+        <div class="alert alert-danger">
+            {% for error in errors %}
+                <div>{{ error|t }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block secondaryContent %}
+    {% if currentUser %}
+        <div class="h5">
+            {{ currentUser.fullname }} ({{ currentUser.username }})
+        </div>
+
+        <div class="my-3">
+            <a href="{{ url('members/myprogram') }}">{{ "My Program"|t }}</a>
+        </div>
+
+        <div class="my-3">
+            <a href="{{ url('members/myorders') }}">{{ "My Orders"|t }}</a>
+        </div>
+
+        <div class="my-3">
+            <a href="{{ url('members/addresses') }}">{{ "My Addresses"|t }}</a>
+        </div>
+
+        <div class="my-3">
+            <a href="{{ url('members/mysuggestions') }}">{{ "My Suggestions"|t }}</a>
+        </div>
+
+        <div class="my-3">
+        <a href="{{ url('buy/checkout') }}">{{ "Checkout"|t }}</a>
+        </div>
+
+        <div class="my-3">
+            <a href="{{ url('logout') }}">{{ "Logout"|t }}</a>
+        </div>
+        <div class="my-3">
+            <a href="{{ url('members/profile') }}">{{ "Profile"|t }}</a>
+        </div>
+
+    {% else %}
+        {% if  'login' not in craft.app.request.segments %}
+            <div class="my-3">
+                <a href="{{ url('members/login') }}">{{ "Login"|t }}</a>
+            </div>
+        {% endif %}
+        {% if  'register' not in craft.app.request.segments %}
+            <div class="my-3">
+                <a href="{{ url('members/register') }}">{{ "Register for a guest account"|t }}</a>
+            </div>
+        {% endif %}
+        {% if  'remember' not in craft.app.request.segments %}
+            <div class="my-3">
+                <a href="{{ url('members/remember') }}">{{ "Password forgotten?"|t }}</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% if location %}
+    <div class="h2">{{ location.link }}</div>
+{% endif %}
+
+<div class="h2 mb-3">
+    {{ entry.showtime|datetime('short') }}
+</div>
+
+{% include '_partials/screening_soldout.twig'
+    with {soldOut: entry.soldOut } only %}
+
+
+{% include '_partials/screening_languages.twig' with {entry:entry} only %}
+
+{% if location %}
+    <div class="my-3">
+        {{ location.address|nl2br }}
+    </div>
+{% endif %}
+
+
+
+

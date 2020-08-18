@@ -1,0 +1,7 @@
+{% for section in ['film','location','language'] %}
+    {% set entries = craft.entries.section(section).orderBy('slug').all %}
+    <h1>{{ section }}</h1>
+    {% for entry in entries %}
+        {{ entry.title }}: {{ entry.slug }}<br/>
+    {% endfor %}
+{% endfor %}

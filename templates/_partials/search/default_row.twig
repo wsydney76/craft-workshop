@@ -1,0 +1,12 @@
+<tr>
+    <td>
+        {{ entry.section.name|t }}
+    </td>
+    <td>
+        <a href="{{ entry.url }}">{{ entry.title }}</a>
+    </td>
+
+    <td>
+        {{ entry.type == 'news' ? entry.postDate|date }}
+    </td>
+</tr>

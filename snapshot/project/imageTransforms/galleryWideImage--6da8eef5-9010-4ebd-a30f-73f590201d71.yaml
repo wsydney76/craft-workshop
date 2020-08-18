@@ -1,0 +1,9 @@
+format: null
+handle: galleryWideImage
+height: 300
+interlace: none
+mode: crop
+name: 'Gallery Wide Image'
+position: center-center
+quality: null
+width: 820

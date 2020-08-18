@@ -1,0 +1,28 @@
+{% if product is defined %}
+    {% set relatedProducts = craft.products
+        .relatedTo({element:product, field:'relatedProducts'})
+        .limit(2)
+        .orderBy('postDate desc')
+        .all %}
+    
+        {% if relatedProducts %}
+            <div class="mt-5">
+                <div class="h5 text-white">{{ "See also"|t }}:</div>
+                {% for relatedProduct in relatedProducts %}
+                    <div class="mt-3">
+                        {% set image = relatedProduct.productFeaturedImage.one %}
+                        {% if image %}
+                            <a href="{{ relatedProduct.url }}">
+                                <img class="img-fluid" src="{{ image.url({width:350,height:150}) }}"/>
+                            </a>
+                        {% endif %}
+                        <h3 class="mt-4"><a class="text-white" href="{{ relatedProduct.url }}">{{ relatedProduct.title }}</a> </h3>
+                        <div class="mt-3">
+                            {{ relatedProduct.teaser }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    
+{% endif %}

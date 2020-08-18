@@ -1,0 +1,159 @@
+field: e050668a-466a-4345-b593-2f510d7d847a
+fieldLayouts:
+  aa3b81ee-f2c1-4e59-9da0-47b7326d6b5b:
+    tabs:
+      -
+        fields:
+          46e45564-f260-46a9-9e21-7a2c8f924c60:
+            required: false
+            sortOrder: 2
+          770922eb-0357-4fd6-8093-c52893350c60:
+            required: true
+            sortOrder: 3
+          b67c305f-d2a1-4ead-910e-3dc656bda8ae:
+            required: false
+            sortOrder: 1
+          cd92d162-e3ca-4a86-b0a6-569109b4e184:
+            required: true
+            sortOrder: 5
+          e11fd309-dc49-476b-9675-ddf0542f6734:
+            required: true
+            sortOrder: 4
+        name: Content
+        sortOrder: 1
+fields:
+  46e45564-f260-46a9-9e21-7a2c8f924c60:
+    contentColumnType: text
+    fieldGroup: null
+    handle: text
+    instructions: ''
+    name: Text
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  770922eb-0357-4fd6-8093-c52893350c60:
+    contentColumnType: string
+    fieldGroup: null
+    handle: images
+    instructions: ''
+    name: Bilder
+    searchable: false
+    settings:
+      allowedKinds:
+        - image
+      defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
+      defaultUploadLocationSubpath: ''
+      limit: ''
+      localizeRelations: ''
+      restrictFiles: '1'
+      selectionLabel: 'Bild hinzufügen'
+      singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources:
+        - 'volume:63a34a0a-681b-4198-b51c-bd2c11750fe0'
+      targetSiteId: null
+      useSingleFolder: ''
+      validateRelatedElements: ''
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+  b67c305f-d2a1-4ead-910e-3dc656bda8ae:
+    contentColumnType: text
+    fieldGroup: null
+    handle: heading
+    instructions: ''
+    name: Überschrift
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  cd92d162-e3ca-4a86-b0a6-569109b4e184:
+    contentColumnType: string
+    fieldGroup: null
+    handle: imgWidth
+    instructions: ''
+    name: Bildbreite
+    searchable: true
+    settings:
+      optgroups: true
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - Breit
+            -
+              - value
+              - wide
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - Schmal
+            -
+              - value
+              - small
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Dropdown
+  e11fd309-dc49-476b-9675-ddf0542f6734:
+    contentColumnType: string
+    fieldGroup: null
+    handle: orientation
+    instructions: ''
+    name: Ausrichtung
+    searchable: true
+    settings:
+      optgroups: true
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - 'Text <-> Bild'
+            -
+              - value
+              - right
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - 'Bild <-> Text'
+            -
+              - value
+              - left
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Dropdown
+handle: grid
+name: Grid
+sortOrder: 4

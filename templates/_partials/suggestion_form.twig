@@ -1,0 +1,67 @@
+{# @var suggestion \project\modules\suggestions\models\SuggestionModel #}
+
+{% import '_macros/forms.twig' as forms %}
+
+{% include '_partials/flash_messages.twig' %}
+
+{% if suggestion is not defined %}
+    {% set suggestion = craft.suggestionModule.newSuggestion %}
+{% endif %}
+
+{#  The form tag kills PHPStorm's syntax awareness, so we output it as a twig string... #}
+{{ '<form method="post" action="" accept-charset="UTF-8" enctype="multipart/form-data">' }}
+
+    {{ craft.content.csrfinput }}
+
+    {{ actionInput('suggestions/suggestions/create') }}
+    {{ redirectInput(url('suggestion/{uid}')) }}
+
+     {% if craft.app.plugins.isPluginEnabled('craft-recaptcha-3') %}
+         {% include ['_recaptcha/frontend'] %}
+     {% endif %}
+
+    {% namespace 'suggestion' %}
+
+        {{ forms.hiddenField({
+            name: 'site',
+            value: currentSite.handle
+        }) }}
+
+
+
+        {{ forms.textField({
+            label: 'Your Name'|t,
+            name: 'name',
+            object: suggestion,
+            required: true,
+            disabled: currentUser ? true : false
+        }) }}
+
+        {{ forms.textField({
+            label: 'Your Email'|t,
+            name: 'email',
+            object: suggestion,
+            type: 'email',
+            required: true,
+            disabled: currentUser ? true : false
+        }) }}
+
+        {{ forms.textField({
+            label: suggestion.getAttributeLabel('title'),
+            name: 'title',
+            object: suggestion,
+            required: true
+        }) }}
+
+        {{ forms.textAreaField({
+            label: suggestion.getAttributeLabel('description'),
+            name: 'description',
+            object: suggestion,
+            required: true
+        }) }}
+
+    {% endnamespace %}
+
+    {{ forms.submit('Send'|t) }}
+
+{{ '</form>' }}

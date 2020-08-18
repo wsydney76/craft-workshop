@@ -1,0 +1,12 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    {% include '_partials/blocks.twig' with {query:entry.bodyContent} only %}
+
+    {% include '_partials/news_gallery.twig' with {query:craft.entries.section('news')} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/entries_list.twig'
+        with  {heading:'Topics', query:craft.entries.section('topic').orderBy('title')} only %}
+{% endblock %}

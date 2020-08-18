@@ -1,0 +1,43 @@
+{% from '_macros/forms.twig' import submit %}
+{% set msg = craft.app.session.getFlash('notice') %}
+    {% if msg %}
+        <div class="my-3 alert alert-info">
+            {{ msg|t }}
+        </div>
+    {% endif %}
+
+    {% set msg = craft.app.session.getFlash('error') %}
+    {% if msg %}
+        <div class="my-3 alert alert-danger">
+            {{ msg|t }}
+        </div>
+    {% endif %}
+
+    {% set donation = craft.commerce.donation %}
+
+    {{ '<form method="POST" name="auto-add-to-cart" class="add-to-cart-form">' }}
+    {{ actionInput('commerce/cart/update-cart') }}
+    {{ hiddenInput('purchasableId', donation.id) }}
+    {{ hiddenInput('options[random]', random()) }}
+    {{ redirectInput('buy/checkout') }}
+    {{ craft.content.csrfinput }}
+
+
+
+
+<div class="form-group">
+    <label for="donationAmount">{{ 'Your donation'|t }} (€)</label>
+    <input class="form-control"
+           type="number"
+           name="options[donationAmount]"
+           required
+           min="1"
+           max="100"
+           step=".01"
+           placeholder="5.00">
+
+</div>
+
+{{ submit('Donate'|t) }}
+
+{{ '</form>' }}

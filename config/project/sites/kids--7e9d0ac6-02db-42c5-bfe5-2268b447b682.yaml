@@ -1,0 +1,8 @@
+baseUrl: '@web/kids'
+handle: kids
+hasUrls: true
+language: de-DE
+name: Kids
+primary: false
+siteGroup: 5a6f4737-b18d-4471-8f6e-4fd406d3beee
+sortOrder: 3

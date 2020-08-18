@@ -1,0 +1,13 @@
+{% set attr = {
+    class: boxed??false ?  'border-bottom border-custom mb-4' : 'mb-4'
+} %}
+{% set headingAttr = {
+    class: boxed??false ? 'text-center text-uppercase  text-white bg-custom p-2' : 'h4'
+} %}
+
+<div {{ attr(attr) }}>
+    <div {{ attr(headingAttr) }}>{{ heading }}</div>
+    <div class="my-3">
+        {% block content %}{% endblock %}
+    </div>
+</div>

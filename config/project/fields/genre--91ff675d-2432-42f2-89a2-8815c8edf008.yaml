@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: e12a7084-ddcc-406f-bc60-d1429777d8e0
+handle: genre
+instructions: ''
+name: Genre
+searchable: true
+settings:
+  limit: ''
+  localizeRelations: ''
+  selectionLabel: ''
+  source: null
+  sources:
+    - 'section:f8cd6adb-1de1-4201-bbd6-222470063e4a'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

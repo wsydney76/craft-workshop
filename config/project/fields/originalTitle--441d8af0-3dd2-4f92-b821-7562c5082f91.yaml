@@ -1,0 +1,16 @@
+contentColumnType: string
+fieldGroup: e12a7084-ddcc-406f-bc60-d1429777d8e0
+handle: originalTitle
+instructions: 'Whereas the title above should show the films title used in the current sites language, enter here the title used in the original movie.'
+name: 'Original Title'
+searchable: true
+settings:
+  charLimit: '100'
+  code: ''
+  columnType: string
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

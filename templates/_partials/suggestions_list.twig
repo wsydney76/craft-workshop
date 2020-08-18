@@ -1,0 +1,14 @@
+{# @var query \project\modules\suggestions\records\db\SuggestionRecordQuery #}
+
+{% set suggestions = query.all %}
+{% if suggestions %}
+
+    {% set links = suggestions|map(s => {text:s.title, href:s.url}) %}
+
+    {% embed '_layouts/embeds/widget.twig' with {heading:(heading ?? 'My Suggestions')|t} %}
+    	{% block content %}
+            {% from '_macros/lib.twig' import linkList %}
+            {{ linkList(links) }}
+    	{% endblock %}
+    {% endembed %}
+{% endif %}

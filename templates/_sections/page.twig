@@ -1,0 +1,32 @@
+{% extends "_layout.twig" %}
+
+
+{% block contentWrapper %}
+
+    {% if entry.type == 'page' %}
+        <div id="content-container" class="container py-5">
+            {{ block('contentContainer') }}
+        </div>
+    {% else %}
+        {% include '_partials/contentbuilder.twig'
+            with {query: entry.contentBuilder} only %}
+    {% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+    {% include '_partials/blocks.twig'
+        with {query:entry.bodyContent} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/page_nav.twig'
+        with {entry:entry, query:craft.entries.section('page'), heading:'Pages'|t} only %}
+{% endblock %}
+
+{% block contentBottom %}
+    {% if entry.additionalTemplate %}
+        {% include "_partials/#{entry.additionalTemplate}" only %}
+    {% endif %}
+{% endblock %}

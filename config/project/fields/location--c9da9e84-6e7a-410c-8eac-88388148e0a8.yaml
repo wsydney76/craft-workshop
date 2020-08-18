@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: 17aa2ede-87b4-40b0-84d1-47a0b29e0b24
+handle: location
+instructions: ''
+name: Location
+searchable: true
+settings:
+  limit: '1'
+  localizeRelations: ''
+  selectionLabel: 'Select a location'
+  source: null
+  sources:
+    - 'section:48b55920-a4e8-4089-b538-dbe98b613d45'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

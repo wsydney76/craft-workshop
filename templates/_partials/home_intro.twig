@@ -1,0 +1,20 @@
+<div id="title" class="bg-primary text-white text-center p-5">
+    <h1 class="text-light my-3 display-4">{{ entry.title }}</h1>
+    <div class="my-3">{{ entry.teaser }}</div>
+</div>
+
+{% include '_partials/home_sections.twig'
+    with {entries: craft.content.featuredSectionEntries('featured')} only %}
+
+<div class="container">
+    <div class="text-center pt-5">
+        {% include '_partials/blocks.twig'
+            with {query:entry.bodyContent} only %}
+    </div>
+</div>
+
+
+
+{% include '_partials/home_featured.twig' %}
+
+

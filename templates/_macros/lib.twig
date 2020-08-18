@@ -1,0 +1,100 @@
+{% macro linkTo(text, url, target='') %}
+    <a href="{{ url }}" target="{{ target }}">{{ text }}</a>
+{% endmacro %}
+
+{% macro linkList(links, showPostDate=false) %}
+    <ul class="list-unstyled">
+        {% for link in links %}
+            <li class="my-2">
+                {% if showPostDate %}
+                    <div class="text-muted">{{ link.postDate }}</div>
+                {% endif %}
+                <a href="{{ link.href }}">{{ link.text }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+
+{% macro navLinkForSingle(handle, class="nav-item nav-link") %}
+    {% set entry = craft.entries.section(handle).one %}
+    {% if entry %}
+        <li class="nav-item">
+            <a class="{{ class }}" href="{{ entry.url }}">{{ entry.title }}</a>
+        </li>
+    {% endif %}
+{% endmacro %}
+
+{% macro navLinkForSingleDropDown(handle, class="dropdown-item") %}
+    {% set entry = craft.entries.section(handle).one %}
+    {% if entry %}
+        <a class="{{ class }}" href="{{ entry.url }}">{{ entry.title }}</a>
+    {% endif %}
+{% endmacro %}
+
+
+{% macro navLinks(key, class="nav-item nav-link") %}
+    {% set entries = craft.entries.showInNav(key).all %}
+    {% for entry in entries %}
+        <li class="nav-item">
+            <a class="{{ class }}" href="{{ entry.url }}">{{ entry.title }}</a>
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+{% macro categoryDefinition(heading, query, extra = null) %}
+    {% set categories = query.all %}
+    {% if categories %}
+        <dt>{{ heading }}</dt>
+        <dd>
+            {% for category in categories %}
+                {{ category.link }}{{ not loop.last ? ', ' }}
+            {% endfor %}
+            {% if extra %}
+                {{ extra }}
+            {% endif %}
+        </dd>
+    {% endif %}
+{% endmacro %}
+
+{% macro orderButton(variant,title) %}
+    {# @var variant \craft\commerce\elements\Variant #}
+
+    {% set caption = 'Order Now'|t %}
+    {% if title %}
+        {% set caption  = "#{caption}: #{title}" %}
+    {% endif %}
+
+
+    {% set isAvailable = variant.hasUnlimitedStock or variant.stock >= 1 %}
+
+    {% if isAvailable %}
+
+        {{ '<form method="POST" name="auto-add-to-cart" class="add-to-cart-form">' }}
+        {{ actionInput('commerce/cart/update-cart') }}
+        {{ hiddenInput('qty',1) }}
+        {{ hiddenInput('purchasableId', variant.id) }}
+        {{ hiddenInput('options[random]', random()) }}
+        {{ redirectInput(variant.product.type.hasVariants ? 'buy/order': 'buy/checkout') }}
+        {{ craft.content.csrfinput }}
+
+        <input class="btn btn-primary" type="submit" value="{{ caption }}"/>
+        {{ '</form>' }}
+
+    {% else %}
+        {{ "Currently not available"|t }}
+    {% endif %}
+{% endmacro %}
+
+{% macro blitzCache(enable=true) %}
+    {% if craft.app.plugins.pluginEnabled('blitz') %}
+        {% if enable %}
+            {% set blitzSettings = craft.app.plugins.plugin('blitz').settings %}
+            {% do craft.blitz.options
+                .cacheElements(blitzSettings.cacheElements)
+                .cacheElementQueries(blitzSettings.cacheElementQueries) %}
+        {% else %}
+            {% do craft.blitz.options.cacheElements(false).cacheElementQueries(false) %}
+        {% endif %}
+    {% endif %}
+{% endmacro %}

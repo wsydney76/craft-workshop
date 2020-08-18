@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    {% include '_partials/entry_gallery.twig'
+        with {query:craft.entries.section('film').orderBy('title')} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+
+    {% include '_partials/entries_list.twig'
+        with {
+        heading:'Recently Added',
+        query: craft.entries.section('film').orderBy('postDate desc').limit(3),
+        showPostDate:true} %}
+
+   {% include '_partials/entries_list.twig'
+   with {heading:'Kids Festival', query: craft.entries.site('kids').section('film').orderBy('title')}%}
+
+{% endblock %}

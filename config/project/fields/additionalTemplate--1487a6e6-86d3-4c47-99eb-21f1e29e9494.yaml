@@ -1,0 +1,16 @@
+contentColumnType: string
+fieldGroup: f1d8d989-2bc0-4a0f-b58f-a348276a5596
+handle: additionalTemplate
+instructions: 'Filename of a template that will be added to the content'
+name: 'Additional Template'
+searchable: false
+settings:
+  charLimit: '30'
+  code: ''
+  columnType: string
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

@@ -1,0 +1,8 @@
+handle: temporaryUploads
+hasUrls: true
+name: 'Temporary Uploads'
+settings:
+  path: '@webroot/temporaryuploads'
+sortOrder: 4
+type: craft\volumes\Local
+url: '@web/temporaryuploads'

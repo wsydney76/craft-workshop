@@ -1,0 +1,25 @@
+{% embed '_layouts/embeds/photo_left_widget.twig' with {image:entry.photo.one, entry:entry} only %}
+    {% block content %}
+        {% from '_macros/lib.twig' import categoryDefinition %}
+        <dl>
+            {% if entry.born %}
+                <dt>{{ "Born"|t }}</dt>
+                <dd>{{ entry.born|date }}</dd>
+            {% endif %}
+            {% if entry.died %}
+                <dt>{{ "Died"|t }}</dt>
+                <dd>{{ entry.died|date }}</dd>
+            {% endif %}
+        </dl>
+
+        <div class="mt-3 pr-2">
+            {{ entry.bio|nl2br }}
+        </div>
+
+    {% endblock %}
+
+{% endembed %}
+
+<div class="clearfix"></div>
+
+

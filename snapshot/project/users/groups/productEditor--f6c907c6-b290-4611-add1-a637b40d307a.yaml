@@ -1,0 +1,20 @@
+handle: productEditor
+name: 'Product Editor'
+permissions:
+  - accesscp
+  - accesssitewhensystemisoff
+  - accessplugin-commerce
+  - 'saveassetinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'createfoldersinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'deletefilesandfoldersinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'editimagesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'editpeerfilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'replacepeerfilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'deletepeerfilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'editpeerimagesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'viewpeerfilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - 'viewvolume:caf05300-3e76-4a18-8567-e67a9099f462'
+  - commerce-manageproducts
+  - 'commerce-manageproducttype:62e806a8-f494-4210-9946-a1e4403190e1'
+  - 'commerce-manageproducttype:fc37d746-c53f-4bd2-b785-eb2ef026205e'
+  - 'replacefilesinvolume:caf05300-3e76-4a18-8567-e67a9099f462'

@@ -1,0 +1,25 @@
+{% from 'buy/_macros/errors.twig' import errorList %}
+
+{%- set type = (type is defined ? type : "text") %}
+{%- set required = (required is defined ? required : false) %}
+{%- set errors = (errors is defined ? errors : null) %}
+{%- set placeholder = (placeholder is defined ? placeholder : '') %}
+{%- set model = (model is defined ? model : '') %}
+
+ <div class="form-group my-3">
+    <label for="{{ name }}">{{ label|t }}</label>
+    <input
+        class="{{ class??'form-control' }}"
+        id="{{ name }}"
+        type="{{ type }}"
+        name="{{ name }}"
+        value="{{ value }}"
+        {% if model %}v-model="{{ model }}"{% endif %}
+        {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+        {% if required %}required="true"{% endif %}>
+
+    {% if errors %}
+        {{ errorList(errors) }}
+    {% endif %}
+
+</div>

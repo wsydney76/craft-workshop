@@ -1,0 +1,14 @@
+{% if entry is defined and entry.allRelatedEntries %}
+    {% set entries = entry.allRelatedEntries.orderBy('title').all %}
+
+    {% if entries %}
+            {% embed '_layouts/embeds/widget.twig' with {heading:'Related'|t, boxed:true} %}
+                {% block content %}
+                    {% set query = entry.allRelatedEntries.orderBy('title') %}
+                    {% for item in entries %}
+                        {% include "_partials/gallery_item.twig" with {wide:false, element:item} only %}
+                    {% endfor %}
+                {% endblock %}
+            {% endembed %}
+    {% endif %}
+{% endif %}

@@ -1,0 +1,19 @@
+enableVersioning: true
+handle: department
+name: Department
+propagationMethod: all
+siteSettings:
+  97e0b749-86e3-49f1-918e-9b88758928f4:
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: ''
+  bbbb120d-5d71-4e7c-a164-487e401c4f2c:
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: ''
+structure:
+  maxLevels: 1
+  uid: 24265b5b-55c8-43c8-8768-0bb8d0f86a00
+type: structure

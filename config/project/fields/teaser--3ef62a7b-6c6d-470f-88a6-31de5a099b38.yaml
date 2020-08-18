@@ -1,0 +1,17 @@
+contentColumnType: string
+fieldGroup: f1d8d989-2bc0-4a0f-b58f-a348276a5596
+handle: teaser
+instructions: 'Will appear near the title'
+name: Teaser
+searchable: true
+settings:
+  byteLimit: 100
+  charLimit: null
+  code: ''
+  columnType: string
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\PlainText

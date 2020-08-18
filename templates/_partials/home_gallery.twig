@@ -1,0 +1,33 @@
+{% set entries = query.limit(3).all %}
+{% if entries %}
+    <div class="{{ class is defined ? class }}  p-2">
+        <div class="container">
+
+            <div class="my-5 text-center">
+                <h3>{{ heading }}</h3>
+            </div>
+
+            <div class="row text-md-left text-center">
+                {% for entry in entries %}
+                    <div class="col-md-4">
+                        {% if className(entry) == 'craft\\commerce\\elements\\Product' %}
+                            {% set image = entry.productFeaturedImage.one %}
+                        {% else %}
+                            {% set image = entry.featuredImage.one %}
+                        {% endif %}
+                        {% if image %}
+                            <a href="{{ entry.url }}">
+                                <img class="img-fluid img-scale rounded"
+                                     src="{{ image.getUrl({width:360, height:240}) }}"
+                                     alt="{{ image.title|e('html_attr') }}" loading="lazy"></a>
+                        {% endif %}
+                        <div class="my-3">
+                            <h5>{{ entry.link }}</h5>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endif %}

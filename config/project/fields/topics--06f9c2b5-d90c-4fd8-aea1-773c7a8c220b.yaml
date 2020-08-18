@@ -1,0 +1,18 @@
+contentColumnType: string
+fieldGroup: 5bd7b883-0d73-47f4-a7f4-bad70fe05acf
+handle: topics
+instructions: ''
+name: Topics
+searchable: true
+settings:
+  limit: ''
+  localizeRelations: ''
+  selectionLabel: 'Add a topic'
+  source: null
+  sources:
+    - 'section:eecee2b6-543a-4136-9a8d-b6c0201bc3a5'
+  targetSiteId: null
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

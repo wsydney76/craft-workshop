@@ -1,0 +1,12 @@
+{% extends "_layouts/error.twig" %}
+
+{% set global_featuredImage = siteInfo.notFoundImage.one %}
+
+{% set global_title =  "Ups, da können wir nichts finden" %}
+
+{% block content %}
+    <p>
+        Diese Seite existiert nicht.
+    </p>
+{% endblock %}
+

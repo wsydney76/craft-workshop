@@ -1,0 +1,9 @@
+format: null
+handle: featuredImageLg
+height: 300
+interlace: none
+mode: crop
+name: 'Featured Image LG'
+position: center-center
+quality: 82
+width: 1160

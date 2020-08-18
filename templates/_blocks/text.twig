@@ -1,0 +1,11 @@
+{% if block.highlightBlock %}
+	<div class="bg-primary text-light p-3 h5">
+        {{ block.text|striptags }}
+    </div>
+{% else %}
+    <div class="rich-text">
+        {{ block.text }}
+    </div>
+{% endif %}
+
+

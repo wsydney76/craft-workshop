@@ -1,0 +1,21 @@
+{% if entries %}
+    <p>{{ entries|length }} {{ '{count,plural,=1{result} other{results}} for'|t({count:entries|length}) }}
+        “{{ searchFor }}”:</p>
+
+    <table class="table table-striped  border shadow">
+        <thead>
+            <tr>
+                <th style="width:20%;">{{ 'Type'|t }}</th>
+                <th style="width:40%">{{ 'Title'|t }}</th>
+                <th style="width:40%">{{ 'Date'|t }}</th>
+            </tr>
+        </thead>
+        {% for entry in entries %}
+            {% include ["_partials/search/#{entry.section.handle}_row.twig",'_partials/search/default_row.twig']
+                with {entry:entry} only %}
+        {% endfor %}
+    </table>
+
+{% else %}
+    <p>{{ "Your search for"|t }} “{{ searchFor }}” {{ "didn’t return any results"|t }}.</p>
+{% endif %}

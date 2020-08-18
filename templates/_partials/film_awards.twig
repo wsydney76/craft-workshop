@@ -1,0 +1,17 @@
+{% set entries = query.all %}
+
+{% if entries %}
+    {% embed '_layouts/embeds/bordered_box.twig' %}
+        {% block content %}
+            {% from '_layouts/embeds/bordered_box.twig' import displayItem %}
+            {% for entry in entries %}
+                {% set person = entry.person|one %}
+                {% if person %}
+                    {{ displayItem("#{entry.title} #{'to'|t} #{person.link}") }}
+                {% else %}
+                    {{ displayItem(entry.title) }}
+                {% endif %}
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+{% endif %}

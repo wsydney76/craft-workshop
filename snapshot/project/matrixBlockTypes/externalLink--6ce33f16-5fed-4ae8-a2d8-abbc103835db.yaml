@@ -1,0 +1,62 @@
+field: 1ae47f9e-046f-4e4f-b56f-f74db2cb6cd0
+fieldLayouts:
+  f6339652-792b-48de-a451-7a010fded15b:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: b44e8f8b-37c6-4bf4-9df3-b4b0df8b7c7f
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 50
+          -
+            fieldUid: 4e40dbb8-0223-48ef-96d7-1a85774cffe5
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 50
+        name: Content
+        sortOrder: 1
+fields:
+  4e40dbb8-0223-48ef-96d7-1a85774cffe5:
+    contentColumnType: string(255)
+    fieldGroup: null
+    handle: href
+    instructions: ''
+    name: Link
+    searchable: false
+    settings:
+      maxLength: '255'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Url
+  b44e8f8b-37c6-4bf4-9df3-b4b0df8b7c7f:
+    contentColumnType: string
+    fieldGroup: null
+    handle: text
+    instructions: ''
+    name: Text
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: externalLink
+name: Link
+sortOrder: 1

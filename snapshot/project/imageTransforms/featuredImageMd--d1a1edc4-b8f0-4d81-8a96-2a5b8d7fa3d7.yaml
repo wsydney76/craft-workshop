@@ -1,0 +1,9 @@
+format: null
+handle: featuredImageMd
+height: 220
+interlace: none
+mode: crop
+name: 'Featured Image MD'
+position: center-center
+quality: 82
+width: 768

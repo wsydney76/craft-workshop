@@ -1,0 +1,7 @@
+isPublic: false
+name: Selection
+scope:
+  - 'sections.ae5b96d9-d2e0-43b6-b555-0c6135de8639:read'
+  - 'entrytypes.0becffaf-fa11-4d3f-a2fc-b68608a488e8:read'
+  - 'sections.c504627b-6f45-47cd-822a-8e36420f203d:read'
+  - 'entrytypes.51a74905-e522-498e-bc03-e96d2bf3db37:read'

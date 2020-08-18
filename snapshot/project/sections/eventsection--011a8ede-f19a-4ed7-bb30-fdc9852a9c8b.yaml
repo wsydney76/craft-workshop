@@ -1,0 +1,20 @@
+enableVersioning: true
+handle: eventsection
+name: Section
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  97e0b749-86e3-49f1-918e-9b88758928f4:
+    enabledByDefault: true
+    hasUrls: true
+    template: _sections/eventsection
+    uriFormat: 'section/{slug}'
+  bbbb120d-5d71-4e7c-a164-487e401c4f2c:
+    enabledByDefault: true
+    hasUrls: true
+    template: _sections/eventsection
+    uriFormat: 'reihe/{slug}'
+type: channel

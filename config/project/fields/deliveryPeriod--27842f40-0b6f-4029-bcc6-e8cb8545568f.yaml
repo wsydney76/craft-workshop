@@ -1,0 +1,17 @@
+contentColumnType: integer(10)
+fieldGroup: 207a209a-820f-4db8-829a-e9b191ff1b54
+handle: deliveryPeriod
+instructions: ''
+name: 'Delivery Period'
+searchable: true
+settings:
+  decimals: 0
+  defaultValue: null
+  max: null
+  min: '0'
+  prefix: ''
+  size: null
+  suffix: days
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Number

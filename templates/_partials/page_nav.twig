@@ -1,0 +1,22 @@
+{% set entries = query.all %}
+{% if entries %}
+    {% embed "_layouts/embeds/widget.twig" with {heading:'Pages'|t, entries:entries, entry:entry, boxed:boxed??true} only %}
+        {% block content %}
+            <nav class="text-left">
+                <ul class="list-unstyled">
+                    {% nav item in entries %}
+                        <li class="list-unstyled">
+                            <a class="{{ item.id == entry.id?'font-weight-bold' }}"
+                               href="{{ item.url }}">{{ item.title }}</a>
+                            {% ifchildren %}
+                                <ul>
+                                    {% children %}
+                                </ul>
+                            {% endifchildren %}
+                        </li>
+                    {% endnav %}
+                </ul>
+            </nav>
+        {% endblock %}
+    {% endembed %}
+{% endif %}

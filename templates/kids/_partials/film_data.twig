@@ -1,0 +1,16 @@
+{% embed '_layouts/embeds/photo_left_widget.twig' with {entry:entry, image:entry.photo.one} %}
+    {% block content %}
+
+        <div class="mb-3">
+            {% set country = entry.producedIn.one %}
+            {% if country %}
+                {{ country.title }}
+            {% endif %}
+            {{ entry.releaseYear }}
+        </div>
+
+        {% include '_partials/film_cast.twig' with {query:entry.cast, additionalCast:entry.additionalCast, boxed:false} %}
+
+    {% endblock %}
+{% endembed %}
+

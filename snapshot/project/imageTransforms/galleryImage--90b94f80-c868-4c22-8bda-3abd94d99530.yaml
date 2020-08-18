@@ -1,0 +1,9 @@
+format: null
+handle: galleryImage
+height: 240
+interlace: none
+mode: crop
+name: 'Gallery Image'
+position: center-center
+quality: null
+width: 360

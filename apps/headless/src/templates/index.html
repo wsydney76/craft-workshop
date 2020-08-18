@@ -1,0 +1,29 @@
+<html lang="de">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ siteInfo.siteName }}</title>
+    {% do view.registerAssetBundle('apps\\headless\\HeadlessAssets') %}
+</head>
+<body>
+
+<div class="body">
+    <header class="header">
+        {{ siteInfo.siteName }}
+    </header>
+
+    <div id="app">
+        <nav class="main-nav">
+            <router-link to="/{{ currentSite.handle }}" exact>Home</router-link>
+            <router-link to="/{{ currentSite.handle }}/film">{{ "Films"|t }}</router-link>
+            <router-link to="/{{ currentSite.handle }}/person">{{ "Stars"|t }}</router-link>
+            <router-link to="/{{ currentSite.handle }}/news">{{ "News"|t }}</router-link>
+        </nav>
+
+        <div class="content">
+            <router-view/>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

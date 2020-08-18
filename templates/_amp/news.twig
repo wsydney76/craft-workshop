@@ -1,0 +1,47 @@
+{% extends "_layouts/amp.twig" %}
+
+{% set entry = craft.entries.slug(slug).one %}
+{% if not entry %}
+    {% exit 404 %}
+{% endif %}
+
+{% block main %}
+
+    <main id="content" role="main" class="">
+        <article class="recipe-article">
+            <header>
+                {% set topic = entry.topics.one %}
+                {% if topic %}
+                    <span class="ampstart-subtitle block px3 pt2 mb2">{{ topic.title }}</span>
+                {% endif %}
+                <h1 class="mb1 px3">{{ entry.title }}</h1>
+
+                <!-- Start byline -->
+                <address class="ampstart-byline clearfix mb4 px3 h5">
+                    <time class="ampstart-byline-pubdate block bold my1"
+                          datetime="2016-12-13">{{ entry.postDate|date('long') }}</time>
+                </address>
+                <!-- End byline -->
+
+                {% set image = entry.featuredImage.one %}
+
+                {% if image %}
+                    <amp-img src="{{ image.url({width:1280, height:720}) }}" width="1280" height="720" layout="responsive"
+                             alt="{{ image.title }}" class="mb4 mx3"></amp-img>
+                {% endif %}
+
+            </header>
+
+            {% set blocks = entry.bodyContent.all %}
+
+            {% for block in blocks %}
+            	<div class="mb4 px3">
+                    {% include ["_amp/blocks/#{block.type}", "_blocks/#{block.type}"] %}
+                </div>
+            {% endfor %}
+
+        </article>
+    </main>
+
+
+{% endblock %}

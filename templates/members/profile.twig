@@ -1,0 +1,56 @@
+{% set global_title = "Edit Profile"|t %}
+{% set global_languageSwitch = {
+    en: siteUrl("members/profile", siteId = craft.app.sites.siteByHandle('en').id),
+    de: siteUrl("members/profile", siteId = craft.app.sites.siteByHandle('de').id),
+} %}
+
+{% extends 'members/_layout.twig' %}
+
+{% requireLogin %}
+
+{% import '_macros/forms.twig' as forms %}
+
+{% if user is not defined %}
+    {% set user = currentUser %}
+{% endif %}
+
+{% block content %}
+
+    {{ '<form method="post" accept-charset="UTF-8">' }}
+
+    {{ csrfInput() }}
+    {{ actionInput('users/save-user') }}
+    {{ hiddenInput('userId', currentUser.id) }}
+    {{ redirectInput('members/profile') }}
+
+    {{ forms.textField({
+        label: 'Username'|t,
+        name: 'username',
+        object: user,
+        required: true
+    }) }}
+
+    {{ forms.textField({
+        label: 'First Name'|t,
+        name: 'firstName',
+        object: user,
+        required: true
+    }) }}
+
+    {{ forms.textField({
+        label: 'Last Name'|t,
+        name: 'lastName',
+        object: user,
+        required: true
+    }) }}
+
+    {{ forms.submit('Update'|t) }}
+
+
+    {{ '</form>' }}
+
+    <div class="my-3">
+        <a href="{{ url('members/changeemail') }}">{{ "Change your Email?"|t }}</a>
+    </div>
+
+{% endblock %}

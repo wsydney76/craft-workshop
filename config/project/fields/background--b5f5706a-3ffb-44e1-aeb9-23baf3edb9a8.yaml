@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: c177f5d7-6582-4202-a79c-a1e5bd7983a4
+handle: background
+instructions: ''
+name: Background
+searchable: true
+settings:
+  assetSources:
+    - images
+  hasBlockImage: ''
+  sectionSources:
+    - film
+    - news
+    - person
+translationKeyFormat: null
+translationMethod: none
+type: project\modules\main\fields\BackgroundImageField

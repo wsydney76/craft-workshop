@@ -1,0 +1,28 @@
+{% set entries = craft.entries
+    .relatedTo({targetElement: entry, field: 'crew.persons'})
+    .with([
+    ['crew', {relatedTo: {targetElement: entry, field: 'persons'}}],
+    ['crew.role:departments']
+])
+    .all %}
+
+{% if entries %}
+    {% embed '_layouts/embeds/widget.twig' with {heading:'Crew', boxed:true} %}
+        {% block content %}
+            {% for entry in entries %}
+                <div class="my-2">
+                    <div class="font-weight-bold">
+                        {{ entry.link }}
+                    </div>
+                    {% for role in entry.crew %}
+                        <div>
+                            {% for department in role.departments %}
+                                {{ department.title }}{{ not loop.last ? ', ' }}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+{% endif %}

@@ -1,0 +1,43 @@
+{% extends "_layout.twig" %}
+{% set featuredImage = product.productFeaturedImage.one %}
+{% if featuredImage %}
+    {% set global_featuredImage = featuredImage %}
+{% endif %}
+
+{% set requireFancyBox = true %}
+
+
+{% block content %}
+
+    {% set msg = craft.app.session.getFlash('error') %}
+    {% if msg %}
+        <div class="my-3 alert alert-danger">
+            {{ msg|t }}
+        </div>
+    {% endif %}
+
+    {% include '_partials/product_data.twig'
+        with {product: product} only %}
+
+    {% include '_partials/blocks.twig'
+        with {query: product.bodyContent} only %}
+
+{% endblock %}
+
+{% block secondaryContent %}
+
+    {% include '_partials/entries_list.twig'
+        with {heading: 'Related Entries', query: product.relatedEntries} only %}
+
+    {% include '_partials/products_list.twig'
+        with {heading: 'Related Products', query: craft.products.relatedTo(product).orderBy('title')} only %}
+
+    {% include "buy/_js/price.twig" with {variants:product.variants} %}
+
+    {% js at POS_END %}
+        setPrice();
+    {% endjs %}
+
+
+{% endblock %}
+

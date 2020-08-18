@@ -1,0 +1,8 @@
+{% extends "_layout.twig" %}
+
+{% block contentContainer %}
+    {% include '_partials/blocks.twig'
+        with {query: entry.bodyContent} only %}
+
+    {% include '_partials/product_gallery.twig' only %}
+{% endblock %}

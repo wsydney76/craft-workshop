@@ -1,0 +1,67 @@
+{% set global_title = "Register"|t %}
+{% set global_languageSwitch = {
+    en: siteUrl("members/register", siteId = craft.app.sites.siteByHandle('en').id),
+    de: siteUrl("members/register", siteId = craft.app.sites.siteByHandle('de').id),
+} %}
+
+{% extends 'members/_layout.twig' %}
+
+{% import '_macros/forms.twig' as forms %}
+
+{% if user is not defined %}
+    {% set user = craft.members.newUser %}
+{% endif %}
+
+{% block content %}
+
+    {% if currentUser %}
+        {% switch currentSite.language[:2] %}
+        {% case "en" %}
+            You are already logged in, {{ currentUser.name }}. <a href="{{ logoutUrl }}">Logout</a>
+        {% case "de" %}
+            Sie sind bereits angemeldet, {{ currentUser.name }}. <a href="{{ logoutUrl }}">Logout</a>
+        {% endswitch %}
+
+    {% else %}
+
+        {{ '<form method="post" accept-charset="UTF-8">' }}
+
+
+        {{ csrfInput() }}
+        {{ actionInput('users/save-user') }}
+        {{ redirectInput('members/activate') }}
+
+        {{ forms.textField({
+            label: 'Username'|t,
+            name: 'username',
+            object: user,
+            required: true
+        }) }}
+
+        {{ forms.textField({
+            label: 'Email'|t,
+            name: 'email',
+            type: 'email',
+            object: user,
+            required: true
+        }) }}
+
+        {{ forms.textField({
+            label: 'First Name'|t,
+            name: 'firstName',
+            object: user,
+            required: true
+        }) }}
+
+        {{ forms.textField({
+            label: 'Last Name'|t,
+            name: 'lastName',
+            object: user,
+            required: true
+        }) }}
+
+        {{ forms.submit('Register for a guest account'|t) }}
+
+        {{ '</form>' }}
+    {% endif %}
+{% endblock %}

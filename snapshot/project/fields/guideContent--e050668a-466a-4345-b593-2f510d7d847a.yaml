@@ -1,0 +1,14 @@
+contentColumnType: string
+fieldGroup: bfbbca66-d647-4a48-8e1f-e4e603824d36
+handle: guideContent
+instructions: 'Wenn leer, muss eine twig/md-Datei mit dem Namen des slugs existieren, die dann angezeigt wird.'
+name: 'Guide Inhalt'
+searchable: true
+settings:
+  contentTable: '{{%matrixcontent_guidecontent}}'
+  maxBlocks: ''
+  minBlocks: ''
+  propagationMethod: none
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

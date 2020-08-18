@@ -1,0 +1,4 @@
+handle: client
+name: Client
+permissions:
+  - accesssitewhensystemisoff

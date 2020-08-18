@@ -1,0 +1,50 @@
+{% extends "_layout.twig" %}
+
+{% set requireFancyBox = true %}
+{% set requireScreeningDetailsModal = true %}
+
+{% set global_titleButtonsTargets = entry.eventSection.orderBy('title') %}
+
+{% block contentTop %}
+    {% include '_partials/film_awards.twig'
+        with {query: entry.awards} only %}
+{% endblock %}
+
+{% block content %}
+    {% include '_partials/film_data.twig'
+        with {entry:entry} only %}
+
+    {% include '_partials/blocks.twig'
+        with {query:entry.bodyContent} only %}
+
+    {% include '_partials/film_trivia.twig'
+        with {query:entry.trivia} only %}
+
+    {% include '_partials/image_gallery.twig'
+        with {query:entry.gallery} only %}
+{% endblock %}
+
+{% block secondaryContent %}
+
+    {% include '_partials/film_cast.twig'
+        with {query:entry.cast, additionalCast:entry.additionalCast} only %}
+    
+    {% include '_partials/film_crew.twig' 
+        with {query: entry.crew} only %}
+
+    {% include '_partials/screenings_bydate.twig'
+        with {query: entry.screenings, showFilm:false } %}
+
+    {% include '_partials/entries_list.twig'
+        with {heading:'In the news', query:entry.news, showPostDate:true} only %}
+
+    {% include '_partials/links.twig'
+        with {query: entry.links} %}
+
+    {% include '_partials/film_eventsections.twig'
+        with {query: entry.eventSection } %}
+
+    {% include '_partials/entry_products.twig'
+        with {entry: entry} only %}
+
+{% endblock %}

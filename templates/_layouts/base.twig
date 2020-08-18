@@ -1,0 +1,26 @@
+{% extends "_layouts/global_variables.twig" %}
+{% block html %}
+    <!doctype html>
+    <html lang="{{ currentSite.language[:2] }}">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+       {% include '_layouts/partials/icon.twig' %}
+
+        {% include '_layouts/partials/amp.twig' %}
+
+        {% include '_layouts/partials/assets.twig' %}
+
+        {% if craft.app.plugins.pluginEnabled('seomate') %}
+            {% hook 'seomateMeta' %}
+        {% else %}
+            <title>{{ global_title }}</title>
+        {% endif %}
+    </head>
+    <body>
+    {% block body %}{% endblock %}
+    </body>
+    </html>
+{% endblock %}

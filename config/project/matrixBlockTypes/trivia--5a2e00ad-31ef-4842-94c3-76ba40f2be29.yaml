@@ -1,0 +1,32 @@
+field: 74a15a4f-250e-4091-9df5-7052020fce11
+fieldLayouts:
+  2a673b82-2f12-4763-bb05-a21e60ceda9a:
+    tabs:
+      -
+        fields:
+          5692d83b-1e5e-48e3-9912-4e4db7e8907c:
+            required: true
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  5692d83b-1e5e-48e3-9912-4e4db7e8907c:
+    contentColumnType: text
+    fieldGroup: null
+    handle: text
+    instructions: ''
+    name: Text
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
+handle: trivia
+name: Trivia
+sortOrder: 1

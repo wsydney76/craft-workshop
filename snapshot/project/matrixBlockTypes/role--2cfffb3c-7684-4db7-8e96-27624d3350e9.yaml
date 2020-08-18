@@ -1,0 +1,116 @@
+field: 27e185bb-ee07-4df8-a5a8-c3a2e6c10ec3
+fieldLayouts:
+  bf877304-1d63-4d79-9fbc-81dfdd2f62d7:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: b53d797d-7a68-42fd-94ef-5ba1038e97af
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 25
+          -
+            fieldUid: 8cc24fa5-b6a5-42ff-8c68-aceecbccf525
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 25
+          -
+            fieldUid: 56ebb9c9-34e2-4377-b8be-8fe4ceb985bd
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 50
+        name: Content
+        sortOrder: 1
+fields:
+  56ebb9c9-34e2-4377-b8be-8fe4ceb985bd:
+    contentColumnType: text
+    fieldGroup: null
+    handle: names
+    instructions: 'Add additional names'
+    name: Names
+    searchable: true
+    settings:
+      addRowLabel: 'Add a name'
+      columnType: text
+      columns:
+        __assoc__:
+          -
+            - col1
+            -
+              __assoc__:
+                -
+                  - heading
+                  - Name
+                -
+                  - handle
+                  - name
+                -
+                  - width
+                  - ''
+                -
+                  - type
+                  - singleline
+      maxRows: ''
+      minRows: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Table
+  8cc24fa5-b6a5-42ff-8c68-aceecbccf525:
+    contentColumnType: string
+    fieldGroup: null
+    handle: persons
+    instructions: ''
+    name: Persons
+    searchable: true
+    settings:
+      allowSelfRelations: false
+      limit: ''
+      localizeRelations: false
+      selectionLabel: 'Add a person'
+      showSiteMenu: true
+      source: null
+      sources:
+        - 'section:c504627b-6f45-47cd-822a-8e36420f203d'
+      targetSiteId: null
+      validateRelatedElements: false
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Entries
+  b53d797d-7a68-42fd-94ef-5ba1038e97af:
+    contentColumnType: string
+    fieldGroup: null
+    handle: departments
+    instructions: ''
+    name: Departments
+    searchable: true
+    settings:
+      allowSelfRelations: false
+      limit: ''
+      localizeRelations: false
+      selectionLabel: 'Add a department'
+      showSiteMenu: true
+      source: null
+      sources:
+        - 'section:e4ce1d36-665c-44b3-8221-d6042cb4b0d2'
+      targetSiteId: null
+      validateRelatedElements: false
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Entries
+handle: role
+name: Role
+sortOrder: 1

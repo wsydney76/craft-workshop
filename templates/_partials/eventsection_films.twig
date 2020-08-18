@@ -1,0 +1,49 @@
+{% set films = query
+    .with([['featuredImage', {withTransforms:['galleryWideImage']}]])
+    .all %}
+
+
+{# using the original query here would affect subsequent queries #}
+{% set mQuery = clone(section.screenings) %}
+{% set screenings = mQuery
+    .orderBy('showtime')
+    .with(['location', 'screeningLanguage','subtitlesLanguages'])
+    .all %}
+
+{% set screeningsByFilmId = screenings|group(s => s.film[0].id) %}
+
+{% if films %}
+    {% embed '_layouts/embeds/widget.twig' with {heading: 'Films'|t} %}
+        {% block content %}
+            {% for film in films %}
+                {% embed '_partials/gallery_item.twig' with {element:film, screeningsByFilmId:screeningsByFilmId, wide:true} only %}
+                    {% block content %}
+                        {% if screeningsByFilmId[element.id] is defined %}
+                            {% for screening in screeningsByFilmId[element.id] %}
+                                <div class="mb-3">
+                                    {% set location = screening.location|one %}
+                                    {% if location %}
+                                        {{ location.link }}
+                                    {% endif %}
+                                    {% if screening.showInModal %}
+                                        <a class="screening" data-site="{{ currentSite.handle }}"
+                                           data-id="{{ screening.id }}">
+                                            {{ screening.showtime|datetime('short') }}
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ screening.url }}">
+                                            {{ screening.showtime|datetime('short') }}
+                                        </a>
+                                    {% endif %}
+                                    <div>
+                                        {% include '_partials/screening_languages.twig' with {entry:screening} only %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endblock %}
+                {% endembed %}
+            {% endfor %}
+        {% endblock %}
+    {% endembed %}
+{% endif %}

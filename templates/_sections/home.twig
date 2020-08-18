@@ -1,0 +1,24 @@
+{% extends "_layout.twig" %}
+
+{% block canvas %}
+
+    {{ block('featured1') }}
+
+    {% include '_partials/home_intro.twig'
+        with {entry:entry} only %}
+
+    {% include '_partials/home_gallery.twig'
+        with {  heading: 'New Articles'|t,
+        query:craft.entries.section('film,person').isFeaturedOnHomePage(true),
+        class:'section-highlighted'} only %}
+
+    {% include '_partials/home_gallery.twig'
+        with {  heading: 'Latest News'|t,
+        query:craft.entries.section('news').type('news')} only %}
+
+    {% include '_partials/home_gallery.twig'
+        with {  heading: 'New in the Shop'|t,
+        query:craft.products.isFeaturedOnHomePage(true),
+        class:'section-highlighted'} only %}
+
+{% endblock %}

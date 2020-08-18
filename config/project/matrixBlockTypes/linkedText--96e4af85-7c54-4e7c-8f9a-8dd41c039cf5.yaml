@@ -1,0 +1,74 @@
+field: 58b2e318-26cc-47b8-bee2-81369731d72f
+fieldLayouts:
+  88f16fcc-e87d-41a0-a67b-4a82195cc79d:
+    tabs:
+      -
+        fields:
+          375d69e3-522f-45f0-8113-91bbf84b13b9:
+            required: false
+            sortOrder: 3
+          f2c83206-00ce-4e78-b73b-8c3f6dbad342:
+            required: true
+            sortOrder: 2
+          fe68817e-ba1d-4dc3-9009-e15d82232b0a:
+            required: false
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  375d69e3-522f-45f0-8113-91bbf84b13b9:
+    contentColumnType: text
+    fieldGroup: null
+    handle: textAfter
+    instructions: 'If left blank, a full stop will be added to the text.'
+    name: 'Text After'
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
+  f2c83206-00ce-4e78-b73b-8c3f6dbad342:
+    contentColumnType: string
+    fieldGroup: null
+    handle: target
+    instructions: 'Multiple entries will be linked together to build a proper sentence, e.g: Asterix, Obelix and Idefix'
+    name: Targets
+    searchable: true
+    settings:
+      limit: ''
+      localizeRelations: ''
+      selectionLabel: ''
+      source: null
+      sources: '*'
+      targetSiteId: null
+      validateRelatedElements: ''
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Entries
+  fe68817e-ba1d-4dc3-9009-e15d82232b0a:
+    contentColumnType: text
+    fieldGroup: null
+    handle: textBefore
+    instructions: ''
+    name: 'Text Before'
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
+handle: linkedText
+name: 'Linked Text'
+sortOrder: 6

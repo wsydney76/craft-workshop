@@ -1,0 +1,31 @@
+{% extends "_layout.twig" %}
+
+{% set requireScreeningDetailsModal = true %}
+
+{% block content %}
+    {% include '_partials/blocks.twig'
+        with {query:entry.bodyContent} only %}
+
+    {% include '_partials/eventsection_films.twig'
+        with {section:entry, query:entry.films.orderBy('title') } %}
+
+{% endblock %}
+
+{% block secondaryContent %}
+
+
+    {% include '_partials/screenings_bydate.twig'
+        with {query: entry.screenings } %}
+
+    {% include '_partials/entries_list.twig'
+        with {heading: 'Featured',
+        query: entry.personsForSection.isFeaturedOnHomePage(1).orderBy('title')} only %}
+
+    {% cache globally %}
+        {% include '_partials/entries_list.twig'
+            with {
+            heading:'{count,plural,=1{Section} other{Sections}}',
+            query:craft.entries.section('eventsection').orderBy('title') } only %}
+    {% endcache %}
+
+{% endblock %}

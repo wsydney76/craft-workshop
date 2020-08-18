@@ -1,0 +1,9 @@
+<div class="h4">{{ 'Follow us on'|t }}</div>
+
+<div class="my-3">
+    <ul class="list-unstyled">
+    {% for link in siteInfo.socialMediaLinks.all %}
+        <li><a href="{{ link.profileLink }}">{{ link.caption }}</a></li>
+    {% endfor %}
+    </ul>
+</div>

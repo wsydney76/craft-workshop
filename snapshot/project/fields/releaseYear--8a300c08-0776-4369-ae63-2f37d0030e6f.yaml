@@ -1,0 +1,17 @@
+contentColumnType: integer(10)
+fieldGroup: e12a7084-ddcc-406f-bc60-d1429777d8e0
+handle: releaseYear
+instructions: ''
+name: 'Release Year'
+searchable: true
+settings:
+  decimals: 0
+  defaultValue: null
+  max: null
+  min: '0'
+  prefix: ''
+  size: null
+  suffix: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Number

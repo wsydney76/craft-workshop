@@ -1,0 +1,9 @@
+siteUid: null
+sortOrder: 3
+template: _ajax/screening_details.twig
+uriParts:
+  - ajax/screening/
+  -
+    - number
+    - \d+
+uriPattern: 'ajax/screening/<number:\d+>'

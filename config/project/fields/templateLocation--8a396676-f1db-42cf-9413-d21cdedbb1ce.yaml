@@ -1,0 +1,34 @@
+contentColumnType: string
+fieldGroup: bfbbca66-d647-4a48-8e1f-e4e603824d36
+handle: templateLocation
+instructions: 'If no content is entered, select the location of the template to be loaded.'
+name: 'Template Location'
+searchable: true
+settings:
+  optgroups: true
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Plugin. Select if you want to use a template delivered with the plugin'
+        -
+          - value
+          - plugin
+        -
+          - default
+          - 1
+    -
+      __assoc__:
+        -
+          - label
+          - 'Site. Select if you provide your own template in templates/_guide'
+        -
+          - value
+          - site
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

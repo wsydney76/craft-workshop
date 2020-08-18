@@ -1,0 +1,91 @@
+{% extends 'buy/_layout/main.twig' %}
+
+
+{% set number = craft.app.request.param('number') %}
+{% set order = craft.orders.number(number).one() %}
+
+{% if not order or order.isCompleted == false %}
+    {% redirect 'buy/add' %}
+{% endif %}
+
+{% set item = order.lineItems|first %}
+
+{% if not item.isDonation %}
+    {% set variant = item.purchasable %}
+    {% set product = variant.product %}
+{% endif %}
+
+{% block title %}
+    {% if item.isDonation %}
+        {{ "Thank you for your donation"|t }}!
+    {% else %}
+        {{ "Thank you for your order"|t }}!
+    {% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+    <div>
+
+
+        <div class="mt-3">
+            {{ "Reference"|t }}:
+            {% if 1 ==2 and currentUser %}
+                <a href="{{ url('members/order',{number:order.number}) }}">{{ order.reference }}</a>
+            {% else %}
+                {{ order.reference }}
+            {% endif %}
+
+        </div>
+        {% if product is defined %}
+            <h4 class="mt-3">
+                {{ item.qty }} x {{ product.title }}
+                {% if variant.product.type.hasVariants %}
+                    <br/>{{ item.description }}
+                {% endif %}
+            </h4>
+            {% if product.deliveryPeriod %}
+                <div class="my-2">
+                    {{ "Approx. Delivery Period: Within"|t }} {{ product.deliveryPeriod }} {{ "days"|t }}
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <div class="mt-3">
+            {{ "We have charged your card"|t }} <span
+                    class="text-blue">{{ order.totalPrice|commerceCurrency(order.currency) }}</span>.
+        </div>
+        {% if order.body %}
+            <div class="mt-3">
+                {{ "Remarks"|t }}:<br/>
+                {{ order.body }}
+            </div>
+        {% endif %}
+        <div class="mt-3">
+            {{ "Please check your email for your receipt"|t }},
+
+            {{ "or download it here"|t }}:<br/><br/>
+            <a class="btn btn-shop mb-3" href="{{ order.getPdfUrl('receipt') }}">Download</a>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block secondaryContentTitle %}
+
+    {% include 'buy/_includes/lineitem_title.twig' %}
+
+{% endblock %}
+
+{% block secondaryContentContent %}
+
+    {% include "buy/_custom/sidebar_details.twig" %}
+
+    {% include 'buy/_custom/sidebar_confirmation.twig' %}
+{% endblock %}
+
+
+
+

@@ -1,0 +1,29 @@
+fieldLayouts:
+  1ea20c33-5bd5-437e-85c1-92762d9e5c73:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 9a302fae-a3bf-4298-8a06-24f8c8f6f335
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 3ef62a7b-6c6d-470f-88a6-31de5a099b38
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 58b2e318-26cc-47b8-bee2-81369731d72f
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Content
+        sortOrder: 1
+handle: suggestion
+hasTitleField: true
+name: Suggestion
+section: f7afc358-7bb5-4136-b374-734abc31ab88
+sortOrder: 1
+titleFormat: '{section.name|raw}'

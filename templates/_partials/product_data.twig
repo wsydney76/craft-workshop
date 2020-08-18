@@ -1,0 +1,60 @@
+{% embed '_layouts/embeds/photo_left_widget.twig' with {product:product, image:product.productPhoto.one} only %}
+    {% block imageEnd %}
+        {% for image in product.productGallery.all %}
+            {% set titleAttr = image.title|e('html_attr') %}
+
+            {% set aAttr = {
+                data: {
+                    fancybox: "gallery",
+                    caption: titleAttr
+                },
+                href: image.url({height:800})
+            } %}
+
+            {% set imgAttr = {
+                class: ['img-fluid', 'mb-1'],
+                src: image.url({width:80, height:80}),
+                loading: 'lazy',
+                alt: titleAttr
+            } %}
+
+            <a {{ attr(aAttr) }}><img {{ attr(imgAttr) }}></a>
+        {% endfor %}
+    {% endblock %}
+
+    {% block content %}
+        {% from '_macros/lib.twig' import orderButton %}
+        <ul class="mb-3 list-unstyled">
+            {% for feature in product.features %}
+                <li>
+                    {{ feature.feature }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if product.type.hasVariants %}
+            <ul class="list-unstyled">
+                {% for variant in product.variants %}
+                    <li>
+                        <b>{{ variant.title }}</b><br/>
+                        {{ "Price"|t }} {{ variant.price|commerceCurrency('EUR') }}
+                    </li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+            {% set variant = product.defaultVariant %}
+            {{ "Price"|t }}: {{ variant.price|commerceCurrency('EUR') }}<br/>
+
+            {{ "SKU"|t }}: {{ variant.sku }}
+
+            {% include '_partials/producttypes/' ~ product.type.handle ignore missing %}
+        {% endif %}
+
+
+        <div class="my-3">
+            {{ orderButton(product.defaultVariant) }}
+        </div>
+
+    {% endblock %}
+{% endembed %}

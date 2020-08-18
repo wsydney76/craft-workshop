@@ -1,0 +1,9 @@
+{% set targets = query|all %}
+{% if targets %}
+    <div id="title-buttons" class="mb-3">
+        {% for entry in targets %}
+            <a href="{{ entry.url }}" class="btn btn-outline-light font-weight-bold">{{ entry.title }}</a>
+        {% endfor %}
+    </div>
+{% endif %}
+

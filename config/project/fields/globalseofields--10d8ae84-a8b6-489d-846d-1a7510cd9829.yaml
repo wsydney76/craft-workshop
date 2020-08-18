@@ -1,0 +1,14 @@
+contentColumnType: string
+fieldGroup: b61bea97-e4d4-4de2-9149-15f74906945a
+handle: globalseofields
+instructions: ''
+name: 'Global Seo Fields'
+searchable: true
+settings:
+  contentTable: '{{%matrixcontent_globalseofields}}'
+  maxBlocks: 1
+  minBlocks: 1
+  propagationMethod: all
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

@@ -1,0 +1,192 @@
+descriptionFormat: ''
+handle: clothing
+hasDimensions: true
+hasProductTitleField: true
+hasVariantTitleField: true
+hasVariants: true
+name: Clothing
+productFieldLayouts:
+  409dc136-6a76-435d-a254-6dcceca4b3ed:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            autofocus: false
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: Title
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            required: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\commerce\fieldlayoutelements\ProductTitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: 733c90d7-6283-4c57-9f56-21f70bacbe2a
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 25
+          -
+            fieldUid: 8806888b-24d6-40de-a509-eb770d0ec115
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 25
+          -
+            fieldUid: 9ae09fa5-df69-475c-8c87-025e82fd362e
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 27842f40-0b6f-4029-bcc6-e8cb8545568f
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 25
+          -
+            fieldUid: 2b23c1a9-fd4e-457d-aaf4-16bd8debe477
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 75
+        name: Product
+        sortOrder: 1
+      -
+        elements:
+          -
+            fieldUid: 3ef62a7b-6c6d-470f-88a6-31de5a099b38
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 58b2e318-26cc-47b8-bee2-81369731d72f
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 200c21e3-ba8a-4d9e-a2ea-f41b9d624035
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 25
+          -
+            fieldUid: 632afe47-0a25-4dd9-8662-79a2b9419568
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 25
+          -
+            fieldUid: c4c61114-2575-4bd3-a3a1-c21040871f1e
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 25
+        name: Content
+        sortOrder: 2
+      -
+        elements:
+          -
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\commerce\fieldlayoutelements\VariantsField
+            warning: null
+        name: Variants
+        sortOrder: 3
+productTitleFormat: ''
+siteSettings:
+  7e9d0ac6-02db-42c5-bfe5-2268b447b682:
+    hasUrls: true
+    template: _sections/product
+    uriFormat: 'product/{slug}'
+  97e0b749-86e3-49f1-918e-9b88758928f4:
+    hasUrls: true
+    template: _sections/product
+    uriFormat: 'product/{slug}'
+  bbbb120d-5d71-4e7c-a164-487e401c4f2c:
+    hasUrls: true
+    template: _sections/product
+    uriFormat: 'produkt/{slug}'
+skuFormat: 'PR-{{ seq(''physicalProduct'', 4) }}'
+titleFormat: '{product.title}'
+variantFieldLayouts:
+  9321a8e9-9960-4a15-b3f3-8e9be63feda2:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            autofocus: false
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            required: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\commerce\fieldlayoutelements\VariantTitleField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1

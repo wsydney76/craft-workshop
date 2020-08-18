@@ -1,0 +1,37 @@
+{% import '_includes/forms.html' as forms %}
+
+{% set from = craft.entries.section('screening').site('*').min('field_showtime') %}
+{% set to = craft.entries.section('screening').site('*').max('field_showtime') %}
+
+
+<h1>{{ 'Add Days to Screening Showtime' }}</h1>
+
+<p>{{ 'The specified number of days will be added to screenings showtime'|t }}</p>
+
+<p>
+    {{ 'Current dates'|t }}: {{ from|date }} - {{ to|date }}
+</p>
+
+{{ '<form action="" method="post">' }}
+
+{{ csrfInput() }}
+{{ actionInput('main/content/add-days-to-showtime') }}
+
+<div style="width:250px;margin:30px 0px">
+    {{ forms.textField({
+        label: 'Number of days to add'|t('main'),
+        name: 'days',
+        type: 'number',
+        min: -180,
+        max: 180,
+        value: days,
+        required: true,
+        instructions: 'Negative numbers are allowed',
+        errors: craft.app.request.isPost ? ['Invalid value'|t('main')] : []
+    }) }}
+</div>
+
+<input class="btn submit" type="submit" value="{{ 'Submit'|t('main') }}">
+
+{{ '</form>' }}
+

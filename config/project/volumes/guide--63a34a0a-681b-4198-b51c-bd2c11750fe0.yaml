@@ -1,0 +1,8 @@
+handle: guide
+hasUrls: true
+name: Guide
+settings:
+  path: '@webroot/guide'
+sortOrder: 3
+type: craft\volumes\Local
+url: '@web/guide'

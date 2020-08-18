@@ -1,0 +1,6 @@
+{% set section = query.one %}
+{% if section %}
+    {% include '_partials/entries_list.twig'
+        with {heading: section.title, query: section.films.orderBy('title')} %}
+{% endif %}
+

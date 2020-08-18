@@ -1,0 +1,70 @@
+field: e050668a-466a-4345-b593-2f510d7d847a
+fieldLayouts:
+  717626c3-14fc-4274-8047-5a5388ce1ba4:
+    tabs:
+      -
+        fields:
+          58d44f90-505f-4d65-91f6-f1095a44ff20:
+            required: true
+            sortOrder: 1
+          70ab7eae-ed14-4c84-bd31-9c4293890523:
+            required: false
+            sortOrder: 2
+        name: Content
+        sortOrder: 1
+fields:
+  58d44f90-505f-4d65-91f6-f1095a44ff20:
+    contentColumnType: string
+    fieldGroup: null
+    handle: text
+    instructions: ''
+    name: Text
+    searchable: true
+    settings:
+      charLimit: '100'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  70ab7eae-ed14-4c84-bd31-9c4293890523:
+    contentColumnType: string
+    fieldGroup: null
+    handle: tag
+    instructions: ''
+    name: Tag
+    searchable: true
+    settings:
+      optgroups: true
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - H2
+            -
+              - value
+              - h2
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - H3
+            -
+              - value
+              - h3
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Dropdown
+handle: heading
+name: Überschrift
+sortOrder: 1

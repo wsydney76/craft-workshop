@@ -1,0 +1,13 @@
+{% set image = film.featuredImage.one %}
+        {% if image %}
+            <a href="{{ film.url }}">
+                <img class="img-fluid img-scale my-3" src="{{ image.getUrl({width:360, height:120}) }}"
+                     alt="{{ image.title|e('html_attr') }}">
+            </a>
+        {% endif %}
+
+<h2>{{ film.link }}</h2>
+
+<div class="my-3">{{ film.shortDescription }}</div>
+
+<div class="my-2 border-left border-primary pl-3">{{ film.teaser }}</div>

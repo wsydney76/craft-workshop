@@ -1,0 +1,134 @@
+{% import '_includes/forms.html' as forms %}
+
+{% set i = 0 %}
+<div class="backgroundImage">
+    {% if mode == 'image' %}
+
+
+        <div class="field-group">
+            <h4>{{ 'Set Image'|t }}</h4>
+
+            {% if field.hasBlockImage %}
+                <div class="field" style="width:150px">
+                    {% set i = i + 1 %}
+                    {{ forms.lightswitchField({
+                        label: i ~ '. ' ~ 'Use Block Image, if any'|t,
+                        id:'useBlockImage',
+                        name: field.handle ~ '[useBlockImage]',
+                        on: value.useBlockImage
+                    }) }}
+                </div>
+            {% else %}
+                {{ forms.hidden({
+                    name: field.handle ~ '[useBlockImage]',
+                    value: 0
+                }) }}
+            {% endif %}
+
+            <div class="field">
+                {% set i = i + 1 %}
+                {{ forms.elementSelectField({
+                    label: i ~ '. ' ~  'Use Featured Image from'|t,
+                    id:'bgEntrySelect',
+                    name: field.handle ~ '[entryId]',
+                    elementType:'craft\\elements\\Entry',
+                    limit:1,
+                    sources: entrySources,
+                    elements: value.entryId ? [craft.entries.anyStatus().id(value.entryId).one] : []
+                }) }}
+            </div>
+            <div class="field">
+                {% set i = i + 1 %}
+                {{ forms.elementSelectField({
+                    label: i ~ '. ' ~ 'Background Image'|t,
+                    id:'bgAssetSelect',
+                    name: field.handle ~ '[assetId]',
+                    elementType:'craft\\elements\\Asset',
+                    sources: assetSources,
+                    criteria: {kind:'image'},
+                    limit:1,
+                    viewMode: 'large',
+                    elements: value.assetId ? [craft.assets.anyStatus().id(value.assetId).one] : []
+                }) }}
+            </div>
+
+        </div>
+
+    {% endif %}
+    <div class="field-group">
+        <h4>{{ 'Set Overlay'|t }}</h4>
+        <div class="field">
+            {{ forms.colorField({
+                label: 'Overlay Color'|t,
+                name: field.handle ~ '[overlayColor]',
+                value: value.overlayColor,
+                errors:value.errors['overlayColor'] ?? []
+            }) }}
+        </div>
+
+        <div class="field">
+            {{ forms.textField({
+                label: 'Overlay Transparency'|t,
+                name: field.handle ~ '[overlayTransparency]',
+                type: 'number',
+                min: 0,
+                max: 100,
+                tip: 'lower number means higher transparency',
+                value: value.overlayTransparency,
+                errors: value.errors['overlayTransparency'] ?? []
+            }) }}
+        </div>
+
+        <div class="field">
+            {{ forms.selectField({
+                label: 'Is Dark Overlay?'|t,
+                name: field.handle ~ '[overlayIsDark]',
+                value: value.overlayIsDark,
+                options: [
+                    {label:'auto by Overlay Color', value:'auto'},
+                    {label:'dark', value:'dark'},
+                    {label:'light', value:'light'},
+                ],
+                tip: 'Dark overlay will change text color to white'|t
+            }) }}
+        </div>
+    </div>
+    <div class="field-group">
+        <h4>{{ 'Set Gradient'|t }}</h4>
+        {{ forms.lightswitchField({
+            label: 'Use Gradient'|t,
+            id:'useGradient',
+            name: field.handle ~ '[useGradient]',
+            on: value.useGradient
+        }) }}
+
+        <div class="field">
+            {{ forms.selectField({
+                label: 'Gradient Direction',
+                name: field.handle ~ '[gradientDirection]',
+                value: value.gradientDirection,
+                options: [
+                    {label:'To Right'|t, value:'to right'},
+                    {label:'To Left'|t, value:'to left'},
+                    {label:'To Bottom'|t, value:'to bottom'},
+                    {label:'To Top'|t, value:'to top'},
+                    {label:'To Top Left'|t, value:'to top left'},
+                    {label:'To Top Right'|t, value:'to top right'},
+                    {label:'To Bottom Left'|t, value:'to Bottom left'},
+                    {label:'To Bottom Right'|t, value:'to bottom right'},
+                ]
+            }) }}
+        </div>
+
+        <div class="field">
+            {{ forms.colorField({
+                label: 'Gradient Color'|t,
+                name: field.handle ~ '[gradientColor]',
+                value: value.gradientColor,
+                errors:value.errors['gradientColor'] ?? []
+            }) }}
+        </div>
+    </div>
+</div>
+
+

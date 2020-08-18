@@ -1,0 +1,42 @@
+{% from '_macros/lib.twig' import orderButton %}
+<div class="card mb-3 mr-3" style="width:320px">
+    {% set image = product.productFeaturedImage.one %}
+
+    {% if image %}
+        <a href="{{ product.url }}">
+            <img class="img-fluid img-scale" src="{{ image.url('galleryImage') }}"
+                 alt="{{ image.title|e('html_attr') }}">
+        </a>
+    {% endif %}
+
+    <div class="card-body">
+        <h5 class="card-title">{{ product.link }}</h5>
+        <div class="card-text">
+            {{ product.teaser }}
+
+            {% if product.type.hasVariants %}
+                <ul class="list-unstyled">
+                    {% for variant in product.variants %}
+                        <li>
+                            <b>{{ variant.title }}</b>
+                            {{ variant.salePrice|commerceCurrency('EUR') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            {% else %}
+                {% set variant = product.defaultVariant %}
+                <div class="my-2">
+                    {{ variant.salePrice|commerceCurrency('EUR') }}<br/>
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+    <div class="card-footer bg-white">
+        {{ orderButton(product.defaultVariant) }}
+    </div>
+</div>

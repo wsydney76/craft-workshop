@@ -1,0 +1,37 @@
+{% macro table(suggestions) %}
+    {% if suggestions|length %}
+        <table class="data fullwidth">
+            {% for suggestion in suggestions %}
+                <tr>
+                    <td>
+                        <a href="{{ cpUrl("suggestions/#{suggestion.id}") }}">{{ suggestion.title }}</a>
+                        <span class="light">
+                            {{ suggestion.suggestedAt|timestamp('short') }}
+                            {{ suggestion.name }}
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No Suggestions exist.</p>
+    {% endif %}
+{% endmacro %}
+
+
+<div>
+    <h3>{{'Open'|t('suggestions')}}</h3>
+
+    {{ _self.table(openSuggestions) }}
+
+    <h3 class="suggestion-heading">{{ 'My Work'|t('suggestions') }}</h3>
+
+    {{ _self.table(mySuggestions) }}
+
+</div>
+
+{% css %}
+.suggestion-heading {
+    margin-top: 16px !important;
+}
+{% endcss %}

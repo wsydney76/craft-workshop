@@ -1,0 +1,9 @@
+{% set image = block.image.one %}
+{% if image %}
+
+    <amp-img src="{{ image.url({width:683, height: 385}) }}" width="683" height="385" layout="responsive"
+             alt="{{ image.title }}"
+             class="mb4 mx3"></amp-img>
+
+{% endif %}
+

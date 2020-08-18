@@ -1,0 +1,49 @@
+fieldLayouts:
+  a703c7d2-bd87-4a2e-a816-1c4a4e701a30:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: ca77e2dd-cb9a-499f-9098-a42feb7bf6f9
+            required: true
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 2af9b0f0-a20c-48ac-8b73-4276117ebb3c
+            required: true
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: c9da9e84-6e7a-410c-8eac-88388148e0a8
+            required: true
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: d5a50234-643a-4134-8f70-7c41ba50fa5b
+            required: true
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 5d2355fd-4b3e-43e0-9c4b-a447abdef262
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 2daffb5f-ed32-45ac-9083-ab8c31024cd1
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Screening
+        sortOrder: 1
+      -
+        elements:
+          -
+            fieldUid: 3fa918cb-d6f5-4f89-ae90-5058014977d3
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Import
+        sortOrder: 2
+handle: screening
+hasTitleField: false
+name: Screening
+section: 1c5c7f40-38b0-4589-9cbe-124a3836d4a5
+sortOrder: 1
+titleFormat: '{location.one?location.one.title} {film.one?film.one.title} {showtime?showtime|date(''Y-m-d G:i'')}'

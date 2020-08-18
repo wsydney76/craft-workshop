@@ -1,0 +1,119 @@
+{% macro textField(config) %}
+    {% set name  = config.name %}
+    {% set label = config.label %}
+    {% set object = config.object %}
+    {% set attribute = config.attribute ?? name %}
+    {% set required = config.required ?? false %}
+    {% set disabled = config.disabled ?? false %}
+    {% set type = config.type ?? 'text' %}
+    {% set class = config.class ?? '' %}
+
+
+    <div class="form-group {{ class }}">
+        <label for="input-{{ name }}">{{ label }} {{ required ? '<span class="text-danger">*</span>' }}</label>
+        <input class="form-control"
+               id="input-{{ attribute }}"
+               type="{{ type }}"
+               name="{{ name }}"
+                {{ required ? 'required' }}
+                {{ disabled ? 'disabled' }}
+               value="{{ type == 'password' ? '' : object[attribute] }}">
+
+        {% if disabled %}
+            <input type="hidden" name="{{ name }}" value="{{ object[attribute] }}">
+        {% endif %}
+
+        {{ _self.errorList(object.getErrors(attribute)) }}
+    </div>
+{% endmacro %}
+
+
+{% macro textAreaField(config) %}
+    {% set name  = config.name %}
+    {% set label = config.label %}
+    {% set object = config.object %}
+    {% set attribute = config.attribute ?? name %}
+    {% set required = config.required ?? false %}
+    {% set type = config.type ?? false %}
+    {% set class = config.class ?? '' %}
+
+    <div class="form-group {{ class }}">
+        <label for="input-{{ name }}">{{ label }} {{ required ? '<span class="text-danger">*</span>' }}</label>
+        <textarea class="form-control"
+                  id="input-{{ attribute }}"
+                  name="{{ name }}"
+                  rows="5"
+                {{ required ? 'required' }}>{{ object[attribute] }}</textarea>
+
+        {{ _self.errorList(object.getErrors(attribute)) }}
+    </div>
+{% endmacro %}
+
+{% macro selectField(config) %}
+    {% set name  = config.name %}
+    {% set label = config.label %}
+    {% set object = config.object %}
+    {% set attribute = config.attribute ?? name %}
+    {% set required = config.required ?? false %}
+    {% set options = config.options %}
+    {% set type = config.type ?? false %}
+    {% set class = config.class ?? '' %}
+
+    <div class="form-group {{ class }}">
+        <label for="input-{{ name }}">{{ label }} {{ required ? '<span class="text-danger">*</span>' }}</label>
+        <select class="form-control"
+                name="{{ name }}"
+                id="input-{{ attribute }}">
+            {% for option in options %}
+                <option value="{{ option.value }}" {{ option.value == object[attribute] ? 'selected' }}>{{ option.label }}</option>
+            {% endfor %}
+        </select>
+
+        {{ _self.errorList(object.getErrors(attribute)) }}
+    </div>
+{% endmacro %}
+
+{% macro singleCheckbox(config) %}
+    {% set name  = config.name %}
+    {% set label = config.label %}
+    {% set object = config.object ?? null %}
+    {% set attribute = config.attribute ?? name %}
+    {% set value = config.value ?? 1 %}
+    {% set checked = config.checked ?? (object ? object[attribute])  %}
+
+
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input"
+                   id="input-{{ name }}"
+                   type="checkbox"
+                   name="{{ name }}"
+                    {{ checked ? 'checked' }}
+                   value="{{ value }}">
+            <label for="input-{{ attribute }}" class="form-check-label">{{ label }}</label>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro hiddenField(config) %}
+    {% set name = config.name %}
+    {% set value = config.value %}
+    <input type="hidden" name="{{ name }}" value="{{ value }}">
+{% endmacro %}
+
+
+
+{% macro submit(caption) %}
+    <button type="submit" class="btn btn-primary">{{ caption }}</button>
+{% endmacro %}
+
+
+{% macro errorList(errors) %}
+    {% if errors %}
+        <ul class="text-danger list-unstyled">
+            {% for error in errors %}
+                <li>{{ error|t }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}

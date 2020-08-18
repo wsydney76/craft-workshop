@@ -1,0 +1,40 @@
+{% if facets is defined %}
+    <h4>Suche verfeinern</h4>
+
+    {{ _self.displayFacets(entry, facets, 'Type'|t, 'type', 'type', q, fq) }}
+
+    {{ _self.displayFacets(entry, facets, 'Acting'|t, 'acting_exact', 'acting', q, fq) }}
+
+    {{ _self.displayFacets(entry, facets, 'Roles'|t, 'role_exact', 'role', q, fq) }}
+
+    {{ _self.displayFacets(entry, facets, 'Genre'|t, 'genre_exact', 'genre', q, fq) }}
+
+    {{ _self.displayFacets(entry, facets, 'Produced'|t, 'country_exact', 'country', q, fq) }}
+
+    {{ _self.displayFacets(entry, facets, 'Release Year'|t, 'releaseyear', 'releaseyear', q, fq) }}
+
+    {{ _self.displayFacets(entry, facets, 'Section'|t, 'sectiontitle_exact', 'sectiontitle', q, fq) }}
+{% endif %}
+
+{% macro displayFacets(entry, facets, heading, field, fqParam, q, fq) %}
+    {% if facets[field] is defined and facets[field] %}
+        <hr>
+        {{ heading }}:<br>
+        {% for facet in facets[field] if facet.name %}
+            <a style="font-size: {{ _self.getFontSize(facet.count) }}"
+               href="{{ url(entry.url, {q: q, fq: fq ~ " AND " ~ fqParam ~ ':"' ~ facet.name ~ '"'}) }}">
+                {{ facet.name|t|replace({' ':'&nbsp;'})|raw }}&nbsp;({{ facet.count }})
+            </a>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+
+{% macro getFontSize(count) %}
+    {% if count > 1 %}
+        {% set count = count + 2 %}
+    {% endif %}
+    {% set s = 14 + count %}
+    {{ min(s, 24) }}px
+{% endmacro %}
+

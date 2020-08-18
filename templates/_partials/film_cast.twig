@@ -1,0 +1,37 @@
+{% set roles = query
+    .with([
+    ['role:persons', {site:'*', unique: true}]
+])
+    .all %}
+
+{% do craft.app.requestData.set('cast', roles) %}
+
+
+{% set additionalCast = additionalCast ?? null %}
+
+{% if roles or additionalCast %}
+
+    {% embed '_layouts/embeds/widget.twig' with {heading:'Cast'|t, boxed:boxed??true} %}
+        {% block content %}
+            {% for role in roles %}
+                <div class="my-2">
+                    <div class="font-weight-bold">
+                        {% for person in role.persons %}
+                            {{ person.link }}{{ not loop.last ? ', ' }}
+                        {% endfor %}
+                    </div>
+                    {{ role.roleName }}
+                </div>
+            {% endfor %}
+            {% if additionalCast %}
+                <div class="mt-3 mb-2">
+                    {% for row in additionalCast %}
+                        {{ row.name -}}
+                        {{ not loop.last ? ', ' }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+
+{% endif %}

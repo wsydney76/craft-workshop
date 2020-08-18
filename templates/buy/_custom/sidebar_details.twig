@@ -1,0 +1,21 @@
+{% if product is defined %}
+    {% include "buy/_custom/sidebar_#{product.type}" ignore missing %}
+    
+    {% set image = product.productFeaturedImage.one() %}
+    {% if image %}
+        <img class="mt-3 img-fluid" src="{{ image.url({width:350,height:150}) }}"/>
+    {% endif %}
+    {% set features = product.features %}
+    {% if features %}
+        <div class="my-3">
+            {% for row in features %}
+                <div class="d-flex">
+                    {% include 'buy/_components/checkboxicon.html' %}
+                    <div>{{ row.feature }}</div>
+                </div>
+            {% endfor %}
+        </div> <!-- end list-items -->
+    
+    {% endif %}
+    
+{% endif %}

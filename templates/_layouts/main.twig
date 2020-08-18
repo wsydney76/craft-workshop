@@ -1,0 +1,155 @@
+{% extends "_layouts/base.twig" %}
+{% from '_macros/lib.twig' import blitzCache %}
+
+{% set global_cols = global_cols ?? {left:8, right:4} %}
+
+{% block body %}
+
+    {% block nav %}
+        {{ blitzCache(false) }}
+        {% include '_layouts/partials/nav.twig' %}
+        {{ blitzCache(true) }}
+    {% endblock nav %}
+
+    <div id="canvas">
+        {% block canvas %}
+
+            <div id="header">
+                {% block header %}
+
+                    <div id="featured1">
+                        {% block featured1 %}{% endblock %}
+                    </div>
+
+                    <div id="title">
+                        {% block title %}
+                            <header>
+                                <div id="title-container" class="container">
+                                    {% block titleContainer %}
+                                        <div class="pt-4 pb-3">
+                                            <div id="title-top">{% block titleTop %}{% endblock %}</div>
+                                            <h1 id="title-text" class="display-4">
+                                                {% block titleText %}{{ global_title }}{% endblock %}
+                                            </h1>
+                                            <div id="title-bottom">{% block titleBottom %}{% endblock %}</div>
+                                        </div>
+                                    {% endblock titleContainer %}
+                                </div>
+                            </header>
+                        {% endblock title %}
+                    </div>
+
+
+                    <div id="featured2">
+                        {% block featured2 %}{% endblock %}
+                    </div>
+                {% endblock header %}
+            </div>
+
+
+            <article id="content-wrapper">
+                {% block contentWrapper %}
+
+                    <div id="content-container" class="container py-5">
+                        {% block contentContainer %}
+
+                            <div id="container-top">
+                                {% block containerTop %}{% endblock %}
+                            </div>
+
+                            <div id="content-area">
+                                {% block contentArea %}
+                                    <div id="main-row" class="row">
+
+                                        <div id="content-primary-area" class="col-lg-{{ global_cols.left }}">
+                                            {% block contentPrimaryArea %}
+                                                <div id="content-top">
+                                                    {% block contentTop %}{% endblock %}
+                                                </div>
+
+                                                <div id="content">
+                                                    {% block content %}{% endblock %}
+                                                </div>
+
+                                                <div id="content-bottom">
+                                                    {% block contentBottom %}{% endblock %}
+                                                </div>
+
+                                                <div id="content-nav">
+                                                    {% block contentNav %}
+                                                        {% if global_navCondition is defined %}
+                                                            {% include '_layouts/partials/entry_nav.twig'
+                                                                with {condition:global_navCondition} %}
+                                                        {% endif %}
+                                                    {% endblock %}
+                                                </div>
+
+                                            {% endblock contentPrimaryArea %}
+                                        </div>
+
+
+                                        <div id="content-secondary-area" class="col-lg-{{ global_cols.right }}">
+                                            {% block contentSecondaryArea %}
+                                                <div id="secondary-content-top">
+                                                    {% block secondaryContentTop %}{% endblock %}
+                                                </div>
+                                                <aside id="secondary-content">
+                                                    {% block secondaryContent %}{% endblock %}
+                                                </aside>
+                                                <div id="secondary-content-bottom">
+                                                    {% block secondaryContentBottom %}{% endblock %}
+                                                </div>
+
+                                            {% endblock contentSecondaryArea %}
+                                        </div>
+
+                                    </div>
+                                {% endblock contentArea %}
+                            </div>
+
+                            <div id="container-bottom">
+                                {% block containerBottom %}{% endblock %}
+                            </div>
+
+                        {% endblock contentContainer %}
+
+                    </div>
+
+                {% endblock contentWrapper %}
+            </article>
+        {% endblock canvas %}
+    </div>
+
+    <div id="footer">
+        {% block footer %}
+            {{ blitzCache(false) }}
+            <footer class="border-top border-bottom py-3">
+                <div class="mx-5">
+                    <div class="row">
+                        <div id="footer1" class="col-md-5 px-2 pt-2 text-md-left">
+                            {% block footer1 %}
+                                &copy; {{ now|date('Y') }} {{ global_siteName }}
+                            {% endblock %}
+                        </div>
+
+                        <div id="footer2" class="col-md-2 px-2 pt-2  text-md-center">
+                            {% block footer2 %}
+                                {% if entry is defined and entry.isEditable %}
+                                    <a href="{{ entry.cpEditUrl }}" target="_blank">Edit</a>
+                                {% endif %}
+                            {% endblock %}
+                        </div>
+
+                        <div id="footer3" class="col-md-5 text-md-right">
+                            {% block footer3 %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            {{ blitzCache(true) }}
+        {% endblock footer %}
+    </div>
+
+    {% block endBody %}{% endblock %}
+
+{% endblock body %}

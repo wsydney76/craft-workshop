@@ -1,0 +1,21 @@
+fieldLayouts:
+  9d6dda23-4357-4a71-b50d-35457bf2af18:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 3f6a86f6-7327-4d39-a99b-21ddcb4cc0a9
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Layout
+        sortOrder: 1
+handle: reusableBackgroundColor
+hasTitleField: true
+name: 'Reusable Background Color'
+section: 69f24ac1-fc43-498a-a08f-5ef30be4111d
+sortOrder: 1
+titleFormat: ''

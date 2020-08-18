@@ -1,0 +1,129 @@
+field: 58b2e318-26cc-47b8-bee2-81369731d72f
+fieldLayouts:
+  d58ed905-6b80-436a-afd6-cb9fe0e80c5d:
+    tabs:
+      -
+        fields:
+          15791f58-bc09-470b-91eb-82a744148be8:
+            required: true
+            sortOrder: 2
+          1b5715da-6a87-4e48-86c6-7ec89429db54:
+            required: false
+            sortOrder: 1
+          c64b5b5f-3b4f-40d5-b3f7-b0642ea2c285:
+            required: true
+            sortOrder: 3
+        name: Content
+        sortOrder: 1
+fields:
+  15791f58-bc09-470b-91eb-82a744148be8:
+    contentColumnType: string
+    fieldGroup: null
+    handle: target
+    instructions: 'Button will show up, if this is a published entry'
+    name: Target
+    searchable: false
+    settings:
+      limit: '1'
+      localizeRelations: ''
+      selectionLabel: 'Select an entry'
+      source: null
+      sources:
+        - 'section:ae5b96d9-d2e0-43b6-b555-0c6135de8639'
+        - 'section:27cfda43-5654-4af4-802c-342c5111966f'
+        - 'section:c504627b-6f45-47cd-822a-8e36420f203d'
+        - singles
+      targetSiteId: null
+      validateRelatedElements: ''
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Entries
+  1b5715da-6a87-4e48-86c6-7ec89429db54:
+    contentColumnType: string
+    fieldGroup: null
+    handle: caption
+    instructions: 'Leave blank to show the title of the selected entry.'
+    name: Caption
+    searchable: true
+    settings:
+      charLimit: '40'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  c64b5b5f-3b4f-40d5-b3f7-b0642ea2c285:
+    contentColumnType: string
+    fieldGroup: null
+    handle: color
+    instructions: 'Be cautious. Do not overuse colors.'
+    name: Color
+    searchable: false
+    settings:
+      optgroups: true
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - Primary
+            -
+              - value
+              - primary
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - Secondary
+            -
+              - value
+              - secondary
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - Dark
+            -
+              - value
+              - dark
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - Light
+            -
+              - value
+              - light
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - Custom
+            -
+              - value
+              - custom
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Dropdown
+handle: button
+name: Button
+sortOrder: 5

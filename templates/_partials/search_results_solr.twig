@@ -1,0 +1,56 @@
+<div class="mb-3">
+    {{ results.recordcount }} Treffer für die Suche nach "{{ q }}" in {{ results.time }} msec.
+    {% if fq|default('') %}
+        Filter: {{ fq }}
+    {% endif %}
+</div>
+
+<div class="mb-3">
+    {% for doc in results.docs if doc.type == 'actress' %}
+        {% set image = craft.assets.filename(doc.imagefile).one %}
+        {% if image %}
+            <a href="{{ url('actions/search-module/search/redirect', {id:doc.id, type:doc.type}) }}">
+                <img class="img-fluid" title="{{ doc.name }}" src="{{ image.url('thumb') }}"
+                     alt="{{ image.title|e('html_attr') }}">
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<table class="table table-striped">
+    {% for doc in results.docs if doc.url is defined%}
+        <tr>
+            <td>
+                {{ doc.type|capitalize|t }}
+            </td>
+            <td>
+                <a href="{{ doc.url }}">
+                    {% if doc.type == 'film' and doc.sectiontitle %}
+                        {{ doc.sectiontitle }}:
+                    {% endif %}
+                    {{ doc.name ?? doc.title }}
+                </a>
+                <div class="mt-2">
+                    {% for key, highlights in doc.highlighting %}
+                        {% for highlight in highlights if key != 'title' %}
+                            <div class="mt-2">
+                                {{ highlight|raw }} {# ({{ key|capitalize }}) #}
+                            </div>
+                        {% endfor %}
+
+                    {% endfor %}
+                </div>
+            </td>
+            <td>
+                {% if doc.type == 'film' %}
+                    {{ doc.releaseyear }}
+                {% endif %}
+            </td>
+            <td>
+                {{ doc.score|number }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+

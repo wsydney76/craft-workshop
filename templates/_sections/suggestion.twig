@@ -1,0 +1,17 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+
+    {% include '_partials/blocks.twig'
+        with {query: entry.bodyContent } only %}
+
+    {% include '_partials/suggestion_form.twig' %}
+
+{% endblock %}
+
+{% block secondaryContent %}
+    {% if currentUser %}
+        {% include '_partials/suggestions_list.twig' 
+            with {query: craft.suggestions.email(currentUser.email)} only %}
+    {% endif %}
+{% endblock %}

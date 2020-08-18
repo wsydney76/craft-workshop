@@ -1,0 +1,9 @@
+{% extends "_layout.twig" %}
+{% set global_featuredImage = siteInfo.defaultFeaturedImage.one %}
+{% block content %}
+
+    {% include 'kids/_partials/entry_gallery.twig'
+        with {query: craft.entries.section('film').orderBy('title') } %}
+
+{% endblock %}
+

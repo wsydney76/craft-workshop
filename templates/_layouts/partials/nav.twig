@@ -1,0 +1,24 @@
+{% import '_macros/lib.twig' as nav %}
+<nav id="primary-nav" class="navbar navbar-expand-xl navbar-light bg-white sticky-top px-xl-5">
+
+    <a class="navbar-brand font-weight-bold" href="{{ url('') }}">{{ siteInfo.siteName }}</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% cache globally %}
+            <ul class="navbar-nav mr-auto">
+                {% include '_partials/primary_nav.twig' ignore missing %}
+            </ul>
+        {% endcache %}
+        <div id="language-switcher" class="navbar-nav pr-2">
+            {% include '_partials/languageswitcher.twig' %}
+        </div>
+        {% include '_layouts/partials/search_form.twig' %}
+    </div>
+
+</nav>
+

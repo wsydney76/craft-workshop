@@ -1,0 +1,29 @@
+fieldLayouts:
+  7fe6c79c-3ee4-4a39-b8f0-6125b64d6c71:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 9a302fae-a3bf-4298-8a06-24f8c8f6f335
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 3ef62a7b-6c6d-470f-88a6-31de5a099b38
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 58b2e318-26cc-47b8-bee2-81369731d72f
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Content
+        sortOrder: 1
+handle: filmIndex
+hasTitleField: true
+name: 'Film Index'
+section: cfdec89b-6994-4988-a14b-ccd2855eeac4
+sortOrder: 1
+titleFormat: '{section.name|raw}'

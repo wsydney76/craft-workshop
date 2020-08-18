@@ -1,0 +1,12 @@
+<div class="row no-gutters mb-5">
+    <div class="col-md-5">
+        {% if image %}
+            <img class="img-fluid" src="{{ image.getUrl('photo') }}" alt="{{ image.title|e('html_attr') }}" loading="lazy">
+        {% endif %}
+        {% block imageEnd %}{% endblock %}
+    </div>
+    <div class="col-md-7 pt-2 pl-2">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>

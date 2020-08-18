@@ -1,0 +1,9 @@
+{% macro errorList(errors) %}
+    {% if errors %}
+        <ul class="list-unstyled text-danger">
+            {% for error in errors %}
+                <li>{{ error|replace('Username','Username'|t)|replace('Email','Email'|t)|replace('New Password','New Password'|t) }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}

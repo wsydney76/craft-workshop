@@ -1,0 +1,24 @@
+contentColumnType: string
+fieldGroup: 5bd7b883-0d73-47f4-a7f4-bad70fe05acf
+handle: featured
+instructions: ''
+name: Featured
+searchable: true
+settings:
+  limit: '4'
+  localizeRelations: ''
+  selectionLabel: ''
+  source: null
+  sources:
+    - 'section:09f97fdd-45fe-4221-982a-a2077c8460b1'
+    - 'section:ae5b96d9-d2e0-43b6-b555-0c6135de8639'
+    - 'section:48b55920-a4e8-4089-b538-dbe98b613d45'
+    - 'section:27cfda43-5654-4af4-802c-342c5111966f'
+    - 'section:c504627b-6f45-47cd-822a-8e36420f203d'
+    - 'section:011a8ede-f19a-4ed7-bb30-fdc9852a9c8b'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

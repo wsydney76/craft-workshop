@@ -1,0 +1,9 @@
+<div class="p-3 mb-5 border border-custom bg-white">
+    {% block content %}{% endblock %}
+</div>
+
+{% macro displayItem(item) %}
+    <div class="h5 my-2">
+        {{ item|raw }}
+    </div>
+{% endmacro %}

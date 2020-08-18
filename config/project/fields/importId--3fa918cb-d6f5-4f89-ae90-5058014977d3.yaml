@@ -1,0 +1,17 @@
+contentColumnType: integer(10)
+fieldGroup: 17aa2ede-87b4-40b0-84d1-47a0b29e0b24
+handle: importId
+instructions: 'This is used for automatic import, do not edit manually (unless you know what you are doing...)'
+name: 'Import ID'
+searchable: true
+settings:
+  decimals: 0
+  defaultValue: null
+  max: null
+  min: '0'
+  prefix: ''
+  size: null
+  suffix: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Number

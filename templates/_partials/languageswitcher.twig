@@ -1,0 +1,15 @@
+{% if global_languageSwitch is defined %}
+    {% for site in craft.app.sites.sitesByGroupId(currentSite.groupId) %}
+    	{% if site.id != currentSite.id %}
+            <a class="nav-item nav-link"
+               href="{{ global_languageSwitch[site.handle] }}">{{ site.name[:2]}} </a>
+    	{% endif %}
+    {% endfor %}
+{% elseif element %}
+    {% for element in element.find.id(element.sourceId).site(['de','en']).all %}
+        {% if currentSite.id != element.site.id %}
+            <a class="nav-item nav-link"
+               href="{{ element.url }}">{{ element.site.name[:2]}} </a>
+        {% endif %}
+    {% endfor %}
+{% endif %}

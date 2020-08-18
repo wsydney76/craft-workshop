@@ -1,0 +1,64 @@
+{% set global_title = "Change E-Mail"|t %}
+{% set global_languageSwitch = {
+    en: siteUrl("members/changemail", siteId = craft.app.sites.siteByHandle('en').id),
+    de: siteUrl("members/changemail", siteId = craft.app.sites.siteByHandle('de').id),
+} %}
+
+{% extends 'members/_layout.twig' %}
+
+
+{% import '_macros/forms.twig' as forms %}
+
+{% requireLogin %}
+
+{% if user is not defined %}
+    {% set user = currentUser %}
+{% endif %}
+
+
+{% block content %}
+
+    <div class="alert alert-info">
+        {% switch currentSite.language[:2] %}
+        {% case "en" %}
+            In order to change your Email, you have to enter your password. A confirmation mail will be sent to your old
+            Email to finish the process.
+            Until then the old Email will be in effect.
+        {% case "de" %}
+            Um Ihre E-Mail-Adresse zu ändern, müssen Sie Ihr Password eingeben. Eine Bestätigungs-Mail wird an Ihre
+            alte Adresse gesendet, um den Prozess zu vervollständigen.
+            Bis dahin bleibt Ihre alte Adresse aktiv.
+        {% endswitch %}
+
+    </div>
+
+    {{ '<form method="post" accept-charset="UTF-8">' }}
+
+    {{ csrfInput() }}
+    {{ actionInput('users/save-user') }}
+    {{ hiddenInput('userId', currentUser.id ) }}
+
+    <input type="hidden" name="userId" value="{{ currentUser.id }}">
+    {{ redirectInput('members/changeemailconfirmation') }}
+
+    {{ forms.textField({
+        label: 'Email'|t,
+        name: 'email',
+        object: user,
+        required: true
+    }) }}
+
+    {{ forms.textField({
+        label: 'Password'|t,
+        name: 'password',
+        type:'password',
+        object: user,
+        required: true
+    }) }}
+
+
+    {{ forms.submit('Change Email'|t) }}
+
+
+    {{ '</form>' }}
+{% endblock %}

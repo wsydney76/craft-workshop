@@ -1,0 +1,74 @@
+{% set image = block.image.one %}
+
+{% set reusableColorEntry = block.reusableBackgroundColor.one %}
+{% if reusableColorEntry %}
+    {% set attr = reusableColorEntry.reusableColor.getAttr(['media-text']) %}
+{% else %}
+    {% set attr = block.backgroundImageData.getAttr(['media-text'], image) %}
+{% endif %}
+
+<div {{ attr(attr) }}>
+
+    {% switch type %}
+
+    {% case "imagetext" %}
+
+        <div class="container py-5">
+            <div class="d-md-flex {{ index is even ? 'media-even' : 'media-odd' }}">
+                <div class="media-text-image">
+                    {{ _self.image(block, image, index) }}
+                </div>
+                <div class="media-text-text">
+                    {{ _self.text(block) }}
+                </div>
+            </div>
+        </div>
+
+    {% case "text" %}
+
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    {{ _self.text(block) }}
+                </div>
+            </div>
+        </div>
+
+    {% case "image" %}
+
+        {% include '_partials/featuredimage.twig'
+            with {image: image} only %}
+
+    {% case "heading" %}
+
+        <div class="display-4 mt-5 h1 text-center">{{ block.heading }}</div>
+
+    {% endswitch %}
+
+</div>
+
+
+{% macro text(block) %}
+    <h2>{{ block.heading|parseRefs }}</h2>
+    <div class="my-4">
+        {{ block.text  }}
+    </div>
+    {% set target = block.buttonTarget.site('*').unique().one %}
+    {% if target %}
+        <div class="my-5">
+            <a class="btn btn-custom" href="{{ target.url }}">{{ block.buttonCaption ?: target.title }}</a>
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro image(block, image, index, transform='') %}
+    {% if not transform %}
+        {% set transform = block.text|length < 800 or image.width > image.height ? 'mediaText' : 'mediaTextLong' %}
+    {% endif %}
+
+    {% if image %}
+        <div class="p-4 {{ index is even ? 'img-transform-left' : 'img-transform-right' }}">
+            <img class="img-fluid" src="{{ image.url(transform) }}" alt="{{ image.title|e('html_attr') }}">
+        </div>
+    {% endif %}
+{% endmacro %}

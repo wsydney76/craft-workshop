@@ -1,0 +1,69 @@
+{% set privacyPage = gdprInfo.privacyPage.one %}
+{% set moreLink = privacyPage ? privacyPage.url : '' %}
+
+{% set isPrivacyPage = false %}
+
+{% if privacyPage and entry is defined and entry.id == privacyPage.id %}
+    {% set isPrivacyPage = true %}
+{% endif %}
+
+
+
+{% js %}
+settings = {
+    delay: 200,
+    title: '{{ "Cookies & Privacy Policy"|t }}',
+    message: '{{ gdprInfo.body|nl2br|e('js') }}',
+    messageScrollBar: true,
+    backdrop: true,
+    moreLinkActive: {{ moreLink ? 'true' : 'false' }},
+    moreLinkLabel: '{{ "More Information"|t }}...',
+    moreLinkNewTab: false,
+    moreLink: '{{ moreLink }}',
+    acceptButtonLabel: '{{ "Save Settings"|t }}',
+    OnAccept: function() {
+    location.reload();
+    },
+    allowAdvancedOptions: true,
+    advancedTitle: '{{ 'Select which cookies you want to accept'|t }}',
+    advancedAutoOpenDelay: 250,
+    advancedButtonLabel: '{{ "Customize"|t }}',
+    advancedCookiesToSelect: [
+    {% for key, settings in craft.app.config.general.project.cookiePreferences %}
+        {
+        name: '{{ key }}',
+        title: '{{ settings[currentSite.language[:2]].title }}',
+        description: '{{ settings[currentSite.language[:2]].description }}',
+        isFixed: {{ settings.fixed ? 'true' : 'false' }}
+        }{{ not loop.last ? ',' }}
+    {% endfor %}
+    ]
+    };
+    {% if not isPrivacyPage %}
+        $('body').bsgdprcookies(settings);
+    {% endif %}
+    $('#cookiesBtn').on('click', function(){
+    $('body').bsgdprcookies(settings, 'reinit');
+    });
+{% endjs %}
+
+{% css %}
+#bs-gdpr-cookies-modal-message a {
+    display: block;
+    margin-top: 12px;
+}
+
+#bs-gdpr-cookies-modal-advanced-title {
+    margin-top: 2rem;
+}
+
+#bs-gdpr-cookies-modal-advanced-types {
+    list-style: none;
+}
+
+#bs-gdpr-cookies-modal-advanced-btn {
+    display: none;
+}
+{% endcss %}
+
+

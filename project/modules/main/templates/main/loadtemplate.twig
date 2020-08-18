@@ -1,0 +1,6 @@
+<div id="{{ id }}">
+</div>
+
+{% js %}
+    $('#{{ id }}').load('{{ url("dynamiccontent/loadtemplate", options)|raw }}');
+{% endjs %}

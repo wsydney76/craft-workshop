@@ -1,0 +1,9 @@
+format: null
+handle: featuredImageSm
+height: 150
+interlace: none
+mode: crop
+name: 'Featured Image SM'
+position: center-center
+quality: 82
+width: 576

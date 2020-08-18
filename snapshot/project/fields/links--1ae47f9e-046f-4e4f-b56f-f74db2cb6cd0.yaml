@@ -1,0 +1,14 @@
+contentColumnType: string
+fieldGroup: f1d8d989-2bc0-4a0f-b58f-a348276a5596
+handle: links
+instructions: ''
+name: Links
+searchable: true
+settings:
+  contentTable: '{{%matrixcontent_links}}'
+  maxBlocks: ''
+  minBlocks: ''
+  propagationMethod: none
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

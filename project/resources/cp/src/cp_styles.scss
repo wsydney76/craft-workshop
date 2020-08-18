@@ -1,0 +1,264 @@
+$color: #111111;
+$sidebarColor: #265077;
+$titleBarColor: #E4EDF6;
+$lightBgColor: #ffffff;
+$lightTextColor: #333333;
+$btnTextColor: #222222;
+
+// Not so blue, increase font-size, text contrast
+html, body {
+  background-color: lighten(#E4EDF6, 5%);
+  font-size: 15px;
+  color: $color;
+  //font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;;
+}
+
+a {
+  color: $sidebarColor;
+}
+
+.btn, .select:not(.selectize) select {
+  color: $btnTextColor;
+}
+
+
+// even more for inputs
+input.text, textarea.text, .text > input, .text > textarea, table.editable textarea, .selectize-text > .selectize-control > .selectize-input {
+  font-size: 16px;
+  color: $color;
+}
+
+
+/*
+// make field titles stand out
+#content .field .heading   {
+  background-color: $titleBarColor;
+  padding: 6px;
+  border-top:1px solid darken($titleBarColor, 10%);
+}
+*/
+
+// better contrast
+
+.field > .heading > label, #details .meta > .field > .heading > label,
+#details .meta > .field > .heading, #details .meta > .data > .heading > label, #details .meta > .data > .heading,
+#details .meta.warning {
+  color: $color !important;
+}
+
+.field > .heading > .instructions, .checkboxfield.has-instructions .instructions, #crumbs a {
+  color: $lightTextColor;
+}
+
+// no dark grey, be colorful, inspired by front end
+#global-sidebar {
+  background-color: $sidebarColor;
+}
+
+#sidebar {
+  font-size: 14px;
+
+  nav li a.sel {
+    background-color: $lightBgColor;
+  }
+
+  .heading {
+    cursor: pointer;
+    padding:7px 6px 7px 14px;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: $titleBarColor;
+
+    }
+
+    &.collapsed {
+      background-color: $titleBarColor;
+    }
+
+    span {
+      color: #264a6c;
+      font-size: 14px;
+      letter-spacing: 1.5px
+    }
+  }
+}
+
+
+// more breathing
+#fields .heading {
+  padding-bottom: 8px;
+}
+
+// indent blocks, makes it more difficult to overlook the field header
+.blocks {
+  margin-left: 12px;
+}
+
+// make the block titlebar standout
+.matrixblock > .titlebar {
+  background-color: $titleBarColor;
+}
+
+.matrixblock {
+  // background-color: $lightBgColor;
+}
+
+.matrixblock.collapsed {
+  background-color: $titleBarColor;
+}
+
+// better contrast
+.matrixblock > .titlebar {
+  color: $color;
+}
+
+.matrixblock > .titlebar > .blocktype {
+  font-weight: bold;
+  color: $color;
+}
+
+// don't hide actions
+.matrixblock > .actions {
+  opacity: 100%;
+}
+
+// table header not so high please
+table.data thead th, table.data thead td {
+  padding: 8px 12px;
+}
+
+body.ltr table.data thead th.ordered.desc, body.ltr table.data thead th.ordered.asc {
+  background-position-y: -27px;
+}
+
+body.ltr table.data thead th.ordered:not(.desc) {
+  background-position-y: 4px;
+}
+
+// vertical align: top
+
+table.data td {
+  vertical-align: top;
+  // border-bottom: 1px solid $titleBarColor;
+}
+
+
+
+
+// Example for floating controls in matrix block
+
+#fields-cast .matrixblock:not(.collapsed) .fields {
+  display: flex !important;
+  flex-wrap: wrap
+}
+
+#fields-cast .field {
+  margin-top: 0px;
+  margin-left: 4px;
+  min-width: 200px;
+  margin-right: 20px
+}
+
+#fields-cast .field input, #fields-cast .field select {
+  min-width: 190px
+}
+
+#fields-crew .matrixblock:not(.collapsed) .fields {
+  display: flex !important;
+  flex-wrap: wrap
+}
+
+#fields-crew .field {
+  margin-top: 0px;
+  margin-left: 4px;
+  min-width: 200px;
+  margin-right: 20px
+}
+
+#fields-crew .field input, #fields-cast .field select {
+  min-width: 190px
+}
+
+// used for textarea fields in details block
+#suggestion-notes {
+  border: 1px solid #CDD8E4 !important;
+  margin: 6px 0px !important;
+  padding: 4px !important;
+}
+
+// Make warnings stand out a bit more
+#details .meta.warning {
+  background-color: #ffffff;
+}
+
+// Login page
+.login {
+  background-image: url(/actions/main/content/random-fullsize-image); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  #login-form {
+    min-width: 500px;
+    background-color: #e4e4e4df;
+    padding: 20px;
+    border-radius: 20px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  #poweredby {
+    // display:none;
+
+  }
+}
+
+
+/*
+.lp-editor-container header,  {
+  background-color: #F3F7FC;
+  backdrop-filter:none;
+}
+
+.lp-preview-container header {
+  background-color: transparent;
+  backdrop-filter:none;
+  justify-content: flex-end;
+}
+
+.lp-preview-container header .menubtn {
+  background-color: #F8D02E;
+  z-index:200;
+}*/
+
+
+.backgroundImage {
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 6px;
+
+
+  .field-group {
+    width: 250px;
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+    margin-right: 12px;
+
+    border: 1px solid $titleBarColor;
+    border-radius: 6px;
+    padding: 12px;
+    background-color: #fff;
+  }
+
+  .field {
+    width: 200px;
+
+    label {
+      font-weight: normal;
+    }
+  }
+}

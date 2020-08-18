@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: 17aa2ede-87b4-40b0-84d1-47a0b29e0b24
+handle: film
+instructions: ''
+name: Film
+searchable: true
+settings:
+  limit: '1'
+  localizeRelations: ''
+  selectionLabel: 'Select a film'
+  source: null
+  sources:
+    - 'section:ae5b96d9-d2e0-43b6-b555-0c6135de8639'
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

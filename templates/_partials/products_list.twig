@@ -1,0 +1,11 @@
+{% set products = query.all %}
+
+{% if products %}
+    {% embed '_layouts/embeds/widget.twig'
+        with {heading:heading|t({count:products|length}), products:products, boxed:boxed??true, showPostDate:false} only %}
+        {% block content %}
+            {% from '_macros/lib.twig' import linkList %}
+            {{ linkList(products|map(e => {text:e.title, href:e.url, postDate:e.postDate|date}), showPostDate) }}
+        {% endblock %}
+    {% endembed %}
+{% endif %}

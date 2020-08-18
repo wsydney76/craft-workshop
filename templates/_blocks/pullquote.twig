@@ -1,0 +1,11 @@
+<blockquote class="blockquote border-left border-secondary pl-4">
+    <p class="mb-0">{{ block.text }}</p>
+    {% if block.textSource %}
+        <footer class="blockquote-footer">
+            <cite title="Source Title">{{ block.textSource }}</cite>
+        </footer>
+    {% endif %}
+</blockquote>
+
+
+

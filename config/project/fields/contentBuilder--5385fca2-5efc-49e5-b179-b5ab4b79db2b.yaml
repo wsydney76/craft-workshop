@@ -1,0 +1,14 @@
+contentColumnType: string
+fieldGroup: f1d8d989-2bc0-4a0f-b58f-a348276a5596
+handle: contentBuilder
+instructions: 'Depending on the filled fields, different layouts are displayed. (Heading/Text and picture, only heading/text, only heading, only picture)'
+name: 'Content  Builder'
+searchable: true
+settings:
+  contentTable: '{{%matrixcontent_contentbuilder}}'
+  maxBlocks: ''
+  minBlocks: ''
+  propagationMethod: all
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

@@ -1,0 +1,19 @@
+{% if film %}
+    {% set image = film.featuredImage.one %}
+    {% if image %}
+        <div>
+            <a href="{{ film.url }}">
+                <img class="img-fluid img-scale mb-4" src="{{ image.getUrl('galleryWideImage') }}"
+                     alt="{{ image.title|e('html_attr') }}">
+            </a>
+        </div>
+    {% endif %}
+    <div class="my-1">
+        {{ film.teaser }}
+    </div>
+    <div class="h1 my-3">{{ film.link }}</div>
+
+    <div class="my-3">
+        {{ film.shortDescription }}
+    </div>
+{% endif %}

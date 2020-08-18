@@ -1,0 +1,95 @@
+{% extends "_layout.twig" %}
+
+{% set suggestion = craft.suggestions.uid(uid).one%}
+
+{% if not suggestion %}
+    {% exit 404 %}
+{% endif %}
+
+{% set global_languageSwitch = {
+    en: siteUrl("suggestion/#{suggestion.uid}", siteId = craft.app.sites.siteByHandle('en').id),
+    de: siteUrl("suggestion/#{suggestion.uid}", siteId = craft.app.sites.siteByHandle('de').id),
+} %}
+
+
+{% block titleText "#{'Suggestion'|t('suggestions')}: #{suggestion.title}" %}
+
+{% set global_featuredImage = craft.entries.section('suggestion').one.featuredImage.one %}
+
+{% block content %}
+
+    {% include '_partials/flash_messages.twig' %}
+
+    <h2>{{ 'Suggestion'|t('suggestions') }}</h2>
+
+    <table class="table suggestion-status-table">
+        <tbody>
+        <tr>
+            <th>{{ suggestion.getAttributeLabel('id') }}</th>
+            <td>{{ suggestion.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ suggestion.getAttributeLabel('name') }}</th>
+            <td>{{ suggestion.name }}</td>
+        </tr>
+        <tr>
+            <th>{{ suggestion.getAttributeLabel('email') }}</th>
+            <td>{{ suggestion.email }}</td>
+        </tr>
+        <tr>
+            <th>{{ suggestion.getAttributeLabel('date') }}</th>
+            <td>{{ suggestion.dateCreated|datetime('Y-m-d G:i') }}</td>
+        </tr>
+        <tr>
+            <th>{{ suggestion.getAttributeLabel('title') }}</th>
+            <td>{{ suggestion.title }}</td>
+        </tr>
+        <tr>
+            <th>{{ suggestion.getAttributeLabel('description') }}</th>
+            <td>{{ suggestion.description|nl2br }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <h2>{{ 'Status'|t }}</h2>
+
+    <table class="table suggestion-status-table">
+        <tr>
+            <th>{{ suggestion.getAttributeLabel('status') }}</th>
+            <td>{{ suggestion.statusLabel }}</td>
+        </tr>
+
+        <tr>
+            <th>{{ suggestion.getAttributeLabel('notes') }}</th>
+            <td>{{ suggestion.notes|nl2br }}</td>
+        </tr>
+
+        <tr>
+            <th>{{ suggestion.getAttributeLabel('relatedEntryId') }}</th>
+            <td>
+                {% set relatedEntry = suggestion.entry %}
+                {% if relatedEntry %}
+                    {% if relatedEntry %}
+                        {{ relatedEntry.link }}
+                    {% endif %}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}
+
+{% block secondaryContent %}
+    {% if currentUser %}
+        {% include '_partials/suggestions_list.twig'
+            with {heading: 'My Other Suggestions', query: craft.suggestions.email(currentUser.email).notId(suggestion.id)} only %}
+    {% endif %}
+{% endblock %}
+
+{% css %}
+    .suggestion-status-table tr th {
+        width:150px;
+    }
+{% endcss %}
+

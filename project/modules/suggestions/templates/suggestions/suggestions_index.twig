@@ -1,0 +1,162 @@
+{# @var suggestion \project\modules\suggestions\models\SuggestionModel #}
+
+{% import 'suggestions/macros.twig' as nav %}
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle('craft\\web\\assets\\admintable\\AdminTableAsset') -%}
+{% do view.registerTranslations('suggestions', [
+    'Accept',
+    'Actions',
+    'Assign to me',
+    'Create PDF file',
+    'Date',
+    'Delete',
+    'Delete permanently',
+    'Details',
+    'Email',
+    'ID',
+    'Name',
+    'Nothing found',
+    'Reject',
+    'Restore',
+    'Search in Title, Name, Description, Notes',
+    'Status',
+    'Title',
+    'User',
+]) %}
+
+{% extends "_layouts/cp.html" %}
+{% set title = "Suggestions"|t('suggestions') %}
+{% set selectedSubnavItem = 'suggestions' %}
+{% set status = craft.app.request.queryParam('status') %}
+{% set userId = craft.app.request.queryParam('userid') %}
+
+
+{% block actionButton %}
+    <a href="{{ cpUrl('suggestions/pdf') }}" class="btn">{{'Create PDF file'|t('suggestions')}}</a>
+{% endblock %}
+
+{% block sidebar %}
+    <nav>
+        <ul>
+            {{ nav.link('All Suggestions'|t('suggestions'), '', status, userId) }}
+            {{ nav.assignedLink('My Work'|t('suggestions'), userId, currentUser) }}
+
+            {{ nav.heading('By Status'|t('suggestions')) }}
+
+            {% set options = suggestionStatus|map((l,v) => {label:l, value:v, count:statusCounts[v].cnt ?? 0}) %}
+            {% for option in options %}
+                {{ nav.statusLink(option.label|t('suggestions'), option.value, status, option.count ) }}
+            {% endfor %}
+
+            {{ nav.heading('Trash'|t('suggestions')) }}
+            {% set softDeleteDuration = craft.app.config.general.softDeleteDuration / (60*60*24) %}
+
+            {{ nav.link('Deleted (max {days} days)'|t('suggestions', {days:softDeleteDuration}), 'trashed', status, userId) }}
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div id="suggestions-vue-admin-table"></div>
+{% endblock %}
+
+
+{% set endPoint = cpUrl('suggestions/data', {status:status, userId:userId}) %}
+
+{% if status == 'trashed' %}
+    {% js %}
+    actions = [
+        {
+            label: Craft.t('suggestions', 'Restore'),
+            action: 'suggestions/suggestions/restore',
+            ajax: true
+        },
+        {
+            label: Craft.t('suggestions', 'Delete permanently'),
+            action: 'suggestions/suggestions/hard-delete',
+            ajax: true
+        }
+    ];
+    {% endjs %}
+{% else %}
+    {% js %}
+    actions = [
+        {
+            label: Craft.t('suggestions','Assign to me'),
+            action: 'suggestions/suggestions/self-assign',
+            ajax: true
+        },
+        {
+            label: Craft.t('suggestions','Accept'),
+            action: 'suggestions/suggestions/set-status',
+            param: 'status',
+            value: 'accepted',
+            status: 'live',
+            ajax: true
+        },
+        {
+            label: Craft.t('suggestions','Reject'),
+            action: 'suggestions/suggestions/set-status',
+            param: 'status',
+            value: 'rejected',
+            status: 'expired',
+            ajax: true
+        },
+        {
+            label: Craft.t('suggestions','Delete'),
+            action: 'suggestions/suggestions/mass-delete',
+            ajax: true
+        },
+        {
+            label: Craft.t('suggestions','Create PDF file'),
+            action: 'suggestions/pdf/create',
+        }
+    ];
+
+    {% endjs %}
+{% endif %}
+
+{# Split js tags so twig stuff does not break phpstorm's language awareness #}
+{% js %}
+    tableDataEndpoint = '{{ endPoint }}';
+{% endjs %}
+
+{% js %}
+
+suggestionsTable = new Craft.VueAdminTable({
+    container: '#suggestions-vue-admin-table',
+    actions: [
+        {
+            label: Craft.t('suggestions','Actions'),
+            actions: actions
+        },
+    ],
+    emptyMessage: Craft.t('suggestions','Nothing found'),
+    search: true,
+    searchPlaceholder: Craft.t('suggestions','Search in Title, Name, Description, Notes'),
+    perPage: 20,
+    checkboxes: true,
+    columns: [
+        {name: 'id', title: Craft.t('suggestions','ID'), sortField: 'id'},
+        {name: '__slot:title', title: Craft.t('suggestions','Title'), sortField: 'title'},
+        {name: 'name', title: Craft.t('suggestions','Name'), sortField: 'name'},
+        {name: 'date', title: Craft.t('suggestions','Date'), sortField: 'dateCreated', dataClass: 'column-nowrap'},
+        {name: 'suggestionStatus', title: Craft.t('suggestions','Status'), sortField: 'status'},
+        {name: 'user', title: Craft.t('suggestions','User')},
+        {name: '__slot:detail', title: Craft.t('suggestions','Details')},
+        {name: '__slot:menu', title: ''}
+    ],
+    deleteAction: 'suggestions/suggestions/delete',
+    tableDataEndpoint: tableDataEndpoint
+
+});
+
+
+{% endjs %}
+
+{% css %}
+    .column-nowrap {
+        white-space: nowrap;
+    }
+{% endcss %}

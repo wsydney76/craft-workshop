@@ -1,0 +1,13 @@
+{
+  "namespaces": [
+    {
+      "path": "vendor/craftcms/cms/src/templates"
+    },
+    {
+      "path": "project/modules/suggestions/templates"
+    },
+    {
+      "path": "project/modules/main/templates"
+    }
+  ]
+}

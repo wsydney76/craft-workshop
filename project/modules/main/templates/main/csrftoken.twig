@@ -1,0 +1,7 @@
+{% set id = 'csrftoken' %}
+<div class="{{ id }}"></div>
+
+{% js %}
+    $('.{{ id }}').load('{{ url("dynamiccontent/csrftoken") }}');
+{% endjs %}
+

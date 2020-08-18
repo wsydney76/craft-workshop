@@ -1,0 +1,25 @@
+{% extends "_layout.twig" %}
+{% set requireScreeningDetailsModal = true %}
+
+{% set from = craft.entries.section('screening').site('*').min('field_showtime') %}
+{% set to = craft.entries.section('screening').site('*').max('field_showtime') %}
+
+{% block titleText "#{entry.title} #{from|date} - #{to|date}" %}
+
+{% set global_cols = {left:6, right:6} %}
+
+{% block content %}
+    {% embed '_layouts/embeds/widget.twig' with {heading:'Main Festival'|t, boxed:true} %}
+        {% block content %}
+            {% include '_partials/screenings_bydate.twig'
+                with {query:craft.entries.section('screening'), heading:'', boxed:false, showLanguages:true} only %}
+        {% endblock %}
+    {% endembed %}
+
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/screenings_bydate.twig'
+     with {heading: 'Kids Festival', query: craft.entries.section('screening').site('kids')}
+    %}
+{% endblock %}

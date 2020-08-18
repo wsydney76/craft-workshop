@@ -1,0 +1,74 @@
+{# TODO: Check eager loading, stopped working when site='*' #}
+{% set query = query.orderBy('showtime') %}
+
+{% set showLanguages = showLanguages ?? false %}
+
+{% if showLanguages %}
+    {% set query = query.with([
+        'screeningLanguage',
+        'subtitlesLanguages']) %}
+{% endif %}
+
+{% set screenings = query.all %}
+
+{% do craft.app.urlManager.setRouteParams({screenings:screenings}) %}
+
+{% if screenings %}
+
+    {% set showFilm = showFilm ?? true %}
+    {% set showLocation = showLocation ?? true %}
+    {% set heading = heading ?? 'Screenings By Date' %}
+
+    {% embed '_layouts/embeds/widget.twig'
+        with {heading:heading|t, screenings:screenings, showFilm:showFilm, showLocation:showLocation, boxed:boxed??true} %}
+        {% block content %}
+
+            {% set screeningsByDate = screenings|group(s => s.showtime|date("full")) %}
+
+            {% for showtimeDate, screeningsInDate in screeningsByDate %}
+                <div class="mt-3 pt-2 border-bottom border-primary">{{ showtimeDate }}</div>
+                {% for screening in screeningsInDate %}
+                    {% set film = screening.film.site('*').unique()|one %}
+                    {% if film %}
+                        <div class="my-2">
+                            {% set location = screening.location.site('*').unique()|one %}
+                            {% if location %}
+                                <div>
+                                    {% if showFilm %}
+                                        <span class="font-weight-bold">{{ film.link }}</span>
+                                        {{ showLocation ? '<br/>' }}
+                                    {% endif %}
+                                    {% if showLocation %}
+                                        {{ location.link }},
+                                    {% endif %}
+                                    {% if screening.showInModal %}
+                                        <a class="screening" data-site="{{ currentSite.handle }}"
+                                           data-id="{{ screening.id }}">
+                                            {{ screening.showtime|time('short') }}
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ screening.url }}">
+                                            {{ screening.showtime|time('short') }}
+                                        </a>
+                                    {% endif %}
+                                    {% if showLanguages %}
+                                        <div>
+                                            {% include '_partials/screening_languages.twig' with {entry:screening} %}
+                                        </div>
+                                    {% endif %}
+                                    {% if screening.soldOut %}
+                                        <div class="text-danger">
+                                            {{ 'Sold Out'|t }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
+
+        {% endblock %}
+    {% endembed %}
+{% endif %}

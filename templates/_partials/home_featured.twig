@@ -1,0 +1,38 @@
+{% set query = craft.entries.section('homeFeaturedSection').one.featured %}
+{% set entries = query.all %}
+
+{% if entries %}
+    {% set entry = entries[0] %}
+    {% set bgImage = entry.featuredImage.one %}
+    <div class="featured-content py-5">
+        <div class="container text-center">
+            <div class="h2 text-light">{{ "Recommended"|t }}</div>
+            <div class="h1">{{ entry.link }}</div>
+            {% if entry.teaser %}
+                <div class="font-weight-bold my-4">{{ entry.teaser }}</div>
+            {% endif %}
+            <a href="{{ entry.url }}" class="btn btn-outline-light my-4">{{ "Read more"|t }}</a>
+            {% include '_partials/home_gallery.twig'
+                with {  heading: '',
+                query:query.id('not ' ~ entry.id)} only %}
+        </div>
+    </div>
+
+    <style>
+        .featured-content {
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), rgba(0, 0, 0, 0.55)
+            url("{{ bgImage.url("featuredImage") }}")
+            no-repeat center center;
+            background-size: cover;
+            min-height: 300px;
+            color:#fff;
+        }
+        .featured-content a {
+            color:#fff;
+        }
+
+    </style>
+
+{% endif %}
+
+

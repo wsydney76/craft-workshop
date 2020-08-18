@@ -1,0 +1,30 @@
+{% set blocks = query.all %}
+
+{% set index = 0 %}
+
+{% for block in blocks %}
+    {% set type = '' %}
+
+    {% set image = block.image.one %}
+    {% set text = block.text|striptags|trim %}
+
+    {% if image and text %}
+        {% set index = index + 1 %}
+        {% set type = 'imagetext' %}
+    {% elseif text %}
+        {% set type = 'text' %}
+    {% elseif image %}
+        {% set type = 'image' %}
+    {% elseif block.heading %}
+        {% set type = 'heading' %}
+    {% endif %}
+
+    {% if type %}
+        <div class="block-{{ block.type }}" id="block-{{ block.id }}">
+            {% include "_blocks/#{block.type}.twig"
+                ignore missing
+                with {block: block, type:type, image:image, index: index} only %}
+        </div>
+    {% endif %}
+
+{% endfor %}

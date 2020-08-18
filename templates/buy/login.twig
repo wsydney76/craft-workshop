@@ -1,0 +1,71 @@
+{% extends 'buy/_layout/main.twig' %}
+
+{%  do view.registerAssetBundle('craft\\web\\assets\\vue\\VueAsset') %}
+{%  do view.registerAssetBundle('craft\\web\\assets\\axios\\AxiosAsset') %}
+
+{% set loginName = craft.commerce.carts.cart.email ?: craft.app.user.rememberedUsername %}
+
+{% block title %}
+    {{ "Login"|t }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="m-10"  id="app">
+
+        {{'<form accept-charset="UTF-8" method="post">'}}
+            {{ csrfInput() }}
+            {{ redirectInput('buy/checkout') }}
+            <input type="hidden" name="action" value="users/login">
+
+
+            {% include 'buy/_includes/forms/text.twig' with {
+                name:'loginName',
+                label: "Username or Email",
+                value: '',
+                required: true,
+                model: 'loginName',
+                class:"form-control"
+
+            } %}
+
+            {% include 'buy/_includes/forms/text.twig' with {
+                type:'password',
+                name:'password',
+                label: "Password",
+                value: '',
+                required: true,
+                class:"form-control"
+
+            } %}
+
+            {% include 'buy/_includes/forms/singleCheckbox.twig' with {
+                name:'rememberMe',
+                label: "Remember me",
+                value: false,
+            } %}
+
+            {% include 'buy/_includes/forms/submit.twig' with {label:'Login', class:"btn btn-shop"} %}
+
+
+       {{'</form>'}}
+
+        <div>
+            <button class="btn btn-secondary" :disabled="sendBtnDisabled" @click="sendMail">
+                {{ "Password forgotten?"|t }} {{ "Send password reset mail" }}
+            </button>
+        </div>
+        {% verbatim %}
+        <div class="mt-2" >
+            <span class="text-danger">{{ error }}</span>
+            <span class="text-info">{{ notice }}</span>
+        </div>
+        {% endverbatim %}
+
+    </div>
+
+{% endblock %}
+
+{% js %}
+    {% include 'buy/_js/login.js' %}
+{% endjs %}

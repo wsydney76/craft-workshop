@@ -1,0 +1,47 @@
+{
+    "title": "Der Postillon",
+    "description": "Unfälle sind bald verboten.",
+    "url": "https://www.facebook.com/DerPostillon/posts/10157435274771526",
+    "type": "rich",
+    "tags": [],
+    "feeds": [],
+    "images": [
+        {
+            "url": "https://external.ffra2-1.fna.fbcdn.net/safe_image.php?d=AQCz2bMxXdMPPa2R&w=400&h=400&url=https%3A%2F%2Fbuffer-media-uploads.s3.amazonaws.com%2F5f049942a1a2d72930484f0e%2F4049c37312750841e13bedcf4b74b90428a7a894_27ac432e9cbb4bfe695c6c1eae8afa3774243ca8_facebook&cfs=1&_nc_hash=AQCNMJS6hiLdgLB0",
+            "width": 400,
+            "height": 400,
+            "size": 160000,
+            "mime": "image/jpeg"
+        }
+    ],
+    "image": "https://external.ffra2-1.fna.fbcdn.net/safe_image.php?d=AQCz2bMxXdMPPa2R&w=400&h=400&url=https%3A%2F%2Fbuffer-media-uploads.s3.amazonaws.com%2F5f049942a1a2d72930484f0e%2F4049c37312750841e13bedcf4b74b90428a7a894_27ac432e9cbb4bfe695c6c1eae8afa3774243ca8_facebook&cfs=1&_nc_hash=AQCNMJS6hiLdgLB0",
+    "imageWidth": 400,
+    "imageHeight": 400,
+    "code": "<div id=\"fb-root\"></div>\n<script async=\"1\" defer=\"1\" crossorigin=\"anonymous\" src=\"https://connect.facebook.net/de_DE/sdk.js#xfbml=1&amp;version=v7.0\" nonce=\"xXvvenoL\"></script><div class=\"fb-post\" data-href=\"https://www.facebook.com/DerPostillon/posts/10157435274771526\" data-width=\"750\"><blockquote cite=\"https://www.facebook.com/DerPostillon/posts/10157435274771526\" class=\"fb-xfbml-parse-ignore\"><p>Unfälle sind bald verboten.</p>Gepostet von <a href=\"https://www.facebook.com/DerPostillon/\">Der Postillon</a> am <a href=\"https://www.facebook.com/DerPostillon/posts/10157435274771526\">Dienstag, 7. Juli 2020</a></blockquote></div>",
+    "width": 750,
+    "height": null,
+    "aspectRatio": null,
+    "authorName": "Der Postillon",
+    "authorUrl": "https://www.facebook.com/DerPostillon/",
+    "providerIcons": [
+        {
+            "url": "https://www.facebook.com/favicon.ico",
+            "width": 16,
+            "height": 16,
+            "size": 256,
+            "mime": "image/png"
+        },
+        {
+            "url": "https://static.xx.fbcdn.net/rsrc.php/yz/r/KFyVIAWzntM.ico",
+            "width": 16,
+            "height": 16,
+            "size": 256,
+            "mime": "image/x-icon"
+        }
+    ],
+    "providerIcon": "https://www.facebook.com/favicon.ico",
+    "providerName": "Facebook",
+    "providerUrl": "https://www.facebook.com",
+    "publishedTime": null,
+    "license": null
+}

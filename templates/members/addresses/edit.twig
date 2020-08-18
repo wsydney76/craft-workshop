@@ -1,0 +1,87 @@
+{% requireLogin %}
+
+{% import '_macros/forms.twig' as forms %}
+
+{% extends 'members/_layout.twig' %}
+
+{% set addressId = craft.app.request.param('addressId') %}
+{% set redirect = craft.app.request.param('redirect') %}
+
+{% if not address is defined and addressId %}
+    {% set address = craft.commerce.customers.customer.getAddressById(addressId) %}
+{% endif %}
+
+{% set global_title = addressId ? 'Edit Address'|t : 'Add new Address'|t %}
+
+{% set shopEntry = craft.entries.section('shop').one %}
+{% if shopEntry %}
+    {% set global_featuredImage = shopEntry.featuredImage.one %}
+{% endif %}
+
+{% set cart = craft.commerce.carts.cart %}
+
+{% if address is not defined %}
+    {% set address = craft.members.newAddress %}
+{% endif %}
+
+{% set shopEntry = craft.entries.section('shop').one %}
+{% if shopEntry %}
+    {% set global_featuredImage = shopEntry.featuredImage.one %}
+{% endif %}
+
+{% block content %}
+
+
+    {{ '<form method="post">' }}
+    {{ csrfInput() }}
+    {{ actionInput('commerce/customer-addresses/save') }}
+
+    {% if redirect %}
+        {{ redirectInput(redirect) }}
+    {% else %}
+        {{ redirectInput('members/addresses') }}
+    {% endif %}
+
+    {% if addressId %}
+        {{ forms.hiddenField({
+            name: 'address[id]',
+            value: addressId
+        }) }}
+    {% endif %}
+
+    {% include 'members/addresses/form.twig' %}
+
+    {% set isPrimaryBilling =  addressId ? (cart.customer.primaryBillingAddressId == addressId) : false %}
+    {% set isPrimaryShipping = addressId ? (cart.customer.primaryShippingAddressId == addressId) : false %}
+
+    <hr/>
+
+    <p>
+        {{ forms.singleCheckbox({
+            label: 'Make this the primary shipping address'|t,
+            name: 'makePrimaryShippingAddress',
+            checked: isPrimaryShipping
+        }) }}
+    </p>
+
+    <p>
+        {{ forms.singleCheckbox({
+            label: 'Make this the primary billing address'|t,
+            name: 'makePrimaryBillingAddress',
+            checked: isPrimaryBilling
+        }) }}
+    </p>
+
+    {{ forms.submit('Save Address'|t) }}
+
+    {{ '</form>' }}
+
+    <div class="mt-3">
+        {% if redirect %}
+            <a class="btn btn-secondary" href="{{ url(redirect) }}">{{ 'Cancel'|t }}</a>
+        {% else %}
+            <a class="btn btn-secondary" href="{{ url('members/addresses') }}">{{ 'Cancel'|t }}</a>
+        {% endif %}
+    </div>
+
+{% endblock %}

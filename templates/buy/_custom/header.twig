@@ -1,0 +1,16 @@
+<div >
+    <ul class="nav justify-content-end">
+        {% set shopEntry = craft.entries.section('shop').one %}
+        {% if shopEntry %}
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="{{ shopEntry.url }}">{{ shopEntry.title }}</a>
+            </li>
+        {% endif %}
+
+        {% if product is defined %}
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="{{ product.url }}">{{ 'Product Page'|t }}</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>

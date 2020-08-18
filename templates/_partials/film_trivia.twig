@@ -1,0 +1,16 @@
+{% set blocks = query.all %}
+{% if blocks %}
+
+    {% embed '_layouts/embeds/widget.twig' with {heading:'Trivia'|t} %}
+        {% block content %}
+            {% for block in blocks %}
+                <div class="my-3">{{ block.text|nl2br }}</div>
+                {% if not loop.last %}
+                    <hr/>
+                {% endif %}
+            {% endfor %}
+
+        {% endblock %}
+    {% endembed %}
+
+{% endif %}

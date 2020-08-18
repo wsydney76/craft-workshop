@@ -1,0 +1,25 @@
+fieldLayouts:
+  cabf7e67-1ab9-4078-8f1a-ac552ca4c61e:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 9a302fae-a3bf-4298-8a06-24f8c8f6f335
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 58b2e318-26cc-47b8-bee2-81369731d72f
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Content
+        sortOrder: 1
+handle: eventsectionIndex
+hasTitleField: true
+name: 'Section Index'
+section: 0ec2c3ae-a423-463a-bb14-5af1cb99ee47
+sortOrder: 1
+titleFormat: '{section.name|raw}'

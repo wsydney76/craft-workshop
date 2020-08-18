@@ -1,0 +1,14 @@
+
+
+{% macro isAlreadyMine(product) %}
+    {% if currentUser %}
+        {% set order = craft.orders.user(currentUser).isCompleted(1).hasPurchasables(product.variants).one() %}
+
+        {% if order %}
+            <div class="my-3">
+                <strong>{{ "I already own this product"|t }}: </strong> <a href="{{ url('members/order', {number:order.number}) }}">{{ "Order"|t }} #{{ order.reference }}</a>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+

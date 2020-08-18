@@ -1,0 +1,60 @@
+{% macro link(text, status, statusSelected, userSelected) %}
+    {# @var query \project\modules\suggestions\records\db\SuggestionRecordQuery #}
+    {% set query = craft.suggestions %}
+    {% if status %}
+        {% if status == 'trashed' %}
+            {% set query = query.trashed() %}
+        {% else %}
+            {% set query = query.status(status) %}
+        {% endif %}
+    {% endif %}
+    {% set count = query.count %}
+    <li>
+        <a class="{{ status == statusSelected  and not userSelected ?'sel' }}"
+           href="{{ cpUrl('suggestions',{status:status}) }}">
+            <span class="label">{{ text }}</span>
+            {% if count and status %}
+                <span class="badge">{{ count }}</span>
+            {% endif %}
+        </a>
+    </li>
+{% endmacro %}
+
+{% macro statusLink(text, status, statusSelected, count) %}
+    <li>
+        <a class="{{ status == statusSelected  ?'sel' }}"
+           href="{{ cpUrl('suggestions',{status:status}) }}">
+            <span class="label">{{ text }}</span>
+            {% if count  %}
+                <span class="badge">{{ count }}</span>
+            {% endif %}
+        </a>
+    </li>
+{% endmacro %}
+
+{% macro assignedLink(text, userSelected, user) %}
+    {% set count = craft.suggestions.userId(user.id).status('atwork').count %}
+    <li>
+        <a class="{{ userSelected == user.id ?'sel' }}" href="{{ cpUrl('suggestions',{userid:user.id}) }}">
+            <span class="label">{{ text }}</span>
+            {% if count %}
+                <span class="badge">{{ count }}</span>
+            {% endif %}
+        </a>
+    </li>
+{% endmacro %}
+
+{% macro heading(heading) %}
+    <li class="heading"><span>{{ heading }}</span></li>
+{% endmacro %}
+
+
+{% macro errorList(errors) %}
+    {% if errors %}
+        <ul class="errors">
+            {% for error in errors %}
+                <li>{{ error|t }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}

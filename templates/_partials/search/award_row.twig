@@ -1,0 +1,18 @@
+{% set awardIndex = craft.entries.section('awardIndex').one %}
+<tr>
+    <td>
+        {{ entry.section.name|t }}
+    </td>
+    <td>
+        {% if awardIndex %}
+            <a href="{{ awardIndex.url }}#award-{{ entry.id }}">{{ entry.title }}</a>
+        {% else %}
+            {{ entry.title }}
+        {% endif %}
+
+    </td>
+
+    <td>
+
+    </td>
+</tr>

@@ -1,0 +1,13 @@
+contentColumnType: datetime
+fieldGroup: c2c0bc75-b1e1-470b-9373-d691afad3098
+handle: born
+instructions: ''
+name: Born
+searchable: false
+settings:
+  minuteIncrement: '30'
+  showDate: true
+  showTime: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Date

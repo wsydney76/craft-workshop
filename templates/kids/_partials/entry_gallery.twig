@@ -1,0 +1,22 @@
+{% set entries = query.all %}
+
+{% if entries %}
+    <div class="my-5 d-flex flex-wrap text-center">
+
+        {% for entry in entries %}
+            {% set image = entry.featuredImage.one %}
+            <div class="border shadow p-3 mx-auto mb-3" style="max-width:240px">
+                {% if image %}
+                    <div>
+                        <a href="{{ entry.url }}">
+                            <img class="img-fluid img-scale" src="{{ image.getUrl('gallerySquareImage') }}"
+                                 alt="{{ image.title|e('html_attr') }}">
+                        </a>
+                    </div>
+                {% endif %}
+                <h4 class="mt-4">{{ entry.link }}</h4>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endif %}

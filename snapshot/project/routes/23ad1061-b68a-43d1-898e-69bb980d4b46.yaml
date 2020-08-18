@@ -1,0 +1,9 @@
+siteUid: null
+sortOrder: 1
+template: _amp/news.twig
+uriParts:
+  - amp/news/
+  -
+    - slug
+    - '[^\/]+'
+uriPattern: 'amp/news/<slug:[^\/]+>'

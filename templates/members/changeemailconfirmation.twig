@@ -1,0 +1,34 @@
+{% set global_title = "Change E-Mail"|t %}
+{% extends 'members/_layout.twig' %}
+
+
+
+{% requireLogin %}
+
+{% block content %}
+
+    <h2>{{ "Confirmation Mail sent"|t }}</h2>
+
+    {% switch currentSite.language[:2] %}
+    {% case "en" %}
+        <p>
+            A Confirmation Mail has been sent. Until you verify the Email, your Email will still be "{{ currentUser.email }}".
+        </p>
+
+        <p>
+            In case you submitted the form without changing your Email, no action will take place.
+        </p>
+    {% case "de" %}
+        <p>
+            Eine Bestätigungs-Mail wurde verschickt. Bis Sie diese bestätigen, verwenden wir noch "{{ currentUser.email }}".
+        </p>
+
+        <p>
+            Falls Sie dieses Formular gesendet haben, ohne Ihre E-Mail-Adresse zu ändern, erfolgt keine Aktion.
+        </p>
+    {% endswitch %}
+
+
+
+
+{% endblock %}

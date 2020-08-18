@@ -1,0 +1,35 @@
+{% set global_title = "Password forgotten?"|t %}
+{% set global_languageSwitch = {
+    en: siteUrl("members/remember", siteId = craft.app.sites.siteByHandle('en').id),
+    de: siteUrl("members/remember", siteId = craft.app.sites.siteByHandle('de').id),
+} %}
+
+{% extends 'members/_layout.twig' %}
+
+{% import '_macros/forms.twig' as forms %}
+
+{% set loginData = craft.members.loginData({
+    loginName: craft.app.request.param('loginName') ?: craft.app.user.rememberedUsername,
+}) %}
+
+{% block content %}
+
+    {{ '<form method="post" accept-charset="UTF-8">' }}
+
+    {{ csrfInput() }}
+    {{ actionInput('users/send-password-reset-email') }}
+
+
+    {{ forms.textField({
+        label: 'Username or Email'|t,
+        name: 'loginName',
+        object: loginData,
+        required: true
+    }) }}
+
+
+    {{ forms.submit('Reset Password'|t) }}
+
+    {{ '</form>' }}
+
+{% endblock %}

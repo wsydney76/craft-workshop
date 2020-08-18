@@ -1,0 +1,81 @@
+field: 58b2e318-26cc-47b8-bee2-81369731d72f
+fieldLayouts:
+  070f840f-c5bc-4bd3-ad32-c6a5d55d9e3c:
+    tabs:
+      -
+        fields:
+          bad8f5ab-fcf4-4fec-9ade-7652b14f376e:
+            required: false
+            sortOrder: 2
+          c7d0c14f-5533-4bdc-863d-cedbbb544960:
+            required: true
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  bad8f5ab-fcf4-4fec-9ade-7652b14f376e:
+    contentColumnType: string
+    fieldGroup: null
+    handle: tag
+    instructions: 'Be aware of a correct semantic use of heading levels'
+    name: Level
+    searchable: false
+    settings:
+      optgroups: true
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - H2
+            -
+              - value
+              - h2
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - H3
+            -
+              - value
+              - h3
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - H4
+            -
+              - value
+              - h4
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Dropdown
+  c7d0c14f-5533-4bdc-863d-cedbbb544960:
+    contentColumnType: text
+    fieldGroup: null
+    handle: text
+    instructions: ''
+    name: 'Heading Text'
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+handle: heading
+name: Heading
+sortOrder: 1

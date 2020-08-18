@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    {% include '_partials/blocks.twig'
+        with {query: entry.bodyContent} only %}
+
+    {% include '_partials/award_gallery.twig'
+        with {query: craft.entries.section('award')} only %}
+
+{% endblock %}
+
+{% block secondaryContent %}
+    {% include '_partials/entries_list.twig'
+        with {heading: 'All winners at a glance', query:craft.entries
+        .relatedTo(craft.entries.section('award').ids)
+        .site('*')
+        .unique()
+        .orderBy('title')} only %}
+{% endblock %}

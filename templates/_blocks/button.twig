@@ -1,0 +1,5 @@
+{% set target = block.target.one %}
+
+{% if target %}
+    <a href="{{ target.url }}" class="btn btn-{{ block.color }}">{{ block.caption?:target.title }}</a>
+{% endif %}

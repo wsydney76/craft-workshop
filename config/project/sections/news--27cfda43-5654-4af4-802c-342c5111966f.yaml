@@ -1,0 +1,26 @@
+enableVersioning: true
+handle: news
+name: News
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+  -
+    label: Amp
+    urlFormat: '/amp/news/{slug}'
+  -
+    label: Homepage
+    urlFormat: /
+propagationMethod: all
+siteSettings:
+  97e0b749-86e3-49f1-918e-9b88758928f4:
+    enabledByDefault: true
+    hasUrls: true
+    template: _sections\news
+    uriFormat: 'news/{slug}'
+  bbbb120d-5d71-4e7c-a164-487e401c4f2c:
+    enabledByDefault: true
+    hasUrls: true
+    template: _sections\news
+    uriFormat: 'nachricht/{slug}'
+type: channel
