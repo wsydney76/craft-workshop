@@ -12,6 +12,8 @@ This is just a starter demo, learning resource and a simple Proof of Concept for
 > application. It developed over the time by learning, discovering and experimenting, a lot of stuff done by interns (thanks all, especially Clarissa, Melissa and Aylin).
 > Some things made to our real products, others didn't and some are just to crazy. And some may be broken.
 
+
+
 TODO: Mel and Aylin will add some docs as part of their master thesis.
 
 ### What is not covered
@@ -32,6 +34,8 @@ e.g. newsIndex => news
 * Names of volume root folders must not begin with an underscore. 
 
 ## Installation Considerations
+
+> This is uploaded on GitHub for documentation purpose only, installing will probably not work if you don't have access to the custom plugins
 
 * Ships with sample data (images and database backup) in /snapshot folder
 * Ships with a couple of custom plugins, that represent a 'Proof of Concept' status. 
