@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4714f16ef8fb8a3bfaa3a30a947f617d",
+    "content-hash": "007934f368262cf76a5b878cb614da8f",
     "packages": [
         {
             "name": "cakephp/core",
@@ -611,11 +611,11 @@
         },
         {
             "name": "craftcms/commerce",
-            "version": "3.2.2.1",
+            "version": "3.2.3",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/commerce/zipball/bc73192a56a8d9c6da57400eb9caca4bd14dabf9",
-                "reference": "bc73192a56a8d9c6da57400eb9caca4bd14dabf9",
+                "url": "https://api.github.com/repos/craftcms/commerce/zipball/c8c20fb8a39beb95e50dba8c0f13bb1ded0590a2",
+                "reference": "c8c20fb8a39beb95e50dba8c0f13bb1ded0590a2",
                 "shasum": ""
             },
             "require": {
@@ -657,7 +657,7 @@
                 "docs": "https://craftcms.com/docs/commerce/3.x/",
                 "rss": "https://github.com/craftcms/commerce/releases.atom"
             },
-            "time": "2020-08-14T17:03:35+00:00"
+            "time": "2020-08-19T18:28:36+00:00"
         },
         {
             "name": "craftcms/feed-me",
@@ -1723,11 +1723,11 @@
         },
         {
             "name": "laminas/laminas-feed",
-            "version": "2.12.2",
+            "version": "2.12.3",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-feed/zipball/8a193ac96ebcb3e16b6ee754ac2a889eefacb654",
-                "reference": "8a193ac96ebcb3e16b6ee754ac2a889eefacb654",
+                "url": "https://api.github.com/repos/laminas/laminas-feed/zipball/3c91415633cb1be6f9d78683d69b7dcbfe6b4012",
+                "reference": "3c91415633cb1be6f9d78683d69b7dcbfe6b4012",
                 "shasum": ""
             },
             "require": {
@@ -1740,16 +1740,6 @@
             },
             "replace": {
                 "zendframework/zend-feed": "^2.12.0"
-            },
-            "require-dev": {
-                "laminas/laminas-cache": "^2.7.2",
-                "laminas/laminas-coding-standard": "~1.0.0",
-                "laminas/laminas-db": "^2.8.2",
-                "laminas/laminas-http": "^2.7",
-                "laminas/laminas-servicemanager": "^2.7.8 || ^3.3",
-                "laminas/laminas-validator": "^2.10.1",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20",
-                "psr/http-message": "^1.0.1"
             },
             "suggest": {
                 "laminas/laminas-cache": "Laminas\\Cache component, for optionally caching feeds between requests",
@@ -1771,7 +1761,6 @@
                     "Laminas\\Feed\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1781,7 +1770,7 @@
                 "feed",
                 "laminas"
             ],
-            "time": "2020-03-29T12:36:29+00:00"
+            "time": "2020-08-18T13:45:04+00:00"
         },
         {
             "name": "laminas/laminas-stdlib",
@@ -2219,11 +2208,11 @@
         },
         {
             "name": "mmikkel/cp-field-inspect",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmikkel/CpFieldInspect-Craft/zipball/85a231e5cf389ec6ca0bbc2d677ea6cfd3fe65ea",
-                "reference": "85a231e5cf389ec6ca0bbc2d677ea6cfd3fe65ea",
+                "url": "https://api.github.com/repos/mmikkel/CpFieldInspect-Craft/zipball/0ea8b838b056298820137db7f6bb99527c6ff5c0",
+                "reference": "0ea8b838b056298820137db7f6bb99527c6ff5c0",
                 "shasum": ""
             },
             "require": {
@@ -2244,7 +2233,6 @@
                     "mmikkel\\cpfieldinspect\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2256,13 +2244,17 @@
             ],
             "description": "Inspect field handles and easily edit field and element source settings",
             "keywords": [
-                "Craft",
                 "cms",
                 "cp field inspect",
+                "craft",
                 "craft-plugin",
                 "craftcms"
             ],
-            "time": "2020-08-13T21:31:21+00:00"
+            "support": {
+                "docs": "https://github.com/mmikkel/CpFieldInspect-Craft/blob/master/README.md",
+                "issues": "https://github.com/mmikkel/CpFieldInspect-Craft/issues"
+            },
+            "time": "2020-08-20T20:19:26+00:00"
         },
         {
             "name": "moneyphp/money",
