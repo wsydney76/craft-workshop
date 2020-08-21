@@ -71,6 +71,11 @@ return [
                 'siteId' => '',
                 'uriPattern' => '^graphql/',
             ]
+            ,
+            [
+                'siteId' => '',
+                'uriPattern' => '^ads/',
+            ]
         ],
 
         // The storage type to use.

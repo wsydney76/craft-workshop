@@ -11,6 +11,7 @@
         {% for navEntry in craft.content.getFeaturedSectionEntries('primary-nav') %}
             <a class="dropdown-item" href="{{ navEntry.url }}">{{ navEntry.title }}</a>
         {% endfor %}
+        <a class="dropdown-item" href="{{ url('ads/list') }}">{{ 'Ads'|t }}</a>
 
     </div>
 </li>

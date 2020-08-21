@@ -18,6 +18,7 @@
  */
 
 use apps\headless\HeadlessModule;
+use project\modules\ads\AdsModule;
 use project\modules\main\MainModule;
 use project\modules\main\models\RequestDataModel;
 use project\modules\solrsearch\SolrSearchModule;
@@ -28,13 +29,15 @@ return [
         'main' => MainModule::class,
         'client' => HeadlessModule::class,
         'suggestions' => SuggestionModule::class,
-        'project_solrsearch' => SolrSearchModule::class
+        'project_solrsearch' => SolrSearchModule::class,
+        'ads' => AdsModule::class
     ],
     'bootstrap' => [
         'main',
         'client',
         'suggestions',
-        'project_solrsearch'
+        'project_solrsearch',
+        'ads'
     ],
     'components' => [
         'requestData' => [

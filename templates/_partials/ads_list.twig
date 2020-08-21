@@ -1,0 +1,33 @@
+<div class="my-4">
+    <a class="btn btn-primary" href="{{ url('ads/new') }}">{{ 'New'|t }}</a>
+    {% if type != 'search' %}
+        <a class="btn btn-primary" href="{{ url('ads/list/search') }}">{{ 'Search'|t('ads') }}</a>
+    {% endif %}
+    {% if type != 'offer' %}
+        <a class="btn btn-primary" href="{{ url('ads/list/offer') }}">{{ 'Offer'|t('ads') }}</a>
+    {% endif %}
+</div>
+
+<table class="table">
+    {% for ad in ads %}
+        <tr>
+            {% if type == 'all' %}
+                <td>{{ ad.type|t }}</td>
+            {% endif %}
+            <td>
+                <div  class="font-weight-bold mb-3">
+                    {{ ad.title }}
+                </div>
+                <div class="mb-3">
+                    {{ ad.dateCreatedLocal|datetime('Y-m-d G:i') }}
+                </div>
+                <div>
+                    <a href="mailto:{{ ad.email }}">{{ 'Email'|t }}</a>
+                </div>
+            </td>
+            <td>
+                {{ ad.text|nl2br }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>

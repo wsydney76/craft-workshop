@@ -40,6 +40,7 @@ use craft\web\twig\variables\CraftVariable;
 use craft\web\view;
 
 use project\_faux\CraftTwigExtension;
+use project\modules\ads\records\AdsRecord;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 
@@ -86,7 +87,9 @@ class FauxTwigExtension extends AbstractExtension implements GlobalsInterface
             'global_navCondition' => [],
             'global_cols' => [],
             'global_languageSwitch' => [],
-            'siteInfo' => new GlobalSet()
+            'siteInfo' => new GlobalSet(),
+
+            'ad' => new AdsRecord()
 
             // Third party globals
             //'seomatic' => new \nystudio107\seomatic\variables\SeomaticVariable(),

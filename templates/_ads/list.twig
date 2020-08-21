@@ -1,0 +1,11 @@
+{% extends "_layout.twig" %}
+
+{% set type = type ?: 'all' %}
+
+{% set global_title = 'Ads'|t ~ ': ' ~ type|t('ads') %}
+
+{% block contentContainer %}
+    {% include '_partials/flash_messages.twig' %}
+    {% include '_partials/ads_list.twig' %}
+{% endblock %}
+

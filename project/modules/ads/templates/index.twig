@@ -1,0 +1,32 @@
+{% extends "_layouts/cp.html" %}
+{% set title = 'Ads' %}
+
+{% do view.registerAssetBundle('craft\\web\\assets\\admintable\\AdminTableAsset') %}
+
+{% block content %}
+    <div id="ads-vue-admin-table"></div>
+{% endblock %}
+
+{% js %}
+
+adsTable = new Craft.VueAdminTable({
+    container: '#ads-vue-admin-table',
+    emptyMessage: 'Nothing found',
+    search: true,
+    searchPlaceholder: 'Search',
+    perPage: 20,
+    columns: [
+        {name: 'id', title: 'ID', sortField: 'id'},
+        {name: 'type', title: 'Type', sortField: 'type'},
+        {name: '__slot:title', title: 'Title', sortField: 'title'},
+        {name: '__slot:detail', title: 'Text'},
+        {name: 'email', title: 'Email', sortField: 'email'},
+        {name: 'date', title:'Date', sortField: 'dateCreated', dataClass: 'column-nowrap'}
+    ],
+    deleteAction: 'ads/ads/delete',
+    tableDataEndpoint: 'ads/ads/data'
+
+});
+
+
+{% endjs %}
