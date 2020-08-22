@@ -9,6 +9,7 @@ use craft\helpers\UrlHelper;
 use craft\web\Controller;
 use project\modules\ads\AdsModule;
 use project\modules\ads\models\AdModel;
+use project\modules\ads\models\SettingsModel;
 use Stringy\Stringy;
 use Throwable;
 use Twig\Error\LoaderError;
@@ -43,7 +44,7 @@ class AdsController extends Controller
         }
 
         $paginator = new Paginator($query, [
-            'pageSize' => AdsModule::PERPAGE,
+            'pageSize' => SettingsModel::PERPAGE,
             'currentPage' => Craft::$app->request->getParam('page', 1)
         ]);
 
@@ -237,7 +238,7 @@ class AdsController extends Controller
         $this->requirePermission('editAds');
 
         $page = Craft::$app->request->getParam('page') ?: 1;
-        $limit = Craft::$app->request->getParam('per_page') ?: AdsModule::PERPAGE;
+        $limit = Craft::$app->request->getParam('per_page') ?: SettingsModel::PERPAGE;
         $orderBy = Craft::$app->request->getParam('sort') ?: 'dateCreated desc';
         $orderBy = str_replace('|', ' ', $orderBy);
 
@@ -262,7 +263,7 @@ class AdsController extends Controller
 
                 'title' => $ad->title,
                 'url' => UrlHelper::cpUrl("ads/{$ad->id}"),
-                'status' => $ad->status == 'open' && $ad->dateCreated > date('Y-m-d', strtotime(AdsModule::ACTIVEPERIOD)),
+                'status' => $ad->status == 'open' && $ad->dateCreated > date('Y-m-d', strtotime(SettingsModel::ACTIVEPERIOD)),
 
                 'email' => $ad->email,
                 'date' => $ad->dateCreatedLocal()->format('Y-m-d G:i'),

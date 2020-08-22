@@ -22,9 +22,6 @@ use yii\base\Module;
 class AdsModule extends Module
 {
 
-    const PERPAGE = 3;
-    const ACTIVEPERIOD = '-21 days';
-
     public function init()
     {
 

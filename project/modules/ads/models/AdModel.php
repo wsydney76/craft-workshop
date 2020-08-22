@@ -7,7 +7,6 @@ use craft\db\ActiveRecord;
 use craft\helpers\DateTimeHelper;
 use craft\helpers\UrlHelper;
 use DateTime;
-use project\modules\ads\AdsModule;
 use project\modules\ads\models\queries\AdModelQuery;
 
 /**
@@ -83,7 +82,7 @@ class AdModel extends ActiveRecord
 
     public function isExpired()
     {
-        return $this->dateCreated < date('Y-m-d', strtotime(AdsModule::ACTIVEPERIOD));
+        return $this->dateCreated < date('Y-m-d', strtotime(SettingsModel::ACTIVEPERIOD));
     }
 
     public function dateCreatedLocal()
