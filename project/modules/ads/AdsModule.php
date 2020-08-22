@@ -15,7 +15,7 @@ use craft\web\twig\variables\CraftVariable;
 use craft\web\UrlManager;
 use craft\web\View;
 use project\modules\ads\behaviors\CraftVariableBehavior;
-use project\modules\ads\records\AdRecord;
+use project\modules\ads\models\AdModel;
 use yii\base\Event;
 use yii\base\Module;
 
@@ -85,7 +85,7 @@ class AdsModule extends Module
                     'url' => 'ads',
                     'label' => 'Ads',
                     'icon' => '@app/icons/search.svg',
-                    'badgeCount' => AdRecord::find()->status('open')->count()
+                    'badgeCount' => AdModel::find()->status('open')->count()
                 ];
 
                 $i = 0;

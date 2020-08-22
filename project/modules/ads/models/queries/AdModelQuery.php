@@ -1,15 +1,15 @@
 <?php
 
-namespace project\modules\ads\records\db;
+namespace project\modules\ads\models\queries;
 
 use craft\elements\User;
 use project\modules\ads\AdsModule;
 use yii\db\ActiveQuery;
 
-class AdRecordQuery extends ActiveQuery
+class AdModelQuery extends ActiveQuery
 {
 
-    public function id($id = 0): AdRecordQuery
+    public function id($id = 0): AdModelQuery
     {
         if (!$id) {
             return $this;
@@ -17,7 +17,7 @@ class AdRecordQuery extends ActiveQuery
         return $this->andWhere(['id' => $id]);
     }
 
-    public function type($type = ''): AdRecordQuery
+    public function type($type = ''): AdModelQuery
     {
         if (!$type) {
             return $this;
@@ -26,7 +26,7 @@ class AdRecordQuery extends ActiveQuery
         return $this->andWhere(['type' => $type]);
     }
 
-    public function email($email = ''): AdRecordQuery
+    public function email($email = ''): AdModelQuery
     {
         if (!$email) {
             return $this;
@@ -35,7 +35,7 @@ class AdRecordQuery extends ActiveQuery
         return $this->andWhere(['email' => $email]);
     }
 
-    public function user(User $user = null): AdRecordQuery
+    public function user(User $user = null): AdModelQuery
     {
         if (!$user) {
             return $this;
@@ -43,7 +43,7 @@ class AdRecordQuery extends ActiveQuery
         return $this->email($user->email);
     }
 
-    public function status($status = ''): AdRecordQuery
+    public function status($status = ''): AdModelQuery
     {
         if (!$status) {
             return $this;
@@ -58,7 +58,7 @@ class AdRecordQuery extends ActiveQuery
         return $this->andWhere(['status' => $status]);
     }
 
-    public function search($search = []): AdRecordQuery
+    public function search($search = []): AdModelQuery
     {
         if (!$search) {
             return $this;

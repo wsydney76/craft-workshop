@@ -8,7 +8,7 @@ use craft\helpers\AdminTable;
 use craft\helpers\UrlHelper;
 use craft\web\Controller;
 use project\modules\ads\AdsModule;
-use project\modules\ads\records\AdRecord;
+use project\modules\ads\models\AdModel;
 use Stringy\Stringy;
 use Throwable;
 use Twig\Error\LoaderError;
@@ -31,7 +31,7 @@ class AdsController extends Controller
      */
     public function actionIndex($type = '') :Response
     {
-        $query = AdRecord::find()->status('active');
+        $query = AdModel::find()->status('active');
 
         if ($type) {
             if ($type == 'myads') {
@@ -59,7 +59,7 @@ class AdsController extends Controller
      */
     public function actionNew() :Response
     {
-        $ad = Craft::$app->urlManager->getRouteParams()['ad'] ?? new AdRecord();
+        $ad = Craft::$app->urlManager->getRouteParams()['ad'] ?? new AdModel();
 
         $user = Craft::$app->user->identity;
         if ($user) {
@@ -81,8 +81,8 @@ class AdsController extends Controller
 
         $app = Craft::$app;
 
-        $ad = new AdRecord();
-        $ad->scenario = AdRecord::SCENARIO_CREATE;
+        $ad = new AdModel();
+        $ad->scenario = AdModel::SCENARIO_CREATE;
         $ad->attributes = $app->request->post('ad');
         $ad->status = 'open';
 
@@ -108,7 +108,7 @@ class AdsController extends Controller
     {
         $this->requirePermission('editAds');
 
-        $ad = Craft::$app->urlManager->getRouteParams()['ad'] ?? AdRecord::findOne($id);
+        $ad = Craft::$app->urlManager->getRouteParams()['ad'] ?? AdModel::findOne($id);
 
         if (!$ad) {
             throw new NotFoundHttpException();
@@ -132,24 +132,29 @@ class AdsController extends Controller
 
         $app = Craft::$app;
 
-        $ad = AdRecord::findOne($app->request->getRequiredBodyParam('id'));
+        $ad = AdModel::findOne($app->request->getRequiredBodyParam('id'));
 
         if (!$ad) {
             throw new NotFoundHttpException();
         }
 
-        $ad->scenario = AdRecord::SCENARIO_UPDATE;
+        $ad->scenario = AdModel::SCENARIO_UPDATE;
         $ad->attributes = $app->request->post('ad');
 
+        if (!$ad->getDirtyAttributes()) {
+            $app->session->setError(Craft::t('ads', 'Nothing has changed'));
+            return null;
+        }
+
         if (!$ad->save()) {
-            $app->session->setError(Craft::t('site', 'Could not save ad.'));
+            $app->session->setError(Craft::t('ads', 'Could not save ad.'));
             $app->urlManager->setRouteParams([
                 'ad' => $ad
             ]);
             return null;
         }
 
-        $app->session->setNotice(Craft::t('site', 'Ad saved'));
+        $app->session->setNotice(Craft::t('ads', 'Ad saved'));
         return $this->redirectToPostedUrl();
     }
 
@@ -169,7 +174,7 @@ class AdsController extends Controller
             throw new ForbiddenHttpException();
         }
 
-        $ad = AdRecord::findOne($id);
+        $ad = AdModel::findOne($id);
 
         if (!$ad) {
             throw new ForbiddenHttpException();
@@ -205,7 +210,7 @@ class AdsController extends Controller
 
         $id = Craft::$app->request->getRequiredBodyParam('id');
 
-        $ad = AdRecord::findOne($id);
+        $ad = AdModel::findOne($id);
         if (!$ad) {
             throw new NotFoundHttpException();
         }
@@ -236,7 +241,7 @@ class AdsController extends Controller
         $orderBy = Craft::$app->request->getParam('sort') ?: 'dateCreated desc';
         $orderBy = str_replace('|', ' ', $orderBy);
 
-        $query = AdRecord::find();
+        $query = AdModel::find();
 
         $search = Craft::$app->request->getParam('search');
         if ($search) {

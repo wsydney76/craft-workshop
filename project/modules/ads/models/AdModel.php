@@ -1,6 +1,6 @@
 <?php
 
-namespace project\modules\ads\records;
+namespace project\modules\ads\models;
 
 use Craft;
 use craft\db\ActiveRecord;
@@ -8,7 +8,7 @@ use craft\helpers\DateTimeHelper;
 use craft\helpers\UrlHelper;
 use DateTime;
 use project\modules\ads\AdsModule;
-use project\modules\ads\records\db\AdRecordQuery;
+use project\modules\ads\models\queries\AdModelQuery;
 
 /**
  *
@@ -21,7 +21,7 @@ use project\modules\ads\records\db\AdRecordQuery;
  * @property DateTime $dateCreatedLocal Ad Creation date/time in system timezone
  * @property DateTime $dateUpdatedLocal Ad last updated date/time in system timezone
  */
-class AdRecord extends ActiveRecord
+class AdModel extends ActiveRecord
 {
 
     // Constants
@@ -33,9 +33,9 @@ class AdRecord extends ActiveRecord
         return '{{%app_ads}}';
     }
 
-    public static function find(): AdRecordQuery
+    public static function find(): AdModelQuery
     {
-        $query =  new AdRecordQuery(AdRecord::class);
+        $query =  new AdModelQuery(AdModel::class);
         return $query->orderBy('dateCreated desc');
     }
 
