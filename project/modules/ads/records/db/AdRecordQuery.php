@@ -2,6 +2,8 @@
 
 namespace project\modules\ads\records\db;
 
+use craft\elements\User;
+use project\modules\ads\AdsModule;
 use yii\db\ActiveQuery;
 
 class AdRecordQuery extends ActiveQuery
@@ -20,7 +22,25 @@ class AdRecordQuery extends ActiveQuery
         if (!$type) {
             return $this;
         }
+
         return $this->andWhere(['type' => $type]);
+    }
+
+    public function email($email = ''): AdRecordQuery
+    {
+        if (!$email) {
+            return $this;
+        }
+
+        return $this->andWhere(['email' => $email]);
+    }
+
+    public function user(User $user = null): AdRecordQuery
+    {
+        if (!$user) {
+            return $this;
+        }
+        return $this->email($user->email);
     }
 
     public function status($status = ''): AdRecordQuery
@@ -28,6 +48,13 @@ class AdRecordQuery extends ActiveQuery
         if (!$status) {
             return $this;
         }
+
+        if ($status == 'active') {
+            $query = $this->status('open');
+            $query = $query->andWhere(['>', 'dateCreated', date('Y-m-d', strtotime(AdsModule::ACTIVEPERIOD))]);
+            return $query;
+        }
+
         return $this->andWhere(['status' => $status]);
     }
 

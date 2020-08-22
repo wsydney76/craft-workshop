@@ -29,12 +29,17 @@ class AdsController extends Controller
      * @param string $type
      * @return Response
      */
-    public function actionIndex($type = '')
+    public function actionIndex($type = '') :Response
     {
-        $query = AdRecord::find()->status('open');
+        $query = AdRecord::find()->status('active');
 
         if ($type) {
-            $query = $query->type($type);
+            if ($type == 'myads') {
+                $this->requireLogin();
+                $query = $query->user(Craft::$app->user->identity);
+            } else {
+                $query = $query->type($type);
+            }
         }
 
         $paginator = new Paginator($query, [
@@ -52,9 +57,15 @@ class AdsController extends Controller
     /**
      * @return Response
      */
-    public function actionNew()
+    public function actionNew() :Response
     {
         $ad = Craft::$app->urlManager->getRouteParams()['ad'] ?? new AdRecord();
+
+        $user = Craft::$app->user->identity;
+        if ($user) {
+            $ad->email = $user->email;
+        }
+
         return $this->renderTemplate('_ads/new', [
             'ad' => $ad
         ]);
@@ -93,7 +104,7 @@ class AdsController extends Controller
      * @throws NotFoundHttpException
      * @throws ForbiddenHttpException
      */
-    public function actionEdit($id)
+    public function actionEdit($id) :Response
     {
         $this->requirePermission('editAds');
 
@@ -104,7 +115,8 @@ class AdsController extends Controller
         }
 
         return $this->renderTemplate('ads/edit', [
-            'ad' => $ad
+            'ad' => $ad,
+            'expired' => $ad->dateCreated < date('Y-m-d', strtotime(AdsModule::ACTIVEPERIOD))
         ]);
     }
 
@@ -143,6 +155,43 @@ class AdsController extends Controller
     }
 
     /**
+     * @param int $id
+     * @return Response
+     * @throws Exception
+     * @throws ForbiddenHttpException
+     */
+    public function actionWithdraw($id = 0) :Response
+    {
+
+        $app = Craft::$app;
+
+        $user = $app->user->identity;
+        if (!$user) {
+            throw new ForbiddenHttpException();
+        }
+
+        $ad = AdRecord::findOne($id);
+
+        if (!$ad) {
+            throw new ForbiddenHttpException();
+        }
+
+        if ($user->email != $ad->email) {
+            throw new ForbiddenHttpException();
+        }
+
+        $ad->status = 'closed';
+
+        if (!$ad->save()) {
+            $app->session->setError('Could not withdraw Ad');
+            return $this->redirect($app->request->referrer);
+        }
+
+        $app->session->setNotice(Craft::t('site', 'Ad withdrawn'));
+        return $this->redirect(UrlHelper::siteUrl('ads/myads'));
+    }
+
+    /**
      * @return Response
      * @throws NotFoundHttpException
      * @throws Throwable
@@ -150,7 +199,7 @@ class AdsController extends Controller
      * @throws BadRequestHttpException
      * @throws ForbiddenHttpException
      */
-    public function actionDelete()
+    public function actionDelete() :Response
     {
         $this->requireAcceptsJson();
         $this->requirePermission('editAds');
@@ -178,7 +227,7 @@ class AdsController extends Controller
      * @throws BadRequestHttpException
      * @throws ForbiddenHttpException
      */
-    public function actionData()
+    public function actionData() :Response
     {
         $this->requireAcceptsJson();
         $this->requirePermission('editAds');
@@ -206,11 +255,14 @@ class AdsController extends Controller
             $data[] = [
                 'id' => $ad->id,
                 'type' => ucfirst($ad->type),
+
                 'title' => $ad->title,
                 'url' => UrlHelper::cpUrl("ads/{$ad->id}"),
+                'status' => $ad->status == 'open' && $ad->dateCreated > date('Y-m-d', strtotime(AdsModule::ACTIVEPERIOD)),
+
                 'email' => $ad->email,
-                'status' => $ad->status == 'open',
                 'date' => $ad->dateCreatedLocal()->format('Y-m-d G:i'),
+
                 'detail' => [
                     'handle' => Stringy::create($ad->text)->shortenAfterWord(40),
                     'content' => Craft::$app->view->renderTemplate('ads/detail', [

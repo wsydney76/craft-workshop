@@ -15,4 +15,9 @@
         <a class="btn btn-outline-light font-weight-bold mr-3"
            href="{{ url('ads/offer') }}">{{ 'Offer'|t('ads') }}</a>
     {% endif %}
+
+    {% if currentUser and type != 'myads' %}
+        <a class="btn btn-outline-light font-weight-bold mr-3"
+           href="{{ url('ads/myads') }}">{{ 'My Ads'|t('ads') }}</a>
+    {% endif %}
 </div>

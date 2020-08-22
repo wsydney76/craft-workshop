@@ -23,6 +23,7 @@ class AdsModule extends Module
 {
 
     const PERPAGE = 3;
+    const ACTIVEPERIOD = '-21 days';
 
     public function init()
     {
@@ -46,6 +47,7 @@ class AdsModule extends Module
             // Route to controller action
             $event->rules['ads'] = 'ads/ads/index';
             $event->rules['ads/new'] = 'ads/ads/new';
+            $event->rules['ads/withdraw/<id:[\d]+>'] = 'ads/ads/withdraw';
             $event->rules['ads/<type:.*>'] = 'ads/ads/index';
         }
         );

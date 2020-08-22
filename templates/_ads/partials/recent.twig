@@ -1,11 +1,11 @@
 {% set searchAds = craft.ads
-    .status('open')
+    .status('active')
     .type('search')
     .limit(5)
     .all %}
 
 {% set offerAds = craft.ads
-    .status('open')
+    .status('active')
     .type('offer')
     .limit(5)
     .all %}

@@ -1,28 +1,5 @@
 {% set paginatorHtml %}
-    {% if paginator.totalPages >1 %}
-        <div class="container my-3">
-            <div class="row">
-                <div class="col-4">
-                    {% if paginator.currentPage != 1 %}
-                        <a class="btn btn-outline-primary"
-                           href="/{{ craft.app.request.fullUri }}?page={{ paginator.currentPage-1 }}">&larr; {{ 'Previous Page'|t }}</a>
-                    {% endif %}
-                </div>
-
-                <div class="col-4 text-center pt-1">{{ 'Page'|t }} {{ paginator.currentPage }}
-                    /{{ paginator.totalPages }}</div>
-
-                <div class="col-4 text-right">
-                    {% if paginator.currentPage < paginator.totalPages %}
-                        <a class="btn btn-outline-primary"
-                           href="/{{ craft.app.request.fullUri }}?page={{ paginator.currentPage+1 }}">{{ 'Next Page'|t }}
-                            &rarr;</a>
-                    {% endif %}
-                </div>
-
-            </div>
-        </div>
-    {% endif %}
+    {% include '_ads/partials/pagination.twig' %}
 {% endset %}
 
 {{ paginatorHtml }}

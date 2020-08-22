@@ -1,6 +1,6 @@
 {% extends "_ads/layout.twig" %}
 
-{% set ad = craft.ads.status('open').id(id).one %}
+{% set ad = craft.ads.status('active').id(id).one %}
 {% if not ad %}
     {% exit 404 %}
 {% endif %}
@@ -11,4 +11,9 @@
     {% include '_ads/partials/content.twig' with {
         ad: ad
     } only %}
+
+    {% include '_ads/partials/close.twig' with {
+        ad: ad
+    } %}
+
 {% endblock %}

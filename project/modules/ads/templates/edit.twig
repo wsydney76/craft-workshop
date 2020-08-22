@@ -71,6 +71,7 @@
             <h5 class="heading">Created at</h5>
             <div class="value">
                 {{ ad.dateCreatedLocal|datetime('Y-m-d G:i') }}
+                {{ expired ? '<div class="error">Expired</div>' }}
             </div>
         </div>
         <div class="data">
@@ -81,7 +82,7 @@
         </div>
     </div>
 
-    {% if ad.status == 'open' %}
+    {% if ad.status == 'open' and not expired %}
         <div class="data">
             <a class="btn" href="{{ ad.url }}" target="_blank">Show</a>
         </div>

@@ -8,7 +8,9 @@ return [
     'Status' => 'Status',
     'Search' => 'Suche',
     'Offer' => 'Biete',
+    'My Ads' => 'Meine Anzeigen',
     'search' => 'Suche',
     'offer' => 'Biete',
-    'all' => 'Suche/Biete'
+    'all' => 'Suche/Biete',
+    'myads' => 'Meine Anzeigen'
 ];

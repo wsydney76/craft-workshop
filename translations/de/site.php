@@ -9,6 +9,8 @@ return [
     'Latest Ads' => 'Aktuelle Anzeigen',
     'Next Page' => 'Nächste Seite',
     'Previous Page' => 'Vorherige Seite',
+    'Withdraw Your Ad' => 'Ihre Anzeige zurückziehen',
+    'Ad withdrawn' => 'Anzeige zurückgezogen',
 
     'Accept' => 'Akzeptieren',
     'Accepted' => 'Akzeptiert',
