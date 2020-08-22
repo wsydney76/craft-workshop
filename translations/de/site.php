@@ -7,6 +7,8 @@ return [
     'Ads' => 'Anzeigen',
     'New Ad' => 'Neue Anzeige',
     'Latest Ads' => 'Aktuelle Anzeigen',
+    'Next Page' => 'Nächste Seite',
+    'Previous Page' => 'Vorherige Seite',
 
     'Accept' => 'Akzeptieren',
     'Accepted' => 'Akzeptiert',

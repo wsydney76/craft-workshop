@@ -27,6 +27,7 @@ use craft\commerce\elements\Product;
 use craft\commerce\elements\Variant;
 use craft\commerce\models\LineItem;
 use craft\commerce\Plugin;
+use craft\db\Paginator;
 use craft\elements\Asset;
 use craft\elements\Category;
 use craft\elements\db\EntryQuery;
@@ -88,6 +89,7 @@ class FauxTwigExtension extends AbstractExtension implements GlobalsInterface
             'global_cols' => [],
             'global_languageSwitch' => [],
             'siteInfo' => new GlobalSet(),
+            'paginator' => new Paginator(),
 
             'ad' => new AdRecord()
 

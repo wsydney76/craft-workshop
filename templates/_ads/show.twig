@@ -1,5 +1,10 @@
 {% extends "_ads/layout.twig" %}
 
+{% set ad = craft.ads.status('open').id(id).one %}
+{% if not ad %}
+    {% exit 404 %}
+{% endif %}
+
 {% set global_title = "#{ad.type|t('ads')}: #{ad.title}" %}
 
 {% block content %}

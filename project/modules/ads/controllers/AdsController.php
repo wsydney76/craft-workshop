@@ -3,9 +3,11 @@
 namespace project\modules\ads\controllers;
 
 use Craft;
+use craft\db\Paginator;
 use craft\helpers\AdminTable;
 use craft\helpers\UrlHelper;
 use craft\web\Controller;
+use project\modules\ads\AdsModule;
 use project\modules\ads\records\AdRecord;
 use Stringy\Stringy;
 use Throwable;
@@ -21,7 +23,7 @@ use yii\web\Response;
 
 class AdsController extends Controller
 {
-    public $allowAnonymous = ['new', 'create', 'find'];
+    public $allowAnonymous = ['new', 'create', 'index'];
 
     /**
      * @param string $type
@@ -34,24 +36,17 @@ class AdsController extends Controller
         if ($type) {
             $query = $query->type($type);
         }
-        $ads = $query->all();
 
-        return $this->renderTemplate('_ads/list', ['ads' => $ads, 'type' => $type]);
-    }
+        $paginator = new Paginator($query, [
+            'pageSize' => AdsModule::PERPAGE,
+            'currentPage' => Craft::$app->request->getParam('page', 1)
+        ]);
 
-    /**
-     * @param $id
-     * @return Response
-     * @throws NotFoundHttpException
-     */
-    public function actionShow($id)
-    {
-        $ad = AdRecord::find()->status('open')->id($id)->one();
-        if (!$ad) {
-            throw new NotFoundHttpException();
-        }
-
-        return $this->renderTemplate('_ads/show', ['ad' => $ad]);
+        return $this->renderTemplate('_ads/list', [
+            'ads' => $paginator->getPageResults(),
+            'type' => $type,
+            'paginator' => $paginator
+        ]);
     }
 
     /**
@@ -60,7 +55,9 @@ class AdsController extends Controller
     public function actionNew()
     {
         $ad = Craft::$app->urlManager->getRouteParams()['ad'] ?? new AdRecord();
-        return $this->renderTemplate('_ads/new', ['ad' => $ad]);
+        return $this->renderTemplate('_ads/new', [
+            'ad' => $ad
+        ]);
     }
 
     /**
@@ -106,7 +103,9 @@ class AdsController extends Controller
             throw new NotFoundHttpException();
         }
 
-        return $this->renderTemplate('ads/edit', ['ad' => $ad]);
+        return $this->renderTemplate('ads/edit', [
+            'ad' => $ad
+        ]);
     }
 
     /**
@@ -185,7 +184,7 @@ class AdsController extends Controller
         $this->requirePermission('editAds');
 
         $page = Craft::$app->request->getParam('page') ?: 1;
-        $limit = Craft::$app->request->getParam('per_page') ?: 20;
+        $limit = Craft::$app->request->getParam('per_page') ?: AdsModule::PERPAGE;
         $orderBy = Craft::$app->request->getParam('sort') ?: 'dateCreated desc';
         $orderBy = str_replace('|', ' ', $orderBy);
 
@@ -214,7 +213,9 @@ class AdsController extends Controller
                 'date' => $ad->dateCreatedLocal()->format('Y-m-d G:i'),
                 'detail' => [
                     'handle' => Stringy::create($ad->text)->shortenAfterWord(40),
-                    'content' => Craft::$app->view->renderTemplate('ads/detail', ['ad' => $ad])
+                    'content' => Craft::$app->view->renderTemplate('ads/detail', [
+                        'ad' => $ad
+                    ])
                 ]
             ];
         }

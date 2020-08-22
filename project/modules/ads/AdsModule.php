@@ -21,6 +21,9 @@ use yii\base\Module;
 
 class AdsModule extends Module
 {
+
+    const PERPAGE = 3;
+
     public function init()
     {
 
@@ -36,9 +39,13 @@ class AdsModule extends Module
         Event::on(
             UrlManager::class,
             UrlManager::EVENT_REGISTER_SITE_URL_RULES, function(RegisterUrlRulesEvent $event) {
+
+            // Route directly to template, skip controller
+            $event->rules['ads/<id:[\d]+>'] = ['template' => '_ads/show'];
+
+            // Route to controller action
             $event->rules['ads'] = 'ads/ads/index';
             $event->rules['ads/new'] = 'ads/ads/new';
-            $event->rules['ads/<id:[\d]+>'] = 'ads/ads/show';
             $event->rules['ads/<type:.*>'] = 'ads/ads/index';
         }
         );
@@ -93,7 +100,7 @@ class AdsModule extends Module
         Event::on(
             CraftVariable::class,
             CraftVariable::EVENT_DEFINE_BEHAVIORS, function(DefineBehaviorsEvent $event) {
-                $event->behaviors[] = CraftVariableBehavior::class;
+            $event->behaviors[] = CraftVariableBehavior::class;
         }
         );
 

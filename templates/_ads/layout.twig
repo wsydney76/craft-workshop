@@ -1,5 +1,7 @@
 {% extends "_layout.twig" %}
 
+{% set global_featuredImage = craft.assets.filename('ads.jpg').one %}
+
 {% block titleTop%}
     {% include '_ads/partials/nav.twig' %}
 {% endblock %}
