@@ -115,8 +115,7 @@ class AdsController extends Controller
         }
 
         return $this->renderTemplate('ads/edit', [
-            'ad' => $ad,
-            'expired' => $ad->dateCreated < date('Y-m-d', strtotime(AdsModule::ACTIVEPERIOD))
+            'ad' => $ad
         ]);
     }
 

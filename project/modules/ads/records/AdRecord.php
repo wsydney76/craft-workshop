@@ -7,6 +7,7 @@ use craft\db\ActiveRecord;
 use craft\helpers\DateTimeHelper;
 use craft\helpers\UrlHelper;
 use DateTime;
+use project\modules\ads\AdsModule;
 use project\modules\ads\records\db\AdRecordQuery;
 
 /**
@@ -73,6 +74,16 @@ class AdRecord extends ActiveRecord
     public function url()
     {
         return UrlHelper::siteUrl('ads/' . $this->id);
+    }
+
+    public function isActive()
+    {
+        return $this->status == 'open' && ! $this->isExpired();
+    }
+
+    public function isExpired()
+    {
+        return $this->dateCreated < date('Y-m-d', strtotime(AdsModule::ACTIVEPERIOD));
     }
 
     public function dateCreatedLocal()
