@@ -3,7 +3,7 @@
 
     {{ csrfInput() }}
     {{ actionInput('ads/ads/create') }}
-    {{ redirectInput(url('ads/list/{type}')) }}
+    {{ redirectInput(url('ads/{id}')) }}
 
   {% if craft.app.plugins.isPluginEnabled('craft-recaptcha-3') %}
       {% include ['_recaptcha/frontend'] %}

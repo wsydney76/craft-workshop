@@ -1,0 +1,21 @@
+{% for ad in ads %}
+    <div class="my-4 bg-white p-4 rounded-lg">
+        {% if type == 'all' %}
+            <div>{{ ad.type|t('ads') }}</div>
+        {% endif %}
+
+        <div class="font-weight-bold mb-3">
+            <a href="{{ ad.url }}">{{ ad.title }}</a>
+        </div>
+
+        <div class="mb-3">
+            {{ ad.dateCreatedLocal|datetime('short') }}
+            <a href="mailto:{{ ad.email }}">{{ 'Email'|t }}</a>
+        </div>
+
+        <td>
+            {{ ad.text|nl2br }}
+        </td>
+    </div>
+{% endfor %}
+

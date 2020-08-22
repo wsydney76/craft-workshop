@@ -1,0 +1,44 @@
+{% set searchAds = craft.ads
+    .status('open')
+    .type('search')
+    .limit(5)
+    .all %}
+
+{% set offerAds = craft.ads
+    .status('open')
+    .type('offer')
+    .limit(5)
+    .all %}
+
+
+{% if searchAds or offerAds %}
+    {% embed '_layouts/embeds/widget.twig' with {heading:'Latest Ads'|t} %}
+        {% block content %}
+            {% if searchAds %}
+                <div class="font-weight-bold my-3">
+                    {{ 'Search'|t('ads') }}
+                </div>
+                {% for ad in searchAds %}
+                    <div class="my-2">
+                        <a href="{{ ad.url }}">
+                            {{ ad.title }}
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if offerAds %}
+                <div class="font-weight-bold my-3">
+                    {{ 'Offer'|t('ads') }}
+                </div>
+                {% for ad in offerAds %}
+                    <div class="my-2">
+                        <a href="{{ ad.url }}">
+                            {{ ad.title }}
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+{% endif %}
+

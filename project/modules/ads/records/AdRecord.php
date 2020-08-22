@@ -5,7 +5,9 @@ namespace project\modules\ads\records;
 use Craft;
 use craft\db\ActiveRecord;
 use craft\helpers\DateTimeHelper;
+use craft\helpers\UrlHelper;
 use DateTime;
+use project\modules\ads\records\db\AdRecordQuery;
 
 /**
  *
@@ -18,7 +20,7 @@ use DateTime;
  * @property DateTime $dateCreatedLocal Ad Creation date/time in system timezone
  * @property DateTime $dateUpdatedLocal Ad last updated date/time in system timezone
  */
-class AdsRecord extends ActiveRecord
+class AdRecord extends ActiveRecord
 {
 
     // Constants
@@ -30,6 +32,11 @@ class AdsRecord extends ActiveRecord
         return '{{%app_ads}}';
     }
 
+    public static function find(): AdRecordQuery
+    {
+        $query =  new AdRecordQuery(AdRecord::class);
+        return $query->orderBy('dateCreated desc');
+    }
 
     public function rules()
     {
@@ -39,8 +46,8 @@ class AdsRecord extends ActiveRecord
             ['email', 'email'],
             ['title', 'string', 'length' => [4, 50]],
             ['text', 'string', 'length' => [20, 1000]],
-            ['type', 'in', 'range' => ['search','offer']],
-            ['status', 'in', 'range' => ['open','closed']]
+            ['type', 'in', 'range' => ['search', 'offer']],
+            ['status', 'in', 'range' => ['open', 'closed']]
         ];
     }
 
@@ -63,10 +70,16 @@ class AdsRecord extends ActiveRecord
         ];
     }
 
+    public function url()
+    {
+        return UrlHelper::siteUrl('ads/' . $this->id);
+    }
+
     public function dateCreatedLocal()
     {
         return DateTimeHelper::toDateTime($this->dateCreated);
     }
+
     public function dateUpdatedLocal()
     {
         return DateTimeHelper::toDateTime($this->dateUpdated);

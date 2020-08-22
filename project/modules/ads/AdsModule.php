@@ -3,6 +3,7 @@
 namespace project\modules\ads;
 
 use Craft;
+use craft\events\DefineBehaviorsEvent;
 use craft\events\RegisterCpNavItemsEvent;
 use craft\events\RegisterTemplateRootsEvent;
 use craft\events\RegisterUrlRulesEvent;
@@ -10,9 +11,11 @@ use craft\events\RegisterUserPermissionsEvent;
 use craft\i18n\PhpMessageSource;
 use craft\services\UserPermissions;
 use craft\web\twig\variables\Cp;
+use craft\web\twig\variables\CraftVariable;
 use craft\web\UrlManager;
 use craft\web\View;
-use project\modules\ads\records\AdsRecord;
+use project\modules\ads\behaviors\CraftVariableBehavior;
+use project\modules\ads\records\AdRecord;
 use yii\base\Event;
 use yii\base\Module;
 
@@ -33,9 +36,10 @@ class AdsModule extends Module
         Event::on(
             UrlManager::class,
             UrlManager::EVENT_REGISTER_SITE_URL_RULES, function(RegisterUrlRulesEvent $event) {
+            $event->rules['ads'] = 'ads/ads/index';
             $event->rules['ads/new'] = 'ads/ads/new';
-            $event->rules['ads/list'] = 'ads/ads/index';
-            $event->rules['ads/list/<type:.*>'] = 'ads/ads/index';
+            $event->rules['ads/<id:[\d]+>'] = 'ads/ads/show';
+            $event->rules['ads/<type:.*>'] = 'ads/ads/index';
         }
         );
 
@@ -43,7 +47,7 @@ class AdsModule extends Module
         Event::on(
             UrlManager::class,
             UrlManager::EVENT_REGISTER_CP_URL_RULES, function(RegisterUrlRulesEvent $event) {
-            $event->rules['ads/edit/<id:[\d]+>'] = 'ads/ads/edit';
+            $event->rules['ads/<id:[\d]+>'] = 'ads/ads/edit';
         });
 
         // Register Templates directory
@@ -72,7 +76,7 @@ class AdsModule extends Module
                     'url' => 'ads',
                     'label' => 'Ads',
                     'icon' => '@app/icons/search.svg',
-                    'badgeCount' => AdsRecord::find()->where(['status' => 'open'])->count()
+                    'badgeCount' => AdRecord::find()->status('open')->count()
                 ];
 
                 $i = 0;
@@ -85,6 +89,13 @@ class AdsModule extends Module
             }
         });
 
+        // Register Craft variable
+        Event::on(
+            CraftVariable::class,
+            CraftVariable::EVENT_DEFINE_BEHAVIORS, function(DefineBehaviorsEvent $event) {
+                $event->behaviors[] = CraftVariableBehavior::class;
+        }
+        );
 
         parent::init();
     }

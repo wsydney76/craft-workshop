@@ -3,7 +3,7 @@
 namespace craft\contentmigrations;
 
 use craft\db\Migration;
-use project\modules\ads\records\AdsRecord;
+use project\modules\ads\records\AdRecord;
 
 /**
  * m200821_074035_ads_create_table migration.
@@ -15,7 +15,7 @@ class m200821_074035_ads_create_table extends Migration
      */
     public function safeUp()
     {
-        $table = AdsRecord::tableName();
+        $table = AdRecord::tableName();
         $this->dropTableIfExists($table);
 
         $this->createTable($table, [
@@ -36,7 +36,7 @@ class m200821_074035_ads_create_table extends Migration
      */
     public function safeDown()
     {
-        $table = AdsRecord::tableName();
+        $table = AdRecord::tableName();
         $this->dropTableIfExists($table);
         return true;
     }

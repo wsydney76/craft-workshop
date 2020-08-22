@@ -1,12 +1,12 @@
 <?php
 
 return [
-    
+
     'We could not save your ad.' => 'Wir konnten Ihre Anzeige nicht speichern.',
     'We accepted your ad, thank you' => 'Wir haben Ihre Anzeige entgegengenommen, vielen Dank',
     'Ads' => 'Anzeigen',
     'New Ad' => 'Neue Anzeige',
-
+    'Latest Ads' => 'Aktuelle Anzeigen',
 
     'Accept' => 'Akzeptieren',
     'Accepted' => 'Akzeptiert',

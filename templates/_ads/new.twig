@@ -1,8 +1,6 @@
-{% extends "_layout.twig" %}
+{% extends "_ads/layout.twig" %}
 {% set global_title = 'New Ad'|t %}
 
 {% block content %}
-    {% include '_partials/flash_messages.twig' %}
-    {% include '_partials/ads_form.twig' %}
+    {% include '_ads/partials/form.twig' %}
 {% endblock %}
-

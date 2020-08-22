@@ -1,11 +1,10 @@
-{% extends "_layout.twig" %}
+{% extends "_ads/layout.twig" %}
 
 {% set type = type ?: 'all' %}
 
 {% set global_title = 'Ads'|t ~ ': ' ~ type|t('ads') %}
 
-{% block contentContainer %}
-    {% include '_partials/flash_messages.twig' %}
-    {% include '_partials/ads_list.twig' %}
+{% block content %}
+    {% include '_ads/partials/list.twig' %}
 {% endblock %}
 

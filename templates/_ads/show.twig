@@ -1,0 +1,9 @@
+{% extends "_ads/layout.twig" %}
+
+{% set global_title = "#{ad.type|t('ads')}: #{ad.title}" %}
+
+{% block content %}
+    {% include '_ads/partials/content.twig' with {
+        ad: ad
+    } only %}
+{% endblock %}
