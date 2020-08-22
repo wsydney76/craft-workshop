@@ -1,4 +1,4 @@
-description: null
+description: ''
 handle: editors
 name: Editors
 permissions:
@@ -147,6 +147,7 @@ permissions:
   - 'saveassetinvolume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   - 'createfoldersinvolume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   - 'deletefilesandfoldersinvolume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
+  - 'replacefilesinvolume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   - 'editimagesinvolume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   - 'editpeerfilesinvolume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   - 'replacepeerfilesinvolume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
@@ -157,6 +158,7 @@ permissions:
   - 'saveassetinvolume:99cbe848-2d62-42d0-ad15-948062a7561f'
   - 'createfoldersinvolume:99cbe848-2d62-42d0-ad15-948062a7561f'
   - 'deletefilesandfoldersinvolume:99cbe848-2d62-42d0-ad15-948062a7561f'
+  - 'replacefilesinvolume:99cbe848-2d62-42d0-ad15-948062a7561f'
   - 'editimagesinvolume:99cbe848-2d62-42d0-ad15-948062a7561f'
   - 'editpeerfilesinvolume:99cbe848-2d62-42d0-ad15-948062a7561f'
   - 'replacepeerfilesinvolume:99cbe848-2d62-42d0-ad15-948062a7561f'
@@ -167,6 +169,7 @@ permissions:
   - 'saveassetinvolume:35c3b3f5-30e7-4780-9ae1-286ee8bd275e'
   - 'createfoldersinvolume:35c3b3f5-30e7-4780-9ae1-286ee8bd275e'
   - 'deletefilesandfoldersinvolume:35c3b3f5-30e7-4780-9ae1-286ee8bd275e'
+  - 'replacefilesinvolume:35c3b3f5-30e7-4780-9ae1-286ee8bd275e'
   - 'editimagesinvolume:35c3b3f5-30e7-4780-9ae1-286ee8bd275e'
   - 'editpeerfilesinvolume:35c3b3f5-30e7-4780-9ae1-286ee8bd275e'
   - 'replacepeerfilesinvolume:35c3b3f5-30e7-4780-9ae1-286ee8bd275e'
@@ -177,6 +180,7 @@ permissions:
   - 'saveassetinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
   - 'createfoldersinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
   - 'deletefilesandfoldersinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
+  - 'replacefilesinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
   - 'editimagesinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
   - 'editpeerfilesinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
   - 'replacepeerfilesinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
@@ -184,7 +188,5 @@ permissions:
   - 'editpeerimagesinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
   - 'viewpeerfilesinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
   - 'viewvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
-  - 'replacefilesinvolume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
-  - 'replacefilesinvolume:99cbe848-2d62-42d0-ad15-948062a7561f'
-  - 'replacefilesinvolume:35c3b3f5-30e7-4780-9ae1-286ee8bd275e'
-  - 'replacefilesinvolume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
+  - viewsuggestions
+  - editads

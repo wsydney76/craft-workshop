@@ -1,6 +1,7 @@
 # Changelog
 
-## 8.0 2020-08-22
+
+## 8.1 2020-08-22
 
 * Added 'ads' module as an example for simple CRUD stuff (Thanks to Aylin)
 
