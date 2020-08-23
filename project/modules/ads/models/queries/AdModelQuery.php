@@ -55,6 +55,10 @@ class AdModelQuery extends ActiveQuery
             return $query;
         }
 
+        if ($status == 'expired') {
+            return  $this->andWhere(['<', 'dateCreated', date('Y-m-d', strtotime(SettingsModel::ACTIVEPERIOD))]);
+        }
+
         return $this->andWhere(['status' => $status]);
     }
 

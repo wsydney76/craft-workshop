@@ -13,7 +13,7 @@
 
         {% include '_layouts/partials/assets.twig' %}
 
-        {% if craft.app.plugins.pluginEnabled('seomate') %}
+        {% if element and craft.app.plugins.pluginEnabled('seomate') %}
             {% hook 'seomateMeta' %}
         {% else %}
             <title>{{ global_title }}</title>

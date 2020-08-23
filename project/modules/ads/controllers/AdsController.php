@@ -7,7 +7,6 @@ use craft\db\Paginator;
 use craft\helpers\AdminTable;
 use craft\helpers\UrlHelper;
 use craft\web\Controller;
-use project\modules\ads\AdsModule;
 use project\modules\ads\models\AdModel;
 use project\modules\ads\models\SettingsModel;
 use Stringy\Stringy;
@@ -21,6 +20,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use function ucfirst;
 
 class AdsController extends Controller
 {
@@ -30,7 +30,7 @@ class AdsController extends Controller
      * @param string $type
      * @return Response
      */
-    public function actionIndex($type = '') :Response
+    public function actionIndex($type = ''): Response
     {
         $query = AdModel::find()->status('active');
 
@@ -58,14 +58,13 @@ class AdsController extends Controller
     /**
      * @return Response
      */
-    public function actionNew() :Response
+    public function actionNew(): Response
     {
-        $ad = Craft::$app->urlManager->getRouteParams()['ad'] ?? new AdModel();
 
         $user = Craft::$app->user->identity;
-        if ($user) {
-            $ad->email = $user->email;
-        }
+        $email = $user ? $user->email : '';
+
+        $ad = Craft::$app->urlManager->getRouteParams()['ad'] ?? new AdModel(['email' => $email]);
 
         return $this->renderTemplate('_ads/new', [
             'ad' => $ad
@@ -105,7 +104,7 @@ class AdsController extends Controller
      * @throws NotFoundHttpException
      * @throws ForbiddenHttpException
      */
-    public function actionEdit($id) :Response
+    public function actionEdit($id): Response
     {
         $this->requirePermission('editAds');
 
@@ -160,12 +159,37 @@ class AdsController extends Controller
     }
 
     /**
+     * @return Response
+     * @throws BadRequestHttpException
+     * @throws ForbiddenHttpException
+     */
+    public function actionSetStatus(): Response
+    {
+        $this->requireAcceptsJson();
+        $this->requirePermission('editAds');
+
+        $ids = Craft::$app->request->getRequiredBodyParam('ids');
+        $status = Craft::$app->request->getRequiredBodyParam('status');
+
+        $ads = AdModel::find()
+            ->where(['in', 'id', $ids])
+            ->all();
+
+        foreach ($ads as $ad) {
+            $ad->status = $status;
+            $ad->save();
+        }
+
+        return $this->asJson(['success' => true, 'ids' => $ids]);
+    }
+
+    /**
      * @param int $id
      * @return Response
      * @throws Exception
      * @throws ForbiddenHttpException
      */
-    public function actionWithdraw($id = 0) :Response
+    public function actionWithdraw($id = 0): Response
     {
 
         $app = Craft::$app;
@@ -204,7 +228,7 @@ class AdsController extends Controller
      * @throws BadRequestHttpException
      * @throws ForbiddenHttpException
      */
-    public function actionDelete() :Response
+    public function actionDelete(): Response
     {
         $this->requireAcceptsJson();
         $this->requirePermission('editAds');
@@ -232,10 +256,11 @@ class AdsController extends Controller
      * @throws BadRequestHttpException
      * @throws ForbiddenHttpException
      */
-    public function actionData() :Response
+    public function actionTableData(): Response
     {
         $this->requireAcceptsJson();
         $this->requirePermission('editAds');
+        $request = Craft::$app->request;
 
         $page = Craft::$app->request->getParam('page') ?: 1;
         $limit = Craft::$app->request->getParam('per_page') ?: SettingsModel::PERPAGE;
@@ -244,9 +269,8 @@ class AdsController extends Controller
 
         $query = AdModel::find();
 
-        $search = Craft::$app->request->getParam('search');
-        if ($search) {
-            $query = $query->search($search);
+        foreach (['search', 'type', 'status', 'email'] as $param) {
+            $query = $query->$param($request->getParam($param));
         }
 
         $count = $query->count();
@@ -266,6 +290,7 @@ class AdsController extends Controller
                 'status' => $ad->status == 'open' && $ad->dateCreated > date('Y-m-d', strtotime(SettingsModel::ACTIVEPERIOD)),
 
                 'email' => $ad->email,
+                'statusText' => ucfirst($ad->status),
                 'date' => $ad->dateCreatedLocal()->format('Y-m-d G:i'),
 
                 'detail' => [

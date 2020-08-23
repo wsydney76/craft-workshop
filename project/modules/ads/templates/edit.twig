@@ -1,5 +1,5 @@
 {% extends "_layouts/cp.html" %}
-{% set title = "#{ad.title} (ID: #{ad.id})" %}
+{% set title = ad.title %}
 {% import '_includes/forms.html' as forms %}
 {% set fullPageForm = true %}
 
@@ -67,6 +67,12 @@
 
 {% block details %}
     <div class="meta read-only">
+        <div class="data">
+            <h5 class="heading">ID</h5>
+            <div class="value">
+                {{ ad.id }}
+            </div>
+        </div>
         <div class="data">
             <h5 class="heading">Created at</h5>
             <div class="value">

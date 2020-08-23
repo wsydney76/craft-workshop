@@ -82,7 +82,7 @@ class AdsModule extends Module
                     'url' => 'ads',
                     'label' => 'Ads',
                     'icon' => '@app/icons/search.svg',
-                    'badgeCount' => AdModel::find()->status('open')->count()
+                    'badgeCount' => AdModel::find()->status('active')->count()
                 ];
 
                 $i = 0;
