@@ -1,5 +1,5 @@
 {% extends "_layouts/cp.html" %}
-{% set title = 'Ads' %}
+{% set title = 'Manage Ads' %}
 {% import '_includes/forms.html' as forms %}
 
 {% requirePermission 'editAds' %}
@@ -10,21 +10,23 @@
     <div id="ads-vue-admin-table"></div>
 {% endblock %}
 
-{% block contextMenu %}
+{% block toolbar %}
 
-    {{ forms.select({
+    {{ forms.selectField({
+        label: 'By Type',
         id: 'typeSelect',
         options: [
-            {label: 'Search and Offer', value: ''},
+            {label: 'All', value: ''},
             {label: 'Search', value: 'search'},
             {label: 'Offer', value: 'offer'}
         ]
     }) }}
 
-    {{ forms.select({
+    {{ forms.selectField({
+        label: 'By Status',
         id: 'statusSelect',
         options: [
-            {label: 'All status', value: ''},
+            {label: 'All', value: ''},
             {label: 'Active (open and not expired)', value: 'active'},
             {label: 'Expired', value: 'expired'},
             {label: 'Open', value: 'open'},
@@ -33,14 +35,19 @@
     }) }}
 
 
-    {{ forms.select({
+    {{ forms.selectField({
+        label: 'By Email',
         id: 'emailSelect',
         options: craft.ads.select('email').distinct().orderBy('email').column()
         |map(email => {label:email, value:email})
-        |unshift({label: 'All emails', value: ''})
+        |unshift({label: 'All', value: ''})
     }) }}
 
+{% endblock %}
+
+{% block actionButton %}
     <button id="filterResetBtn" class="btn">Reset</button>
+    <button id="reloadBtn" class="btn">Reload</button>
 {% endblock %}
 
 {% js %}
@@ -90,20 +97,36 @@ adsTable = new Craft.VueAdminTable().init({
 
 filterSelectors = '#typeSelect,#statusSelect,#emailSelect';
 
-$(filterSelectors).change(() => reloadAdminTable());
+$(filterSelectors).change(() => filterAdsTable());
 
 $('#filterResetBtn').click(() => {
     $(filterSelectors).val('');
-    reloadAdminTable();
+    filterAdsTable();
 });
 
+$('#reloadBtn').click(() => reloadAdsTable());
 
-function reloadAdminTable() {
-    // https://github.com/craftcms/cms/issues/6695#issuecomment-678684530
-    adsTable.$children[0].$props.tableDataEndpoint = tableDataEndpoint
+function filterAdsTable() {
+    var endpoint = tableDataEndpoint
         + '?type=' + $('#typeSelect').val()
         + '&status=' + $('#statusSelect').val()
         + '&email=' + $('#emailSelect').val();
+
+    setVueAdminTableDataEndPoint(adsTable, endpoint);
+}
+
+function reloadAdsTable() {
+    reloadVueAdminTable(adsTable);
+}
+
+// TODO: Add to global scripts
+function setVueAdminTableDataEndPoint(table, endpoint) {
+    // https://github.com/craftcms/cms/issues/6695#issuecomment-678684530
+    table.$children[0].$props.tableDataEndpoint = endpoint;
+}
+
+function reloadVueAdminTable(table) {
+    table.$children[0].reload();
 }
 
 {% endjs %}

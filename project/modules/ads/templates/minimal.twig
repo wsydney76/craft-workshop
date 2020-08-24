@@ -1,0 +1,29 @@
+
+{% extends "_layouts/cp.html" %}
+{% set title = 'Ads' %}
+
+{% do view.registerAssetBundle('craft\\web\\assets\\admintable\\AdminTableAsset') %}
+
+{% block content %}
+    <div id="ads-vue-admin-table"></div>
+{% endblock %}
+
+{% js %}
+
+adsTable = new Craft.VueAdminTable({
+    container: '#ads-vue-admin-table',
+    perPage: 15,
+    columns: [
+        {name: 'type', title: 'Type'},
+        {name: '__slot:title', title: 'Title'},
+        {name: '__slot:detail', title: 'Text'},
+        {name: 'email', title: 'Email'},
+        {name: 'statusText', title: 'Status'},
+        {name: 'date', title: 'Date', dataClass: 'column-nowrap'}
+    ],
+    deleteAction: 'ads/ads/delete',
+    tableDataEndpoint: 'ads/ads/table-data'
+
+});
+
+{% endjs %}
