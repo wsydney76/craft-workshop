@@ -76,7 +76,9 @@
         <div class="data">
             <h5 class="heading">Created at</h5>
             <div class="value">
-                {{ ad.dateCreatedLocal|datetime('Y-m-d G:i') }}
+
+                {{ ad.dateCreatedLocal|datetime('Y-m-d G:i') }}<br/>
+                ({{ craft.app.formatter.asRelativeTime(ad.dateCreatedLocal) }})
                 {{ ad.expired ? '<div class="error">Expired</div>' }}
             </div>
         </div>
@@ -84,6 +86,8 @@
             <h5 class="heading">Updated at</h5>
             <div class="value">
                 {{ ad.dateUpdatedLocal|datetime('Y-m-d G:i') }}
+                <br/>
+                ({{ craft.app.formatter.asRelativeTime(ad.dateUpdatedLocal) }})
             </div>
         </div>
     </div>

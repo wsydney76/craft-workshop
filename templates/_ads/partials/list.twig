@@ -15,13 +15,14 @@
         </div>
 
         <div class="mb-3">
-            {{ ad.dateCreatedLocal|datetime('short') }}
-            <a href="mailto:{{ ad.email }}">{{ 'Email'|t }}</a>
+            {{ craft.app.formatter.asRelativeTime(ad.dateCreatedLocal) }}
         </div>
-
-        <td>
+        <div class="mb-3">
             {{ ad.text|nl2br }}
-        </td>
+        </div>
+        <div>
+            <a class="btn btn-primary" href="mailto:{{ ad.email }}">{{ 'Email'|t }}</a>
+        </div>
     </div>
 {% endfor %}
 

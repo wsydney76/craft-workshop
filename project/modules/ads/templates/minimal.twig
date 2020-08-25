@@ -8,6 +8,18 @@
     <div id="ads-vue-admin-table"></div>
 {% endblock %}
 
+{% set tableData = [] %}
+{% for ad in craft.ads.all %}
+	{% set tableData = tableData|push({
+        type: ad.type|capitalize,
+        title: ad.title,
+        url: ad.url,
+        status: ad.isActive,
+        email: ad.email,
+        date: ad.dateCreatedLocal|datetime('short')
+    }) %}
+{% endfor %}
+
 {% js %}
 
 adsTable = new Craft.VueAdminTable({
@@ -16,13 +28,11 @@ adsTable = new Craft.VueAdminTable({
     columns: [
         {name: 'type', title: 'Type'},
         {name: '__slot:title', title: 'Title'},
-        {name: '__slot:detail', title: 'Text'},
         {name: 'email', title: 'Email'},
-        {name: 'statusText', title: 'Status'},
         {name: 'date', title: 'Date', dataClass: 'column-nowrap'}
     ],
     deleteAction: 'ads/ads/delete',
-    tableDataEndpoint: 'ads/ads/table-data'
+    tableData: {{ tableData|json_encode|raw }}
 
 });
 

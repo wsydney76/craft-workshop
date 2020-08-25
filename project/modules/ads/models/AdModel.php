@@ -85,12 +85,12 @@ class AdModel extends ActiveRecord
         return $this->dateCreated < date('Y-m-d', strtotime(SettingsModel::ACTIVEPERIOD));
     }
 
-    public function dateCreatedLocal()
+    public function getDateCreatedLocal()
     {
         return DateTimeHelper::toDateTime($this->dateCreated);
     }
 
-    public function dateUpdatedLocal()
+    public function getDateUpdatedLocal()
     {
         return DateTimeHelper::toDateTime($this->dateUpdated);
     }

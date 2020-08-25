@@ -16,6 +16,7 @@ use craft\web\UrlManager;
 use craft\web\View;
 use project\modules\ads\behaviors\CraftVariableBehavior;
 use project\modules\ads\models\AdModel;
+use project\modules\ads\models\SettingsModel;
 use yii\base\Event;
 use yii\base\Module;
 
@@ -79,7 +80,7 @@ class AdsModule extends Module
         Event::on(Cp::class, Cp::EVENT_REGISTER_CP_NAV_ITEMS, function(RegisterCpNavItemsEvent $event) {
             if (Craft::$app->user->checkPermission('editAds')) {
                 $nav = [
-                    'url' => 'ads',
+                    'url' => SettingsModel::MANAGEADSURL,
                     'label' => 'Ads',
                     'icon' => '@app/icons/search.svg',
                     'badgeCount' => AdModel::find()->status('active')->count()

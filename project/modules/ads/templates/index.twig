@@ -101,6 +101,7 @@ $(filterSelectors).change(() => filterAdsTable());
 
 $('#filterResetBtn').click(() => {
     $(filterSelectors).val('');
+    setVueAdminTableSearchTerm(adsTable, '');
     filterAdsTable();
 });
 
@@ -127,6 +128,10 @@ function setVueAdminTableDataEndPoint(table, endpoint) {
 
 function reloadVueAdminTable(table) {
     table.$children[0].reload();
+}
+
+function setVueAdminTableSearchTerm(table, term) {
+    table.$children[0].searchTerm = term;
 }
 
 {% endjs %}

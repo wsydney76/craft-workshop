@@ -291,7 +291,7 @@ class AdsController extends Controller
 
                 'email' => $ad->email,
                 'statusText' => ucfirst($ad->status),
-                'date' => $ad->dateCreatedLocal()->format('Y-m-d G:i'),
+                'date' => Craft::$app->formatter->asRelativeTime($ad->dateCreatedLocal),
 
                 'detail' => [
                     'handle' => Stringy::create($ad->text)->shortenAfterWord(40),
