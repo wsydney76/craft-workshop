@@ -1,13 +1,15 @@
 {# The form tag kills PHPStorm's syntax awareness, so we output it as a twig string... #}
 {{ '<form method="post" action="" accept-charset="UTF-8" enctype="multipart/form-data">' }}
 
-    {{ csrfInput() }}
-    {{ actionInput('ads/ads/create') }}
-    {{ redirectInput(url('ads/{id}')) }}
+{{ csrfInput() }}
+{{ actionInput('ads/ads/create') }}
+{{ redirectInput(url('ads/{id}')) }}
+{{ hiddenInput('successMessage', 'Thank your for your ad!'|t|hash) }}
+{{ hiddenInput('failMessage', 'Sorry, we could not save your ad. Please check the messages below!'|t|hash) }}
 
-  {% if craft.app.plugins.isPluginEnabled('craft-recaptcha-3') %}
-      {% include ['_recaptcha/frontend'] %}
-  {% endif %}
+{% if craft.app.plugins.isPluginEnabled('craft-recaptcha-3') %}
+    {% include ['_recaptcha/frontend'] %}
+{% endif %}
 
 {% namespace 'ad' %}
     <div class="mb-4">

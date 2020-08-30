@@ -94,14 +94,14 @@ class AdsController extends Controller
         $ad->status = 'open';
 
         if (!$ad->save()) {
-            $this->setFailFlash(Craft::t('site', 'We could not save your ad.'));
+            $this->setFailFlash(Craft::t('ads', 'Ad could not be saved.'));
             $urlManager->setRouteParams([
                 'ad' => $ad
             ]);
             return null;
         }
 
-        $this->setSuccessFlash(Craft::t('site', 'We accepted your ad, thank you'));
+        $this->setSuccessFlash(Craft::t('ads', 'Ad saved'));
         return $this->redirectToPostedUrl(['id' => $ad->id]);
     }
 
@@ -159,14 +159,14 @@ class AdsController extends Controller
         }
 
         if (!$ad->save()) {
-            $this->setFailFlash(Craft::t('ads', 'Could not save ad.'));
+            $this->setFailFlash(Craft::t('ads', "Could not save \"{$ad->title}\"."));
             $urlManager->setRouteParams([
                 'ad' => $ad
             ]);
             return null;
         }
 
-        $this->setSuccessFlash(Craft::t('ads', 'Ad saved'));
+        $this->setSuccessFlash(Craft::t('ads', "\"{$ad->title}\" saved"));
         return $this->redirectToPostedUrl();
     }
 
@@ -305,7 +305,7 @@ class AdsController extends Controller
 
                 'title' => $ad->title,
                 'url' => UrlHelper::cpUrl("ads/{$ad->id}"),
-                'status' => $ad->status == 'open' && $ad->dateCreated > date('Y-m-d', strtotime($settings->activePeriod)),
+                'status' => $ad->isActive(),
 
                 'email' => $ad->email,
                 'statusText' => ucfirst($ad->status),

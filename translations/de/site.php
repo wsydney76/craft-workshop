@@ -2,8 +2,8 @@
 
 return [
 
-    'We could not save your ad.' => 'Wir konnten Ihre Anzeige nicht speichern.',
-    'We accepted your ad, thank you' => 'Wir haben Ihre Anzeige entgegengenommen, vielen Dank',
+    'Sorry, we could not save your ad. Please check the messages below!' => 'Wir konnten Ihre Anzeige nicht speichern, bitte überprüfen Sie die Meldungen unten!',
+    'Thank your for your ad!' => 'Vielen Dank für Ihre Anzeige!',
     'Ads' => 'Anzeigen',
     'New Ad' => 'Neue Anzeige',
     'Latest Ads' => 'Aktuelle Anzeigen',
