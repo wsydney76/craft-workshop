@@ -1,67 +1,75 @@
 {% extends "_layouts/cp.html" %}
 {% set title = ad.title %}
-{% import '_includes/forms.html' as forms %}
 {% set fullPageForm = true %}
 
+{% import '_includes/forms.html' as forms %}
+
 {% set crumbs = [
-    { label: "Ads", url: url('ads') },
+    { label: "Ads", url: redirectUrl },
 ] %}
 
 {% block content %}
     {{ csrfInput() }}
     {{ actionInput('ads/ads/update') }}
-    {{ redirectInput('ads') }}
+    {{ redirectInput(redirectUrl) }}
     {{ hiddenInput('id', ad.id) }}
+    <div id="fields">
+        <div class="flex-fields">
+        {% namespace 'ad' %}
 
-    {% namespace 'ad' %}
+            {{ forms.selectField({
+                label: ad.getAttributeLabel('type'),
+                name: 'type',
+                value: ad.type,
+                options: [
+                    {label: 'Search', value: 'search'},
+                    {label: 'Offer', value: 'offer'}
+                ],
+                first: true,
+                fieldClass: 'width-25',
+            }) }}
 
-        {{ forms.selectField({
-            label: ad.getAttributeLabel('type'),
-            name: 'type',
-            value: ad.type,
-            options: [
-                {label: 'Search', value: 'search'},
-                {label: 'Offer', value: 'offer'}
-            ],
-            first: true
-        }) }}
+            {{ forms.selectField({
+                label: ad.getAttributeLabel('status'),
+                name: 'status',
+                value: ad.status,
+                options: [
+                    {label: 'Open', value: 'open'},
+                    {label: 'Closed', value: 'closed'}
+                ],
+                fieldClass: 'width-25'
+            }) }}
 
-        {{ forms.textField({
-            label: ad.getAttributeLabel('title'),
-            name: 'title',
-            value: ad.title,
-            maxlength: 50,
-            errors: ad.errors('title')
-        }) }}
+            {{ forms.textField({
+                label: ad.getAttributeLabel('email'),
+                name: 'email',
+                value: ad.email,
+                fieldClass: 'width-50',
+                errors: ad.errors('email')
+            }) }}
+
+            {{ forms.textField({
+                label: ad.getAttributeLabel('title'),
+                name: 'title',
+                value: ad.title,
+                maxlength: 50,
+                errors: ad.errors('title')
+            }) }}
 
 
-        {{ forms.textAreaField({
-            label: ad.getAttributeLabel('text'),
-            name: 'text',
-            class: 'nicetext',
-            rows: 4,
-            value: ad.text,
-            errors: ad.errors('text'),
-        }) }}
+            {{ forms.textAreaField({
+                label: ad.getAttributeLabel('text'),
+                name: 'text',
+                class: 'nicetext',
+                rows: 4,
+                value: ad.text,
+                errors: ad.errors('text'),
+            }) }}
 
-        {{ forms.textField({
-            label: ad.getAttributeLabel('email'),
-            name: 'email',
-            value: ad.email,
-            errors: ad.errors('email')
-        }) }}
 
-        {{ forms.selectField({
-            label: ad.getAttributeLabel('status'),
-            name: 'status',
-            value: ad.status,
-            options: [
-                {label: 'Open', value: 'open'},
-                {label: 'Closed', value: 'closed'}
-            ]
-        }) }}
-
-    {% endnamespace %}
+        {% endnamespace %}
+        </div>
+    </div>
 
 {% endblock %}
 
@@ -76,7 +84,6 @@
         <div class="data">
             <h5 class="heading">Created at</h5>
             <div class="value">
-
                 {{ ad.dateCreatedLocal|datetime('Y-m-d G:i') }}<br/>
                 ({{ craft.app.formatter.asRelativeTime(ad.dateCreatedLocal) }})
                 {{ ad.expired ? '<div class="error">Expired</div>' }}

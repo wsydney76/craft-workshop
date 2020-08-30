@@ -18,8 +18,11 @@ use project\modules\ads\models\queries\AdModelQuery;
  * @property string $email Ad Contact Email
  * @property string $type Ad Type [search/offer]
  * @property string $status Ad Status [open/closed]
- * @property DateTime $dateCreatedLocal Ad Creation date/time in system timezone
- * @property DateTime $dateUpdatedLocal Ad last updated date/time in system timezone
+ * @property-read  DateTime $dateCreatedLocal Ad Creation date/time in system timezone
+ * @property-read  DateTime $dateUpdatedLocal Ad last updated date/time in system timezone
+ * @property-read  string $url Frontend Url
+ * @property-read  bool $isActive Ad has status = open and is not expired
+ * @property-read  bool $isExpired Ad is expired
  */
 class AdModel extends ActiveRecord
 {

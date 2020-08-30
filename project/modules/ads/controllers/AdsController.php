@@ -4,6 +4,7 @@ namespace project\modules\ads\controllers;
 
 use Craft;
 use craft\db\Paginator;
+use craft\db\Query;
 use craft\helpers\AdminTable;
 use craft\helpers\UrlHelper;
 use craft\web\Controller;
@@ -85,7 +86,6 @@ class AdsController extends Controller
         $this->requirePostRequest();
 
         $request = Craft::$app->request;
-        $session = Craft::$app->session;
         $urlManager = Craft::$app->urlManager;
 
         $ad = new AdModel();
@@ -94,14 +94,14 @@ class AdsController extends Controller
         $ad->status = 'open';
 
         if (!$ad->save()) {
-            $session->setError(Craft::t('site', 'We could not save your ad.'));
+            $this->setFailFlash(Craft::t('site', 'We could not save your ad.'));
             $urlManager->setRouteParams([
                 'ad' => $ad
             ]);
             return null;
         }
 
-        $session->setNotice(Craft::t('site', 'We accepted your ad, thank you'));
+        $this->setSuccessFlash(Craft::t('site', 'We accepted your ad, thank you'));
         return $this->redirectToPostedUrl(['id' => $ad->id]);
     }
 
@@ -115,14 +115,18 @@ class AdsController extends Controller
     {
         $this->requirePermission('editAds');
 
-        $ad = Craft::$app->urlManager->getRouteParams()['ad'] ?? AdModel::findOne($id);
+        $settings = AdsModule::getInstance()->settings;
+        $urlManager = Craft::$app->urlManager;
+
+        $ad = $urlManager->getRouteParams()['ad'] ?? AdModel::findOne($id);
 
         if (!$ad) {
             throw new NotFoundHttpException();
         }
 
         return $this->renderTemplate('ads/edit', [
-            'ad' => $ad
+            'ad' => $ad,
+            'redirectUrl' => $settings->manageAdsUrl
         ]);
     }
 
@@ -138,7 +142,6 @@ class AdsController extends Controller
         $this->requirePermission('editAds');
 
         $request = Craft::$app->request;
-        $session = Craft::$app->session;
         $urlManager = Craft::$app->urlManager;
 
         $ad = AdModel::findOne($request->getRequiredBodyParam('id'));
@@ -151,19 +154,19 @@ class AdsController extends Controller
         $ad->attributes = $request->post('ad');
 
         if (!$ad->getDirtyAttributes()) {
-            $session->setError(Craft::t('ads', 'Nothing has changed'));
+            $this->setFailFlash(Craft::t('ads', 'Nothing has changed'));
             return null;
         }
 
         if (!$ad->save()) {
-            $session->setError(Craft::t('ads', 'Could not save ad.'));
+            $this->setFailFlash(Craft::t('ads', 'Could not save ad.'));
             $urlManager->setRouteParams([
                 'ad' => $ad
             ]);
             return null;
         }
 
-        $session->setNotice(Craft::t('ads', 'Ad saved'));
+        $this->setSuccessFlash(Craft::t('ads', 'Ad saved'));
         return $this->redirectToPostedUrl();
     }
 
@@ -203,8 +206,8 @@ class AdsController extends Controller
     public function actionWithdraw($id = 0): Response
     {
 
-        $session = Craft::$app->session;
         $user = Craft::$app->user->identity;
+        $request = Craft::$app->request;
 
         if (!$user) {
             throw new ForbiddenHttpException();
@@ -223,11 +226,11 @@ class AdsController extends Controller
         $ad->status = 'closed';
 
         if (!$ad->save()) {
-            $session->setError('Could not withdraw Ad');
-            return $this->redirect($app->request->referrer);
+            $this->setFailFlash('Could not withdraw Ad');
+            return $this->redirect($request->referrer);
         }
 
-        $session->setNotice(Craft::t('site', 'Ad withdrawn'));
+        $this->setSuccessFlash(Craft::t('site', 'Ad withdrawn'));
         return $this->redirect(UrlHelper::siteUrl('ads/myads'));
     }
 

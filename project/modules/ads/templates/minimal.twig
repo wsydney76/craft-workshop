@@ -13,7 +13,7 @@
 	{% set tableData = tableData|push({
         type: ad.type|capitalize,
         title: ad.title,
-        url: ad.url,
+        url: cpUrl('ads/' ~ ad.id),
         status: ad.isActive,
         email: ad.email,
         date: ad.dateCreatedLocal|datetime('short')
