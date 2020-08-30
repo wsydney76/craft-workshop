@@ -3,7 +3,7 @@
 namespace project\modules\ads\models\queries;
 
 use craft\elements\User;
-use project\modules\ads\models\SettingsModel;
+use project\modules\ads\AdsModule;
 use yii\db\ActiveQuery;
 
 class AdModelQuery extends ActiveQuery
@@ -49,14 +49,16 @@ class AdModelQuery extends ActiveQuery
             return $this;
         }
 
+        $settings = AdsModule::getInstance()->settings;
+
         if ($status == 'active') {
             $query = $this->status('open');
-            $query = $query->andWhere(['>', 'dateCreated', date('Y-m-d', strtotime(SettingsModel::ACTIVEPERIOD))]);
+            $query = $query->andWhere(['>', 'dateCreated', date('Y-m-d', strtotime($settings->activePeriod))]);
             return $query;
         }
 
         if ($status == 'expired') {
-            return  $this->andWhere(['<', 'dateCreated', date('Y-m-d', strtotime(SettingsModel::ACTIVEPERIOD))]);
+            return $this->andWhere(['<', 'dateCreated', date('Y-m-d', strtotime($settings->activePeriod))]);
         }
 
         return $this->andWhere(['status' => $status]);

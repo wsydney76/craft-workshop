@@ -20,11 +20,23 @@ use project\modules\ads\models\SettingsModel;
 use yii\base\Event;
 use yii\base\Module;
 
+/**
+ * Class AdsModule
+ *
+ * @package project\modules\ads
+ *
+ * @property SettingsModel $settings;
+ */
 class AdsModule extends Module
 {
 
     public function init()
     {
+
+        // Set components
+        $this->setComponents([
+            'settings' => SettingsModel::class
+        ]);
 
         // Register translation category
         Craft::$app->i18n->translations['ads'] = [
@@ -80,7 +92,7 @@ class AdsModule extends Module
         Event::on(Cp::class, Cp::EVENT_REGISTER_CP_NAV_ITEMS, function(RegisterCpNavItemsEvent $event) {
             if (Craft::$app->user->checkPermission('editAds')) {
                 $nav = [
-                    'url' => SettingsModel::MANAGEADSURL,
+                    'url' => $this->settings->manageAdsUrl,
                     'label' => 'Ads',
                     'icon' => '@app/icons/search.svg',
                     'badgeCount' => AdModel::find()->status('active')->count()

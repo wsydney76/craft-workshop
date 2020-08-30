@@ -7,8 +7,8 @@ use craft\db\Paginator;
 use craft\helpers\AdminTable;
 use craft\helpers\UrlHelper;
 use craft\web\Controller;
+use project\modules\ads\AdsModule;
 use project\modules\ads\models\AdModel;
-use project\modules\ads\models\SettingsModel;
 use Stringy\Stringy;
 use Throwable;
 use Twig\Error\LoaderError;
@@ -32,20 +32,25 @@ class AdsController extends Controller
      */
     public function actionIndex($type = ''): Response
     {
+
+        $settings = AdsModule::getInstance()->settings;
+        $request = Craft::$app->request;
+        $user = Craft::$app->user->identity;
+
         $query = AdModel::find()->status('active');
 
         if ($type) {
             if ($type == 'myads') {
                 $this->requireLogin();
-                $query = $query->user(Craft::$app->user->identity);
+                $query = $query->user($user);
             } else {
                 $query = $query->type($type);
             }
         }
 
         $paginator = new Paginator($query, [
-            'pageSize' => SettingsModel::PERPAGE,
-            'currentPage' => Craft::$app->request->getParam('page', 1)
+            'pageSize' => $settings->perPage,
+            'currentPage' => $request->getParam('page', 1)
         ]);
 
         return $this->renderTemplate('_ads/list', [
@@ -79,22 +84,24 @@ class AdsController extends Controller
     {
         $this->requirePostRequest();
 
-        $app = Craft::$app;
+        $request = Craft::$app->request;
+        $session = Craft::$app->session;
+        $urlManager = Craft::$app->urlManager;
 
         $ad = new AdModel();
         $ad->scenario = AdModel::SCENARIO_CREATE;
-        $ad->attributes = $app->request->post('ad');
+        $ad->attributes = $request->post('ad');
         $ad->status = 'open';
 
         if (!$ad->save()) {
-            $app->session->setError(Craft::t('site', 'We could not save your ad.'));
-            $app->urlManager->setRouteParams([
+            $session->setError(Craft::t('site', 'We could not save your ad.'));
+            $urlManager->setRouteParams([
                 'ad' => $ad
             ]);
             return null;
         }
 
-        $app->session->setNotice(Craft::t('site', 'We accepted your ad, thank you'));
+        $session->setNotice(Craft::t('site', 'We accepted your ad, thank you'));
         return $this->redirectToPostedUrl(['id' => $ad->id]);
     }
 
@@ -130,31 +137,33 @@ class AdsController extends Controller
         $this->requirePostRequest();
         $this->requirePermission('editAds');
 
-        $app = Craft::$app;
+        $request = Craft::$app->request;
+        $session = Craft::$app->session;
+        $urlManager = Craft::$app->urlManager;
 
-        $ad = AdModel::findOne($app->request->getRequiredBodyParam('id'));
+        $ad = AdModel::findOne($request->getRequiredBodyParam('id'));
 
         if (!$ad) {
             throw new NotFoundHttpException();
         }
 
         $ad->scenario = AdModel::SCENARIO_UPDATE;
-        $ad->attributes = $app->request->post('ad');
+        $ad->attributes = $request->post('ad');
 
         if (!$ad->getDirtyAttributes()) {
-            $app->session->setError(Craft::t('ads', 'Nothing has changed'));
+            $session->setError(Craft::t('ads', 'Nothing has changed'));
             return null;
         }
 
         if (!$ad->save()) {
-            $app->session->setError(Craft::t('ads', 'Could not save ad.'));
-            $app->urlManager->setRouteParams([
+            $session->setError(Craft::t('ads', 'Could not save ad.'));
+            $urlManager->setRouteParams([
                 'ad' => $ad
             ]);
             return null;
         }
 
-        $app->session->setNotice(Craft::t('ads', 'Ad saved'));
+        $session->setNotice(Craft::t('ads', 'Ad saved'));
         return $this->redirectToPostedUrl();
     }
 
@@ -168,8 +177,10 @@ class AdsController extends Controller
         $this->requireAcceptsJson();
         $this->requirePermission('editAds');
 
-        $ids = Craft::$app->request->getRequiredBodyParam('ids');
-        $status = Craft::$app->request->getRequiredBodyParam('status');
+        $request = Craft::$app->request;
+
+        $ids = $request->getRequiredBodyParam('ids');
+        $status = $request->getRequiredBodyParam('status');
 
         $ads = AdModel::find()
             ->where(['in', 'id', $ids])
@@ -192,9 +203,9 @@ class AdsController extends Controller
     public function actionWithdraw($id = 0): Response
     {
 
-        $app = Craft::$app;
+        $session = Craft::$app->session;
+        $user = Craft::$app->user->identity;
 
-        $user = $app->user->identity;
         if (!$user) {
             throw new ForbiddenHttpException();
         }
@@ -212,11 +223,11 @@ class AdsController extends Controller
         $ad->status = 'closed';
 
         if (!$ad->save()) {
-            $app->session->setError('Could not withdraw Ad');
+            $session->setError('Could not withdraw Ad');
             return $this->redirect($app->request->referrer);
         }
 
-        $app->session->setNotice(Craft::t('site', 'Ad withdrawn'));
+        $session->setNotice(Craft::t('site', 'Ad withdrawn'));
         return $this->redirect(UrlHelper::siteUrl('ads/myads'));
     }
 
@@ -258,13 +269,17 @@ class AdsController extends Controller
      */
     public function actionTableData(): Response
     {
+        $settings = AdsModule::getInstance()->settings;
         $this->requireAcceptsJson();
         $this->requirePermission('editAds');
-        $request = Craft::$app->request;
 
-        $page = Craft::$app->request->getParam('page') ?: 1;
-        $limit = Craft::$app->request->getParam('per_page') ?: SettingsModel::PERPAGE;
-        $orderBy = Craft::$app->request->getParam('sort') ?: 'dateCreated desc';
+        $request = Craft::$app->request;
+        $view = Craft::$app->view;
+        $formatter = Craft::$app->formatter;
+
+        $page = $request->getParam('page') ?: 1;
+        $limit = $request->getParam('per_page') ?: $settings->perPage;
+        $orderBy = $request->getParam('sort') ?: 'dateCreated desc';
         $orderBy = str_replace('|', ' ', $orderBy);
 
         $query = AdModel::find();
@@ -287,15 +302,15 @@ class AdsController extends Controller
 
                 'title' => $ad->title,
                 'url' => UrlHelper::cpUrl("ads/{$ad->id}"),
-                'status' => $ad->status == 'open' && $ad->dateCreated > date('Y-m-d', strtotime(SettingsModel::ACTIVEPERIOD)),
+                'status' => $ad->status == 'open' && $ad->dateCreated > date('Y-m-d', strtotime($settings->activePeriod)),
 
                 'email' => $ad->email,
                 'statusText' => ucfirst($ad->status),
-                'date' => Craft::$app->formatter->asRelativeTime($ad->dateCreatedLocal),
+                'date' => $formatter->asRelativeTime($ad->dateCreatedLocal),
 
                 'detail' => [
                     'handle' => Stringy::create($ad->text)->shortenAfterWord(40),
-                    'content' => Craft::$app->view->renderTemplate('ads/detail', [
+                    'content' => $view->renderTemplate('ads/detail', [
                         'ad' => $ad
                     ])
                 ]
