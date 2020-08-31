@@ -4,7 +4,6 @@ namespace project\modules\ads\controllers;
 
 use Craft;
 use craft\db\Paginator;
-use craft\db\Query;
 use craft\helpers\AdminTable;
 use craft\helpers\UrlHelper;
 use craft\web\Controller;
@@ -111,14 +110,14 @@ class AdsController extends Controller
      * @throws NotFoundHttpException
      * @throws ForbiddenHttpException
      */
-    public function actionEdit($id): Response
+    public function actionCpEdit($id = null): Response
     {
         $this->requirePermission('editAds');
 
         $settings = AdsModule::getInstance()->settings;
         $urlManager = Craft::$app->urlManager;
 
-        $ad = $urlManager->getRouteParams()['ad'] ?? AdModel::findOne($id);
+        $ad = $urlManager->getRouteParams()['ad'] ?? ($id ? AdModel::findOne($id) : new AdModel());
 
         if (!$ad) {
             throw new NotFoundHttpException();
@@ -144,10 +143,15 @@ class AdsController extends Controller
         $request = Craft::$app->request;
         $urlManager = Craft::$app->urlManager;
 
-        $ad = AdModel::findOne($request->getRequiredBodyParam('id'));
+        $id = $request->getRequiredBodyParam('id');
 
-        if (!$ad) {
-            throw new NotFoundHttpException();
+        if (!$id) {
+            $ad = new AdModel();
+        } else {
+            $ad = AdModel::findOne($id);
+            if (!$ad) {
+                throw new NotFoundHttpException();
+            }
         }
 
         $ad->scenario = AdModel::SCENARIO_UPDATE;
@@ -159,7 +163,8 @@ class AdsController extends Controller
         }
 
         if (!$ad->save()) {
-            $this->setFailFlash(Craft::t('ads', "Could not save \"{$ad->title}\"."));
+            $title = $ad->title ?: 'New ad';
+            $this->setFailFlash(Craft::t('ads', "Could not save \"{$title}\"."));
             $urlManager->setRouteParams([
                 'ad' => $ad
             ]);
@@ -216,7 +221,7 @@ class AdsController extends Controller
         $ad = AdModel::findOne($id);
 
         if (!$ad) {
-            throw new ForbiddenHttpException();
+            throw new NotFoundHttpException();
         }
 
         if ($user->email != $ad->email) {

@@ -1,5 +1,12 @@
 {% if currentUser and currentUser.email == ad.email and ad.status == 'open' %}
     <div class="my-4">
-        <a class="btn btn-primary text-white" href="{{ url("ads/withdraw/#{ad.id}") }}">{{ 'Withdraw Your Ad'|t }}</a>
+        <a id="closeBtn" class="btn btn-primary text-white"
+           href="{{ url("ads/withdraw/#{ad.id}") }}">{{ 'Withdraw Your Ad'|t }}</a>
     </div>
 {% endif %}
+
+{% js %}
+$('#closeBtn').on('click', function() {
+    return confirm('{{ 'Are you sure?'|t }}');
+});
+{% endjs %}

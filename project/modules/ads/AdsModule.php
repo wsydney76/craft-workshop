@@ -66,7 +66,8 @@ class AdsModule extends Module
         Event::on(
             UrlManager::class,
             UrlManager::EVENT_REGISTER_CP_URL_RULES, function(RegisterUrlRulesEvent $event) {
-            $event->rules['ads/<id:[\d]+>'] = 'ads/ads/edit';
+            $event->rules['ads/<id:[\d]+>'] = 'ads/ads/cp-edit';
+            $event->rules['ads/new'] = 'ads/ads/cp-edit';
         });
 
         // Register Templates directory
