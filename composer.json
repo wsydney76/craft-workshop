@@ -12,6 +12,7 @@
     "doublesecretagency/craft-inventory": "2.1.1",
     "mmikkel/cp-field-inspect": "1.2.2",
     "putyourlightson/craft-blitz": "3.6.8",
+    "putyourlightson/craft-sprig": "1.0.0-beta.12",
     "spicyweb/craft-embedded-assets": "2.3.4",
     "twbs/bootstrap": "^4.4",
     "vaersaagod/matrixmate": "1.2.7",

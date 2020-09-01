@@ -12,6 +12,7 @@ use putyourlightson\blitz\models\SiteUriModel;
 use Throwable;
 use yii\db\Exception;
 use yii\db\Expression;
+use function var_dump;
 
 class ContentService extends Component
 {
@@ -174,6 +175,12 @@ class ContentService extends Component
                     }
                 }
             }
+
+            $screenings = Entry::find()->section('screening')->siteId($siteId)->all();
+            foreach ($screenings as $screening) {
+                $siteUris[] = new SiteUriModel(['siteId' => $siteId, 'uri' => "ajax/screening/{$screening->id}"]);
+            }
+
         }
         return $siteUris;
     }

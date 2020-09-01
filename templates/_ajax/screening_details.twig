@@ -4,9 +4,6 @@
     {% exit 404 %}
 {% endif %}
 
-{% if not craft.app.request.isAjax and not craft.app.config.general.devMode %}
-    {% exit 400 %}
-{% endif %}
 
 {% set film = entry.film.site('*').unique().one %}
 {% set location = entry.location.site('*').unique().one %}
@@ -21,21 +18,9 @@
         <h2><a href="{{ entry.url }}">{{ 'Screening'|t }}</a></h2>
     </div>
     <div class="col-md-6 pt-2">
-        {% if currentUser %}
-            {% set inList = craft.watchlist.exists(entry.id) %}
-
-            <div id="btn-add" class="btn btn-primary cursor-pointer"
-                 onclick="callWatchlist('{{ url('watchlist/add/' ~ entry.id) }}');"
-                 style="display: {{ inList ? 'none' : '' }}">{{ 'Add to watchlist'|t }}
-            </div>
-            <div id="btn-delete" class="btn btn-primary cursor-pointer"
-                 onclick="callWatchlist('{{ url('watchlist/delete/' ~ entry.id) }}');"
-                 style="display: {{ inList ? '' : 'none' }}">{{ 'Remove from watchlist'|t }}
-            </div>
-
-        {% else %}
-            <a href="{{ url('members/register') }}">{{ 'Register to add screenings to your watchlist'|t }}</a>
-        {% endif %}
+        {% include '_partials/managewatchlist.twig' with {
+            id: entry.id
+        } only %}
     </div>
 </div>
 
