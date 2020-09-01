@@ -4,9 +4,6 @@
     {% exit 404 %}
 {% endif %}
 
-{% if not craft.app.request.isAjax and not craft.app.config.general.devMode %}
-    {% exit 400 %}
-{% endif %}
 
 {% set film = entry.film.site('*').unique().one %}
 {% set location = entry.location.site('*').unique().one %}
