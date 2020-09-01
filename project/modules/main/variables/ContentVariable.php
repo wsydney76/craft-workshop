@@ -36,6 +36,8 @@ class ContentVariable extends Component
      * @throws RuntimeError
      * @throws SyntaxError
      * @throws Exception
+     *
+     * @deprecated use sprig components instead
      */
     public function loadTemplate($id, $options = []): Markup
     {

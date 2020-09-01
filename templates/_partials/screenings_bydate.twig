@@ -18,6 +18,7 @@
     {% set showFilm = showFilm ?? true %}
     {% set showLocation = showLocation ?? true %}
     {% set heading = heading ?? 'Screenings By Date' %}
+    {% set showWatchList = showWatchList ?? true  %}
 
     {% embed '_layouts/embeds/widget.twig'
         with {heading:heading|t, screenings:screenings, showFilm:showFilm, showLocation:showLocation, boxed:boxed??true} %}
@@ -61,11 +62,14 @@
                                             {{ 'Sold Out'|t }}
                                         </div>
                                     {% endif %}
-                                    <div class="mt-3">
-                                        {% include '_partials/managewatchlist.twig' with {
-                                            id: screening.id
-                                        } only %}
-                                    </div>
+
+                                    {% if showWatchList %}
+                                        <div class="mt-3">
+                                            {% include '_partials/managewatchlist.twig' with {
+                                                id: screening.id
+                                            } only %}
+                                        </div>
+                                    {% endif %}
                                 </div>
                             {% endif %}
                         </div>
