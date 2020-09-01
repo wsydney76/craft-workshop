@@ -3,16 +3,34 @@ fieldLayouts:
   d58ed905-6b80-436a-afd6-cb9fe0e80c5d:
     tabs:
       -
-        fields:
-          15791f58-bc09-470b-91eb-82a744148be8:
-            required: true
-            sortOrder: 2
-          1b5715da-6a87-4e48-86c6-7ec89429db54:
-            required: false
-            sortOrder: 1
-          c64b5b5f-3b4f-40d5-b3f7-b0642ea2c285:
-            required: true
-            sortOrder: 3
+        elements:
+          -
+            fieldUid: 1b5715da-6a87-4e48-86c6-7ec89429db54
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 15791f58-bc09-470b-91eb-82a744148be8
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: c64b5b5f-3b4f-40d5-b3f7-b0642ea2c285
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -24,9 +42,11 @@ fields:
     name: Target
     searchable: false
     settings:
+      allowSelfRelations: false
       limit: '1'
-      localizeRelations: ''
+      localizeRelations: false
       selectionLabel: 'Select an entry'
+      showSiteMenu: true
       source: null
       sources:
         - 'section:ae5b96d9-d2e0-43b6-b555-0c6135de8639'
@@ -34,7 +54,7 @@ fields:
         - 'section:c504627b-6f45-47cd-822a-8e36420f203d'
         - singles
       targetSiteId: null
-      validateRelatedElements: ''
+      validateRelatedElements: false
       viewMode: null
     translationKeyFormat: null
     translationMethod: site
@@ -47,12 +67,14 @@ fields:
     name: Caption
     searchable: true
     settings:
+      byteLimit: null
       charLimit: '40'
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText

@@ -1,0 +1,9 @@
+{# @param AdModel ad #}
+
+{% extends "_ads/layout.twig" %}
+{% set global_title = 'New Ad'|t %}
+
+{% block content %}
+    {% include '_ads/partials/form.twig'
+        with {ad: ad} only %}
+{% endblock %}

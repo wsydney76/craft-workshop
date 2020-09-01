@@ -5,13 +5,15 @@ instructions: 'Select a user who should receive notifications on new suggestions
 name: 'Suggestions: User for email notification'
 searchable: false
 settings:
+  allowSelfRelations: false
   limit: '1'
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: 'Select a user'
+  showSiteMenu: true
   source: null
   sources: '*'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

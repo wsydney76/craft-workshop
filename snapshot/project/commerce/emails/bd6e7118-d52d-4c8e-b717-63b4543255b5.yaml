@@ -1,12 +1,11 @@
-bcc: ''
-cc: ''
-enabled: '1'
+bcc: null
+cc: null
+enabled: true
 name: 'Shipment Confirmation'
 pdf: 21effcda-f9f3-490b-94b6-ac0ec78819bd
 plainTextTemplatePath: ''
 recipientType: customer
-replyTo: ''
+replyTo: null
 subject: 'Your order has been shipped'
 templatePath: buy/_pdf/order
-to: ''
-uid: bd6e7118-d52d-4c8e-b717-63b4543255b5
+to: null

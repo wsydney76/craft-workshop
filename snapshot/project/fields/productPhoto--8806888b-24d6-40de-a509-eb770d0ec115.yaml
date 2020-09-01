@@ -5,13 +5,15 @@ instructions: ''
 name: 'Product Photo'
 searchable: false
 settings:
+  allowSelfRelations: false
   allowedKinds: null
   defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
   defaultUploadLocationSubpath: ''
   limit: '1'
-  localizeRelations: ''
+  localizeRelations: false
   restrictFiles: ''
   selectionLabel: ''
+  showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: false
   singleUploadLocationSource: 'volume:caf05300-3e76-4a18-8567-e67a9099f462'
@@ -20,7 +22,7 @@ settings:
   sources: '*'
   targetSiteId: null
   useSingleFolder: true
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: large
 translationKeyFormat: null
 translationMethod: site

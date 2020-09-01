@@ -1,0 +1,85 @@
+{# @param AdModel ad #}
+
+{# The form tag kills PHPStorm's syntax awareness, so we output it as a twig string... #}
+{{ '<form method="post" action="" accept-charset="UTF-8" enctype="multipart/form-data">' }}
+
+{{ csrfInput() }}
+{{ actionInput('ads/ads/create') }}
+{{ redirectInput(url('ads/{id}')) }}
+{{ hiddenInput('successMessage', 'Thank your for your ad!'|t|hash) }}
+{{ hiddenInput('failMessage', 'Sorry, we could not save your ad. Please check the messages below!'|t|hash) }}
+
+{% if craft.app.plugins.isPluginEnabled('craft-recaptcha-3') %}
+    {% include ['_recaptcha/frontend'] %}
+{% endif %}
+
+{% namespace 'ad' %}
+    <div class="mb-4">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="type" id="input-search"
+                   value="search" {{ ad.type != 'offer' ? 'checked' }}>
+            <label class="form-check-label" for="input-search">{{ 'Search'|t('ads') }}</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="type" id="input-offer"
+                   value="offer" {{ ad.type == 'offer' ? 'checked' }}>
+            <label class="form-check-label" for="input-offer">{{ 'Offer'|t('ads') }}</label>
+        </div>
+
+        {{ _self.errorList(ad.getErrors('type')) }}
+    </div>
+
+    <div class="form-group">
+        <label for="input-title">
+            {{ ad.getAttributeLabel('title') }}
+        </label>
+        <input class="form-control"
+               id="input-title"
+               type="text"
+               name="title"
+               autofocus
+               value="{{ ad.title }}">
+
+        {{ _self.errorList(ad.getErrors('title')) }}
+    </div>
+
+
+    <div class="form-group">
+        <label for="input-text">
+            {{ ad.getAttributeLabel('text') }}
+        </label>
+        <textarea class="form-control"
+                  id="input-text"
+                  name="text"
+                  rows="5">{{ ad.text }}</textarea>
+
+        {{ _self.errorList(ad.getErrors('text')) }}
+    </div>
+
+    <div class="form-group">
+        <label for="input-email">
+            {{ ad.getAttributeLabel('email') }}
+        </label>
+        <input class="form-control"
+               id="input-email"
+               type="text"
+               name="email"
+               value="{{ ad.email }}">
+
+        {{ _self.errorList(ad.getErrors('email')) }}
+    </div>
+{% endnamespace %}
+
+<button type="submit" class="btn btn-primary">{{ 'Send'|t }}</button>
+
+{{ '</form>' }}
+
+{% macro errorList(errors) %}
+    {% if errors %}
+        <ul class="text-danger list-unstyled">
+            {% for error in errors %}
+                <li>{{ error|t }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}

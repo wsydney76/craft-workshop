@@ -6,4 +6,3 @@ isDefault: false
 name: 'Order Confirmation PDF'
 sortOrder: 1
 templatePath: buy/_pdf/order
-uid: ce9b6388-7f97-4254-b64d-aea6551d1415

@@ -1,0 +1,23 @@
+{# @param type #}
+
+<div class="mb-2">
+    {% if craft.app.request.segment(2) != 'new' %}
+        <a class="btn btn-outline-light font-weight-bold mr-3"
+           href="{{ url('ads/new') }}">{{ 'New'|t }}</a>
+    {% endif %}
+
+    {% if type != 'search' %}
+        <a class="btn btn-outline-light font-weight-bold mr-3"
+           href="{{ url('ads/search') }}">{{ 'Search'|t('ads') }}</a>
+    {% endif %}
+
+    {% if type != 'offer' %}
+        <a class="btn btn-outline-light font-weight-bold mr-3"
+           href="{{ url('ads/offer') }}">{{ 'Offer'|t('ads') }}</a>
+    {% endif %}
+
+    {% if currentUser and type != 'myads' %}
+        <a class="btn btn-outline-light font-weight-bold mr-3"
+           href="{{ url('ads/myads') }}">{{ 'My Ads'|t('ads') }}</a>
+    {% endif %}
+</div>

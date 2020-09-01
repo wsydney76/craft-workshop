@@ -23,8 +23,8 @@ class MembersModule extends Module
         Event::on(
             UrlManager::class,
             UrlManager::EVENT_REGISTER_SITE_URL_RULES, function(RegisterUrlRulesEvent $event) {
-            $event->rules['watchlist/add/<id:[\d]+>'] = 'main/members/members/add-to-watchlist';
-            $event->rules['watchlist/delete/<id:[\d]+>'] = 'main/members/members/delete-from-watchlist';
+            $event->rules['watchlist/add'] = 'main/members/members/add-to-watchlist';
+            $event->rules['watchlist/delete'] = 'main/members/members/delete-from-watchlist';
         });
 
         // Set craft.xxx variables for twig templates

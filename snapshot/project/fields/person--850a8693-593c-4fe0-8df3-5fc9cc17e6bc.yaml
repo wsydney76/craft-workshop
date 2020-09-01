@@ -5,14 +5,16 @@ instructions: ''
 name: Person
 searchable: true
 settings:
+  allowSelfRelations: false
   limit: '1'
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: 'Select a person'
+  showSiteMenu: true
   source: null
   sources:
     - 'section:c504627b-6f45-47cd-822a-8e36420f203d'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

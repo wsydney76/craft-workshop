@@ -1,0 +1,46 @@
+{
+    "title": "https://twitter.com/horstwalther/status/1298657585105645569",
+    "description": null,
+    "url": "https://twitter.com/horstwalther/status/1298657585105645569",
+    "type": "rich",
+    "tags": [],
+    "feeds": [],
+    "images": [],
+    "image": null,
+    "imageWidth": null,
+    "imageHeight": null,
+    "code": "<blockquote class=\"twitter-tweet\" data-width=\"550\"><p lang=\"de\" dir=\"ltr\">&quot;Entschuldigung, aber FKK ist hier verboten!&quot;<br><br>&quot;Wer sagt das?&quot;<br><br>&quot;Die Friedhofsverordnung.&quot;</p>&mdash; Stullen-Horst (@horstwalther) <a href=\"https://twitter.com/horstwalther/status/1298657585105645569?ref_src=twsrc%5Etfw\">August 26, 2020</a></blockquote>\n<script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>",
+    "width": 550,
+    "height": null,
+    "aspectRatio": null,
+    "authorName": "Stullen-Horst",
+    "authorUrl": "https://twitter.com/horstwalther",
+    "providerIcons": [
+        {
+            "url": "https://twitter.com/favicon.ico",
+            "width": 16,
+            "height": 16,
+            "size": 256,
+            "mime": "image/x-icon"
+        },
+        {
+            "url": "https://abs.twimg.com/favicons/twitter.ico",
+            "width": 32,
+            "height": 32,
+            "size": 1024,
+            "mime": "image/vnd.microsoft.icon"
+        },
+        {
+            "url": "https://abs.twimg.com/responsive-web/client-web-legacy/icon-ios.8ea219d5.png",
+            "width": 1024,
+            "height": 1024,
+            "size": 1048576,
+            "mime": "image/png"
+        }
+    ],
+    "providerIcon": "https://abs.twimg.com/responsive-web/client-web-legacy/icon-ios.8ea219d5.png",
+    "providerName": "Twitter",
+    "providerUrl": "https://twitter.com",
+    "publishedTime": null,
+    "license": null
+}

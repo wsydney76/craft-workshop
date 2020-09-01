@@ -1,0 +1,32 @@
+<div class="mt-5"></div>
+
+{% embed '_layouts/embeds/widget.twig' with {heading:'Your Cookie Consent Settings'|t} %}
+
+    {% block content %}
+        <div class="h5 mt-3">{{ 'Consent Given'|t }}?</div>
+        {% if craft.gdpr.hasCookieConsent %}
+            {{ 'You have confirmed your settings'|t }}.
+
+            <div class="h5 mt-4">{{ 'Settings'|t }}</div>
+
+            <table class="table">
+                {% for key, settings in craft.app.config.general.project.cookiePreferences %}
+                    <tr>
+                        <td>{{ settings[currentSite.language[:2]].title }}</td>
+                        <td>{{ settings[currentSite.language[:2]].description }}</td>
+                        <td>
+                            {% if settings.fixed %}
+                                {{ 'Always enabled'|t }}
+                            {% else %}
+                                {{ craft.gdpr.hasCookiePreference(key) ? 'Accepted'|t : 'Not Accepted'|t }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            {{ 'You have not yet confirmed your settings'|t }}.
+        {% endif %}
+    {% endblock %}
+{% endembed %}
+

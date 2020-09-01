@@ -3,28 +3,70 @@ fieldLayouts:
   281bdc92-7034-45b1-a2b6-b0c7944d54fd:
     tabs:
       -
-        fields:
-          0a8608fe-ece0-483c-8319-f1671c878999:
-            required: false
-            sortOrder: 5
-          493f068d-3768-4510-b006-f1ea974baae6:
-            required: false
-            sortOrder: 1
-          4aeb7cf2-d3ac-4cd5-9fce-3bba54fa3327:
-            required: false
-            sortOrder: 7
-          54cc875d-eba4-4734-9940-8c16cf4f3d22:
-            required: false
-            sortOrder: 2
-          900de470-c207-4528-88a6-c0c1f60687d8:
-            required: false
-            sortOrder: 6
-          a9be0a73-b3cc-45ce-a648-95e06bd32178:
-            required: false
-            sortOrder: 3
-          a9cfc7a5-da1e-4be1-897b-94055842c85a:
-            required: false
-            sortOrder: 4
+        elements:
+          -
+            fieldUid: 493f068d-3768-4510-b006-f1ea974baae6
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 54cc875d-eba4-4734-9940-8c16cf4f3d22
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: a9be0a73-b3cc-45ce-a648-95e06bd32178
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: a9cfc7a5-da1e-4be1-897b-94055842c85a
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 0a8608fe-ece0-483c-8319-f1671c878999
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 900de470-c207-4528-88a6-c0c1f60687d8
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 4aeb7cf2-d3ac-4cd5-9fce-3bba54fa3327
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -43,6 +85,7 @@ fields:
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText
@@ -61,6 +104,7 @@ fields:
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText
@@ -98,14 +142,19 @@ fields:
         - 8136d7e9-1a74-464d-aef2-3a4f91a5cdda
       cleanupHtml: true
       columnType: text
+      configSelectionMode: choose
+      defaultTransform: ''
+      manualConfig: ''
       purifierConfig: ''
       purifyHtml: '1'
       redactorConfig: Custom.json
       removeEmptyTags: '1'
       removeInlineStyles: '1'
       removeNbsp: '1'
+      showHtmlButtonForNonAdmins: false
       showUnpermittedFiles: false
       showUnpermittedVolumes: false
+      uiMode: enlarged
     translationKeyFormat: null
     translationMethod: site
     type: craft\redactor\Field
@@ -117,14 +166,16 @@ fields:
     name: 'Reusable Background Color'
     searchable: false
     settings:
+      allowSelfRelations: false
       limit: '1'
-      localizeRelations: ''
+      localizeRelations: false
       selectionLabel: 'Select a color'
+      showSiteMenu: true
       source: null
       sources:
         - 'section:69f24ac1-fc43-498a-a08f-5ef30be4111d'
       targetSiteId: null
-      validateRelatedElements: ''
+      validateRelatedElements: false
       viewMode: null
     translationKeyFormat: null
     translationMethod: site
@@ -137,13 +188,15 @@ fields:
     name: Image
     searchable: false
     settings:
+      allowSelfRelations: false
       allowedKinds: null
       defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       defaultUploadLocationSubpath: ''
       limit: '1'
-      localizeRelations: ''
+      localizeRelations: false
       restrictFiles: ''
       selectionLabel: ''
+      showSiteMenu: true
       showUnpermittedFiles: false
       showUnpermittedVolumes: false
       singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
@@ -153,7 +206,7 @@ fields:
         - 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       targetSiteId: null
       useSingleFolder: true
-      validateRelatedElements: ''
+      validateRelatedElements: false
       viewMode: list
     translationKeyFormat: null
     translationMethod: site
@@ -166,13 +219,15 @@ fields:
     name: 'Button Target'
     searchable: true
     settings:
+      allowSelfRelations: false
       limit: '1'
-      localizeRelations: ''
+      localizeRelations: false
       selectionLabel: ''
+      showSiteMenu: true
       source: null
       sources: '*'
       targetSiteId: null
-      validateRelatedElements: ''
+      validateRelatedElements: false
       viewMode: null
     translationKeyFormat: null
     translationMethod: site

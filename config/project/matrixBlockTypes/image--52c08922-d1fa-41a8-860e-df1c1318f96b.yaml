@@ -3,16 +3,34 @@ fieldLayouts:
   5019c24d-309a-4ed8-8c94-f62cf5fbbf1b:
     tabs:
       -
-        fields:
-          7a11b052-f8c9-46d7-8bb4-7c9a3916200c:
-            required: true
-            sortOrder: 1
-          d0e82890-7b4f-4771-a8a9-b4c4e8797271:
-            required: false
-            sortOrder: 3
-          d80ee1f4-e752-4e38-860a-c5f26790bf89:
-            required: false
-            sortOrder: 2
+        elements:
+          -
+            fieldUid: 7a11b052-f8c9-46d7-8bb4-7c9a3916200c
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: d80ee1f4-e752-4e38-860a-c5f26790bf89
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: d0e82890-7b4f-4771-a8a9-b4c4e8797271
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -24,22 +42,26 @@ fields:
     name: Image
     searchable: false
     settings:
+      allowSelfRelations: false
       allowedKinds:
         - image
       defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       defaultUploadLocationSubpath: ''
       limit: '1'
-      localizeRelations: '1'
+      localizeRelations: true
       restrictFiles: '1'
       selectionLabel: 'Select an image'
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: true
       singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       singleUploadLocationSubpath: ''
       source: null
       sources:
         - 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       targetSiteId: null
-      useSingleFolder: ''
-      validateRelatedElements: ''
+      useSingleFolder: false
+      validateRelatedElements: false
       viewMode: large
     translationKeyFormat: null
     translationMethod: site
@@ -76,12 +98,14 @@ fields:
     name: Caption
     searchable: true
     settings:
+      byteLimit: null
       charLimit: '80'
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText

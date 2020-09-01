@@ -1,5 +1,18 @@
 # Changelog
 
+## 8.2 2020-09-01
+
+* Use Sprig plugin for dynamic content
+
+## 8.1 2020-08-22
+
+* Added 'ads' module as an example for simple CRUD stuff (Thanks to Aylin)
+
+## 7.7.1 2020-08-18
+
+* Updated to Craft 3.5.5
+* Disabled SolrSearch Plugin by default
+
 ## 7.7 2020-08-17
 
 * Updated to Craft 3.5

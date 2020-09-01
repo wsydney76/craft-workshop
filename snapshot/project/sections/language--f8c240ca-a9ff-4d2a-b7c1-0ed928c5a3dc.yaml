@@ -3,8 +3,13 @@ handle: language
 name: Language
 previewTargets:
   -
-    label: 'Primary entry page'
-    urlFormat: '{url}'
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
 propagationMethod: all
 siteSettings:
   7e9d0ac6-02db-42c5-bfe5-2268b447b682:

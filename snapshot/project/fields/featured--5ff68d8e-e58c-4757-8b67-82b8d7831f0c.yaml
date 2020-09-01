@@ -5,9 +5,11 @@ instructions: ''
 name: Featured
 searchable: true
 settings:
+  allowSelfRelations: false
   limit: '4'
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: ''
+  showSiteMenu: true
   source: null
   sources:
     - 'section:09f97fdd-45fe-4221-982a-a2077c8460b1'
@@ -17,7 +19,7 @@ settings:
     - 'section:c504627b-6f45-47cd-822a-8e36420f203d'
     - 'section:011a8ede-f19a-4ed7-bb30-fdc9852a9c8b'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

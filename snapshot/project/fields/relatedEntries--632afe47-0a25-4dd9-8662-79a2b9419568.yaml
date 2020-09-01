@@ -5,16 +5,18 @@ instructions: ''
 name: 'Related Entries'
 searchable: false
 settings:
+  allowSelfRelations: false
   limit: ''
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: ''
+  showSiteMenu: true
   source: null
   sources:
     - 'section:ae5b96d9-d2e0-43b6-b555-0c6135de8639'
     - 'section:27cfda43-5654-4af4-802c-342c5111966f'
     - 'section:c504627b-6f45-47cd-822a-8e36420f203d'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

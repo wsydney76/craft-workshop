@@ -1,0 +1,39 @@
+
+{% extends "_layouts/cp.html" %}
+{% set title = 'Ads' %}
+
+{% do view.registerAssetBundle('craft\\web\\assets\\admintable\\AdminTableAsset') %}
+
+{% block content %}
+    <div id="ads-vue-admin-table"></div>
+{% endblock %}
+
+{% set tableData = [] %}
+{% for ad in craft.ads.all %}
+	{% set tableData = tableData|push({
+        type: ad.type|capitalize,
+        title: ad.title,
+        url: cpUrl('ads/' ~ ad.id),
+        status: ad.isActive,
+        email: ad.email,
+        date: ad.dateCreatedLocal|datetime('short')
+    }) %}
+{% endfor %}
+
+{% js %}
+
+adsTable = new Craft.VueAdminTable({
+    container: '#ads-vue-admin-table',
+    perPage: 15,
+    columns: [
+        {name: 'type', title: 'Type'},
+        {name: '__slot:title', title: 'Title'},
+        {name: 'email', title: 'Email'},
+        {name: 'date', title: 'Date', dataClass: 'column-nowrap'}
+    ],
+    deleteAction: 'ads/ads/delete',
+    tableData: {{ tableData|json_encode|raw }}
+
+});
+
+{% endjs %}

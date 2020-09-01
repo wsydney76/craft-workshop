@@ -3,16 +3,34 @@ fieldLayouts:
   f4412fea-8c5b-47f5-8b48-4632ba8fb0b2:
     tabs:
       -
-        fields:
-          a3f8a0c2-e847-40b4-89ca-1723bcf545bc:
-            required: false
-            sortOrder: 2
-          a9633179-24af-43d4-b2dc-8010983721d7:
-            required: true
-            sortOrder: 1
-          eb82d6d0-a7a4-4b84-8174-9e8af88259c1:
-            required: false
-            sortOrder: 3
+        elements:
+          -
+            fieldUid: a9633179-24af-43d4-b2dc-8010983721d7
+            instructions: null
+            label: null
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: a3f8a0c2-e847-40b4-89ca-1723bcf545bc
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: eb82d6d0-a7a4-4b84-8174-9e8af88259c1
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -24,12 +42,14 @@ fields:
     name: Title
     searchable: false
     settings:
+      byteLimit: null
       charLimit: '80'
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText
@@ -41,22 +61,26 @@ fields:
     name: Asset
     searchable: false
     settings:
+      allowSelfRelations: false
       allowedKinds:
         - json
       defaultUploadLocationSource: 'volume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
       defaultUploadLocationSubpath: ''
       limit: '1'
-      localizeRelations: '1'
+      localizeRelations: true
       restrictFiles: '1'
       selectionLabel: 'Select an asset'
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: true
       singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       singleUploadLocationSubpath: ''
       source: null
       sources:
         - 'volume:bfd1bc55-3704-4a4b-a486-afa9e752bfcd'
       targetSiteId: null
-      useSingleFolder: ''
-      validateRelatedElements: ''
+      useSingleFolder: false
+      validateRelatedElements: false
       viewMode: large
     translationKeyFormat: null
     translationMethod: site
@@ -69,12 +93,14 @@ fields:
     name: Description
     searchable: false
     settings:
+      byteLimit: null
       charLimit: '200'
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText

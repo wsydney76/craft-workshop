@@ -1,0 +1,14 @@
+{# @param ads[] #}
+{# @param type search/buy/myads #}
+{# @param paginator #}
+
+{% extends "_ads/layout.twig" %}
+
+{% set type = type ?: 'all' %}
+
+{% set global_title = 'Ads'|t ~ ': ' ~ type|t('ads') %}
+
+{% block content %}
+    {% include '_ads/partials/list.twig'
+        with {ads:ads, type: type, paginator: paginator } only %}
+{% endblock %}

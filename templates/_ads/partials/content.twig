@@ -1,0 +1,11 @@
+{# @param AdModel ad #}
+
+<div class="mb-4">
+    {{ craft.app.formatter.asRelativeTime(ad.dateCreatedLocal) }}
+</div>
+
+<div class="mb-4">
+    {{ ad.text|nl2br }}
+</div>
+
+<a class="btn btn-primary text-white">Mail: {{ ad.email }}</a>

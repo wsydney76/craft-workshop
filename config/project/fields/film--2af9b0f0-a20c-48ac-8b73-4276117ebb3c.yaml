@@ -5,14 +5,16 @@ instructions: ''
 name: Film
 searchable: true
 settings:
+  allowSelfRelations: false
   limit: '1'
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: 'Select a film'
+  showSiteMenu: true
   source: null
   sources:
     - 'section:ae5b96d9-d2e0-43b6-b555-0c6135de8639'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

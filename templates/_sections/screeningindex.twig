@@ -12,7 +12,7 @@
     {% embed '_layouts/embeds/widget.twig' with {heading:'Main Festival'|t, boxed:true} %}
         {% block content %}
             {% include '_partials/screenings_bydate.twig'
-                with {query:craft.entries.section('screening'), heading:'', boxed:false, showLanguages:true} only %}
+                with {query:craft.entries.section('screening'), heading:'', boxed:false, showLanguages:true, showWatchList: false} only %}
         {% endblock %}
     {% endembed %}
 
@@ -20,6 +20,6 @@
 
 {% block secondaryContent %}
     {% include '_partials/screenings_bydate.twig'
-     with {heading: 'Kids Festival', query: craft.entries.section('screening').site('kids')}
+     with {heading: 'Kids Festival', query: craft.entries.section('screening').site('kids'), showWatchList: false}
     %}
 {% endblock %}

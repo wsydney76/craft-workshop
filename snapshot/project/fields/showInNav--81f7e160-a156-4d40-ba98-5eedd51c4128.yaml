@@ -5,6 +5,7 @@ instructions: ''
 name: 'Show in Nav'
 searchable: false
 settings:
+  optgroups: true
   options:
     -
       __assoc__:

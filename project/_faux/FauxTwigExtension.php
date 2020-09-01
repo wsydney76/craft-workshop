@@ -27,6 +27,7 @@ use craft\commerce\elements\Product;
 use craft\commerce\elements\Variant;
 use craft\commerce\models\LineItem;
 use craft\commerce\Plugin;
+use craft\db\Paginator;
 use craft\elements\Asset;
 use craft\elements\Category;
 use craft\elements\db\EntryQuery;
@@ -40,6 +41,7 @@ use craft\web\twig\variables\CraftVariable;
 use craft\web\view;
 
 use project\_faux\CraftTwigExtension;
+use project\modules\ads\models\AdModel;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 
@@ -86,7 +88,10 @@ class FauxTwigExtension extends AbstractExtension implements GlobalsInterface
             'global_navCondition' => [],
             'global_cols' => [],
             'global_languageSwitch' => [],
-            'siteInfo' => new GlobalSet()
+            'siteInfo' => new GlobalSet(),
+            'paginator' => new Paginator(),
+
+            'ad' => new AdModel()
 
             // Third party globals
             //'seomatic' => new \nystudio107\seomatic\variables\SeomaticVariable(),

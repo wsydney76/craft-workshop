@@ -14,6 +14,7 @@ use craft\commerce\elements\db\ProductQuery;
 use craft\commerce\elements\db\SubscriptionQuery;
 use craft\commerce\Plugin;
 use craft\web\twig\variables\CraftVariable;
+use project\modules\ads\models\queries\AdModelQuery;
 use project\modules\main\modules\members\variables\MembersVariable;
 use project\modules\main\modules\members\variables\WatchListVariable;
 use project\modules\main\variables\ContentVariable;
@@ -25,6 +26,11 @@ use spicyweb\embeddedassets\Variable;
 class CraftTwigExtension extends CraftVariable
 {
     public function suggestions(): SuggestionRecordQuery
+    {
+
+    }
+
+    public function ads(): AdModelQuery
     {
 
     }

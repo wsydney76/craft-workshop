@@ -3,19 +3,43 @@ fieldLayouts:
   a3a223e7-de48-4b77-9d19-7fd60f6e0131:
     tabs:
       -
-        fields:
-          34581043-4880-49b9-b16a-cba691fa21f3:
-            required: false
-            sortOrder: 3
-          90724a6b-55ad-446f-be50-7aea7e1fb067:
-            required: false
-            sortOrder: 4
-          9c7e95a7-7a87-46ad-974e-8ce3846ef68b:
-            required: false
-            sortOrder: 2
-          b0cfc7f4-d446-41bb-87ab-dc16b1481540:
-            required: false
-            sortOrder: 1
+        elements:
+          -
+            fieldUid: b0cfc7f4-d446-41bb-87ab-dc16b1481540
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 9c7e95a7-7a87-46ad-974e-8ce3846ef68b
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 34581043-4880-49b9-b16a-cba691fa21f3
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 90724a6b-55ad-446f-be50-7aea7e1fb067
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -27,21 +51,25 @@ fields:
     name: Image
     searchable: true
     settings:
+      allowSelfRelations: false
       allowedKinds: null
       defaultUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       defaultUploadLocationSubpath: ''
       limit: '1'
-      localizeRelations: ''
+      localizeRelations: false
       restrictFiles: ''
       selectionLabel: ''
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: true
       singleUploadLocationSource: 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       singleUploadLocationSubpath: ''
       source: null
       sources:
         - 'volume:8136d7e9-1a74-464d-aef2-3a4f91a5cdda'
       targetSiteId: null
-      useSingleFolder: ''
-      validateRelatedElements: ''
+      useSingleFolder: false
+      validateRelatedElements: false
       viewMode: large
     translationKeyFormat: null
     translationMethod: site
@@ -100,12 +128,14 @@ fields:
     name: Description
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: '1'
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText
@@ -117,12 +147,14 @@ fields:
     name: 'Alternative Title'
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText

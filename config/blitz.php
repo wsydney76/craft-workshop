@@ -48,10 +48,6 @@ return [
                 'uriPattern' => '^buy/',
             ],
             [
-                'siteId' => '',
-                'uriPattern' => '^ajax/',
-            ],
-            [
                 'siteId' => 1,
                 'uriPattern' => '^suggestion',
             ],
@@ -70,6 +66,11 @@ return [
             [
                 'siteId' => '',
                 'uriPattern' => '^graphql/',
+            ]
+            ,
+            [
+                'siteId' => '',
+                'uriPattern' => '^ads/',
             ]
         ],
 

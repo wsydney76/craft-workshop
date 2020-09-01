@@ -1,0 +1,70 @@
+{
+    "title": "Lemonade Ft. Don Toliver, Gunna & NAV by Internet Money Records",
+    "description": "https://internetmoney.lnk.to/Lemonade\nLEMONADE OUT NOW!!",
+    "url": "https://soundcloud.com/internetmoneyrecords/17-lemonade-ft-don-toliver-gunna-nav-master",
+    "type": "rich",
+    "tags": [
+        "record",
+        "sounds",
+        "share",
+        "sound",
+        "audio",
+        "tracks",
+        "music",
+        "soundcloud"
+    ],
+    "feeds": [],
+    "images": [
+        {
+            "url": "https://i1.sndcdn.com/artworks-2MLsYnao8vRsIaFx-UEmW0g-t500x500.jpg",
+            "width": 500,
+            "height": 500,
+            "size": 250000,
+            "mime": "image/jpeg"
+        }
+    ],
+    "image": "https://i1.sndcdn.com/artworks-2MLsYnao8vRsIaFx-UEmW0g-t500x500.jpg",
+    "imageWidth": 500,
+    "imageHeight": 500,
+    "code": "<iframe width=\"1080\" height=\"400\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F874766908&show_artwork=true&maxwidth=1080&maxheight=1080\"></iframe>",
+    "width": 1080,
+    "height": 400,
+    "aspectRatio": 37.037,
+    "authorName": "Internet Money Records",
+    "authorUrl": "https://soundcloud.com/internetmoneyrecords",
+    "providerIcons": [
+        {
+            "url": "https://soundcloud.com/favicon.ico",
+            "width": 16,
+            "height": 16,
+            "size": 256,
+            "mime": "image/x-icon"
+        },
+        {
+            "url": "https://a-v2.sndcdn.com/assets/images/sc-icons/favicon-2cadd14bdb.ico",
+            "width": 32,
+            "height": 32,
+            "size": 1024,
+            "mime": "image/x-icon"
+        },
+        {
+            "url": "https://a-v2.sndcdn.com/assets/images/sc-icons/ios-a62dfc8fe7.png",
+            "width": 114,
+            "height": 114,
+            "size": 12996,
+            "mime": "image/png"
+        },
+        {
+            "url": "https://a-v2.sndcdn.com/assets/images/sc-icons/win8-2dc974a18a.png",
+            "width": 144,
+            "height": 144,
+            "size": 20736,
+            "mime": "image/png"
+        }
+    ],
+    "providerIcon": "https://a-v2.sndcdn.com/assets/images/sc-icons/win8-2dc974a18a.png",
+    "providerName": "SoundCloud",
+    "providerUrl": "https://soundcloud.com",
+    "publishedTime": null,
+    "license": null
+}

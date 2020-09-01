@@ -1,18 +1,36 @@
 tabs:
   -
-    fields:
-      57d9965e-f781-474e-8cdc-0ed2b08c4128:
-        required: false
-        sortOrder: 1
-      c207a853-622b-4b8f-b17a-bc4fcad5a676:
-        required: false
-        sortOrder: 2
+    elements:
+      -
+        fieldUid: 57d9965e-f781-474e-8cdc-0ed2b08c4128
+        instructions: null
+        label: null
+        required: '0'
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
+      -
+        fieldUid: c207a853-622b-4b8f-b17a-bc4fcad5a676
+        instructions: null
+        label: null
+        required: '0'
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
     name: Content
     sortOrder: 1
   -
-    fields:
-      1028670c-180a-4f03-b010-3c268cb496aa:
-        required: false
-        sortOrder: 1
+    elements:
+      -
+        fieldUid: 1028670c-180a-4f03-b010-3c268cb496aa
+        instructions: null
+        label: null
+        required: '0'
+        tip: null
+        type: craft\fieldlayoutelements\CustomField
+        warning: null
+        width: 100
     name: Festival
     sortOrder: 2

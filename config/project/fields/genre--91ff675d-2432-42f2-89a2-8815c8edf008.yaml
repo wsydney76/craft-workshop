@@ -5,14 +5,16 @@ instructions: ''
 name: Genre
 searchable: true
 settings:
+  allowSelfRelations: false
   limit: ''
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: ''
+  showSiteMenu: true
   source: null
   sources:
     - 'section:f8cd6adb-1de1-4201-bbd6-222470063e4a'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

@@ -1,4 +1,5 @@
 baseUrl: '@web/kids'
+enabled: true
 handle: kids
 hasUrls: true
 language: de-DE

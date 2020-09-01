@@ -1,0 +1,21 @@
+{# @param id #}
+
+{% extends "_ads/layout.twig" %}
+
+{% set ad = craft.ads.status('active').id(id).one %}
+{% if not ad %}
+    {% exit 404 %}
+{% endif %}
+
+{% set global_title = "#{ad.type|t('ads')}: #{ad.title}" %}
+
+{% block content %}
+    {% include '_ads/partials/content.twig' with {
+        ad: ad
+    } only %}
+
+    {% include '_ads/partials/close.twig' with {
+        ad: ad
+    } %}
+
+{% endblock %}

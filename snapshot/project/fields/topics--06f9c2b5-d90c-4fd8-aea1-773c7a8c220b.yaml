@@ -5,13 +5,16 @@ instructions: ''
 name: Topics
 searchable: true
 settings:
+  allowSelfRelations: false
   limit: ''
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: 'Add a topic'
+  showSiteMenu: true
   source: null
   sources:
     - 'section:eecee2b6-543a-4136-9a8d-b6c0201bc3a5'
   targetSiteId: null
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

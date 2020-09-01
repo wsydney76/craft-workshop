@@ -5,6 +5,8 @@ instructions: ''
 name: Showtime
 searchable: false
 settings:
+  max: null
+  min: null
   minuteIncrement: '15'
   showDate: true
   showTime: true

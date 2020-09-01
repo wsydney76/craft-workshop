@@ -1,0 +1,138 @@
+{% extends "_layouts/cp.html" %}
+{% set title = 'Manage Ads' %}
+{% import '_includes/forms.html' as forms %}
+
+{% requirePermission 'editAds' %}
+
+{% do view.registerAssetBundle('craft\\web\\assets\\admintable\\AdminTableAsset') %}
+
+{% block content %}
+    <div id="ads-vue-admin-table"></div>
+{% endblock %}
+
+{% block toolbar %}
+
+    {{ forms.selectField({
+        label: 'By Type',
+        id: 'typeSelect',
+        options: [
+            {label: 'All', value: ''},
+            {label: 'Search', value: 'search'},
+            {label: 'Offer', value: 'offer'}
+        ]
+    }) }}
+
+    {{ forms.selectField({
+        label: 'By Status',
+        id: 'statusSelect',
+        options: [
+            {label: 'All', value: ''},
+            {label: 'Active (open and not expired)', value: 'active'},
+            {label: 'Expired', value: 'expired'},
+            {label: 'Open', value: 'open'},
+            {label: 'Closed', value: 'closed'}
+        ]
+    }) }}
+
+
+    {{ forms.selectField({
+        label: 'By Email',
+        id: 'emailSelect',
+        options: craft.ads.select('email').distinct().orderBy('email').column
+        |map(email => {label:email, value:email})
+        |unshift({label: 'All', value: ''})
+    }) }}
+
+{% endblock %}
+
+{% block actionButton %}
+    <button id="filterResetBtn" class="btn">Reset</button>
+    <button id="reloadBtn" class="btn">Reload</button>
+    <a class="btn submit" href="{{ cpUrl('ads/new') }}">New</a>
+{% endblock %}
+
+{% js %}
+
+tableDataEndpoint = 'ads/ads/table-data';
+
+//adsTable = new Craft.VueAdminTable(settings);
+adsTable = new Craft.VueAdminTable().init({
+    container: '#ads-vue-admin-table',
+    tableDataEndpoint: tableDataEndpoint,
+    perPage: 12,
+    deleteAction: 'ads/ads/delete',
+    columns: [
+        {name: 'type', title: 'Type', sortField: 'type'},
+        {name: '__slot:title', title: 'Title', sortField: 'title'},
+        {name: '__slot:detail', title: 'Text'},
+        {name: 'email', title: 'Email', sortField: 'email'},
+        {name: 'statusText', title: 'Status', sortField: 'status'},
+        {name: 'date', title: 'Date', sortField: 'dateCreated', dataClass: 'column-nowrap'}
+    ],
+    search: true,
+    checkboxes: true,
+    actions: [
+        {
+            label: 'Set status',
+            actions: [
+                {
+                    label: 'Open',
+                    action: 'ads/ads/set-status',
+                    param: 'status',
+                    value: 'open',
+                    status: 'live',
+                    ajax: true
+                },
+                {
+                    label: 'Closed',
+                    action: 'ads/ads/set-status',
+                    param: 'status',
+                    value: 'closed',
+                    status: 'disabled',
+                    ajax: true
+                }
+            ]
+        },
+    ]
+});
+
+filterSelectors = '#typeSelect,#statusSelect,#emailSelect';
+
+$(filterSelectors).change(() => filterAdsTable());
+
+$('#filterResetBtn').click(() => {
+    $(filterSelectors).val('');
+    setVueAdminTableSearchTerm(adsTable, '');
+    filterAdsTable();
+});
+
+$('#reloadBtn').click(() => reloadAdsTable());
+
+function filterAdsTable() {
+    var endpoint = tableDataEndpoint
+        + '?type=' + $('#typeSelect').val()
+        + '&status=' + $('#statusSelect').val()
+        + '&email=' + $('#emailSelect').val();
+
+    setVueAdminTableDataEndPoint(adsTable, endpoint);
+}
+
+function reloadAdsTable() {
+    reloadVueAdminTable(adsTable);
+}
+
+// TODO: Add to global scripts
+function setVueAdminTableDataEndPoint(table, endpoint) {
+    // https://github.com/craftcms/cms/issues/6695#issuecomment-678684530
+    table.$children[0].$props.tableDataEndpoint = endpoint;
+}
+
+function reloadVueAdminTable(table) {
+    table.$children[0].reload();
+}
+
+function setVueAdminTableSearchTerm(table, term) {
+    table.$children[0].searchTerm = term;
+}
+
+{% endjs %}

@@ -26,6 +26,11 @@
 {% endblock %}
 
 {% block secondaryContent %}
+
+    {% include '_partials/managewatchlist.twig' with {
+        id: entry.id
+    } only %}
+
     {% include '_partials/screening_details.twig'
         with {entry:entry, location:location} only %}
 {% endblock %}

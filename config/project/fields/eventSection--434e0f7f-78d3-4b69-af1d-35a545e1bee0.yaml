@@ -5,14 +5,16 @@ instructions: ''
 name: Section
 searchable: true
 settings:
+  allowSelfRelations: false
   limit: '1'
-  localizeRelations: ''
+  localizeRelations: false
   selectionLabel: 'Select a section'
+  showSiteMenu: true
   source: null
   sources:
     - 'section:011a8ede-f19a-4ed7-bb30-fdc9852a9c8b'
   targetSiteId: null
-  validateRelatedElements: ''
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

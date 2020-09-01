@@ -1,0 +1,33 @@
+{# @param ads[] #}
+{# @param type all/search/buy/myads #}
+{# @param paginator #}
+
+{% set paginatorHtml %}
+    {% include '_ads/partials/pagination.twig' %}
+{% endset %}
+
+{{ paginatorHtml }}
+
+{% for ad in ads %}
+    <div class="my-4 bg-white p-4 rounded-lg">
+        {% if type == 'all' %}
+            <div>{{ ad.type|t('ads') }}</div>
+        {% endif %}
+
+        <div class="font-weight-bold mb-3">
+            <a href="{{ ad.url }}">{{ ad.title }}</a>
+        </div>
+
+        <div class="mb-3">
+            {{ craft.app.formatter.asRelativeTime(ad.dateCreatedLocal) }}
+        </div>
+        <div class="mb-3">
+            {{ ad.text|nl2br }}
+        </div>
+        <div>
+            <a class="btn btn-primary" href="mailto:{{ ad.email }}">{{ 'Email'|t }}</a>
+        </div>
+    </div>
+{% endfor %}
+
+{{ paginatorHtml }}

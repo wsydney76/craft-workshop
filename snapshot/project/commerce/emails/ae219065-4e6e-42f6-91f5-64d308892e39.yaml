@@ -1,12 +1,11 @@
-bcc: ''
-cc: ''
-enabled: '1'
+bcc: null
+cc: null
+enabled: true
 name: 'Order Confirmation'
 pdf: ce9b6388-7f97-4254-b64d-aea6551d1415
 plainTextTemplatePath: ''
 recipientType: customer
-replyTo: ''
+replyTo: null
 subject: 'Order Confirmation - Bestellbestätigung'
 templatePath: buy/_pdf/order
-to: ''
-uid: ae219065-4e6e-42f6-91f5-64d308892e39
+to: null

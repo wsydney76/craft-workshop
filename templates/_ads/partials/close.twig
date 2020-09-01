@@ -1,0 +1,9 @@
+{# @param AdModel ad #}
+
+{% if currentUser and currentUser.email == ad.email and ad.status == 'open' %}
+    <div class="my-4">
+        <a id="closeBtn" class="btn btn-primary text-white"
+           onclick=" return confirm('{{ 'Are you sure?'|t }}');"
+           href="{{ url("ads/withdraw/#{ad.id}") }}">{{ 'Withdraw Your Ad'|t }}</a>
+    </div>
+{% endif %}

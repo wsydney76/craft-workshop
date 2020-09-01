@@ -3,10 +3,16 @@ fieldLayouts:
   d9aa5420-99a2-4136-8ef3-53b11a05658e:
     tabs:
       -
-        fields:
-          2f1465c2-f2c0-459f-bca7-63e5847e57de:
-            required: false
-            sortOrder: 1
+        elements:
+          -
+            fieldUid: 2f1465c2-f2c0-459f-bca7-63e5847e57de
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -18,7 +24,9 @@ fields:
     name: 'Hilfetext zu Matrix-Inhalten einfügen?'
     searchable: true
     settings:
-      default: '1'
+      default: true
+      offLabel: null
+      onLabel: null
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Lightswitch

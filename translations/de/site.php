@@ -1,6 +1,17 @@
 <?php
 
 return [
+
+    'Sorry, we could not save your ad. Please check the messages below!' => 'Wir konnten Ihre Anzeige nicht speichern, bitte überprüfen Sie die Meldungen unten!',
+    'Thank your for your ad!' => 'Vielen Dank für Ihre Anzeige!',
+    'Ads' => 'Anzeigen',
+    'New Ad' => 'Neue Anzeige',
+    'Latest Ads' => 'Aktuelle Anzeigen',
+    'Next Page' => 'Nächste Seite',
+    'Previous Page' => 'Vorherige Seite',
+    'Withdraw Your Ad' => 'Ihre Anzeige zurückziehen',
+    'Ad withdrawn' => 'Anzeige zurückgezogen',
+
     'Accept' => 'Akzeptieren',
     'Accepted' => 'Akzeptiert',
     'Add to watchlist' => 'Zur Merkliste hinzufügen',
@@ -97,7 +108,7 @@ return [
     'Screening' => 'Vorführung',
     'Screenings By Date' => 'Vorführungen nach Datum',
     'Search for' => 'Suche nach',
-    'Search' => 'Suchen',
+    'Search' => 'Suche',
     'Select which cookies you want to accept' => 'Wählen Sie, welche Cookies Sie akzeptieren möchten',
     'Send' => 'Abschicken',
     'Set Password' => 'Passwort vergeben',

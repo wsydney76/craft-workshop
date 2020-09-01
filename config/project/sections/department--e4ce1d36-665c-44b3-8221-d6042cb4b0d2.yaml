@@ -7,12 +7,12 @@ siteSettings:
     enabledByDefault: true
     hasUrls: false
     template: null
-    uriFormat: ''
+    uriFormat: null
   bbbb120d-5d71-4e7c-a164-487e401c4f2c:
     enabledByDefault: true
     hasUrls: false
     template: null
-    uriFormat: ''
+    uriFormat: null
 structure:
   maxLevels: 1
   uid: 24265b5b-55c8-43c8-8768-0bb8d0f86a00
