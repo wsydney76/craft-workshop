@@ -1,6 +1,6 @@
 assets:
   tempVolumeUid: 35c3b3f5-30e7-4780-9ae1-286ee8bd275e
-dateModified: 1598010206
+dateModified: 1598956004
 email:
   fromEmail: '@EMAIL_ADDRESS'
   fromName: '@EMAIL_SENDER'
@@ -300,11 +300,15 @@ plugins:
     schemaVersion: 1.0.0
   solrsearch:
     edition: standard
-    enabled: false
+    enabled: true
     schemaVersion: 1.0.0
     settings:
       solrBaseUrl: '@SOLR_BASE_URL'
       solrCore: '@SOLR_CORE'
+  sprig:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   staticcache:
     edition: standard
     enabled: false
@@ -336,5 +340,5 @@ system:
   edition: pro
   live: true
   name: '@SYSTEM_NAME'
-  schemaVersion: 3.5.12
+  schemaVersion: 3.5.13
   timeZone: Europe/Berlin
