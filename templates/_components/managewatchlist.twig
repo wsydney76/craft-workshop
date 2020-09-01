@@ -1,0 +1,25 @@
+<div>
+    {% if currentUser %}
+
+        <input type="hidden" name="id" value="{{ id }}">
+
+        {% set inList = craft.watchlist.exists(id) %}
+
+        {% set action = inList ? "main/members/members/delete-from-watchlist" : "main/members/members/add-to-watchlist" %}
+        {% set caption = inList ? 'Remove from watchlist'|t : 'Add to watchlist'|t %}
+
+
+        <button sprig s-action="{{ action }}" s-method="get"
+                class="btn btn-primary cursor-pointer">
+            {{ caption }}
+        </button>
+
+        {% if success is defined and message is defined %}
+            <div class="my-3 alert alert-{{ success ? 'success' : 'danger' }}">{{ message }}</div>
+        {% endif %}
+
+    {% else %}
+        <a href="{{ url('members/register') }}">{{ 'Register to add screenings to your watchlist'|t }}</a>
+    {% endif %}
+
+</div>

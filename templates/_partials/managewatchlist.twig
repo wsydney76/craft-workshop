@@ -1,0 +1,6 @@
+{# @param id #}
+
+<div class="mb-3">
+    {{ sprig('_components/managewatchlist.twig', {id: id}, {'s-trigger': 'load'}) }}
+</div>
+{{ sprig.script }}
