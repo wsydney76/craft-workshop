@@ -1,5 +1,8 @@
 # Changelog
 
+## 8.2 2020-09-01
+
+* Use Sprig plugin for dynamic content
 
 ## 8.1 2020-08-22
 
