@@ -1,5 +1,7 @@
-{% extends "_layouts/cp.html" %}
+{# @param AdModel ad #}
+{# @param redirectUrl #}
 
+{% extends "_layouts/cp.html" %}
 
 {% set title = ad.isNewRecord ? 'New' : ad.title %}
 {% set fullPageForm = true %}

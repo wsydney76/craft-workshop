@@ -38,7 +38,7 @@
     {{ forms.selectField({
         label: 'By Email',
         id: 'emailSelect',
-        options: craft.ads.select('email').distinct().orderBy('email').column()
+        options: craft.ads.select('email').distinct().orderBy('email').column
         |map(email => {label:email, value:email})
         |unshift({label: 'All', value: ''})
     }) }}
@@ -59,7 +59,7 @@ tableDataEndpoint = 'ads/ads/table-data';
 adsTable = new Craft.VueAdminTable().init({
     container: '#ads-vue-admin-table',
     tableDataEndpoint: tableDataEndpoint,
-    perPage: 15,
+    perPage: 12,
     deleteAction: 'ads/ads/delete',
     columns: [
         {name: 'type', title: 'Type', sortField: 'type'},

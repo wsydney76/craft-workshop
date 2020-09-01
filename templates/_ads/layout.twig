@@ -3,7 +3,8 @@
 {% set global_featuredImage = craft.assets.filename('ads.jpg').one %}
 
 {% block titleTop%}
-    {% include '_ads/partials/nav.twig' %}
+    {% include '_ads/partials/nav.twig'
+        with {type: type ?? 'all'} only %}
 {% endblock %}
 
 {% block contentTop %}

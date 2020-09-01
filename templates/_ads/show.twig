@@ -1,3 +1,5 @@
+{# @param id #}
+
 {% extends "_ads/layout.twig" %}
 
 {% set ad = craft.ads.status('active').id(id).one %}
